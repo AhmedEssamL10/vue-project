@@ -5,6 +5,7 @@ export default {
         "./src/**/*.{js,ts,jsx,tsx,vue}",
         "./node_modules/flyonui/dist/js/*.js",
         "./resources/**/*.blade.php",
+        "./resources/**/*.vue",
     ],
     theme: {
         extend: {
