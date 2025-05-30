@@ -1,0 +1,49 @@
+header {
+    // backdrop-filter: blur(10px);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.8);
+    .nav-link {
+        @apply text-gray-800 hover:text-client-dark font-semibold transition-colors duration-300;
+        &.active {
+            @apply text-worker-dark;
+        }
+    }
+}
+
+
+// Mobile Menu
+.mobMenu {
+    @apply translate-x-0;
+    &.mobMenuHidden {
+        @apply ltr:translate-x-full rtl:-translate-x-full;
+    }
+
+    .nav_link {
+        @apply text-gray-800 hover:text-client-dark font-semibold transition-colors duration-300;
+        &.active {
+            @apply text-client-dark;
+        }
+    }
+
+    .collapse > input:is([type="checkbox"], [type="radio"]), .collapse-title {
+        @apply min-h-0 p-0 #{!important};
+    }
+
+    .collapse:focus-visible, .collapse:has(> input:is([type="checkbox"], [type="radio"]):focus-visible) {
+        @apply outline-none;
+    }
+
+    .collapse {
+        input[type="checkbox"]:checked {
+            & + .collapse-title {
+                .arrow {
+                    @apply rotate-[-180deg];
+                }
+            }
+        }
+    }
+
+    .collapse:is([open], :focus:not(.collapse-close)) > :where(.collapse-content), .collapse:not(.collapse-close) > :where(input:is([type="checkbox"], [type="radio"]):checked ~ .collapse-content) {
+        @apply pb-0 #{!important};
+    }
+}

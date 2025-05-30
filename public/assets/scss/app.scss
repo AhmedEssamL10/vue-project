@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './layout/header.scss';
+@import './layout/footer.scss';
+
+@layer base {
+    body {
+        overflow-x: hidden;
+    }
+
+    [dir="rtl"] * {
+        @apply font-cairo ;
+    }
+
+    [dir="ltr"] * {
+        @apply font-inter ;
+    }
+
+    *:not(input, textarea){
+        user-select: none;
+    }
+}
+
+@layer components {
+    .container {
+        width: 95%;
+    }
+
+    .whiteImgFilter {
+        filter: brightness(0) invert(1) !important;
+    }
+
+    .main-title {
+        @apply text-3xl lg:text-5xl font-bold text-center;
+        &.sm {
+            @apply text-2xl lg:text-3xl;
+        }
+
+        &.lg {
+            @apply text-4xl lg:text-6xl;
+        }
+    }
+
+    .dynamicSwiper {
+        max-height: 500px;
+        * {
+            user-select: none;
+        }
+        
+        .swiper-slide {
+            @apply shadow-lg rounded-xl overflow-hidden;
+        }
+    
+        &.noPagination {
+            .swiper-pagination {
+                display: none !important;
+            }
+    
+        }
+        &.noNavigation {
+            .swiper-button-next, .swiper-button-prev {
+                display: none !important;
+            }
+        }
+    }
+
+    .custom-option {
+        @apply border-2 border-transparent relative w-full rounded-lg cursor-pointer;
+        &:hover {
+            @apply border-client-light;
+        }
+        svg {
+            @apply absolute rtl:right-[5px] ltr:left-[5px] top-1/2 -translate-y-1/2;
+        }
+        &:has(:checked){
+            @apply border-client-dark;
+        }
+    }
+
+    .roomsNumber {
+        .join-item {
+            &:checked {
+                @apply bg-client-dark text-white border border-client-dark ;
+            }
+        }
+    }
+
+    .form_control_wrapper {
+        @apply flex flex-col gap-[10px]; 
+    }
+
+    .form_panel {
+        @apply max-w-xl mx-auto my-10 bg-white text-black p-8 rounded-lg border border-client-dark shadow-sm ;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+}
+
+body[dir="rtl"] {
+    .vc-arrow {
+        transform: rotate(180deg);
+    }
+}
