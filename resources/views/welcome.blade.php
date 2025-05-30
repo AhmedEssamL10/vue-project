@@ -700,7 +700,8 @@
             </div>
         </div>
     </div>
-    <script type="module" src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- <script type="module" src="{{ asset('assets/js/main.js') }}"></script> -->
+    @vite(['resources/js/main.js'])
 </body>
 
 </html>
