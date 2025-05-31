@@ -1,5 +1,5 @@
 
-<header class="w-full bg-white shadow-sm py-4 fixed top-0 left-0 right-0 z-20">
+<header class="w-full bg-white shadow-sm py-4 {{ Request::is('/') ? 'fixed top-0 left-0 right-0' : '' }} z-20">
         <div class="container flex justify-between items-center">
             <div class="flex items-center">
                 <a href="/">

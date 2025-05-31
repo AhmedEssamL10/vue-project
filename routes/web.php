@@ -23,3 +23,8 @@ Route::post('/ship-request', [RequestController::class, 'storeRequest'])
 Route::get('/app/{any?}', function () {
     return view('vue-request'); // Vue entrypoint Blade file    
 })->where('any', '.*');
+
+// Admin Login and Profile
+// Route::get('/dashboard/{any?}', function () {
+//     return view('vue-request'); // Vue entrypoint Blade file    
+// })->where('any', '.*');

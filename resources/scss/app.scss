@@ -89,6 +89,15 @@
 
     .form_control_wrapper {
         @apply flex flex-col gap-[10px]; 
+        .input-error {
+            @apply border-red-500;
+        }
+        .error-msg {
+            @apply text-red-500 text-sm ;
+            &:last-of-type {
+                @apply mb-2 ;
+            }
+        }
     }
 
     .form_panel {
