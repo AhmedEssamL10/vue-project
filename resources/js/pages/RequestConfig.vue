@@ -341,6 +341,7 @@
 import { required, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { reactive, toRefs } from 'vue'
+import axios from 'axios';
 
 export default {
     name: "RequestConfig",
@@ -419,9 +420,40 @@ export default {
             if (this.v$.formData.$invalid) {
                 return
             }
+            this.sendRequestConfigData();
             console.log(this.formData)
-        }
-    }
+        },
+        getRequestConfigData(){
+            axios.get('http://127.0.0.1:8000/api/service-prices')
+                .then(res => {
+                    console.log("res")
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.loog("err")
+                    console.loog(err)
+                })
+                .finally(() => {
 
+                })
+        },
+        sendRequestConfigData(){
+            axios.post('http://127.0.0.1:8000/api/service-prices', this.formData)
+                .then(res => {
+                    console.log("res")
+                    console.log(res)
+                })
+                .catch(err => {
+                    console.loog("err")
+                    console.loog(err)
+                })
+                .finally(() => {
+
+                })
+        },
+    },
+    mounted(){
+        this.getRequestConfigData();
+    }
 }
 </script>
