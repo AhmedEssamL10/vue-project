@@ -19,16 +19,17 @@
                           <div class="form_control_wrapper">
                             <div class="flex flex-col gap-3">
                               <label class="label cursor-pointer">
-                                <input type="radio" v-model="clientType" value="personal" name="clientType"
-                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                                <input @change="clientTypeError = false" type="radio" v-model="clientType" value="personal" name="clientType"
+                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" :class="clientTypeError ? 'input-error' : ''" />
                                 <span class="label-text text-[#1b1718]">شخص</span>
                               </label>
                               <label class="label cursor-pointer">
-                                <input type="radio" v-model="clientType" value="company" name="clientType"
-                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                                <input @change="clientTypeError = false" type="radio" v-model="clientType" value="company" name="clientType"
+                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" :class="clientTypeError ? 'input-error' : ''" />
                                 <span class="label-text text-[#1b1718]">شركة</span>
                               </label>
                             </div>
+                            <span v-if="clientTypeError" class="error-msg">برجاء إختيار نوع العميل</span>
                           </div>
                         </div>
                       </form>
@@ -36,7 +37,7 @@
                   </div>
                   <div class="max-w-xl mx-auto">
                     <button type="button" @click="handleNextStepOfCompanyOrPersonal(clientType)"
-                      class="bg-client-dark text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                   </div>
                 </template>
 
@@ -76,7 +77,7 @@
                         <button @click="companyStepNumber = 0" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button type="button" @click="handleStepAfterCompanyOptionSelection(companyOption)"
-                          class="bg-client-dark text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
                     </div>
                   </template>
@@ -91,18 +92,21 @@
                               <div>
                                 <label for="workersCount" class="block text-sm font-medium text-gray-700 mb-1">عدد
                                   العمال</label>
-                                <input id="workersCount" type="number" v-model="workersFormData.count"
+                                <input id="workersCount" type="number" v-model="v2$.workersFormFields.count.$model"
                                   placeholder="عدد العمال"
-                                  class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
+                                  class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" :class="v2$.workersFormFields.count.$error ? 'input-error' : ''" />
                               </div>
+                              <span v-if="v2$.workersFormFields.count.$error" class="error-msg">
+                                {{ v2$.workersFormFields.count.$errors[0].$message }}
+                              </span>
                             </div>
                             <div>
                               <div class="form_control_wrapper">
                                 <div>
-                                  <label class="block text-sm font-medium text-gray-700 mb-1">التاريخ الذى سوف تحتاج فيه
+                                  <label class="block text-sm font-medium text-gray-700 mb-1">المدة التى سوف تحتاج فيها
                                     العمال</label>
                                   <!-- <VCalendar /> -->
-                                  <VDatePicker is-range :min-date="new Date()" v-model="workersFormData.date"
+                                  <VDatePicker is-range :min-date="new Date()" v-model="v2$.workersFormFields.date.$model"
                                     :masks="masks" :locale="'ar'">
                                     <template #default="{ inputValue, showPopover }">
                                       <!-- <input placeholder="Date" class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" type="text" :value="`${inputValue.start || ''} ${(inputValue.start || inputValue.end) ? ' - ' : ''} ${inputValue.end || ''}`" @focus="showPopover"> -->
@@ -110,10 +114,14 @@
                                         class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                         type="text"
                                         :value="`${(inputValue.start || inputValue.end) ? `${inputValue.start || ''} ${inputValue.end ? ` - ${inputValue.end}` : ''}` : ''}`"
+                                        :class="v2$.workersFormFields.date.$error ? 'input-error' : ''"
                                         @focus="showPopover">
                                     </template>
                                   </VDatePicker>
                                 </div>
+                                <span v-if="v2$.workersFormFields.date.$error" class="error-msg">
+                                  {{ v2$.workersFormFields.date.$errors[0].$message }}
+                                </span>
                               </div>
                             </div>
                           </div>
@@ -124,11 +132,94 @@
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="companyStepNumber = 1" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
-                        <button type="button" @click="handleStepAfterCompanyOptionSelection(companyOption)"
-                          class="bg-client-dark text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                        <button type="button" @click="nextStepForCompany()"
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
                     </div>
                   </template>
+                  <template v-if="companyStepNumber === 3">
+                    <div class="form_panel">
+                      <div class="form_step_parent">
+                        <!-- Step 5: Contact Information -->
+                        <form class="form-step" id="contactInformation">
+                          <div class="mb-4">
+                            <h3 class="text-xl font-bold mb-4">معلومات التواصل</h3>
+                            <div class="flex flex-col gap-4 mb-4">
+                              <div class="form_control_wrapper">
+                                <div>
+                                  <label for="name" class="block text-sm font-medium text-gray-700 mb-1">*الإسم</label>
+                                  <input id="name" v-model="v2$.workersFormFields.clientName.$model" placeholder="الإسم"
+                                    class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                    :class="{ 'input-error': v2$.workersFormFields.clientName.$error }" />
+                                </div>
+                                <span class="error-msg" v-if="v2$.workersFormFields.clientName.$error">
+                                  {{ v2$.workersFormFields.clientName.$errors[0].$message }}
+                                </span>
+                              </div>
+
+                              <div class="form_control_wrapper">
+                                <div>
+                                  <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد
+                                    الإلكترونى*</label>
+                                  <input id="email" v-model="v2$.workersFormFields.clientEmail.$model"
+                                    placeholder="البريد الإلكترونى"
+                                    class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                    :class="{ 'input-error': v2$.workersFormFields.clientEmail.$error }" />
+                                </div>
+                                <span class="error-msg" v-if="v2$.workersFormFields.clientEmail.$error">
+                                  {{ v2$.workersFormFields.clientEmail.$errors[0].$message }}
+                                </span>
+                              </div>
+                              <div class="form_control_wrapper">
+                                <div>
+                                  <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">رقم
+                                    الهاتف*</label>
+                                  <input id="phone" v-model="v2$.workersFormFields.clientPhone.$model" placeholder="رقم الهاتف"
+                                    class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                    :class="{ 'input-error': v2$.workersFormFields.clientPhone.$error }" />
+                                </div>
+                                <span class="error-msg" v-if="v2$.workersFormFields.clientPhone.$error">
+                                  {{ v2$.workersFormFields.clientPhone.$errors[0].$message }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="max-w-xl mx-auto">
+                      <div class="btn_wrapper flex items-center gap-2">
+                        <button @click="companyStepNumber = 2" type="button"
+                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                        <button @click="nextStepForCompany()" type="button"
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                      </div>
+                    </div>
+                  </template>
+                  <dialog id="companySaveDataModal" class="modal text-black">
+                    <form @submit.prevent class="modal-box bg-white saveDataForm">
+                      <h3 class="text-lg font-bold">حفظ البيانات</h3>
+                      <p class="py-4">هل تريد حفظ البينات التى قمت بإدخالها لتقوم بتسجيل الدخول بها فيما بعد ؟</p>
+                      <div>
+                        <div class="flex flex-col gap-3">
+                          <label class="label cursor-pointer">
+                            <input type="radio" value="true" v-model="v2$.workersFormFields.saveData.$model" name="companySaveData"
+                              class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                            <span class="label-text text-[#1b1718]">حفظ البيانات</span>
+                          </label>
+                          <label class="label cursor-pointer">
+                            <input checked type="radio" value="false" v-model="v2$.workersFormFields.saveData.$model"
+                              name="companySaveData"
+                              class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                            <span class="label-text text-[#1b1718]">إلغاء الحفظ</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="modal-action">
+                        <button @click="submitCompanyRequestData" type="button" class="btn">إرسال الطلب</button>
+                      </div>
+                    </form>
+                  </dialog>
                 </template>
 
                 <template v-if="(clientType === 'personal' || companyOption === 'shipping')">
@@ -143,7 +234,7 @@
                               <div>
                                 <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">الرقم
                                   البريدى*</label>
-                                <input id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
+                                <input type="number" id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
                                   placeholder="الرقم البريدى"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                   :class="{ 'input-error': v$.formData.pickupPostalCode.$error }" />
@@ -205,7 +296,7 @@
                                   class="block text-sm font-medium text-gray-700 mb-1">المسافة
                                   المقطوعة من منطقه وقوف السيارة ؟*</label>
                                 <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                                  <input id="pickUpDistanceToCar" v-model="v$.formData.pickupDistanceToCar.$model"
+                                  <input type="number" id="pickUpDistanceToCar" v-model="v$.formData.pickupDistanceToCar.$model"
                                     placeholder="المسافة المقطوعة من منطقه وقوف السيارة ؟"
                                     class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                     :class="{ 'input-error': v$.formData.pickupDistanceToCar.$error }" />
@@ -233,13 +324,13 @@
                               <label class="block text-sm font-medium text-gray-700 mb-1">هل يوجد أسانسير ؟*</label>
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="yes" v-model="v$.formData.pickupLifterExistance.$model"
+                                  <input type="radio" value="true" v-model="v$.formData.pickupLifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">نعم</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="no" v-model="v$.formData.pickupLifterExistance.$model"
+                                  <input type="radio" value="false" v-model="v$.formData.pickupLifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">لا</span>
@@ -381,7 +472,7 @@
                                         <label for="spaceArea"
                                           class="block text-sm font-medium text-gray-700 mb-1">المساحة*</label>
                                         <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                                          <input id="spaceArea" :class="{ 'input-error': v$.formData.spaceArea.$error }"
+                                          <input type="number" id="spaceArea" :class="{ 'input-error': v$.formData.spaceArea.$error }"
                                             v-model="v$.formData.spaceArea.$model" placeholder="المساحة"
                                             class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                                           <span>m<sup>2</sup></span>
@@ -419,12 +510,12 @@
                             <div class="form_control_wrapper">
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.packingServices" type="checkbox"
+                                  <input v-model="v$.formData.packingServices.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">خدمة التعبئة والتغليف لصناديق النقل</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.dismantingFurniture" type="checkbox"
+                                  <input v-model="v$.formData.dismantingFurniture.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">تفكيك الأثاث</span>
                                 </label>
@@ -465,19 +556,19 @@
                                 </label>
 
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.finalCleaning" type="checkbox"
+                                  <input v-model="v$.formData.finalCleaning.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">التنظيف النهائي</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.furnitureLifter" type="checkbox"
+                                  <input v-model="v$.formData.furnitureLifter.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">التحميل باستخدام رافعة الأثاث</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.noParking" type="checkbox"
+                                  <input v-model="v$.formData.noParking.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                  <span class="label-text text-[#1b1718]">إنشاء منطقة ممنوع الوقوف فيها</span>
+                                  <span class="label-text text-[#1b1718]">إنشاء منطقة ممنوع الوقوف فيهاا</span>
                                 </label>
                               </div>
                             </div>
@@ -491,7 +582,7 @@
                         <button @click="stepNumber = 0" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
-                          class="bg-client-dark text-white px-6 py-2 rounded ">التالى</button>
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">التالى</button>
                       </div>
                     </div>
                   </template>
@@ -511,7 +602,7 @@
                                 <input id="postalCode" v-model="v$.formData.dropOffPostalCode.$model"
                                   placeholder="الرقم البريدى"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                  :class="{ 'input-error': v$.formData.dropOffPostalCode.$error }" />
+                                  :class="{ 'input-error': v$.formData.dropOffPostalCode.$error }" type="number" />
                               </div>
                               <span class="error-msg" v-if="v$.formData.dropOffPostalCode.$error">
                                 {{ v$.formData.dropOffPostalCode.$errors[0].$message }}
@@ -568,7 +659,7 @@
                                 <label for="distanceToCar" class="block text-sm font-medium text-gray-700 mb-1">المسافة
                                   المقطوعة من منطقه وقوف السيارة ؟</label>
                                 <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                                  <input id="distanceToCar" v-model="v$.formData.dropOffDistanceToCar.$model"
+                                  <input type="number" id="distanceToCar" v-model="v$.formData.dropOffDistanceToCar.$model"
                                     placeholder="المسافة المقطوعة من منطقه وقوف السيارة ؟"
                                     class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                     :class="{ 'input-error': v$.formData.dropOffDistanceToCar.$error }" />
@@ -596,13 +687,13 @@
                               <label class="block text-sm font-medium text-gray-700 mb-1">هل يوجد أسانسير ؟</label>
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="yes" v-model="v$.formData.dropOfflifterExistance.$model"
+                                  <input type="radio" value="true" v-model="v$.formData.dropOfflifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">نعم</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="no" v-model="v$.formData.dropOfflifterExistance.$model"
+                                  <input type="radio" value="false" v-model="v$.formData.dropOfflifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">لا</span>
@@ -626,14 +717,10 @@
                             <div class="form_control_wrapper">
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.unpackingServices" type="checkbox"
+                                  <input v-model="v$.formData.unpackingServices.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">خدمة تفريغ الصناديق</span>
                                 </label>
-                                <!-- <label class="label cursor-pointer">
-                                    <input v-model="formData.furnitureAssembly" type="checkbox" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                    <span class="label-text text-[#1b1718]">تفكيك الأثاث</span>
-                                  </label> -->
 
                                 <label class="label cursor-pointer">
                                   <input :readonly="true" :checked="isKitchenConstructionChecked"
@@ -645,22 +732,22 @@
                                 </label>
 
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.connectWashingMachine" type="checkbox"
+                                  <input v-model="v$.formData.connectWashingMachine.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">توصيل الغسالة</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.furnitureAssembly" type="checkbox"
+                                  <input v-model="v$.formData.furnitureAssembly.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">تجميع الأثاث</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.furnitureLifterMoveTo" type="checkbox"
+                                  <input v-model="v$.formData.furnitureLifterMoveTo.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">التحميل باستخدام رافعة الأثاث</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input v-model="formData.noParkingMoveTo" type="checkbox"
+                                  <input v-model="v$.formData.noParkingMoveTo.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">إنشاء منطقة ممنوع الوقوف فيها</span>
                                 </label>
@@ -676,7 +763,7 @@
                         <button @click="stepNumber = 1" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
-                          class="bg-client-dark text-white px-6 py-2 rounded ">التالى</button>
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">التالى</button>
                       </div>
                     </div>
                   </template>
@@ -768,7 +855,7 @@
                         <button @click="stepNumber = 2" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
-                          class="bg-client-dark text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
                     </div>
                   </template>
@@ -829,7 +916,7 @@
                         <button @click="stepNumber = 3" type="button"
                           class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
-                          class="bg-client-dark text-white px-6 py-2 rounded nextStepBtn">التالى</button>
+                          class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
                     </div>
                   </template>
@@ -842,12 +929,12 @@
                         <div>
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" value="save" v-model="v$.formData.saveData.$model" name="saveData"
+                              <input type="radio" value="true" v-model="v$.formData.saveData.$model" name="saveData"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                               <span class="label-text text-[#1b1718]">حفظ البيانات</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input checked type="radio" value="notSave" v-model="v$.formData.saveData.$model"
+                              <input checked type="radio" value="false" v-model="v$.formData.saveData.$model"
                                 name="saveData"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                               <span class="label-text text-[#1b1718]">إلغاء الحفظ</span>
@@ -868,7 +955,7 @@
                           </div>
                           <h3 class="text-lg font-semibold mb-2">كم طول المطبخ بالمتر الذى تريد فكة ؟</h3>
                           <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                            <input v-model="tempFormData.kitchenLong" placeholder="كم طول المطبخ بالمتر ؟"
+                            <input type="number" v-model="tempFormData.kitchenLong" placeholder="كم طول المطبخ بالمتر ؟"
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                             <span>m</span>
                           </div>
@@ -935,7 +1022,7 @@
                           </div>
                           <h3 class="text-lg font-semibold mb-2">كم عدد الأيام التى سوف تحتاجها لتخزين الأثاث ؟</h3>
                           <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                            <input v-model="tempFormData.furnitureStoreDays" placeholder="عدد الأيام"
+                            <input type="number" v-model="tempFormData.furnitureStoreDays" placeholder="عدد الأيام"
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                             <span>يوم</span>
                           </div>
@@ -965,7 +1052,6 @@
                   </dialog>
                 </template>
 
-
               </div>
               <!-- Multi-Step Form End -->
             </div>
@@ -978,10 +1064,11 @@
 </template>
 
 <script>
-import { required, requiredIf, email, minLength, helpers } from '@vuelidate/validators'
+import { required, requiredIf, email, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { reactive, toRefs } from 'vue'
 import axios from 'axios'
+
 export default {
   name: "Request",
   setup() {
@@ -1014,7 +1101,27 @@ export default {
         clientName: '',
         clientEmail: '',
         clientPhone: '',
+
+        kitchenLong: '',
+        movingBoxes: null,
+        furnitureStoreDays: '',
+        furnitureQuantity: '',
+
+        packingServices: false,
+        dismantingFurniture: false,
+        finalCleaning: false,
+        furnitureLifter: false,
+        noParking: false,
+
+        unpackingServices: false,
+        furnitureAssembly: false,
+        connectWashingMachine: false,
+        furnitureLifterMoveTo: false,
+        noParkingMoveTo: false,
+        kitchenLongMoveOut: '',
+
         saveData: false,
+
       }
     })
 
@@ -1071,13 +1178,61 @@ export default {
         },
         clientPhone: { required: helpers.withMessage('رقم الهاتف مطلوب', required) },
         saveData: {},
+        packingServices: {},
+        dismantingFurniture: {},
+        finalCleaning: {},
+        furnitureLifter: {},
+        noParking: {},
+
+        kitchenLong: {},
+        movingBoxes: {},
+        furnitureStoreDays: {},
+        furnitureQuantity: {},
+
+        unpackingServices: {},
+        furnitureAssembly: {},
+        connectWashingMachine: {},
+        furnitureLifterMoveTo: {},
+        noParkingMoveTo: {},
+        kitchenLongMoveOut: {},
       }
     }
 
     const v$ = useVuelidate(rules, fields)
+
+    const workersFields = reactive({
+      workersFormFields: {
+        count: "",
+        date: "",
+        clientName: '',
+        clientEmail: '',
+        clientPhone: '',
+        saveData: false,
+      }
+    })
+
+    const workersFormRules = {
+      workersFormFields: {
+        count: { required: helpers.withMessage('عدد العمال مطلوب', required) },
+        date: { required: helpers.withMessage('المدة التى تحتاج فيها العمال مطلوب', required) },
+        clientName: { required: helpers.withMessage('إسم العميل مطلوب', required) },
+        clientEmail: {
+          required: helpers.withMessage('البريد الإلكترونى مطلوب', required),
+          email: helpers.withMessage('البريد الإلكترونى يجب ان يكون صحيح', email),
+        },
+        clientPhone: { required: helpers.withMessage('رقم الهاتف مطلوب', required) },
+        saveData: {},
+      }
+    }
+
+    const v2$ = useVuelidate(workersFormRules, workersFields)
+
+
     return {
       ...toRefs(fields),
-      v$
+      ...toRefs(workersFields),
+      v$,
+      v2$
     }
   },
   data() {
@@ -1172,14 +1327,15 @@ export default {
         date: null
       },
       companyChooseError: false,
+      clientTypeError: false,
     }
   },
   methods: {
     showModal(type, modelValue) {
       this.currentPopupType = type;
 
-      if (this.formData[modelValue]) {
-        this.tempFormData[modelValue] = this.formData[modelValue];
+      if (this.v$.formData[modelValue].$model) {
+        this.tempFormData[modelValue] = this.v$.formData[modelValue].$model;
       } else {
         this.tempFormData[modelValue] = '';
       }
@@ -1189,8 +1345,8 @@ export default {
       }
     },
     handleCheckToggle(e, modelValue, modalType) {
-      if (this.formData[modelValue]) {
-        this.formData[modelValue] = '';
+      if (this.v$.formData[modelValue].$model) {
+        this.v$.formData[modelValue].$model = '';
         this.tempFormData[modelValue] = '';
       } else {
         e.preventDefault();
@@ -1198,8 +1354,8 @@ export default {
       }
     },
     closeModal(modelValue) {
-      if (this.formData[modelValue.modelValue]) {
-        this.tempFormData[modelValue.modelValue] = this.formData[modelValue.modelValue];
+      if (this.v$.formData[modelValue.modelValue].$model) {
+        this.tempFormData[modelValue.modelValue] = this.v$.formData[modelValue.modelValue].$model;
       } else {
         this.tempFormData[modelValue.modelValue] = null;
       }
@@ -1210,7 +1366,7 @@ export default {
     },
     saveData(modelValue, checkboxModelValue) {
       if (this.tempFormData[modelValue]) {
-        this.formData[modelValue] = this.tempFormData[modelValue];
+        this.v$.formData[modelValue].$model = this.tempFormData[modelValue];
         this[checkboxModelValue] = true;
         this.tempFormData[modelValue] = null;
       } else {
@@ -1223,7 +1379,9 @@ export default {
     },
     handleNextStepOfCompanyOrPersonal(clientType) {
       if (!clientType.trim()) {
-        alert('من فضلك قم بإختيار نوع العميل اولا')
+        this.clientTypeError = true;
+      }else{
+        this.clientTypeError = false;
       }
 
       if (clientType === 'company') {
@@ -1248,7 +1406,7 @@ export default {
       }
 
       if (companyOption === 'workers') {
-        this.companyStepNumber = 2;
+        this.companyStepNumber++;
       }
     },
     getStepFields(stepNumber) {
@@ -1322,6 +1480,61 @@ export default {
       } else {
         console.warn('Validation failed. Fix inputs before proceeding.')
       }
+    },
+    nextStepForCompany(){
+      const steps = {
+        2: [
+          'count',
+          'date'
+        ],
+        3: [
+          'clientName',
+          'clientEmail',
+          'clientPhone',
+        ]
+      }
+
+      const stepFields = steps[this.companyStepNumber];
+      stepFields.forEach(f => {
+        const input = f;
+        this.v2$.workersFormFields[input]?.$touch()
+      })
+
+      const isValid = stepFields.every(f => {
+        const input = f;
+        return !this.v2$.workersFormFields[input]?.$error
+      })
+
+      const isLast = this.companyStepNumber === 3;
+
+      if (isValid) {
+        if (isLast) {
+          if (companySaveDataModal) {
+            companySaveDataModal.showModal()
+          }
+        } else {
+          this.companyStepNumber++
+        }
+
+      } else {
+        console.warn('Validation failed. Fix inputs before proceeding.')
+      }
+    },
+    submitCompanyRequestData(){
+      axios.post('http://127.0.0.1:8000/api/ship-request-2', this.workersFormFields)
+        .then(res => {
+          console.log("res")
+          console.log(res)
+        })
+        .catch(err => {
+          console.log("err")
+          console.log(err)
+        })
+        .finally(() => {
+          if (companySaveDataModal) {
+            companySaveDataModal.close();
+          }
+        })
     },
     submitRequestData() {
 

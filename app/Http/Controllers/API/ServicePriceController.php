@@ -16,7 +16,7 @@ class ServicePriceController extends Controller
     public function index()
     {
         $settings = ServicePrice::all()->pluck('value', 'key');
-        return response()->json(["data" => $settings]);
+        return response()->json(["isSuccess" => true, "data" => $settings]);
     }
 
     /**
@@ -59,6 +59,6 @@ class ServicePriceController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Service price settings saved successfully.']);
+        return response()->json(["isSuccess" => true, 'message' => 'Service price settings saved successfully.']);
     }
 }

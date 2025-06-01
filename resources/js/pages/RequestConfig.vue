@@ -329,7 +329,7 @@
                 <div class="max-w-xl mx-auto">
                     <div class="btn_wrapper flex items-center gap-2">
                         <button @click="saveRequestData()" type="button"
-                            class="bg-client-dark text-white px-6 py-2 rounded ">حفظ البيانات</button>
+                            class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">حفظ البيانات</button>
                     </div>
                 </div>
             </div>
@@ -426,8 +426,10 @@ export default {
         getRequestConfigData(){
             axios.get('http://127.0.0.1:8000/api/service-prices')
                 .then(res => {
-                    console.log("res")
-                    console.log(res)
+                    if(res.data.isSuccess){
+                        this.formData = res.data.data;
+                        alert('Data Fetched Successfully');
+                    }
                 })
                 .catch(err => {
                     console.loog("err")
@@ -438,10 +440,11 @@ export default {
                 })
         },
         sendRequestConfigData(){
-            axios.post('http://127.0.0.1:8000/api/service-prices', this.formData)
+            axios.post('http://127.0.0.1:8000/api/service-price', this.formData)
                 .then(res => {
-                    console.log("res")
-                    console.log(res)
+                    if(res.data.isSuccess){
+                        alert('Data Updated Successfully');
+                    }
                 })
                 .catch(err => {
                     console.loog("err")
