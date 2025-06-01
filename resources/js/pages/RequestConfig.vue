@@ -329,7 +329,7 @@
                 <div class="max-w-xl mx-auto">
                     <div class="btn_wrapper flex items-center gap-2">
                         <button @click="saveRequestData()" type="button"
-                            class="bg-client-dark text-white px-6 py-2 rounded ">حفظ البيانات</button>
+                            class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">حفظ البيانات</button>
                     </div>
                 </div>
             </div>
@@ -341,6 +341,7 @@
 import { required, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { reactive, toRefs } from 'vue'
+import axios from 'axios';
 
 export default {
     name: "RequestConfig",
@@ -419,9 +420,43 @@ export default {
             if (this.v$.formData.$invalid) {
                 return
             }
+            this.sendRequestConfigData();
             console.log(this.formData)
-        }
-    }
+        },
+        getRequestConfigData(){
+            axios.get('http://127.0.0.1:8000/api/service-prices')
+                .then(res => {
+                    if(res.data.isSuccess){
+                        this.formData = res.data.data;
+                        // alert('Data Fetched Successfully');
+                    }
+                })
+                .catch(err => {
+                    console.loog("err")
+                    console.loog(err)
+                })
+                .finally(() => {
 
+                })
+        },
+        sendRequestConfigData(){
+            axios.post('http://127.0.0.1:8000/api/service-price', this.formData)
+                .then(res => {
+                    if(res.data.isSuccess){
+                        alert('Data Updated Successfully');
+                    }
+                })
+                .catch(err => {
+                    console.loog("err")
+                    console.loog(err)
+                })
+                .finally(() => {
+
+                })
+        },
+    },
+    mounted(){
+        this.getRequestConfigData();
+    }
 }
 </script>

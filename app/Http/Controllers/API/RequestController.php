@@ -12,28 +12,28 @@ class RequestController extends Controller
     {
         $validated = $request->validate([
             // Pickup details
-            'pickupPostalCode' => 'required|string|max:20',
-            'pickupLocation' => 'required|string|max:255',
-            'pickupAddress' => 'required|string|max:255',
-            'pickupNo' => 'required|string|max:10',
+            'pickupPostalCode' => 'required|integer',
+            'pickupLocation' => 'required|string',
+            'pickupAddress' => 'required|string',
+            'pickupNo' => 'required|string',
 
             'pickupLifterExistance' => 'nullable',
-            'pickupDistanceToCar' => 'nullable|string|max:100',
+            'pickupDistanceToCar' => 'nullable|integer',
             'pickupFloorNumber' => 'nullable|integer',
 
-            'selectedPickUpType' => 'required|string|max:100',
-            'spaceArea' => 'nullable|string|max:50',
+            'selectedPickUpType' => 'required|string',
+            'spaceArea' => 'nullable|integer',
             'roomsNumber' => 'nullable|integer',
             'boxesNumber' => 'nullable|integer',
-            'storeArea' => 'nullable|string|max:50',
+            'storeArea' => 'nullable|string',
 
             // Dropoff details
-            'dropOffPostalCode' => 'required|string|max:20',
-            'dropOffLocation' => 'required|string|max:255',
-            'dropOffAddress' => 'required|string|max:255',
-            'dropOffNo' => 'required|string|max:10',
+            'dropOffPostalCode' => 'required|integer',
+            'dropOffLocation' => 'required|string',
+            'dropOffAddress' => 'required|string',
+            'dropOffNo' => 'required|string',
 
-            'dropOffDistanceToCar' => 'nullable|string|max:100',
+            'dropOffDistanceToCar' => 'nullable|integer',
             'dropOffFloorNumber' => 'nullable|integer',
             'dropOfflifterExistance' => 'nullable',
 
@@ -50,9 +50,9 @@ class RequestController extends Controller
             'noParking' => 'nullable',
 
             'kitchenLong' => 'nullable',
-            'movingBoxes' => 'nullable|integer',
+            'movingBoxes' => 'nullable|string',
             'furnitureStoreDays' => 'nullable|integer',
-            'furnitureQuantity' => 'nullable|integer',
+            'furnitureQuantity' => 'nullable|string',
 
             'unpackingServices' => 'nullable',
             'furnitureAssembly' => 'nullable',
@@ -62,9 +62,9 @@ class RequestController extends Controller
             'kitchenLongMoveOut' => 'nullable',
 
             // Client details
-            'clientName' => 'required|string|max:255',
-            'clientEmail' => 'required|email|max:255',
-            'clientPhone' => 'required|string|max:20',
+            'clientName' => 'required|string',
+            'clientEmail' => 'required|email',
+            'clientPhone' => 'required|string',
         ]);
         $shipRequest = ShipRequest::create(
             [
