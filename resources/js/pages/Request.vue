@@ -5,9 +5,113 @@
         <div class="max-w-3xl mx-auto">
 
           <div class="mt-8">
-            <div>
               <!-- Multi-Step Form Start -->
-              <div>
+              <template v-if="resultsReady">
+                <div class="form_panel !max-w-3xl">
+                  <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-8">تكلفة الخدمات الأساسية</h3>
+                    <div class="flex flex-col">
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة البنزين</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة النقل ذهاب و عودة</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة الغرف</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة الصناديق</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة الأدوار الذهاب من</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة الأدوار الذهاب إلى</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة مساحة التخزين الإضافية</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تكلفة مساحة المنزل</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-8">
+                    <h3 class="text-xl font-bold mb-8">تكلفة الخدمات الإضافية</h3>
+                    <div class="flex flex-col">
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تخزين الأثاث</span>
+                        <span class="font-bold">200</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>التنظيف</span>
+                        <span class="font-bold">50</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>رافعة الأثاث</span>
+                        <span class="font-bold">250</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>توصيل الغسالة</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>التعبئة والتغليف</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تفريغ الصناديق</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تفكيك المطبخ</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تجميع المطبخ</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تفكيك الأثاث</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>تجميع الأثاث</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>التخلص من الأثاث</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>شراء صناديق التعبئة</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                      <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                        <span>إيجار صناديق التعبئة</span>
+                        <span class="font-bold">100</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="font-bold text-xl">التكلفة الإجمالية</span>
+                    <span class="flex flex-col">
+                      <span class="font-bold text-xl">1900 يورو</span>
+                      <span v-if="servicesCosts?.tax">(بما فى ذلك ضريبة القيمة المضافة {{ servicesCosts?.tax }} يورو)</span>
+                    </span>
+                  </div>
+                </div>
+              </template>
+              <template v-else>
                 <!-- Client Type -->
                 <template v-if="(stepNumber === 0 && companyStepNumber === 0)">
                   <div class="form_panel">
@@ -894,6 +998,7 @@
                                   {{ v$.formData.clientEmail.$errors[0].$message }}
                                 </span>
                               </div>
+
                               <div class="form_control_wrapper">
                                 <div>
                                   <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">رقم
@@ -904,6 +1009,33 @@
                                 </div>
                                 <span class="error-msg" v-if="v$.formData.clientPhone.$error">
                                   {{ v$.formData.clientPhone.$errors[0].$message }}
+                                </span>
+                              </div>
+
+                              <div class="form_control_wrapper">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">من سيقوم بالدفع ؟*</label>
+                                <div class="flex flex-col gap-3">
+                                  <label class="label cursor-pointer">
+                                    <input type="radio" value="private" v-model="v$.formData.whoWillPay.$model"
+                                      class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                      :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
+                                    <span class="label-text text-[#1b1718]">العميل</span>
+                                  </label>
+                                  <label class="label cursor-pointer">
+                                    <input type="radio" value="manager" v-model="v$.formData.whoWillPay.$model"
+                                      class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                      :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
+                                    <span class="label-text text-[#1b1718]">صاحب العمل</span>
+                                  </label>
+                                  <label class="label cursor-pointer">
+                                    <input type="radio" value="government" v-model="v$.formData.whoWillPay.$model"
+                                      class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                      :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
+                                    <span class="label-text text-[#1b1718]">السلطة</span>
+                                  </label>
+                                </div>
+                                <span class="error-msg" v-if="v$.formData.whoWillPay.$error">
+                                  {{ v$.formData.whoWillPay.$errors[0].$message }}
                                 </span>
                               </div>
                             </div>
@@ -1051,10 +1183,8 @@
                     </form>
                   </dialog>
                 </template>
-
-              </div>
               <!-- Multi-Step Form End -->
-            </div>
+              </template>
           </div>
 
         </div>
@@ -1096,11 +1226,12 @@ export default {
         timeType: '',
         specificDate: '',
         rangeDate: null,
-        rangeStartDate: '',
-        rangeEndDate: '',
+        rangeDateFrom: '',
+        rangeDateTo: '',
         clientName: '',
         clientEmail: '',
         clientPhone: '',
+        whoWillPay: '',
 
         kitchenLong: '',
         movingBoxes: null,
@@ -1169,8 +1300,8 @@ export default {
             return this.v$.formData.timeType.$model === 'range'
           }))
         },
-        rangeStartDate: {},
-        rangeEndDate: {},
+        rangeDateFrom: {},
+        rangeDateTo: {},
         clientName: { required: helpers.withMessage('إسم العميل مطلوب', required) },
         clientEmail: {
           required: helpers.withMessage('البريد الإلكترونى مطلوب', required),
@@ -1195,6 +1326,8 @@ export default {
         furnitureLifterMoveTo: {},
         noParkingMoveTo: {},
         kitchenLongMoveOut: {},
+
+        whoWillPay: { required: helpers.withMessage('برجاء إختار من سيقوم بالدفع', required)  },
       }
     }
 
@@ -1239,6 +1372,7 @@ export default {
     return {
       stepNumber: 0,
       companyStepNumber: 0,
+      resultsReady: false,
       clientType: "",
       companyOption: "",
       masks: {
@@ -1280,8 +1414,8 @@ export default {
         timeType: "",
         specificDate: "",
         rangeDate: null,
-        rangeStartDate: "",
-        rangeEndDate: "",
+        rangeDateFrom: "",
+        rangeDateTo: "",
 
         packingServices: false,
         dismantingFurniture: false,
@@ -1306,6 +1440,7 @@ export default {
         clientName: '',
         clientEmail: '',
         clientPhone: '',
+        whoWillPay: '',
         saveData: false,
       },
       tempFormData: {
@@ -1328,6 +1463,7 @@ export default {
       },
       companyChooseError: false,
       clientTypeError: false,
+      servicesCosts: null
     }
   },
   methods: {
@@ -1443,6 +1579,7 @@ export default {
           'clientName',
           'clientEmail',
           'clientPhone',
+          'whoWillPay',
         ]
         // You can add step 3 here later
       }
@@ -1542,9 +1679,6 @@ export default {
       Object.keys(this.formData).forEach((key) => {
         if (this.v$.formData[key]) {
           this.formData[key] = this.v$.formData[key].$model
-        } else {
-          console.log("this.v$.formData[key]")
-          console.log(this.v$.formData[key])
         }
       })
 
@@ -1552,6 +1686,12 @@ export default {
         .then(res => {
           console.log("res")
           console.log(res)
+          if(res.data.isSuccess){
+            if(res.data.services){
+              this.resultsReady = true;
+              this.servicesCosts = res.data.services;
+            }
+          }
         })
         .catch(err => {
           console.log("err")
@@ -1586,8 +1726,8 @@ export default {
       console.log("this.v$.formData")
       console.log(this.v$.formData)
       if (newVal.start && newVal.end) {
-        this.v$.formData.rangeStartDate.$model = newVal.start;
-        this.v$.formData.rangeEndDate.$model = newVal.end;
+        this.v$.formData.rangeDateFrom.$model = newVal.start;
+        this.v$.formData.rangeDateTo.$model = newVal.end;
       }
     }
   }

@@ -12,28 +12,28 @@ class RequestController extends Controller
     public function storeRequest(Request $request)
     {
         $validated = $request->validate([
-            'pickupPostalCode' => 'required|string|max:20',
+            'pickupPostalCode' => 'required|integer',
             'pickupLocation' => 'required|string|max:255',
             'pickupAddress' => 'required|string|max:255',
             'pickupNo' => 'required|string|max:10',
 
             'pickupLifterExistance' => 'nullable',
-            'pickupDistanceToCar' => 'nullable|string|max:100',
+            'pickupDistanceToCar' => 'nullable|integer',
             'pickupFloorNumber' => 'nullable|integer',
 
             'selectedPickUpType' => 'required|string|max:100',
-            'spaceArea' => 'nullable|string|max:50',
+            'spaceArea' => 'nullable|integer',
             'roomsNumber' => 'nullable|integer',
             'boxesNumber' => 'nullable|integer',
             'storeArea' => 'nullable|string|max:50',
 
             // Dropoff details
-            'dropOffPostalCode' => 'required|string|max:20',
+            'dropOffPostalCode' => 'required|integer',
             'dropOffLocation' => 'required|string|max:255',
             'dropOffAddress' => 'required|string|max:255',
             'dropOffNo' => 'required|string|max:10',
 
-            'dropOffDistanceToCar' => 'nullable|string|max:100',
+            'dropOffDistanceToCar' => 'nullable|integer',
             'dropOffFloorNumber' => 'nullable|integer',
             'dropOfflifterExistance' => 'nullable',
             // Time preferences
