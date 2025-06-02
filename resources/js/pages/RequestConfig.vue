@@ -25,19 +25,6 @@
                                 </div>
                                 <div class="form_control_wrapper">
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">النقل(من و
-                                            إلى)*</label>
-                                        <input v-model="v$.formData.movementPrice.$model"
-                                            :class="v$.formData.movementPrice.$error ? 'input-error' : ''"
-                                            type="number" placeholder="المدينة"
-                                            class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
-                                    </div>
-                                    <span class="error-msg" v-if="v$.formData.movementPrice.$error">
-                                        {{ v$.formData.movementPrice.$errors[0].$message }}
-                                    </span>
-                                </div>
-                                <div class="form_control_wrapper">
-                                    <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">سعر
                                             المتر للمسافة المقطوعه*</label>
                                         <input v-model="v$.formData.meterPrice.$model"

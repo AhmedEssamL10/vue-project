@@ -428,13 +428,13 @@
                               <label class="block text-sm font-medium text-gray-700 mb-1">هل يوجد أسانسير ؟*</label>
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="true" v-model="v$.formData.pickupLifterExistance.$model"
+                                  <input type="radio" name="lifterExistMoveFrom" value="true" v-model="v$.formData.pickupLifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">نعم</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="false" v-model="v$.formData.pickupLifterExistance.$model"
+                                  <input type="radio" name="lifterExistMoveFrom" value="false" v-model="v$.formData.pickupLifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">لا</span>
@@ -492,7 +492,7 @@
                                       </svg>
                                       <span class="label-text w-full text-start">
                                         <span class="flex justify-between mb-1">
-                                          <span class="text-base">نص منزل</span>
+                                          <span class="text-base">قسم من المنزل</span>
                                         </span>
                                         <span>نقل بعض من أغراض المنزل</span>
                                       </span>
@@ -539,52 +539,78 @@
                                   v-if="v$.formData.selectedPickUpType.$model === 'all' || v$.formData.selectedPickUpType.$model === 'part'"
                                   id="roomsNumber_area" class="mb-3">
                                   <div class="grid grid-cols-[50%_40%] gap-2">
-                                    <div>
-                                      <div class="form_control_wrapper">
-                                        <div>
-                                          <span class="block text-sm font-medium text-gray-700 mb-1">عدد الحجرات*</span>
-                                          <div class="join">
-                                            <input v-model="v$.formData.roomsNumber.$model"
-                                              class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                              :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                              name="roomsCount" aria-label="1" value="1" />
-                                            <input v-model="v$.formData.roomsNumber.$model"
-                                              class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                              :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                              name="roomsCount" aria-label="2" value="2" />
-                                            <input v-model="v$.formData.roomsNumber.$model"
-                                              class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                              :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                              name="roomsCount" aria-label="3" value="3" />
-                                            <input v-model="v$.formData.roomsNumber.$model"
-                                              class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                              :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                              name="roomsCount" aria-label="4" value="4" />
-                                            <input v-model="v$.formData.roomsNumber.$model"
-                                              class="join-item bg-white text-client-dark btn checked:bg-client-dark checked:text-white"
-                                              :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                              name="roomsCount" aria-label="5 أو أكثر" value="5+" />
-                                          </div>
-                                        </div>
-                                        <span class="error-msg" v-if="v$.formData.roomsNumber.$error">
-                                          {{ v$.formData.roomsNumber.$errors[0].$message }}
-                                        </span>
+                                    <div class="form_control_wrapper">
+                                      <span class="block text-sm font-medium text-gray-700 mb-1">عدد الحجرات*</span>
+                                      <div class="join">
+                                        <input v-model="v$.formData.roomsNumber.$model"
+                                          class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
+                                          :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
+                                          name="roomsCount" aria-label="1" value="1" />
+                                        <input v-model="v$.formData.roomsNumber.$model"
+                                          class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
+                                          :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
+                                          name="roomsCount" aria-label="2" value="2" />
+                                        <input v-model="v$.formData.roomsNumber.$model"
+                                          class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
+                                          :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
+                                          name="roomsCount" aria-label="3" value="3" />
+                                        <input v-model="v$.formData.roomsNumber.$model"
+                                          class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
+                                          :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
+                                          name="roomsCount" aria-label="4" value="4" />
+                                        <input v-model="v$.formData.roomsNumber.$model"
+                                          class="join-item bg-white text-client-dark btn checked:bg-client-dark checked:text-white"
+                                          :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
+                                          name="roomsCount" aria-label="5 أو أكثر" value="5+" />
                                       </div>
+                                      <span class="error-msg" v-if="v$.formData.roomsNumber.$error">
+                                        {{ v$.formData.roomsNumber.$errors[0].$message }}
+                                      </span>
                                     </div>
-                                    <div>
-                                      <div class="form_control_wrapper">
-                                        <label for="spaceArea"
-                                          class="block text-sm font-medium text-gray-700 mb-1">المساحة*</label>
-                                        <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                                          <input type="number" id="spaceArea" :class="{ 'input-error': v$.formData.spaceArea.$error }"
-                                            v-model="v$.formData.spaceArea.$model" placeholder="المساحة"
-                                            class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
-                                          <span>m<sup>2</sup></span>
-                                        </div>
-                                        <span class="error-msg" v-if="v$.formData.spaceArea.$error">
-                                          {{ v$.formData.spaceArea.$errors[0].$message }}
-                                        </span>
+                                    <div class="form_control_wrapper">
+                                      <label for="spaceArea"
+                                        class="block text-sm font-medium text-gray-700 mb-1">المساحة*</label>
+                                      <div class="grid grid-cols-[auto_20px] gap-2 items-center">
+                                        <input type="number" id="spaceArea" :class="{ 'input-error': v$.formData.spaceArea.$error }"
+                                          v-model="v$.formData.spaceArea.$model" placeholder="المساحة"
+                                          class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
+                                        <span>m<sup>2</sup></span>
                                       </div>
+                                      <span class="error-msg" v-if="v$.formData.spaceArea.$error">
+                                        {{ v$.formData.spaceArea.$errors[0].$message }}
+                                      </span>
+                                    </div>
+                                    <div class="form_control_wrapper col-span-full" v-if="v$.formData.selectedPickUpType.$model === 'part'">
+                                      <label class="block text-sm font-medium text-gray-700 mb-1">ماذا تريد ان تنقل ؟*</label>
+                                      <div class="grid grid-cols-2 gap-3">
+                                        <label class="label cursor-pointer">
+                                          <input type="radio" name="whatParts" value="bedRoom" v-model="v$.formData.whatParts.$model"
+                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                            :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                          <span class="label-text text-[#1b1718]">غرفة نوم</span>
+                                        </label>
+                                        <label class="label cursor-pointer">
+                                          <input type="radio" name="whatParts" value="childrenRoom" v-model="v$.formData.whatParts.$model"
+                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                            :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                          <span class="label-text text-[#1b1718]">غرفة أطفال</span>
+                                        </label>
+                                        <label class="label cursor-pointer">
+                                          <input type="radio" name="whatParts" value="kitchen" v-model="v$.formData.whatParts.$model"
+                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                            :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                          <span class="label-text text-[#1b1718]">مطبخ</span>
+                                        </label>
+                                        <label class="label cursor-pointer">
+                                          <input type="radio" name="whatParts" value="bathroom" v-model="v$.formData.whatParts.$model"
+                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                                            :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                          <span class="label-text text-[#1b1718]">حمام</span>
+                                        </label>
+                                      </div>
+                                      <span class="error-msg" v-if="v$.formData.whatParts.$error">
+                                        {{ v$.formData.whatParts.$errors[0].$message }}
+                                      </span>
                                     </div>
                                   </div>
                                 </div>
@@ -791,13 +817,13 @@
                               <label class="block text-sm font-medium text-gray-700 mb-1">هل يوجد أسانسير ؟</label>
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="true" v-model="v$.formData.dropOfflifterExistance.$model"
+                                  <input type="radio" name="lifterExistMoveTo" value="true" v-model="v$.formData.dropOfflifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">نعم</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input type="radio" value="false" v-model="v$.formData.dropOfflifterExistance.$model"
+                                  <input type="radio" name="lifterExistMoveTo" value="false" v-model="v$.formData.dropOfflifterExistance.$model"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
                                     :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
                                   <span class="label-text text-[#1b1718]">لا</span>
@@ -844,16 +870,6 @@
                                   <input v-model="v$.formData.furnitureAssembly.$model" type="checkbox"
                                     class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                   <span class="label-text text-[#1b1718]">تجميع الأثاث</span>
-                                </label>
-                                <label class="label cursor-pointer">
-                                  <input v-model="v$.formData.furnitureLifterMoveTo.$model" type="checkbox"
-                                    class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                  <span class="label-text text-[#1b1718]">التحميل باستخدام رافعة الأثاث</span>
-                                </label>
-                                <label class="label cursor-pointer">
-                                  <input v-model="v$.formData.noParkingMoveTo.$model" type="checkbox"
-                                    class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                  <span class="label-text text-[#1b1718]">إنشاء منطقة ممنوع الوقوف فيها</span>
                                 </label>
                               </div>
                             </div>
@@ -1250,6 +1266,7 @@ export default {
         furnitureLifterMoveTo: false,
         noParkingMoveTo: false,
         kitchenLongMoveOut: '',
+        whatParts: '',
 
         saveData: false,
 
@@ -1326,6 +1343,7 @@ export default {
         furnitureLifterMoveTo: {},
         noParkingMoveTo: {},
         kitchenLongMoveOut: {},
+        whatParts: { required: helpers.withMessage('قم بإختيار ما تريد نقلة', required), },
 
         whoWillPay: { required: helpers.withMessage('برجاء إختار من سيقوم بالدفع', required)  },
       }
@@ -1559,6 +1577,7 @@ export default {
           'spaceArea',
           'roomsNumber',
           'boxesNumber',
+          'whatParts',
           'storeArea'
         ],
         2: [
