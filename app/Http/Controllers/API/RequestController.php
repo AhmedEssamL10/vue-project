@@ -131,10 +131,10 @@ class RequestController extends Controller
             $services['furnitureCollectingPrice'] = $prices['furnitureCollectingPrice'] ?? 0;
         }
         if ($request->kitchenLongMoveOut) {
-            $services['KitchenMeterInstallingPrice'] = $prices['KitchenMeterInstallingPrice'] ?? 0;
+            $services['KitchenMeterInstallingPrice'] = $request->kitchenLongMoveOut * ($prices['KitchenMeterInstallingPrice'] ?? 0);
         }
         if ($request->kitchenLong) {
-            $services['KitchenMeterunInstallingPrice'] = $prices['KitchenMeterunInstallingPrice'] ?? 0;
+            $services['KitchenMeterunInstallingPrice'] = $request->kitchenLong * ($prices['KitchenMeterunInstallingPrice'] ?? 0);
         }
         if ($request->furnitureQuantity) {
             $services['furnitureGitRedOfPrice'] = $prices['furnitureGitRedOfPrice'] ?? 0;
@@ -142,9 +142,9 @@ class RequestController extends Controller
 
 
         if ($request->movingBoxesType == 'rent') {
-            $services['rentPackingBoxesPrice'] =  $prices['rentPackingBoxesPrice'] ?? 0;
+            $services['rentPackingBoxesPrice'] = $request->noOfBoxes * ($prices['rentPackingBoxesPrice'] ?? 0);
         } else {
-            $services['buyPackingBoxesPrice'] =  $prices['buyPackingBoxesPrice'] ?? 0;
+            $services['buyPackingBoxesPrice'] = $request->noOfBoxes *  ($prices['buyPackingBoxesPrice'] ?? 0);
         }
 
         $services['movementPrice'] = $prices['movementPrice'] ?? 0;
