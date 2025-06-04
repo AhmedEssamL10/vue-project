@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
 use App\Models\ShipRequest;
+use Illuminate\Support\Str;
 use App\Models\ServicePrice;
 use Illuminate\Http\Request;
+use App\Models\FactorRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class RequestController extends Controller
 {
@@ -131,10 +135,10 @@ class RequestController extends Controller
             $services['furnitureCollectingPrice'] = $prices['furnitureCollectingPrice'] ?? 0;
         }
         if ($request->kitchenLongMoveOut) {
-            $services['KitchenMeterInstallingPrice'] = $prices['KitchenMeterInstallingPrice'] ?? 0;
+            $services['KitchenMeterInstallingPrice'] = $request->kitchenLongMoveOut * ($prices['KitchenMeterInstallingPrice'] ?? 0);
         }
         if ($request->kitchenLong) {
-            $services['KitchenMeterunInstallingPrice'] = $prices['KitchenMeterunInstallingPrice'] ?? 0;
+            $services['KitchenMeterunInstallingPrice'] = $request->kitchenLong * ($prices['KitchenMeterunInstallingPrice'] ?? 0);
         }
         if ($request->furnitureQuantity) {
             $services['furnitureGitRedOfPrice'] = $prices['furnitureGitRedOfPrice'] ?? 0;
@@ -142,9 +146,9 @@ class RequestController extends Controller
 
 
         if ($request->movingBoxesType == 'rent') {
-            $services['rentPackingBoxesPrice'] =  $prices['rentPackingBoxesPrice'] ?? 0;
+            $services['rentPackingBoxesPrice'] = $request->noOfBoxes * ($prices['rentPackingBoxesPrice'] ?? 0);
         } else {
-            $services['buyPackingBoxesPrice'] =  $prices['buyPackingBoxesPrice'] ?? 0;
+            $services['buyPackingBoxesPrice'] = $request->noOfBoxes *  ($prices['buyPackingBoxesPrice'] ?? 0);
         }
 
         $services['movementPrice'] = $prices['movementPrice'] ?? 0;
@@ -202,12 +206,67 @@ class RequestController extends Controller
             ]
         );
 
+        $user = null;
+        if ($request->saveData) {
+            $user = User::firstOrCreate(
+                ['email' => $request->clientEmail],
+                [
+                    'name' => $request->clientName,
+                    'phone' => $request->clientPhone,
+                    'password' => Hash::make('12345678'),
+                ]
+            );
+        }
+
         return response()->json([
             'message' => 'Request created successfully',
             "isSuccess" => true,
             // 'data' => $shipRequest,
             'services' => $services,
-            'total_price' => $total
+            'total_price' => $total,
+            'user_created' => $user ? true : false,
+            'user' => $user,
+        ], 201);
+    }
+
+
+
+    public function storeFactorRequest(Request $request)
+    {
+        $validated = $request->validate([
+            'count' => 'nullable|integer',
+            'date_from' => 'nullable|date',
+            'date_to' => 'nullable|date|after_or_equal:date_from',
+            'clientName' => 'nullable|string|max:255',
+            'clientEmail' => 'nullable|email|max:255',
+            'clientPhone' => 'nullable|string|max:20',
+            'saveData' => 'nullable|boolean',
+        ]);
+
+        if ($request->boolean('saveData')) {
+            User::firstOrCreate(
+                ['email' => $request->clientEmail],
+                [
+                    'name' => $request->clientName,
+                    'phone' => $request->clientPhone,
+                    'password' => Hash::make('12345678'),
+                ]
+            );
+        }
+
+        $factorRequest = FactorRequest::create([
+            'count' => $request->count,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'client_name' => $request->clientName,
+            'client_email' => $request->clientEmail,
+            'client_phone' => $request->clientPhone,
+        ]);
+
+        return response()->json([
+            'message' => 'Factor request submitted successfully',
+            'isSuccess' => true,
+            // 'data' => $factorRequest
         ], 201);
     }
 }

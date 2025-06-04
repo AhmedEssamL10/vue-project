@@ -6,6 +6,8 @@ use App\Http\Controllers\API\ServicePriceController;
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest'])
     ->name('ship-request');
+Route::post('/factor-request', [RequestController::class, 'storeFactorRequest']);
+
 Route::get('/service-prices', [ServicePriceController::class, 'index'])
     ->name('service-prices');
 Route::post('/service-price', [ServicePriceController::class, 'store']);
