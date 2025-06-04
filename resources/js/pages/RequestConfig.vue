@@ -313,6 +313,29 @@
                     </div>
                 </div>
 
+                <div class="form_panel">
+                    <div class="form_step_parent">
+                        <form class="form-step">
+                            <h3 class="text-xl font-bold mb-4">أسعار خدمات العمال</h3>
+                            <div class="flex flex-col gap-4 mb-4">
+                                <div class="form_control_wrapper">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">سعر
+                                            العامل فى اليوم*</label>
+                                        <input v-model="v$.formData.workerPerDay.$model"
+                                            :class="v$.formData.workerPerDay.$error ? 'input-error' : ''"
+                                            type="number" placeholder="سعر العامل فى اليوم"
+                                            class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
+                                    </div>
+                                    <span class="error-msg" v-if="v$.formData.workerPerDay.$error">
+                                        {{ v$.formData.workerPerDay.$errors[0].$message }}
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="max-w-xl mx-auto">
                     <div class="btn_wrapper flex items-center gap-2">
                         <button @click="saveRequestData()" type="button"
@@ -358,7 +381,9 @@ export default {
                 cleaningPrice: '',
                 connectingWashingMachinePrice: '',
                 furnitureLifterToolPrice: '',
-                noParkingPrice: ''
+                noParkingPrice: '',
+
+                workerPerDay: '',
             }
         });
 
@@ -386,7 +411,8 @@ export default {
                 cleaningPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
                 connectingWashingMachinePrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
                 furnitureLifterToolPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
-                noParkingPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) }
+                noParkingPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
+                workerPerDay: { required: helpers.withMessage('هذا الحقل مطلوب.', required) }
             }
         });
 

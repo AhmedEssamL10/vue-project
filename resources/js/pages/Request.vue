@@ -1139,20 +1139,33 @@
                               type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
                           </div>
                           <h3 class="text-lg font-semibold mb-2">توفير صناديق النقل</h3>
-                          <div class="form_control_wrapper">
-                            <div class="flex flex-col gap-3">
-                              <label class="label cursor-pointer">
-                                <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
-                                  value="rent"
-                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                <span class="label-text text-[#1b1718]">إيجار</span>
-                              </label>
-                              <label class="label cursor-pointer">
-                                <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
-                                  value="buy"
-                                  class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                                <span class="label-text text-[#1b1718]">شراء</span>
-                              </label>
+                          <div class="flex flex-col gap-4">
+                            <div class="form_control_wrapper">
+                              <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">عدد الصناديق</label>
+                                <input type="number" id="name" v-model="v$.formData.noOfBoxes.$model" placeholder="عدد الصناديق"
+                                  class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                  :class="{ 'input-error': v$.formData.noOfBoxes.$error }" />
+                              </div>
+                              <span class="error-msg" v-if="noOfBoxesError">
+                                يجب وضع عدد الصناديق المطلوبة
+                              </span>
+                            </div>
+                            <div class="form_control_wrapper">
+                              <div class="flex flex-col gap-3">
+                                <label class="label cursor-pointer">
+                                  <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
+                                    value="rent"
+                                    class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                                  <span class="label-text text-[#1b1718]">إيجار</span>
+                                </label>
+                                <label class="label cursor-pointer">
+                                  <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
+                                    value="buy"
+                                    class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                                  <span class="label-text text-[#1b1718]">شراء</span>
+                                </label>
+                              </div>
                             </div>
                           </div>
                           <div class="modal-action">
@@ -1253,6 +1266,7 @@ export default {
         movingBoxes: null,
         furnitureStoreDays: '',
         furnitureQuantity: '',
+        noOfBoxes: '',
 
         packingServices: false,
         dismantingFurniture: false,
@@ -1284,18 +1298,18 @@ export default {
         pickupFloorNumber: { required: helpers.withMessage('رقم الطابق مطلوب.', required) },
         selectedPickUpType: { required: helpers.withMessage('نوع الاستلام مطلوب.', required) },
         spaceArea: {
-          required: helpers.withMessage('المساحة مطلوبة.', requiredIf(function () {
-            return (this.v$.formData.selectedPickUpType.$model === 'all' || this.v$.formData.selectedPickUpType.$model === 'part')
+          required: helpers.withMessage('المساحة مطلوبة.', requiredIf( (value, siblings) => {
+            return (siblings.selectedPickUpType === 'all' || siblings.selectedPickUpType === 'part')
           }))
         },
         roomsNumber: {
-          required: helpers.withMessage('عدد الغرف مطلوب.', requiredIf(function () {
-            return (this.v$.formData.selectedPickUpType.$model === 'all' || this.v$.formData.selectedPickUpType.$model === 'part')
+          required: helpers.withMessage('عدد الغرف مطلوب.', requiredIf( (value, siblings) => {
+            return (siblings.selectedPickUpType === 'all' || siblings.selectedPickUpType === 'part')
           }))
         },
         boxesNumber: {
-          required: helpers.withMessage('عدد الصناديق مطلوب.', requiredIf(function () {
-            return this.v$.formData.selectedPickUpType.$model === 'boxes'
+          required: helpers.withMessage('عدد الصناديق مطلوب.', requiredIf((value, siblings) => {
+            return siblings.selectedPickUpType === 'boxes'
           }))
         },
         dropOffPostalCode: { required: helpers.withMessage('الرمز البريدي للتسليم مطلوب.', required) },
@@ -1308,13 +1322,13 @@ export default {
 
         timeType: { required: helpers.withMessage('نوع الوقت مطلوب.', required) },
         specificDate: {
-          required: helpers.withMessage('التاريخ المحدد مطلوب.', requiredIf(function () {
-            return this.v$.formData.timeType.$model === 'specific'
+          required: helpers.withMessage('التاريخ المحدد مطلوب.', requiredIf( (value, siblings) => {
+            return siblings.timeType === 'specific'
           }))
         },
         rangeDate: {
-          required: helpers.withMessage('نطاق التاريخ مطلوب.', requiredIf(function () {
-            return this.v$.formData.timeType.$model === 'range'
+          required: helpers.withMessage('نطاق التاريخ مطلوب.', requiredIf( (value, siblings) => {
+            return siblings.timeType === 'range'
           }))
         },
         rangeDateFrom: {},
@@ -1325,6 +1339,7 @@ export default {
           email: helpers.withMessage('البريد الإلكترونى يجب ان يكون صحيح', email),
         },
         clientPhone: { required: helpers.withMessage('رقم الهاتف مطلوب', required) },
+        noOfBoxes: {},
         saveData: {},
         packingServices: {},
         dismantingFurniture: {},
@@ -1343,7 +1358,11 @@ export default {
         furnitureLifterMoveTo: {},
         noParkingMoveTo: {},
         kitchenLongMoveOut: {},
-        whatParts: { required: helpers.withMessage('قم بإختيار ما تريد نقلة', required), },
+        whatParts: {
+          required: helpers.withMessage('عدد الصناديق مطلوب.', requiredIf((value, siblings) => {
+            return siblings.selectedPickUpType === 'part'
+          }))
+        },
 
         whoWillPay: { required: helpers.withMessage('برجاء إختار من سيقوم بالدفع', required)  },
       }
@@ -1355,6 +1374,8 @@ export default {
       workersFormFields: {
         count: "",
         date: "",
+        date_from: "",
+        date_to: "",
         clientName: '',
         clientEmail: '',
         clientPhone: '',
@@ -1373,6 +1394,8 @@ export default {
         },
         clientPhone: { required: helpers.withMessage('رقم الهاتف مطلوب', required) },
         saveData: {},
+        date_from: {},
+        date_to: {},
       }
     }
 
@@ -1391,6 +1414,7 @@ export default {
       stepNumber: 0,
       companyStepNumber: 0,
       resultsReady: false,
+      noOfBoxesError: false,
       clientType: "",
       companyOption: "",
       masks: {
@@ -1501,6 +1525,7 @@ export default {
     handleCheckToggle(e, modelValue, modalType) {
       if (this.v$.formData[modelValue].$model) {
         this.v$.formData[modelValue].$model = '';
+        this.v$.formData.noOfBoxes.$model = '';
         this.tempFormData[modelValue] = '';
       } else {
         e.preventDefault();
@@ -1508,10 +1533,15 @@ export default {
       }
     },
     closeModal(modelValue) {
+      
       if (this.v$.formData[modelValue.modelValue].$model) {
         this.tempFormData[modelValue.modelValue] = this.v$.formData[modelValue.modelValue].$model;
       } else {
         this.tempFormData[modelValue.modelValue] = null;
+        
+        if(modelValue !== "movingBoxes"){
+          this.v$.formData.noOfBoxes.$model = "";
+        }
       }
 
       if (saveDataModal) {
@@ -1519,17 +1549,25 @@ export default {
       }
     },
     saveData(modelValue, checkboxModelValue) {
-      if (this.tempFormData[modelValue]) {
-        this.v$.formData[modelValue].$model = this.tempFormData[modelValue];
-        this[checkboxModelValue] = true;
-        this.tempFormData[modelValue] = null;
-      } else {
-        this[checkboxModelValue] = false
+      
+      if(modelValue == "movingBoxes" && !this.v$.formData.noOfBoxes.$model){
+        this.noOfBoxesError = true;
+        return;
+      }else{
+        this.noOfBoxesError = false;
+        if (this.tempFormData[modelValue]) {
+          this.v$.formData[modelValue].$model = this.tempFormData[modelValue];
+          this[checkboxModelValue] = true;
+          this.tempFormData[modelValue] = null;
+        } else {
+          this[checkboxModelValue] = false
+        }
+
+        if (saveDataModal) {
+          saveDataModal.close()
+        }
       }
 
-      if (saveDataModal) {
-        saveDataModal.close()
-      }
     },
     handleNextStepOfCompanyOrPersonal(clientType) {
       if (!clientType.trim()) {
@@ -1622,9 +1660,10 @@ export default {
         top: 0,
         behavior: 'smooth' // optional for smooth animation
       });
+      console.log(`isvalid => ${isValid}`);
+      console.log(this.v$.formData)
       if (isValid) {
         if (isLast) {
-          // alert('Last Step Reached')
           this.currentPopupType = 'saveData';
           if (saveDataModal) {
             saveDataModal.showModal()
@@ -1677,7 +1716,9 @@ export default {
       }
     },
     submitCompanyRequestData(){
-      axios.post('http://127.0.0.1:8000/api/ship-request-2', this.workersFormFields)
+      let formData = this.workersFormFields;
+      delete formData.date; 
+      axios.post('http://127.0.0.1:8000/api/factor-request', formData)
         .then(res => {
           console.log("res")
           console.log(res)
@@ -1742,12 +1783,19 @@ export default {
   },
   watch: {
     'v$.formData.rangeDate.$model': function (newVal) {
-      console.log("this.v$.formData")
-      console.log(this.v$.formData)
       if (newVal.start && newVal.end) {
         this.v$.formData.rangeDateFrom.$model = newVal.start;
         this.v$.formData.rangeDateTo.$model = newVal.end;
       }
+    },
+    'v2$.workersFormFields.date.$model': function (newVal) {
+      if (newVal.start && newVal.end) {
+        this.v2$.workersFormFields.date_from.$model = newVal.start;
+        this.v2$.workersFormFields.date_to.$model = newVal.end;
+      }
+    },
+    'v$.formData.noOfBoxes.$model': function (newVal) {
+      this.noOfBoxesError = !newVal;
     }
   }
 }

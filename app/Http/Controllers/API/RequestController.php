@@ -49,7 +49,7 @@ class RequestController extends Controller
             'noParking' => 'nullable',
 
             'kitchenLong' => 'nullable',
-            'movingBoxes' => 'nullable|integer',
+            'movingBoxes' => 'nullable|string',
             'furnitureStoreDays' => 'nullable|integer',
             'furnitureQuantity' => 'nullable|integer',
 
