@@ -110,6 +110,12 @@
                     </span>
                   </div>
                 </div>
+                <div class="btn_wrapper flex items-center gap-2">
+                  <button @click="resultsReady = false" type="button"
+                    class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عم طلب أخر</button>
+                  <button @click="navigateToHome" type="button"
+                    class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">الذهاب إلى الرئيسية</button>
+                </div>
               </template>
               <template v-else>
                 <!-- Client Type -->
@@ -179,7 +185,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="companyStepNumber = 0" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button type="button" @click="handleStepAfterCompanyOptionSelection(companyOption)"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
@@ -213,7 +219,6 @@
                                   <VDatePicker is-range :min-date="new Date()" v-model="v2$.workersFormFields.date.$model"
                                     :masks="masks" :locale="'ar'">
                                     <template #default="{ inputValue, showPopover }">
-                                      <!-- <input placeholder="Date" class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" type="text" :value="`${inputValue.start || ''} ${(inputValue.start || inputValue.end) ? ' - ' : ''} ${inputValue.end || ''}`" @focus="showPopover"> -->
                                       <input placeholder="التاريخ او الفتره"
                                         class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                         type="text"
@@ -235,7 +240,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="companyStepNumber = 1" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button type="button" @click="nextStepForCompany()"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
@@ -294,7 +299,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="companyStepNumber = 2" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStepForCompany()" type="button"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
@@ -307,12 +312,12 @@
                       <div>
                         <div class="flex flex-col gap-3">
                           <label class="label cursor-pointer">
-                            <input type="radio" value="true" v-model="v2$.workersFormFields.saveData.$model" name="companySaveData"
+                            <input type="radio" :value="true" v-model="v2$.workersFormFields.saveData.$model" name="companySaveData"
                               class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                             <span class="label-text text-[#1b1718]">حفظ البيانات</span>
                           </label>
                           <label class="label cursor-pointer">
-                            <input checked type="radio" value="false" v-model="v2$.workersFormFields.saveData.$model"
+                            <input checked type="radio" :value="false" v-model="v2$.workersFormFields.saveData.$model"
                               name="companySaveData"
                               class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                             <span class="label-text text-[#1b1718]">إلغاء الحفظ</span>
@@ -320,7 +325,15 @@
                         </div>
                       </div>
                       <div class="modal-action">
-                        <button @click="submitCompanyRequestData" type="button" class="btn">إرسال الطلب</button>
+                        <button @click="submitCompanyRequestData" :class="isLoading ? 'opacity-50 pointer-events-none' : ''" type="button" class="btn">
+                          <template v-if="isLoading">
+                            <span class="loading loading-spinner"></span>
+                            إرسال الطلب
+                          </template>
+                          <template v-else>
+                            إرسال الطلب
+                          </template>
+                        </button>
                       </div>
                     </form>
                   </dialog>
@@ -710,7 +723,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="stepNumber = 0" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">التالى</button>
                       </div>
@@ -881,7 +894,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="stepNumber = 1" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">التالى</button>
                       </div>
@@ -973,7 +986,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="stepNumber = 2" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
@@ -1062,7 +1075,7 @@
                     <div class="max-w-xl mx-auto">
                       <div class="btn_wrapper flex items-center gap-2">
                         <button @click="stepNumber = 3" type="button"
-                          class="bg-transparent border border-client text-client px-6 py-2 rounded mr-2 ">عودة</button>
+                          class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عودة</button>
                         <button @click="nextStep()" type="button"
                           class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">التالى</button>
                       </div>
@@ -1090,7 +1103,15 @@
                           </div>
                         </div>
                         <div class="modal-action">
-                          <button @click="submitRequestData" type="button" class="btn">إرسال الطلب</button>
+                          <button @click="submitRequestData" :class="isLoading ? 'opacity-50 pointer-events-none' : ''" type="button" class="btn">
+                            <template v-if="isLoading">
+                              <span class="loading loading-spinner"></span>
+                              إرسال الطلب
+                            </template>
+                            <template v-else>
+                              إرسال الطلب
+                            </template>
+                          </button>
                         </div>
                       </template>
                       <template v-else>
@@ -1227,10 +1248,12 @@ import { required, requiredIf, email, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
 import { reactive, toRefs } from 'vue'
 import axios from 'axios'
+import { useUiStore } from '../stores/uiStore';
 
 export default {
   name: "Request",
   setup() {
+
     const fields = reactive({
       formData: {
         pickupPostalCode: '',
@@ -1401,24 +1424,28 @@ export default {
 
     const v2$ = useVuelidate(workersFormRules, workersFields)
 
+    const uiStore = useUiStore();
 
     return {
       ...toRefs(fields),
       ...toRefs(workersFields),
       v$,
-      v2$
+      v2$,
+      uiStore,
+      // resetForm,
     }
   },
   data() {
     return {
       stepNumber: 0,
       companyStepNumber: 0,
+      isLoading: false,
       resultsReady: false,
       noOfBoxesError: false,
       clientType: "",
       companyOption: "",
       masks: {
-        input: 'DD MMM, YYYY',
+        input: 'YYYY-MM-DD',
       },
       formData: {
         // Step 1
@@ -1716,52 +1743,179 @@ export default {
       }
     },
     submitCompanyRequestData(){
-      let formData = this.workersFormFields;
-      delete formData.date; 
-      axios.post('http://127.0.0.1:8000/api/factor-request', formData)
-        .then(res => {
-          console.log("res")
-          console.log(res)
-        })
-        .catch(err => {
-          console.log("err")
-          console.log(err)
-        })
-        .finally(() => {
-          if (companySaveDataModal) {
-            companySaveDataModal.close();
-          }
-        })
+      if(!this.isLoading){
+        let formData = this.workersFormFields;
+        this.isLoading = true;
+        delete formData.date; 
+        axios.post('http://127.0.0.1:8000/api/factor-request', formData)
+          .then(res => {
+            console.log("res")
+            console.log(res)
+            if(res.data.isSuccess){            
+              if(res.data.services){
+                this.resultsReady = true;
+                this.servicesCosts = res.data.services;
+              }
+  
+              this.resetCompanyForm();
+  
+              this.uiStore.setToaster({ 
+                type: "success", 
+                duration: 5000,
+                message: "تم إرسال الطلب بنجاح",
+              });
+              
+            }else{
+              this.uiStore.setToaster({ 
+                type: "error", 
+                duration: 5000,
+                message: "حدث خطأ ما",
+              });
+            }
+          })
+          .catch(err => {
+            console.log("err")
+            console.log(err)
+            this.uiStore.setToaster({ 
+              type: "error", 
+              duration: 5000,
+              message: err.response?.message,
+            });
+          })
+          .finally(() => {
+            this.isLoading = false;
+            if (companySaveDataModal) {
+              companySaveDataModal.close();
+            }
+          })
+      }
     },
     submitRequestData() {
+      if(!this.isLoading){
+        this.isLoading = true;
+        // const data = this.v$.formData ;
+        Object.keys(this.formData).forEach((key) => {
+          if (this.v$.formData[key]) {
+            this.formData[key] = this.v$.formData[key].$model
+          }
+        })
+  
+        axios.post('http://127.0.0.1:8000/api/ship-request', this.formData)
+          .then(res => {
+            if(res.data.isSuccess){
+              if(res.data.services){
+                this.resultsReady = true;
+                this.servicesCosts = res.data.services;
+              }
 
-      // const data = this.v$.formData ;
-      Object.keys(this.formData).forEach((key) => {
-        if (this.v$.formData[key]) {
-          this.formData[key] = this.v$.formData[key].$model
-        }
-      })
-
-      axios.post('http://127.0.0.1:8000/api/ship-request', this.formData)
-        .then(res => {
-          console.log("res")
-          console.log(res)
-          if(res.data.isSuccess){
-            if(res.data.services){
-              this.resultsReady = true;
-              this.servicesCosts = res.data.services;
+              this.resetShippingForm();
+  
+              this.uiStore.setToaster({ 
+                type: "success", 
+                duration: 5000,
+                message: "تم إرسال الطلب بنجاح",
+              });
+            }else{
+              this.uiStore.setToaster({ 
+                type: "error", 
+                duration: 5000,
+                message: "حدث خطأ ما",
+              });
             }
-          }
-        })
-        .catch(err => {
-          console.log("err")
-          console.log(err)
-        })
-        .finally(() => {
-          if (saveDataModal) {
-            saveDataModal.close();
-          }
-        })
+          })
+          .catch(err => {
+            console.log("err")
+            console.log(err)
+            this.uiStore.setToaster({ 
+              type: "error", 
+              duration: 5000,
+              message: err.response?.message,
+            });
+          })
+          .finally(() => {
+            this.isLoading = false;
+            if (saveDataModal) {
+              saveDataModal.close();
+            }
+          })
+      }
+    },
+    resetCompanyForm(){
+      this.workersFormFields = {
+        name: '',
+        email: '',
+        phone: '',
+        selectedPickUpType: '',
+        spaceArea: '',
+        selectedDate: null
+      }
+
+      this.companyStepNumber = 1;
+      
+      // Reset validation
+      this.v2$.$reset()
+    },
+    resetShippingForm(){
+      this.formData = {
+        pickupPostalCode: '',
+        pickupLocation: '',
+        pickupAddress: '',
+        pickupNo: '',
+        pickupLifterExistance: null,
+        pickupDistanceToCar: '',
+        pickupFloorNumber: '',
+        selectedPickUpType: '',
+        spaceArea: '',
+        roomsNumber: '',
+        boxesNumber: '',
+        storeArea: '',
+        dropOffPostalCode: '',
+        dropOffLocation: '',
+        dropOffAddress: '',
+        dropOffNo: '',
+        dropOffDistanceToCar: '',
+        dropOffFloorNumber: '',
+        dropOfflifterExistance: '',
+        timeType: '',
+        specificDate: '',
+        rangeDate: null,
+        rangeDateFrom: '',
+        rangeDateTo: '',
+        clientName: '',
+        clientEmail: '',
+        clientPhone: '',
+        whoWillPay: '',
+
+        kitchenLong: '',
+        movingBoxes: null,
+        furnitureStoreDays: '',
+        furnitureQuantity: '',
+        noOfBoxes: '',
+
+        packingServices: false,
+        dismantingFurniture: false,
+        finalCleaning: false,
+        furnitureLifter: false,
+        noParking: false,
+
+        unpackingServices: false,
+        furnitureAssembly: false,
+        connectWashingMachine: false,
+        furnitureLifterMoveTo: false,
+        noParkingMoveTo: false,
+        kitchenLongMoveOut: '',
+        whatParts: '',
+
+        saveData: false,
+      }
+
+      this.stepNumber = 1;
+      
+      // Reset validation
+      this.v$.$reset()
+    },
+    navigateToHome(){
+      window.location.href = "/";
     }
   },
   computed: {
@@ -1783,15 +1937,19 @@ export default {
   },
   watch: {
     'v$.formData.rangeDate.$model': function (newVal) {
-      if (newVal.start && newVal.end) {
-        this.v$.formData.rangeDateFrom.$model = newVal.start;
-        this.v$.formData.rangeDateTo.$model = newVal.end;
+      if (newVal && newVal.start && newVal.end) {
+        const start = newVal.start.toISOString().split('T')[0];
+        const end = newVal.end.toISOString().split('T')[0];
+        this.v$.formData.rangeDateFrom.$model = start;
+        this.v$.formData.rangeDateTo.$model = end;
       }
     },
     'v2$.workersFormFields.date.$model': function (newVal) {
-      if (newVal.start && newVal.end) {
-        this.v2$.workersFormFields.date_from.$model = newVal.start;
-        this.v2$.workersFormFields.date_to.$model = newVal.end;
+      if (newVal && newVal.start && newVal.end) {
+        const start = newVal.start.toISOString().split('T')[0];
+        const end = newVal.end.toISOString().split('T')[0];
+        this.v2$.workersFormFields.date_from.$model = start;
+        this.v2$.workersFormFields.date_to.$model = end;
       }
     },
     'v$.formData.noOfBoxes.$model': function (newVal) {
@@ -1802,7 +1960,4 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  color: #9b87f5;
-}
 </style>

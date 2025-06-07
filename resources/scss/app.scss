@@ -123,3 +123,15 @@ body[dir="rtl"] {
         transform: rotate(180deg);
     }
 }
+
+.alert {
+    @apply fixed top-[20px] ltr:right-[20px] rtl:left-[20px] max-w-[95%] w-[400px] border-none;
+    
+    &.alert-success {
+        @apply bg-green-500 text-white;
+    }
+
+    &.alert-error {
+        @apply bg-red-500 text-black;
+    }
+}
