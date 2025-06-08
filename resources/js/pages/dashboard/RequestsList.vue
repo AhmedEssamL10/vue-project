@@ -1,0 +1,109 @@
+<template>
+    <div class="overflow-x-auto text-black py-6">
+        <h2 class="mb-4 text-xl font-bold">قائمة الطلبات</h2>
+        <div class="py-6">
+            <table class="table">
+                <!-- head -->
+                <thead class="text-black">
+                    <tr>
+                        <!-- <th>
+                            <label>
+                                <input @change="toggleSelectionAll" type="checkbox" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                            </label>
+                        </th> -->
+                        <th>التسلسل</th>
+                        <th>نوع الطلب</th>
+                        <th>نوع العميل</th>
+                        <th>البريد الإلكترونى</th>
+                        <th>التكلفة الإجمالية</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- row 1 -->
+                    <tr v-for="(request, index) in requestsList">
+                        <!-- <th>
+                            <label>
+                                <input type="checkbox" v-model="request.isSelected" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
+                            </label>
+                        </th> -->
+                        <td>
+                            <span>{{ index+1 }}</span>
+                        </td>
+                        <td>
+                            <span>{{ request.requestType }}</span>
+                        </td>
+                        <td>
+                            <span>{{ request.clientType }}</span>
+                        </td>
+                        <td>
+                            <span>{{ request.email }}</span>
+                        </td>
+                        <td>
+                            <span>{{ request.total }} يورو</span>
+                        </td>
+                        <td>
+                            <router-link class="underline font-semibold" :to="{ name: 'RequestDetails', params: { id: request.id } }">تفاصيل</router-link>
+                        </td>
+                        <!-- <td>
+                            <span class="cursor-pointer group hover:opacity-80">
+                                <svg class="group-hover:fill-client-dark" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM18 8H6V20H18V8ZM9 11H11V17H9V11ZM13 11H15V17H13V11ZM9 4V6H15V4H9Z"></path>
+                                </svg>
+                            </span>
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data(){
+        return {
+            requestsList: [
+                {
+                    id: 1,
+                    requestType: "شحن",
+                    clientType: 'شخص',
+                    email: 'test@gmail.com',
+                    total: '5000'
+                },
+                {
+                    id: 2,
+                    requestType: "شحن2",
+                    clientType: 'شخص',
+                    email: 'test2@gmail.com',
+                    total: '5000'
+                },
+                {
+                    id: 3,
+                    requestType: "طلب عمالة",
+                    clientType: 'شركة',
+                    email: 'test3@gmail.com',
+                    total: '5000'
+                },
+                {
+                    id: 4,
+                    requestType: "شحن4",
+                    clientType: 'شخص',
+                    email: 'test4@gmail.com',
+                    total: '5000'
+                },
+            ]
+        }
+    },
+    methods: {
+        toggleSelectionAll(e){
+            const isSelected = e.target.checked;
+            
+            if(this.requestsList && this.requestsList.length){
+                for(let request of this.requestsList){
+                    request.isSelected = isSelected;
+                }
+            }
+        }
+    }
+}
+</script>

@@ -26,13 +26,13 @@ Route::get('/app/{any?}', function () {
 })->where('any', '.*');
 
 // Admin Login and Profile
-// Route::get('/dashboard/{any?}', function () {
-//     return view('vue-request'); // Vue entrypoint Blade file    
-// })->where('any', '.*');
+Route::get('/dashboard/{any?}', function () {
+    return view('dashboard'); // Vue entrypoint Blade file    
+})->where('any', '.*');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

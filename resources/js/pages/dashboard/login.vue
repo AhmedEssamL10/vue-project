@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { useAuthStore } from '../stores/auth'
+import { useAuthStore } from '../../stores/auth'
 
 export default {
     setup() {
@@ -74,7 +74,7 @@ export default {
         handleSubmit() {
             if ((this.formData.email === 'admin@3m-services.com') && (this.formData.password === '123456789')) {
                 this.authStore.setToken('as21d6as5d1as5d13as2d1asd1');
-                this.$router.push({ name: "requestConfigPage" });
+                this.$router.push({ name: "Dashboard" });
             } else {
                 this.authStore.setToken(null);
             }

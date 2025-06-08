@@ -6,3 +6,4 @@ import "./auth.js";
 import "./swipers.js";
 import "./tabs.js";
 import "./vueInit.js";
+import "./dashboard-vueInit.js";
