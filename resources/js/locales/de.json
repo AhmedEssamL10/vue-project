@@ -215,5 +215,6 @@
   "totalCost": "Gesamtkosten",
   "includingTax": "einschließlich Mehrwertsteuer",
   "makeAnotherRequest": "Eine weitere Anfrage stellen",
-  "goToHome": "Zur Startseite gehen"
+  "goToHome": "Zur Startseite gehen",
+  "euro": "Euro"
 }

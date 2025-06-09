@@ -16,11 +16,11 @@
                     </div>
                     <div v-if="servicesCosts.pickupFloorWithoutLifterPrice && servicesCosts.pickupFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('pickupFloorCostFrom') }}</span>
-                      <span class="font-bold">{{ servicesCosts.pickupFloorWithoutLifterPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.pickupFloorWithoutLifterPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.dropOffFloorWithoutLifterPrice && servicesCosts.dropOffFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('dropOffFloorCostTo') }}</span>
-                      <span class="font-bold">{{ servicesCosts.dropOffFloorWithoutLifterPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.dropOffFloorWithoutLifterPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.meterInBasementPrice && servicesCosts.meterInBasementPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('additionalStorageCost') }}</span>
@@ -28,7 +28,7 @@
                     </div>
                     <div v-if="servicesCosts.squareMeterPrice && servicesCosts.squareMeterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('homeSpaceCost') }}</span>
-                      <span class="font-bold">{{ servicesCosts.squareMeterPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.squareMeterPrice }} {{ $t('euro') }}</span>
                     </div>
                   </div>
                 </div>
@@ -37,56 +37,56 @@
                   <div class="flex flex-col">
                     <div v-if="servicesCosts.furnitureStoreDayPrice && servicesCosts.furnitureStoreDayPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('furnitureStorage') }}</span>
-                      <span class="font-bold">{{ servicesCosts.furnitureStoreDayPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.furnitureStoreDayPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.cleaningPrice && servicesCosts.cleaningPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('cleaning') }}</span>
-                      <span class="font-bold">{{ servicesCosts.cleaningPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.cleaningPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.furnitureLifterToolPrice && servicesCosts.furnitureLifterToolPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('furnitureLifter') }}</span>
-                      <span class="font-bold">{{ servicesCosts.furnitureLifterToolPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.furnitureLifterToolPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.connectingWashingMachinePrice && servicesCosts.connectingWashingMachinePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('washingMachineConnection') }}</span>
-                      <span class="font-bold">{{ servicesCosts.connectingWashingMachinePrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.connectingWashingMachinePrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.packingServicePrice && servicesCosts.packingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('packingService') }}</span>
-                      <span class="font-bold">{{ servicesCosts.packingServicePrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.packingServicePrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.unpackingServicePrice && servicesCosts.unpackingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('unpackingService') }}</span>
-                      <span class="font-bold">{{ servicesCosts.unpackingServicePrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.unpackingServicePrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.KitchenMeterunInstallingPrice && servicesCosts.KitchenMeterunInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('kitchenUninstall') }}</span>
-                      <span class="font-bold">{{ servicesCosts.KitchenMeterunInstallingPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.KitchenMeterunInstallingPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.KitchenMeterInstallingPrice && servicesCosts.KitchenMeterInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('kitchenInstall') }}</span>
-                      <span class="font-bold">{{ servicesCosts.KitchenMeterInstallingPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.KitchenMeterInstallingPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.buyPackingBoxesPrice && servicesCosts.buyPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('buyPackingBoxes') }}</span>
-                      <span class="font-bold">{{ servicesCosts.buyPackingBoxesPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.buyPackingBoxesPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.rentPackingBoxesPrice && servicesCosts.rentPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('rentPackingBoxes') }}</span>
-                      <span class="font-bold">{{ servicesCosts.rentPackingBoxesPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.rentPackingBoxesPrice }} {{ $t('euro') }}</span>
                     </div>
                     <div v-if="servicesCosts.noParkingPrice && servicesCosts.noParkingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
                       <span>{{ $t('noParkingZone') }}</span>
-                      <span class="font-bold">{{ servicesCosts.noParkingPrice }} يورو</span>
+                      <span class="font-bold">{{ servicesCosts.noParkingPrice }} {{ $t('euro') }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="flex justify-between items-center">
                   <span class="font-bold text-xl">{{ $t('totalCost') }}</span>
                   <span class="flex flex-col">
-                    <span class="font-bold text-xl">{{ totalCost }} يورو</span>
+                    <span class="font-bold text-xl">{{ totalCost }} {{ $t('euro') }}</span>
                     <span v-if="servicesCosts?.tax">({{ $t('includingTax') }} {{ servicesCosts.tax }}
-                      يورو)</span>
+                      {{ $t('euro') }})</span>
                   </span>
                 </div>
               </div>

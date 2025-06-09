@@ -56,7 +56,7 @@ router.beforeEach((to, from, next) => {
   const auth = useAuthStore()
   
   if (to.meta.guest && auth.isLoggedIn) {
-    next({ name: 'requestConfigPage' }) // or any login route name
+    next({ name: 'Dashboard' }) // or any login route name
   } else {
     next()
   }
