@@ -53,7 +53,8 @@
       "liftExists": "هل يوجد أسانسير ؟",
       "yes": "نعم",
       "no": "لا",
-      "meter": "m"
+      "meter": "m",
+      "ifNoDisctanceWriteZero": "إذا لم يكن هناك مسافة قم بكتابة 0"
     },
     "propertyDetails": {
       "title": "تفاصيل العقار المنقول منه",
@@ -187,5 +188,27 @@
   },
   "common": {
     "save": "حفظ"
-  }
+  },
+  "basicServicesCost": "تكلفة الخدمات الأساسية",
+  "gasolineCost": "تكلفة البنزين",
+  "pickupFloorCostFrom": "تكلفة الطابق (الذهاب من)",
+  "dropOffFloorCostTo": "تكلفة الطابق (الذهاب إلى)",
+  "additionalStorageCost": "تكلفة مساحة التخزين الإضافية",
+  "homeSpaceCost": "تكلفة مساحة المنزل",
+  "additionalServicesCost": "تكلفة الخدمات الإضافية",
+  "furnitureStorage": "تخزين الأثاث",
+  "cleaning": "التنظيف",
+  "furnitureLifter": "رافعة الأثاث",
+  "washingMachineConnection": "توصيل الغسالة",
+  "packingService": "التعبئة والتغليف",
+  "unpackingService": "تفريغ الصناديق",
+  "kitchenUninstall": "تفكيك المطبخ",
+  "kitchenInstall": "تجميع المطبخ",
+  "buyPackingBoxes": "شراء صناديق التعبئة",
+  "rentPackingBoxes": "إيجار صناديق التعبئة",
+  "noParkingZone": "إنشاء منطقة ممنوع الوقوف",
+  "totalCost": "التكلفة الإجمالية",
+  "includingTax": "بما فى ذلك ضريبة القيمة المضافة",
+  "makeAnotherRequest": "عمل طلب أخر",
+  "goToHome": "الذهاب إلى الرئيسية"
 }

@@ -52,7 +52,8 @@
       "liftExists": "Ist ein Aufzug vorhanden?",
       "yes": "Ja",
       "no": "Nein",
-      "meter": "m"
+      "meter": "m",
+      "ifNoDisctanceWriteZero": "Wenn kein Abstand vorhanden ist, schreiben Sie 0"
     },
     "propertyDetails": {
       "title": "Details der zu verlegenden Immobilie",
@@ -192,5 +193,27 @@
   },
   "common": {
     "save": "Speichern"
-  }
+  },
+  "basicServicesCost": "Grundkosten der Dienstleistungen",
+  "gasolineCost": "Benzinkosten",
+  "pickupFloorCostFrom": "Kosten für die Etage (Abfahrt von)",
+  "dropOffFloorCostTo": "Kosten für die Etage (Ankunft zu)",
+  "additionalStorageCost": "Kosten für zusätzlichen Lagerraum",
+  "homeSpaceCost": "Kosten für Wohnraum",
+  "additionalServicesCost": "Zusätzliche Dienstleistungskosten",
+  "furnitureStorage": "Möbellagerung",
+  "cleaning": "Reinigung",
+  "furnitureLifter": "Möbelheber",
+  "washingMachineConnection": "Waschmaschinenanschluss",
+  "packingService": "Verpackungsservice",
+  "unpackingService": "Entpackungsservice",
+  "kitchenUninstall": "Küchenabbau",
+  "kitchenInstall": "Küchenmontage",
+  "buyPackingBoxes": "Kauf von Verpackungskartons",
+  "rentPackingBoxes": "Miete von Verpackungskartons",
+  "noParkingZone": "Einrichtung einer Parkverbotszone",
+  "totalCost": "Gesamtkosten",
+  "includingTax": "einschließlich Mehrwertsteuer",
+  "makeAnotherRequest": "Eine weitere Anfrage stellen",
+  "goToHome": "Zur Startseite gehen"
 }

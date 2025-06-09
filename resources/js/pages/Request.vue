@@ -8,95 +8,93 @@
             <template v-if="resultsReady">
               <div class="form_panel !max-w-3xl">
                 <div class="mb-8">
-                  <h3 class="text-xl font-bold mb-8">تكلفة الخدمات الأساسية</h3>
+                  <h3 class="text-xl font-bold mb-8">{{ $t('basicServicesCost') }}</h3>
                   <div class="flex flex-col">
                     <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تكلفة البنزين</span>
+                      <span>{{ $t('gasolineCost') }}</span>
                       <span class="font-bold">200</span>
                     </div>
                     <div v-if="servicesCosts.pickupFloorWithoutLifterPrice && servicesCosts.pickupFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تكلفة الأدوار الذهاب من</span>
+                      <span>{{ $t('pickupFloorCostFrom') }}</span>
                       <span class="font-bold">{{ servicesCosts.pickupFloorWithoutLifterPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.dropOffFloorWithoutLifterPrice && servicesCosts.dropOffFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تكلفة الأدوار الذهاب إلى</span>
+                      <span>{{ $t('dropOffFloorCostTo') }}</span>
                       <span class="font-bold">{{ servicesCosts.dropOffFloorWithoutLifterPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.meterInBasementPrice && servicesCosts.meterInBasementPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تكلفة مساحة التخزين الإضافية</span>
+                      <span>{{ $t('additionalStorageCost') }}</span>
                       <span class="font-bold">{{ servicesCosts.meterInBasementPrice }}</span>
                     </div>
                     <div v-if="servicesCosts.squareMeterPrice && servicesCosts.squareMeterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تكلفة مساحة المنزل</span>
+                      <span>{{ $t('homeSpaceCost') }}</span>
                       <span class="font-bold">{{ servicesCosts.squareMeterPrice }} يورو</span>
                     </div>
                   </div>
                 </div>
                 <div class="mb-8">
-                  <h3 class="text-xl font-bold mb-8">تكلفة الخدمات الإضافية</h3>
+                  <h3 class="text-xl font-bold mb-8">{{ $t('additionalServicesCost') }}</h3>
                   <div class="flex flex-col">
                     <div v-if="servicesCosts.furnitureStoreDayPrice && servicesCosts.furnitureStoreDayPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تخزين الأثاث</span>
+                      <span>{{ $t('furnitureStorage') }}</span>
                       <span class="font-bold">{{ servicesCosts.furnitureStoreDayPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.cleaningPrice && servicesCosts.cleaningPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>التنظيف</span>
+                      <span>{{ $t('cleaning') }}</span>
                       <span class="font-bold">{{ servicesCosts.cleaningPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.furnitureLifterToolPrice && servicesCosts.furnitureLifterToolPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>رافعة الأثاث</span>
+                      <span>{{ $t('furnitureLifter') }}</span>
                       <span class="font-bold">{{ servicesCosts.furnitureLifterToolPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.connectingWashingMachinePrice && servicesCosts.connectingWashingMachinePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>توصيل الغسالة</span>
+                      <span>{{ $t('washingMachineConnection') }}</span>
                       <span class="font-bold">{{ servicesCosts.connectingWashingMachinePrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.packingServicePrice && servicesCosts.packingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>التعبئة والتغليف</span>
+                      <span>{{ $t('packingService') }}</span>
                       <span class="font-bold">{{ servicesCosts.packingServicePrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.unpackingServicePrice && servicesCosts.unpackingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تفريغ الصناديق</span>
+                      <span>{{ $t('unpackingService') }}</span>
                       <span class="font-bold">{{ servicesCosts.unpackingServicePrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.KitchenMeterunInstallingPrice && servicesCosts.KitchenMeterunInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تفكيك المطبخ</span>
+                      <span>{{ $t('kitchenUninstall') }}</span>
                       <span class="font-bold">{{ servicesCosts.KitchenMeterunInstallingPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.KitchenMeterInstallingPrice && servicesCosts.KitchenMeterInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>تجميع المطبخ</span>
+                      <span>{{ $t('kitchenInstall') }}</span>
                       <span class="font-bold">{{ servicesCosts.KitchenMeterInstallingPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.buyPackingBoxesPrice && servicesCosts.buyPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>شراء صناديق التعبئة</span>
+                      <span>{{ $t('buyPackingBoxes') }}</span>
                       <span class="font-bold">{{ servicesCosts.buyPackingBoxesPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.rentPackingBoxesPrice && servicesCosts.rentPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>إيجار صناديق التعبئة</span>
+                      <span>{{ $t('rentPackingBoxes') }}</span>
                       <span class="font-bold">{{ servicesCosts.rentPackingBoxesPrice }} يورو</span>
                     </div>
                     <div v-if="servicesCosts.noParkingPrice && servicesCosts.noParkingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>إنشاء منطقة ممنوع الوقوف</span>
+                      <span>{{ $t('noParkingZone') }}</span>
                       <span class="font-bold">{{ servicesCosts.noParkingPrice }} يورو</span>
                     </div>
                   </div>
                 </div>
                 <div class="flex justify-between items-center">
-                  <span class="font-bold text-xl">التكلفة الإجمالية</span>
+                  <span class="font-bold text-xl">{{ $t('totalCost') }}</span>
                   <span class="flex flex-col">
                     <span class="font-bold text-xl">{{ totalCost }} يورو</span>
-                    <span v-if="servicesCosts?.tax">(بما فى ذلك ضريبة القيمة المضافة {{ servicesCosts.tax }}
+                    <span v-if="servicesCosts?.tax">({{ $t('includingTax') }} {{ servicesCosts.tax }}
                       يورو)</span>
                   </span>
                 </div>
               </div>
               <div class="btn_wrapper flex items-center gap-2">
-                <button @click="window?.location.reload()" type="button"
-                  class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">عمل
-                  طلب أخر</button>
+                <button @click="reloadPage" type="button"
+                  class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{ $t('makeAnotherRequest') }}</button>
                 <button @click="navigateToHome" type="button"
-                  class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">الذهاب
-                  إلى الرئيسية</button>
+                  class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{ $t('goToHome') }}</button>
               </div>
             </template>
             <template v-else>
@@ -246,7 +244,6 @@
                     </div>
                   </div>
                 </template>
-
                 <template v-if="companyStepNumber === 3">
                   <div class="form_panel">
                     <div class="form_step_parent">
@@ -363,7 +360,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('pickup.postalCode') }}</label>
+                                $t('pickup.postalCode') }}*</label>
                               <input type="number" id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
                                 :placeholder="$t('pickup.postalCodePlaceholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -376,7 +373,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="location" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('pickup.city') }}</label>
+                                $t('pickup.city') }}*</label>
                               <input id="location" v-model="v$.formData.pickupLocation.$model"
                                 :placeholder="$t('pickup.cityPlaceholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -390,7 +387,7 @@
                             <div class="grid grid-cols-[auto_100px] gap-2">
                               <div>
                                 <label for="address" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('pickup.street') }}</label>
+                                  $t('pickup.street') }}*</label>
                                 <input id="address" v-model="v$.formData.pickupAddress.$model"
                                   :placeholder="$t('pickup.streetPlaceholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -398,7 +395,7 @@
                               </div>
                               <div>
                                 <label for="number" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('pickup.number') }}</label>
+                                  $t('pickup.number') }}*</label>
                                 <input id="number" v-model="v$.formData.pickupNo.$model"
                                   :placeholder="$t('pickup.numberPlaceholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -426,7 +423,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="pickUpDistanceToCar" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('floorAndLift.distanceToCar') }}</label>
+                                $t('floorAndLift.distanceToCar') }}*</label>
                               <div class="grid grid-cols-[auto_20px] gap-2 items-center">
                                 <input type="number" id="pickUpDistanceToCar"
                                   v-model="v$.formData.pickupDistanceToCar.$model"
@@ -435,6 +432,7 @@
                                   :class="{ 'input-error': v$.formData.pickupDistanceToCar.$error }" />
                                 <span>{{ $t('floorAndLift.meter') }}</span>
                               </div>
+                              <span class="text-xs">{{ $t('floorAndLift.ifNoDisctanceWriteZero') }}</span>
                             </div>
                             <span class="error-msg" v-if="v$.formData.pickupDistanceToCar.$error">
                               {{ v$.formData.pickupDistanceToCar.$errors[0].$message }}
@@ -443,7 +441,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="floorNumber" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('floorAndLift.floorNumber') }}</label>
+                                $t('floorAndLift.floorNumber') }}*</label>
                               <input id="floorNumber" type="number" v-model="v$.formData.pickupFloorNumber.$model"
                                 :placeholder="$t('floorAndLift.floorNumberPlaceholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -455,7 +453,7 @@
                           </div>
                           <div class="form_control_wrapper">
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('floorAndLift.liftExists')
-                            }}</label>
+                            }}*</label>
                             <div class="flex flex-col gap-3">
                               <label class="label cursor-pointer">
                                 <input type="radio" name="lifterExistMoveFrom" value="true"
@@ -775,7 +773,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('postal_code') }}</label>
+                                $t('postal_code') }}*</label>
                               <input id="postalCode" v-model="v$.formData.dropOffPostalCode.$model"
                                 :placeholder="$t('postal_code_placeholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -788,7 +786,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="location" class="block text-sm font-medium text-gray-700 mb-1">{{ $t('city')
-                              }}</label>
+                              }}*</label>
                               <input id="location" v-model="v$.formData.dropOffLocation.$model"
                                 :placeholder="$t('city_placeholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -802,7 +800,7 @@
                             <div class="grid grid-cols-[auto_100px] gap-2">
                               <div>
                                 <label for="address" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('street') }}</label>
+                                  $t('street') }}*</label>
                                 <input id="address" v-model="v$.formData.dropOffAddress.$model"
                                   :placeholder="$t('street_placeholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -810,7 +808,7 @@
                               </div>
                               <div>
                                 <label for="number" class="block text-sm font-medium text-gray-700 mb-1">{{ $t('number')
-                                }}</label>
+                                }}*</label>
                                 <input id="number" v-model="v$.formData.dropOffNo.$model"
                                   :placeholder="$t('number_placeholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -838,7 +836,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="distanceToCar" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('distance_to_car') }}</label>
+                                $t('distance_to_car') }}*</label>
                               <div class="grid grid-cols-[auto_20px] gap-2 items-center">
                                 <input type="number" id="distanceToCar"
                                   v-model="v$.formData.dropOffDistanceToCar.$model"
@@ -847,6 +845,7 @@
                                   :class="{ 'input-error': v$.formData.dropOffDistanceToCar.$error }" />
                                 <span>m</span>
                               </div>
+                              <span class="text-xs">{{ $t('floorAndLift.ifNoDisctanceWriteZero') }}</span>
                             </div>
                             <span class="error-msg" v-if="v$.formData.dropOffDistanceToCar.$error">
                               {{ v$.formData.dropOffDistanceToCar.$errors[0].$message }}
@@ -855,7 +854,7 @@
                           <div class="form_control_wrapper">
                             <div>
                               <label for="floor" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('floor_number') }}</label>
+                                $t('floor_number') }}*</label>
                               <input id="floor" v-model="v$.formData.dropOffFloorNumber.$model"
                                 :placeholder="$t('floor_number_placeholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -867,7 +866,7 @@
                           </div>
                           <div class="form_control_wrapper">
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('lifter_existence')
-                            }}</label>
+                            }}*</label>
                             <div class="flex flex-col gap-3">
                               <label class="label cursor-pointer">
                                 <input type="radio" name="lifterExistMoveTo" value="true"
@@ -981,7 +980,7 @@
                                 <div>
                                   <label for="specificDatepicker"
                                     class="block text-sm font-medium text-gray-700 mb-1">{{ $t('shippingStep.date')
-                                    }}</label>
+                                    }}*</label>
                                   <!-- <VCalendar /> -->
                                   <VDatePicker :min-date="new Date()" v-model="v$.formData.specificDate.$model"
                                     :masks="masks" :locale="'ar'">
@@ -999,12 +998,10 @@
                               </div>
                             </div>
                             <div id="dateRangeWrapper" v-if="v$.formData.timeType.$model === 'range'" class="dateRange">
-                              <input type="hidden" name="fromDate" id="fromDateInput" />
-                              <input type="hidden" name="endDate" id="endDateInput" />
                               <div class="form_control_wrapper">
                                 <div>
                                   <label for="dateRange" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                    $t('shippingStep.period') }}</label>
+                                    $t('shippingStep.period') }}*</label>
                                   <VDatePicker :min-date="new Date()" is-range v-model="v$.formData.rangeDate.$model"
                                     :masks="masks" :locale="'ge'">
                                     <template #default="{ inputValue, showPopover, hidePopover }">
@@ -1051,7 +1048,7 @@
                             <div class="form_control_wrapper">
                               <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('name_required') }}</label>
+                                  $t('name_required') }}*</label>
                                 <input id="name" v-model="v$.formData.clientName.$model"
                                   :placeholder="$t('name_required')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -1065,7 +1062,7 @@
                             <div class="form_control_wrapper">
                               <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('email_required') }}</label>
+                                  $t('email_required') }}*</label>
                                 <input id="email" v-model="v$.formData.clientEmail.$model"
                                   :placeholder="$t('email_required')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -1079,7 +1076,7 @@
                             <div class="form_control_wrapper">
                               <div>
                                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('phone_required') }}</label>
+                                  $t('phone_required') }}*</label>
                                 <input id="phone" v-model="v$.formData.clientPhone.$model"
                                   :placeholder="$t('phone_required')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -1092,7 +1089,7 @@
 
                             <div class="form_control_wrapper">
                               <label class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('contactInformation.whoWillPay') }}</label>
+                                $t('contactInformation.whoWillPay') }}*</label>
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
                                   <input type="radio" value="private" v-model="v$.formData.whoWillPay.$model"
@@ -1978,7 +1975,10 @@ export default {
     },
     navigateToHome() {
       window.location.href = "/";
-    }
+    },
+    reloadPage() {
+      window.location.reload();
+    },
   },
   computed: {
     isKitchenConstructionChecked() {
