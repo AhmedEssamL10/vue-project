@@ -102,16 +102,16 @@ class RequestController extends Controller
 
         if ($request->pickupFloorNumber) {
             if ($request->pickupLifterExistance == 1) {
-                $services['floorWithLifterPrice'] = $request->pickupFloorNumber * ($prices['floorWithLifterPrice'] ?? 0);
+                $services['pickupFloorWithoutLifterPrice'] = $request->pickupFloorNumber * ($prices['floorWithLifterPrice'] ?? 0);
             } else {
-                $services['floorWithoutLifterPrice'] = $request->pickupFloorNumber * ($prices['floorWithoutLifterPrice'] ?? 0);
+                $services['pickupFloorWithoutLifterPrice'] = $request->pickupFloorNumber * ($prices['floorWithoutLifterPrice'] ?? 0);
             }
         }
         if ($request->dropOffFloorNumber) {
             if ($request->dropOfflifterExistance == 1) {
-                $services['floorWithLifterPrice'] = $request->dropOffFloorNumber * ($prices['floorWithLifterPrice'] ?? 0);
+                $services['dropOffFloorWithoutLifterPrice'] = $request->dropOffFloorNumber * ($prices['floorWithLifterPrice'] ?? 0);
             } else {
-                $services['floorWithoutLifterPrice '] = $request->dropOffFloorNumber * ($prices['floorWithoutLifterPrice '] ?? 0);
+                $services['dropOffFloorWithoutLifterPrice '] = $request->dropOffFloorNumber * ($prices['floorWithoutLifterPrice '] ?? 0);
             }
         }
 

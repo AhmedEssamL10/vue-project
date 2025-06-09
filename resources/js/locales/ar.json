@@ -1,0 +1,191 @@
+{
+    "client_type": "نوع العميل",
+    "personal": "شخص",
+    "company": "شركة",
+    "please_select_client_type": "برجاء إختيار نوع العميل",
+    "next": "التالى",
+    "what_do_you_need": "ماذا تحتاج ؟",
+    "shipping": "نقل",
+    "workers_support": "دعم عمال",
+    "please_choose_what_you_want": "رجاءا قم بإختيار ماذا تريد",
+    "back": "عودة",
+    "workers_data": "بيانات العمال",
+    "workers_count": "عدد العمال",
+    "workers_count_placeholder": "عدد العمال",
+    "workers_duration": "المدة التى سوف تحتاج فيها العمال",
+    "date_or_period_placeholder": "التاريخ او الفتره",
+    "contact_information": "معلومات التواصل",
+    "title": "معلومات التواصل",
+    "name_required": "الإسم",
+    "name_placeholder": "الإسم",
+    "email_required": "البريد الإلكترونى",
+    "email_placeholder": "البريد الإلكترونى",
+    "phone_required": "رقم الهاتف",
+    "phone_placeholder": "رقم الهاتف",
+    "contactInformation": {
+        "whoWillPay": "من سيقوم بالدفع",
+        "client": "العميل",
+        "manager": "صاحب العمل",
+        "government": "السلطة"
+    },
+    "save_data": "حفظ البيانات",
+    "save_data_question": "هل تريد حفظ البينات التى قمت بإدخالها لتقوم بتسجيل الدخول بها فيما بعد ؟",
+    "save_data_option": "حفظ البيانات",
+    "cancel_save": "إلغاء الحفظ",
+    "submit_request": "إرسال الطلب",
+    "pickup": {
+      "title": "النقل من",
+      "postalCode": "الرقم البريدى",
+      "postalCodePlaceholder": "الرقم البريدى",
+      "city": "المدينة",
+      "cityPlaceholder": "المدينة",
+      "street": "الشارع",
+      "streetPlaceholder": "الشارع",
+      "number": "الرقم",
+      "numberPlaceholder": "الرقم"
+    },
+    "floorAndLift": {
+      "title": "الطابق والأسانسير والمسافة المقطوعه",
+      "distanceToCar": "المسافة المقطوعة من منطقه وقوف السيارة ؟",
+      "distanceToCarPlaceholder": "المسافة المقطوعة من منطقه وقوف السيارة ؟",
+      "floorNumber": "رقم الطابق",
+      "floorNumberPlaceholder": "رقم الطابق",
+      "liftExists": "هل يوجد أسانسير ؟",
+      "yes": "نعم",
+      "no": "لا",
+      "meter": "m"
+    },
+    "propertyDetails": {
+      "title": "تفاصيل العقار المنقول منه",
+      "moveTypes": {
+        "all": {
+          "title": "منزل كامل",
+          "description": "نقل كامل لمحتويات المنزل"
+        },
+        "part": {
+          "title": "قسم من المنزل",
+          "description": "نقل بعض من أغراض المنزل"
+        },
+        "boxes": {
+          "title": "صناديق",
+          "description": "نقل عدد محدد من عدد من الصناديق"
+        }
+      },
+      "boxesNumber": "عدد الصناديق",
+      "roomsNumber": "عدد الحجرات",
+      "area": "المساحة",
+      "areaPlaceholder": "المساحة",
+      "squareMeter": "m²",
+      "roomsMore": "أو أكثر",
+      "whatToMove": "ماذا تريد ان تنقل ؟",
+      "roomTypes": {
+        "bedRoom": "غرفة نوم",
+        "childrenRoom": "غرفة أطفال",
+        "kitchen": "مطبخ",
+        "bathroom": "حمام"
+      },
+      "storeArea": "مساحة مناطق إضافية لنقل البضائع (الطابق السفلى)",
+      "storeAreaPlaceholder": "مساحة المخزن"
+    },
+    "additionalServices": {
+      "title": "الخدمات الإضافية عند الإنتقال من المنزل",
+      "packingServices": "خدمة التعبئة والتغليف لصناديق النقل",
+      "dismantingFurniture": "تفكيك الأثاث",
+      "kitchenDismanting": "تفكيك المطبخ",
+      "movingBoxes": "توفير صناديق النقل",
+      "furnitureStore": "تخزين الأثاث",
+      "furnitureQuantity": "التخلص من الأثاث",
+      "finalCleaning": "التنظيف النهائي",
+      "furnitureLifter": "التحميل باستخدام رافعة الأثاث",
+      "noParking": "إنشاء منطقة ممنوع الوقوف فيهاا"
+    },
+    "buttons": {
+      "back": "عودة",
+      "next": "التالى"
+    },
+    "shippingStep": {
+        "question": "متى تريد ان تنقل؟",
+        "specificDate": "معاد محدد",
+        "flexibleDate": "لدى مرونة فى المعاد",
+        "date": "تاريخ النقل",
+        "period": "الفترة"
+    },
+    "saveData": {
+        "title": "حفظ البيانات",
+        "message": "هل تريد حفظ البينات التى قمت بإدخالها لتقوم بتسجيل الدخول بها فيما بعد ؟",
+        "save": "حفظ البيانات",
+        "cancel": "إلغاء الحفظ",
+        "submit": "إرسال الطلب"
+    },
+    "saveDataQuestion": "هل تريد حفظ البينات التى قمت بإدخالها لتقوم بتسجيل الدخول بها فيما بعد ؟",
+    "saveDataOption": "حفظ البيانات",
+    "cancelSave": "إلغاء الحفظ",
+    "submitRequest": "إرسال الطلب",
+    "kitchenDismanting": "فك المطبخ",
+    "kitchenLengthQuestion": "كم طول المطبخ بالمتر الذى تريد فكة ؟",
+    "kitchenConstruction": "تركيب المطبخ",
+    "kitchenConstructionQuestion": "كم طول المطبخ بالمتر الذى تريد تركيبة ؟",
+    "movingBoxes": "صناديق النقل",
+    "noOfBoxes": "عدد الصناديق",
+    "rent": "إيجار",
+    "buy": "شراء",
+    "furnitureStore": "تخزين الأثاث",
+    "furnitureStoreDaysQuestion": "كم عدد الأيام التى سوف تحتاجها لتخزين الأثاث ؟",
+    "furnitureQuantity": "التخلص من الأثاث",
+    "furnitureQuantityQuestion": "ما الذى تريد التخلص منه ؟",
+    "dropoff_location": "النقل إلى",
+  "postal_code": "الرقم البريدى",
+  "postal_code_placeholder": "أدخل الرقم البريدى",
+  "city": "المدينة",
+  "city_placeholder": "أدخل المدينة",
+  "street": "الشارع",
+  "street_placeholder": "أدخل الشارع",
+  "number": "الرقم",
+  "number_placeholder": "أدخل الرقم",
+  "floor_lifter_distance": "الطابق والأسانسير والمسافة المقطوعه",
+  "distance_to_car": "المسافة المقطوعة من منطقه وقوف السيارة ؟",
+  "distance_to_car_placeholder": "أدخل المسافة المقطوعة",
+  "floor_number": "رقم الطابق",
+  "floor_number_placeholder": "أدخل رقم الطابق",
+  "lifter_existence": "هل يوجد أسانسير ؟",
+  "yes": "نعم",
+  "no": "لا",
+  "additional_services": "الخدمات الإضافية عند الإنتقال إلى المنزل",
+  "unpacking_service": "خدمة تفريغ الصناديق",
+  "kitchen_assembly": "تركيب المطبخ",
+  "washing_machine_connection": "توصيل الغسالة",
+  "furniture_assembly": "تجميع الأثاث",
+  "kitchenDismantlingModal": {
+    "title": "فك المطبخ",
+    "question": "كم طول المطبخ بالمتر الذى تريد فكة ؟",
+    "placeholder": "كم طول المطبخ بالمتر ؟"
+  },
+  "kitchenConstructionModal": {
+    "title": "تركيب المطبخ",
+    "question": "كم طول المطبخ بالمتر الذى تريد تركيبة ؟",
+    "placeholder": "كم طول المطبخ بالمتر ؟"
+  },
+  "movingBoxesModal": {
+    "title": "صناديق النقل",
+    "question": "توفير صناديق النقل",
+    "label": "عدد الصناديق",
+    "placeholder": "عدد الصناديق",
+    "error": "يجب وضع عدد الصناديق المطلوبة",
+    "rent": "إيجار",
+    "buy": "شراء"
+  },
+  "furnitureStoreModal": {
+    "title": "تخزين الأثاث",
+    "question": "كم عدد الأيام التى سوف تحتاجها لتخزين الأثاث ؟",
+    "placeholder": "عدد الأيام",
+    "unit": "يوم"
+  },
+  "furnitureQuantityModal": {
+    "title": "التخلص من الأثاث",
+    "question": "ما الذى تريد التخلص منه ؟",
+    "placeholder": "أريكة, 2 كرسى"
+  },
+  "common": {
+    "save": "حفظ"
+  }
+}

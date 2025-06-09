@@ -1,0 +1,196 @@
+{
+  "client_type": "Kundentyp",
+  "personal": "Person",
+  "company": "Unternehmen",
+  "please_select_client_type": "Bitte wählen Sie den Kundentyp aus",
+  "next": "Weiter",
+  "what_do_you_need": "Was benötigen Sie?",
+  "shipping": "Transport",
+  "workers_support": "Arbeiterunterstützung",
+  "please_choose_what_you_want": "Bitte wählen Sie aus, was Sie möchten",
+  "back": "Zurück",
+  "workers_data": "Arbeiterdaten",
+  "workers_count": "Anzahl der Arbeiter",
+  "workers_count_placeholder": "Anzahl der Arbeiter",
+  "workers_duration": "Zeitraum, in dem Sie die Arbeiter benötigen",
+  "date_or_period_placeholder": "Datum oder Zeitraum",
+  "contact_information": "Kontaktinformationen",
+  "name_required": "Name",
+  "name_placeholder": "Name",
+  "email_required": "E-Mail",
+  "email_placeholder": "E-Mail",
+  "phone_required": "Telefonnummer",
+  "phone_placeholder": "Telefonnummer",
+  "contactInformation": {
+    "whoWillPay": "Wer wird bezahlen",
+    "client": "Kunde",
+    "manager": "Arbeitgeber",
+    "government": "Regierung"
+  },
+  "save_data": "Daten speichern",
+  "save_data_question": "Möchten Sie die eingegebenen Daten speichern, um sich später damit anzumelden?",
+  "save_data_option": "Daten speichern",
+  "cancel_save": "Speichern abbrechen",
+  "submit_request": "Anfrage senden",
+  "pickup": {
+      "title": "Umzug von",
+      "postalCode": "Postleitzahl",
+      "postalCodePlaceholder": "Postleitzahl",
+      "city": "Stadt",
+      "cityPlaceholder": "Stadt",
+      "street": "Straße",
+      "streetPlaceholder": "Straße",
+      "number": "Nummer",
+      "numberPlaceholder": "Nummer"
+    },
+    "floorAndLift": {
+      "title": "Stockwerk, Aufzug und Entfernung",
+      "distanceToCar": "Entfernung vom Parkplatz?",
+      "distanceToCarPlaceholder": "Entfernung vom Parkplatz?",
+      "floorNumber": "Stockwerk",
+      "floorNumberPlaceholder": "Stockwerk",
+      "liftExists": "Ist ein Aufzug vorhanden?",
+      "yes": "Ja",
+      "no": "Nein",
+      "meter": "m"
+    },
+    "propertyDetails": {
+      "title": "Details der zu verlegenden Immobilie",
+      "moveTypes": {
+        "all": {
+          "title": "Ganzes Haus",
+          "description": "Kompletter Umzug des Hausinhalts"
+        },
+        "part": {
+          "title": "Teil des Hauses",
+          "description": "Umzug einiger Haushaltsgegenstände"
+        },
+        "boxes": {
+          "title": "Kartons",
+          "description": "Umzug einer bestimmten Anzahl von Kartons"
+        }
+      },
+      "boxesNumber": "Anzahl der Kartons",
+      "boxesNumberPlaceholder": "Anzahl der Kartons",
+      "roomsNumber": "Anzahl der Zimmer",
+      "area": "Fläche",
+      "areaPlaceholder": "Fläche",
+      "squareMeter": "m²",
+      "roomsMore": "oder mehr",
+      "whatToMove": "Was möchten Sie umziehen?",
+      "roomTypes": {
+        "bedRoom": "Schlafzimmer",
+        "childrenRoom": "Kinderzimmer",
+        "kitchen": "Küche",
+        "bathroom": "Badezimmer"
+      },
+      "storeArea": "Fläche zusätzlicher Bereiche für Warentransport (Untergeschoss)",
+      "storeAreaPlaceholder": "Lagerfläche"
+    },
+    "additionalServices": {
+      "title": "Zusatzleistungen beim Hausumzug",
+      "packingServices": "Verpackungs- und Einpackservice für Umzugskartons",
+      "dismantingFurniture": "Möbel demontieren",
+      "kitchenDismanting": "Küche demontieren",
+      "movingBoxes": "Umzugskartons bereitstellen",
+      "furnitureStore": "Möbel einlagern",
+      "furnitureQuantity": "Möbel entsorgen",
+      "finalCleaning": "Endreinigung",
+      "furnitureLifter": "Beladung mit Möbellift",
+      "noParking": "Halteverbotszone einrichten"
+    },
+    "buttons": {
+      "back": "Zurück",
+      "next": "Weiter"
+    },
+    "shippingStep": {
+      "question": "Wann möchten Sie versenden?",
+      "specificDate": "Bestimmtes Datum",
+      "flexibleDate": "Flexibles Datum",
+      "date": "Datum",
+      "period": "Zeitraum"
+    },
+    "title": "Daten speichern",
+    "message": "Möchten Sie die eingegebenen Daten speichern, um sich später damit anzumelden?",
+    "save": "Daten speichern",
+    "cancel": "Speichern abbrechen",
+    "submit": "Anfrage senden",
+    "saveData": {
+      "title": "Daten speichern",
+      "message": "Möchten Sie die eingegebenen Daten speichern, um sich später damit anzumelden?",
+      "save": "Daten speichern",
+      "cancel": "Speichern abbrechen",
+      "submit": "Anfrage senden"
+    },
+    "saveDataQuestion": "Möchten Sie die eingegebenen Daten speichern, um sich später damit anzumelden?",
+    "saveDataOption": "Daten speichern",
+    "cancelSave": "Speichern abbrechen",
+    "submitRequest": "Anfrage senden",
+    "kitchenDismanting": "Küche demontieren",
+    "kitchenLengthQuestion": "Wie lang ist die Küche in Metern, die Sie demontieren möchten?",
+    "kitchenConstruction": "Küche montieren",
+    "kitchenConstructionQuestion": "Wie lang ist die Küche in Metern, die Sie montieren möchten?",
+    "movingBoxes": "Umzugskartons",
+    "noOfBoxes": "Anzahl der Kartons",
+    "rent": "Mieten",
+    "buy": "Kaufen",
+    "furnitureStore": "Möbel lagern",
+    "furnitureStoreDaysQuestion": "Wie viele Tage benötigen Sie, um die Möbel zu lagern?",
+    "furnitureQuantity": "Möbel entsorgen",
+    "furnitureQuantityQuestion": "Was möchten Sie entsorgen?",
+    "dropoff_location": "Lieferort",
+  "postal_code": "Postleitzahl",
+  "postal_code_placeholder": "Postleitzahl eingeben",
+  "city": "Stadt",
+  "city_placeholder": "Stadt eingeben",
+  "street": "Straße",
+  "street_placeholder": "Straße eingeben",
+  "number": "Nummer",
+  "number_placeholder": "Nummer eingeben",
+  "floor_lifter_distance": "Etage, Aufzug und Entfernung",
+  "distance_to_car": "Entfernung zum Auto",
+  "distance_to_car_placeholder": "Entfernung eingeben",
+  "floor_number": "Etagenzahl",
+  "floor_number_placeholder": "Etagenzahl eingeben",
+  "lifter_existence": "Gibt es einen Aufzug?",
+  "yes": "Ja",
+  "no": "Nein",
+  "additional_services": "Zusätzliche Dienstleistungen beim Umzug",
+  "unpacking_service": "Auspackservice",
+  "kitchen_assembly": "Küchenmontage",
+  "washing_machine_connection": "Waschmaschinenanschluss",
+  "furniture_assembly": "Möbelmontage",
+  "kitchenDismantlingModal": {
+    "title": "Küchenabbau",
+    "question": "Wie lang ist die Küche, die Sie abbauen möchten?",
+    "placeholder": "Wie lang ist die Küche?"
+  },
+  "kitchenConstructionModal": {
+    "title": "Küchenmontage",
+    "question": "Wie lang ist die Küche, die Sie montieren möchten?",
+    "placeholder": "Wie lang ist die Küche?"
+  },
+  "movingBoxesModal": {
+    "title": "Umzugskartons",
+    "question": "Bereitstellung von Umzugskartons",
+    "label": "Anzahl der Kartons",
+    "placeholder": "Anzahl der Kartons",
+    "error": "Bitte geben Sie die benötigte Anzahl der Kartons an",
+    "rent": "Mieten",
+    "buy": "Kaufen"
+  },
+  "furnitureStoreModal": {
+    "title": "Möbellagerung",
+    "question": "Wie viele Tage benötigen Sie für die Möbellagerung?",
+    "placeholder": "Anzahl der Tage",
+    "unit": "Tag"
+  },
+  "furnitureQuantityModal": {
+    "title": "Möbelentsorgung",
+    "question": "Was möchten Sie entsorgen?",
+    "placeholder": "Sofa, 2 Stühle"
+  },
+  "common": {
+    "save": "Speichern"
+  }
+}
