@@ -25,15 +25,15 @@ Route::prefix('{locale}')
         Route::get('/register', function () {
             return view('register'); // Blade-only view
         })->name('register');
+        Route::get('/app/request', function () {
+            return view('vue-request'); // Vue entrypoint Blade file    
+        })->name('vue-request');
     });
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest'])
     ->name('register'); // Register route
 
 // Vue app section (catch-all)
-Route::get('/app/{any?}', function () {
-    return view('vue-request'); // Vue entrypoint Blade file    
-})->where('any', '.*');
 
 // Admin Login and Profile
 Route::get('/dashboard/{any?}', function () {

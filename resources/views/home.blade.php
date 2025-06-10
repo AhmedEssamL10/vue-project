@@ -16,22 +16,22 @@
         <div class="container relative z-10">
             <div class="max-w-3xl mx-auto">
                 <!-- <h1
-            class="text-4xl lg:text-5xl font-bold mb-6 text-[#1b1718] !leading-relaxed "
-            >
-            قم بنقل أي شيء، في أي مكان — <br class="hidden sm:block" />
-            <span
-                class="bg-gradient-to-r from-client to-worker bg-clip-text text-transparent"
-                >بسهولة وبسرعة !</span
-            >
-            </h1> -->
+                class="text-4xl lg:text-5xl font-bold mb-6 text-[#1b1718] !leading-relaxed "
+                >
+                قم بنقل أي شيء، في أي مكان — <br class="hidden sm:block" />
+                <span
+                    class="bg-gradient-to-r from-client to-worker bg-clip-text text-transparent"
+                    >بسهولة وبسرعة !</span
+                >
+                </h1> -->
 
                 <!-- <p class="text-lg md:text-xl text-gray-700 mb-10 ">
-            ابحث عن عمال موثوق بهم لنقل الأغراض الخاصة بك، أو اكسب المال عن طريق
-            نقلها!
-            </p> -->
+                ابحث عن عمال موثوق بهم لنقل الأغراض الخاصة بك، أو اكسب المال عن طريق
+                نقلها!
+                </p> -->
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                    <a href="/app/request"
+                    <a href="{{ route('vue-request', app()->getLocale()) }}"
                         class="cursor-pointer bg-client hover:bg-client-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
                         أنا عميل
                     </a>
@@ -133,22 +133,22 @@
                     </p>
                     <ul class="flex flex-col gap-3">
                         <li class="flex items-start">
-                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-600">فريق نقل ذو خبرة وتدريب عالي</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-600">نقل مؤمن بالكامل وآمن</span>
                         </li>
                         <li class="flex items-start">
-                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
+                            <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
                             <span class="text-gray-600">ضمان التوصيل في الموعد المحدد</span>
