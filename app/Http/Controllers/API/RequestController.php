@@ -152,6 +152,15 @@ class RequestController extends Controller
             $services['buyPackingBoxesPrice'] = $request->noOfBoxes *  ($prices['buyPackingBoxesPrice'] ?? 0);
         }
 
+        $distance = $this->haversineDistance(
+            $request->firstLat,
+            $request->firstLong,
+            $request->secLat,
+            $request->secLong
+        );
+
+        $services['distancePrice'] = round($distance * ($prices['kiloMeterPrice'] ?? 0), 2);
+        $services['distance'] = round($distance, 2);
         $services['movementPrice'] = $prices['movementPrice'] ?? 0;
 
         $total = array_sum($services);
@@ -283,5 +292,25 @@ class RequestController extends Controller
             ]
             // 'data' => $factorRequest
         ], 201);
+    }
+
+    public function haversineDistance($lat1, $lon1, $lat2, $lon2)
+    {
+        $earthRadius = 6371; // km
+
+        $lat1 = deg2rad($lat1);
+        $lon1 = deg2rad($lon1);
+        $lat2 = deg2rad($lat2);
+        $lon2 = deg2rad($lon2);
+
+        $deltaLat = $lat2 - $lat1;
+        $deltaLon = $lon2 - $lon1;
+
+        $a = sin($deltaLat / 2) ** 2 +
+            cos($lat1) * cos($lat2) * sin($deltaLon / 2) ** 2;
+
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        return $earthRadius * $c;
     }
 }
