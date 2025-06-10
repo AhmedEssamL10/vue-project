@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\ShipRequest;
 use Illuminate\Support\Str;
@@ -243,6 +244,15 @@ class RequestController extends Controller
             'saveData' => 'nullable|boolean',
         ]);
 
+        $days = null;
+
+        if ($request->filled('date_from') && $request->filled('date_to')) {
+            $from = Carbon::parse($request->date_from);
+            $to = Carbon::parse($request->date_to);
+            $days = $from->diffInDays($to);
+        }
+        $price = ServicePrice::where('key', 'workerPerDay')->first();
+        $totalPrice = $price ? $price->value * ($days ?? 1) * $request->count : 0;
         if ($request->boolean('saveData')) {
             User::firstOrCreate(
                 ['email' => $request->clientEmail],
@@ -266,6 +276,10 @@ class RequestController extends Controller
         return response()->json([
             'message' => 'Factor request submitted successfully',
             'isSuccess' => true,
+            'days' => $days,
+            'factor_price' =>  $price ? (int) $price->value : 0,
+            'no_of_factors' => $request->count,
+            'total_price' => $totalPrice,
             // 'data' => $factorRequest
         ], 201);
     }

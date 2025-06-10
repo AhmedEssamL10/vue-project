@@ -47,7 +47,8 @@ class ServicePriceController extends Controller
             'cleaningPrice',
             'connectingWashingMachinePrice',
             'furnitureLifterToolPrice',
-            'noParkingPrice'
+            'noParkingPrice',
+            'workerPerDay'
         ];
 
         foreach ($fillable as $key) {
