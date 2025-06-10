@@ -369,7 +369,7 @@
                             <div>
                               <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">{{
                                 $t('pickup.postalCode') }}*</label>
-                              <input type="number" id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
+                              <input id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
                                 :placeholder="$t('pickup.postalCodePlaceholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
                                 :class="{ 'input-error': v$.formData.pickupPostalCode.$error }" />
@@ -407,7 +407,7 @@
                                 <input id="number" v-model="v$.formData.pickupNo.$model"
                                   :placeholder="$t('pickup.numberPlaceholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                  :class="{ 'input-error': v$.formData.pickupNo.$error }" />
+                                  :class="{ 'input-error': v$.formData.pickupNo.$error }" type="number" />
                               </div>
                             </div>
                             <span class="error-msg" v-if="v$.formData.pickupAddress.$error">
@@ -785,7 +785,7 @@
                               <input id="postalCode" v-model="v$.formData.dropOffPostalCode.$model"
                                 :placeholder="$t('postal_code_placeholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.dropOffPostalCode.$error }" type="number" />
+                                :class="{ 'input-error': v$.formData.dropOffPostalCode.$error }" />
                             </div>
                             <span class="error-msg" v-if="v$.formData.dropOffPostalCode.$error">
                               {{ v$.formData.dropOffPostalCode.$errors[0].$message }}
@@ -820,7 +820,7 @@
                                 <input id="number" v-model="v$.formData.dropOffNo.$model"
                                   :placeholder="$t('number_placeholder')"
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                  :class="{ 'input-error': v$.formData.dropOffNo.$error }" />
+                                  :class="{ 'input-error': v$.formData.dropOffNo.$error }" type="number" />
                               </div>
                             </div>
                             <span class="error-msg" v-if="v$.formData.dropOffAddress.$error">
@@ -1317,7 +1317,8 @@ import { useUiStore } from '../stores/uiStore';
 export default {
   name: "Request",
   setup() {
-
+    
+    const germanPostalCode = helpers.regex(/^\d{5}$/)
     const fields = reactive({
       formData: {
         pickupPostalCode: '',
@@ -1376,7 +1377,10 @@ export default {
 
     const rules = {
       formData: {
-        pickupPostalCode: { required: helpers.withMessage('الرمز البريدي مطلوب.', required) },
+        pickupPostalCode: { 
+          required: helpers.withMessage('الرمز البريدي مطلوب.', required),
+          germanPostalCode: helpers.withMessage('يجب أن يكون الرمز البريدي 5 أرقام.', germanPostalCode)
+        },
         pickupLocation: { required: helpers.withMessage('الموقع مطلوب.', required) },
         pickupAddress: { required: helpers.withMessage('العنوان مطلوب.', required) },
         pickupNo: { required: helpers.withMessage('رقم المبنى مطلوب.', required) },
@@ -1399,7 +1403,10 @@ export default {
             return siblings.selectedPickUpType === 'boxes'
           }))
         },
-        dropOffPostalCode: { required: helpers.withMessage('الرمز البريدي للتسليم مطلوب.', required) },
+        dropOffPostalCode: { 
+          required: helpers.withMessage('الرمز البريدي للتسليم مطلوب.', required),
+          germanPostalCode: helpers.withMessage('يجب أن يكون الرمز البريدي 5 أرقام.', germanPostalCode)
+        },
         dropOffLocation: { required: helpers.withMessage('موقع التسليم مطلوب.', required) },
         dropOffAddress: { required: helpers.withMessage('عنوان التسليم مطلوب.', required) },
         dropOffNo: { required: helpers.withMessage('رقم تسليم المبنى مطلوب.', required) },
