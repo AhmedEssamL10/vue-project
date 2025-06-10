@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -56,7 +57,8 @@
     </style>
     @vite(['resources/js/main.js'])
 </head>
-<body dir="rtl">
+
+<body dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     @include('layouts.header')
 
     <main>
@@ -65,4 +67,5 @@
 
     @include('layouts.footer')
 </body>
+
 </html>

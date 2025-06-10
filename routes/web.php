@@ -1,21 +1,31 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\API\RequestController;
 
 // Blade homepage
 Route::get('/', function () {
-    return view('home'); // Blade-only view
+    return redirect('/' . (session('locale') ?? App::getLocale()));
 });
+Route::prefix('{locale}')
+    ->where(['locale' => 'de|ar'])
+    ->middleware(Localization::class)
+    ->group(function () {
+        Route::get('/', function () {
+            return view('home'); // Blade-only view
+        })->name('home');
 
-Route::get('/login', function () {
-    return view('login'); // Blade-only view
-});
+        Route::get('/login', function () {
+            return view('login'); // Blade-only view
+        })->name('login');
 
-Route::get('/register', function () {
-    return view('register'); // Blade-only view
-});
+        Route::get('/register', function () {
+            return view('register'); // Blade-only view
+        })->name('register');
+    });
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest'])
     ->name('register'); // Register route
