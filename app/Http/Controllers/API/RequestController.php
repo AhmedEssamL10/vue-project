@@ -276,10 +276,11 @@ class RequestController extends Controller
         return response()->json([
             'message' => 'Factor request submitted successfully',
             'isSuccess' => true,
-            'days' => $days,
-            'factor_price' =>  $price ? (int) $price->value : 0,
-            'no_of_factors' => $request->count,
             'total_price' => $totalPrice,
+            'services' => [
+                'workers_cost' => $totalPrice,
+                'workers_form' => true,
+            ]
             // 'data' => $factorRequest
         ], 201);
     }
