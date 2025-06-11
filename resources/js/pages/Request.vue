@@ -219,7 +219,7 @@
                                 </label>
                                 <!-- <VCalendar /> -->
                                 <VDatePicker is-range :min-date="new Date()" v-model="v2$.workersFormFields.date.$model"
-                                  :masks="masks" :locale="'ar'">
+                                  :masks="masks" :locale="$i18n.locale">
                                   <template #default="{ inputValue, showPopover }">
                                     <input :placeholder="$t('date_or_period_placeholder')"
                                       class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
@@ -991,7 +991,7 @@
                                     }}*</label>
                                   <!-- <VCalendar /> -->
                                   <VDatePicker :min-date="new Date()" v-model="v$.formData.specificDate.$model"
-                                    :masks="masks" :locale="'ar'">
+                                    :masks="masks" :locale="$i18n.locale">
                                     <template #default="{ inputValue, showPopover, hidePopover }">
                                       <input
                                         class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"

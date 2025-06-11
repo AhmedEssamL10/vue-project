@@ -23,6 +23,13 @@ export default {
     getToasterData(){
       return this.uiStore.getToasterData;
     }
+  },
+  mounted(){
+    setTimeout(() => {
+      if(this.$route?.params?.lang){
+        this.$i18n.locale = this.$route.params.lang || this.$i18n.fallbackLocale;
+      }
+    }, 200)
   }
 };
 </script>
