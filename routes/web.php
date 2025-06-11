@@ -25,7 +25,7 @@ Route::prefix('{locale}')
         Route::get('/register', function () {
             return view('register'); // Blade-only view
         })->name('register');
-        Route::get('/app/request', function () {
+        Route::get('/request', function () {
             return view('vue-request'); // Vue entrypoint Blade file    
         })->name('vue-request');
     });

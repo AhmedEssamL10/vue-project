@@ -9,7 +9,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     // { path: '/app', component: Dashboard },
-    { name: "makingRequestPage", path: '/:lang?/app/request', component: Request },
+    { name: "makingRequestPage", path: '/:lang?/request', component: Request },
     // { name: "requestConfigPage", path: '/dashboard/request-configurations', component: RequestConfig, meta: { requiresAuth: true } },
     // { name: "adminLogin", path: '/dashboard/login', component: Login, meta: { guest: true } },
     // { path: '/app/profile', component: Profile },
