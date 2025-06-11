@@ -1,3 +1,49 @@
 {
-    "hello": "مرحبا"
+    "client": "أنا عميل",
+    "worker": "أنا عامل",
+    "worker_description": "انضم إلى شبكة من العمال الموثوقين وابدأ في كسب المال من خلال تقديم خدمات النقل.",
+    "latest_offers": "أجدد العروض",
+    "about_us": "من نحن ؟",
+    "about_description": " نحن متخصصون في نقل الأثاث والممتلكات المنزلية الحساسة بكل عناية واحترافية. بفضل خبرتنا الطويلة وفريقنا المؤهل والمعدات الحديثة، نضمن وصول أغراضك بأمان وفي الوقت المحدد.",
+    "three_m_services": "فى ثرى إم للخدمات",
+    "feature_1": "فريق نقل ذو خبرة وتدريب عالي",
+    "feature_2": "نقل مؤمن بالكامل وآمن",
+    "feature_3": "ضمان التوصيل في الموعد المحدد",
+    
+    "transfer_steps_title": "انقل أغراضك في",
+    "three_steps": "3 خطوات",
+    "transfer_step1_title": "التسجيل",
+    "transfer_step1_description": "أنشئ حسابك في بضع خطوات بسيطة لتبدأ باستخدام خدماتنا.",
+    "transfer_step2_title": "أنشئ طلب",
+    "transfer_step2_description": "صف ما تريد نقله، متى وأين. حدد ميزانيتك.",
+    "transfer_step3_title": "استلم أغراضك",
+    "transfer_step3_description": "تتبع أغراضك واستلمها في الموقع المحدد. قيّم الخدمة.",
+
+    "worker_steps_title": "اربح المال في ",
+    "worker_step1_title": "التسجيل",
+    "worker_step1_description": "سجّل كعامل، وقم بتوثيق هويتك وحدد مواعيد توفرّك للعمل.",
+    "worker_step2_title": "استلام الطلبات",
+    "worker_step2_description": "تصلك إشعارات بالطلبات القريبة التي تناسب مهاراتك.",
+    "worker_step3_title": "احصل على المال",
+    "worker_step3_description": "أتمم عمليات التوصيل واحصل على أرباحك بأمان عبر منصتنا.",
+
+    "everyone_benefits_title": "ميزات للجميع",
+
+    "client_benefits_title": "للعملاء",
+    "client_benefit1_title": "خدمة سريعة",
+    "client_benefit1_description": "استلم أغراضك بسرعة من خلال شبكة موثوقة من الناقلين.",
+    "client_benefit2_title": "عمال موثوقون",
+    "client_benefit2_description": "جميع العمال موثقون ويتم تقييمهم لضمان جودة الخدمة.",
+    "client_benefit3_title": "عملية طلب سهلة",
+    "client_benefit3_description": "قدّم طلبك للنقل بسهولة خلال بضع نقرات فقط — دون تعقيد.",
+
+    "worker_benefits_title": "للعاملين",
+    "worker_benefit1_title": "عمل مرن",
+    "worker_benefit1_description": "اختر وقت ومكان عملك بما يناسب جدولك اليومي.",
+    "worker_benefit2_title": "مدفوعات مضمونة",
+    "worker_benefit2_description": "تحصل على مستحقاتك فوراً بعد إتمام التوصيلات — بدون استثناء.",
+    "worker_benefit3_title": "إعداد سهل",
+    "worker_benefit3_description": "ابدأ العمل بسرعة من خلال عملية تسجيل مبسطة."
+
+
 }
