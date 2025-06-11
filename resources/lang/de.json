@@ -1,3 +1,48 @@
 {
-    "hello": "Hallo"
+    "client": "Ich bin ein Kunde",
+    "worker": "Ich bin ein Arbeiter",
+    "worker_description": "Treten Sie einem Netzwerk vertrauenswürdiger Arbeiter bei und verdienen Sie Geld durch Transportdienstleistungen.",
+    "latest_offers": "Neueste Angebote",
+    "about_us": "Wer sind wir?",
+    "about_description": "Bei 3M Services sind wir auf den sorgfältigen und professionellen Transport von Möbeln und empfindlichem Hausrat spezialisiert. Dank unserer langjährigen Erfahrung, unserem qualifizierten Team und moderner Ausrüstung garantieren wir eine sichere und pünktliche Lieferung Ihrer Gegenstände.",
+    "three_m_services": "Bei 3M Services",
+    "feature_1": "Erfahrenes und gut geschultes Transportteam",
+    "feature_2": "Vollständig gesicherter und sicherer Transport",
+    "feature_3": "Zustellung zum vereinbarten Termin garantiert",
+    
+    "transfer_steps_title": "Transportiere deine Sachen in",
+    "three_steps": "3 Schritte",
+    "transfer_step1_title": "Registrierung",
+    "transfer_step1_description": "Erstelle dein Konto in wenigen einfachen Schritten, um unsere Dienste zu nutzen.",
+    "transfer_step2_title": "Erstelle eine Anfrage",
+    "transfer_step2_description": "Beschreibe, was du transportieren möchtest, wann und wo. Lege dein Budget fest.",
+    "transfer_step3_title": "Empfange deine Gegenstände",
+    "transfer_step3_description": "Verfolge deine Gegenstände und erhalte sie am angegebenen Ort. Bewerte den Service.",
+
+    "worker_steps_title": "Verdiene Geld in 3 Schritten",
+    "worker_step1_title": "Registrierung",
+    "worker_step1_description": "Registriere dich als Arbeiter, verifiziere deine Identität und lege deine Verfügbarkeitszeiten fest.",
+    "worker_step2_title": "Auftragsannahme",
+    "worker_step2_description": "Erhalte Benachrichtigungen über nahe Aufträge, die zu deinen Fähigkeiten passen.",
+    "worker_step3_title": "Erhalte dein Geld",
+    "worker_step3_description": "Schließe Lieferungen ab und erhalte sicher dein Einkommen über unsere Plattform.",
+
+    "everyone_benefits_title": "Vorteile für alle",
+
+    "client_benefits_title": "Für Kunden",
+    "client_benefit1_title": "Schneller Service",
+    "client_benefit1_description": "Erhalte deine Gegenstände schnell durch ein zuverlässiges Netzwerk von Transporteuren.",
+    "client_benefit2_title": "Zuverlässige Arbeiter",
+    "client_benefit2_description": "Alle Arbeiter sind verifiziert und werden bewertet, um einen hochwertigen Service zu gewährleisten.",
+    "client_benefit3_title": "Einfache Auftragserstellung",
+    "client_benefit3_description": "Gib deine Anfrage mit nur wenigen Klicks auf – ganz ohne Komplikationen.",
+
+    "worker_benefits_title": "Für Arbeiter",
+    "worker_benefit1_title": "Flexible Arbeitszeiten",
+    "worker_benefit1_description": "Wähle Zeit und Ort deiner Arbeit, die zu deinem Tagesplan passen.",
+    "worker_benefit2_title": "Garantierte Zahlungen",
+    "worker_benefit2_description": "Erhalte deine Zahlungen sofort nach Abschluss der Lieferungen – ohne Ausnahme.",
+    "worker_benefit3_title": "Einfache Einrichtung",
+    "worker_benefit3_description": "Beginne schnell zu arbeiten durch einen unkomplizierten Registrierungsprozess."
+
 }

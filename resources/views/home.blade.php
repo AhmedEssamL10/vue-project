@@ -16,36 +16,35 @@
         <div class="container relative z-10">
             <div class="max-w-3xl mx-auto">
                 <!-- <h1
-                class="text-4xl lg:text-5xl font-bold mb-6 text-[#1b1718] !leading-relaxed "
-                >
-                قم بنقل أي شيء، في أي مكان — <br class="hidden sm:block" />
-                <span
-                    class="bg-gradient-to-r from-client to-worker bg-clip-text text-transparent"
-                    >بسهولة وبسرعة !</span
-                >
-                </h1> -->
+                                                                                                                                                                                                        class="text-4xl lg:text-5xl font-bold mb-6 text-[#1b1718] !leading-relaxed "
+                                                                                                                                                                                                        >
+                                                                                                                                                                                                        قم بنقل أي شيء، في أي مكان — <br class="hidden sm:block" />
+                                                                                                                                                                                                        <span
+                                                                                                                                                                                                            class="bg-gradient-to-r from-client to-worker bg-clip-text text-transparent"
+                                                                                                                                                                                                            >بسهولة وبسرعة !</span
+                                                                                                                                                                                                        >
+                                                                                                                                                                                                        </h1> -->
 
                 <!-- <p class="text-lg md:text-xl text-gray-700 mb-10 ">
-                ابحث عن عمال موثوق بهم لنقل الأغراض الخاصة بك، أو اكسب المال عن طريق
-                نقلها!
-                </p> -->
+                                                                                                                                                                                                        ابحث عن عمال موثوق بهم لنقل الأغراض الخاصة بك، أو اكسب المال عن طريق
+                                                                                                                                                                                                        نقلها!
+                                                                                                                                                                                                        </p> -->
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <a href="{{ route('vue-request', app()->getLocale()) }}"
                         class="cursor-pointer bg-client hover:bg-client-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
-                        أنا عميل
+                        {{ __('client') }}
                     </a>
                     <span data-target="workerTab"
                         class="tabBtn cursor-pointer bg-worker hover:bg-worker-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
-                        أنا عامل
+                        {{ __('worker') }}
                     </span>
                 </div>
 
                 <div class="mt-8">
                     <div id="workerTab" class="tabContent hidden">
                         <p class="text-lg text-gray-700">
-                            انضم إلى شبكة من العمال الموثوقين وابدأ في كسب المال من خلال
-                            تقديم خدمات النقل.
+                            {{ __('worker_description') }}
                         </p>
                     </div>
                 </div>
@@ -58,7 +57,7 @@
     <section class="pb-4 pt-8 bg-[#f1f1f1]">
         <div class="container">
             <h2 class="text-3xl md:text-4xl font-bold text-center lg:text-start mb-4 text-client-dark">
-                أجدد العروض
+                {{ __('latest_offers') }}
             </h2>
             <div class="swiper swiper-container !py-4 dynamicSwiper" data-loop="true" data-direction="horizontal"
                 data-effect="slide" data-grab-cursor="true" data-space-between="20" data-slides-per-view-default="1.5"
@@ -125,11 +124,10 @@
 
                 <!-- Content -->
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">من نحن ؟</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('about_us') }}</h2>
                     <p class="text-gray-600 text-lg mb-6">
-                        في <span class="font-semibold text-client-dark">ثرى إم للخدمات </span>، نحن متخصصون في نقل
-                        الأثاث والممتلكات المنزلية الحساسة بكل عناية واحترافية. بفضل خبرتنا الطويلة وفريقنا المؤهل
-                        والمعدات الحديثة، نضمن وصول أغراضك بأمان وفي الوقت المحدد.
+                        <span class="font-semibold text-client-dark">{{ __('three_m_services') }}
+                        </span>،{{ __('about_description') }}
                     </p>
                     <ul class="flex flex-col gap-3">
                         <li class="flex items-start">
@@ -137,21 +135,21 @@
                                 viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="text-gray-600">فريق نقل ذو خبرة وتدريب عالي</span>
+                            <span class="text-gray-600">{{ __('feature_1') }} </span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="text-gray-600">نقل مؤمن بالكامل وآمن</span>
+                            <span class="text-gray-600">{{ __('feature_2') }} </span>
                         </li>
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path d="M5 13l4 4L19 7" />
                             </svg>
-                            <span class="text-gray-600">ضمان التوصيل في الموعد المحدد</span>
+                            <span class="text-gray-600">{{ __('feature_3') }} </span>
                         </li>
                     </ul>
                 </div>
@@ -164,7 +162,7 @@
         <div class="container">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1b1718] ">
-                    انقل أغراضك في <span class="text-client">3 خطوات</span>
+                    {{ __('transfer_steps_title') }} <span class="text-client">{{ __('three_steps') }}</span>
                 </h2>
                 <div class="w-20 h-1 bg-client mx-auto"></div>
             </div>
@@ -186,10 +184,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            التسجيل
+                            {{ __('transfer_step1_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            أنشئ حسابك في بضع خطوات بسيطة لتبدأ باستخدام خدماتنا.
+                            {{ __('transfer_step1_description') }}
                         </p>
                     </div>
                 </div>
@@ -207,10 +205,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            أنشئ طلب
+                            {{ __('transfer_step2_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            صف ما تريد نقله، متى وأين. حدد ميزانيتك.
+                            {{ __('transfer_step2_description') }}
                         </p>
                     </div>
                 </div>
@@ -229,10 +227,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            استلم أغراضك
+                            {{ __('transfer_step3_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            تتبع أغراضك واستلمها في الموقع المحدد. قيّم الخدمة.
+                            {{ __('transfer_step3_description') }}
                         </p>
                     </div>
                 </div>
@@ -245,7 +243,7 @@
         <div class="container">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#1b1718] ">
-                    اربح المال في <span class="text-worker">3 خطوات</span>
+                    {{ __('worker_steps_title') }}<span class="text-worker">{{ __('three_steps') }} </span>
                 </h2>
                 <div class="w-20 h-1 bg-worker mx-auto"></div>
             </div>
@@ -267,10 +265,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            التسجيل
+                            {{ __('worker_step1_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            سجّل كعامل، وقم بتوثيق هويتك وحدد مواعيد توفرّك للعمل.
+                            {{ __('worker_step1_description') }}
                         </p>
                     </div>
                 </div>
@@ -289,10 +287,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            استلام الطلبات
+                            {{ __('worker_step2_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            تصلك إشعارات بالطلبات القريبة التي تناسب مهاراتك.
+                            {{ __('worker_step2_description') }}
                         </p>
                     </div>
                 </div>
@@ -311,10 +309,10 @@
                     </div>
                     <div class="text-center">
                         <h3 class="text-xl font-bold mb-3 text-[#1b1718] ">
-                            احصل على المال
+                            {{ __('worker_step3_title') }}
                         </h3>
                         <p class="text-gray-600 ">
-                            أتمم عمليات التوصيل واحصل على أرباحك بأمان عبر منصتنا.
+                            {{ __('worker_step3_description') }}
                         </p>
                     </div>
                 </div>
@@ -327,7 +325,7 @@
         <div class="container">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-[#1b1718] ">
-                    ميزات للجميع
+                    {{ __('everyone_benefits_title') }}
                 </h2>
                 <div class="w-20 h-1 bg-gradient-to-r from-client to-worker mx-auto mt-4"></div>
             </div>
@@ -336,7 +334,7 @@
                 <!-- فوائد العملاء -->
                 <div class="bg-white p-8 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-6 text-center text-client ">
-                        للعملاء
+                        {{ __('client_benefits_title') }}
                     </h3>
                     <div class="flex flex-col gap-8">
                         <!-- خدمة سريعة -->
@@ -352,10 +350,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    خدمة سريعة
+                                    {{ __('client_benefit1_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    استلم أغراضك بسرعة من خلال شبكة موثوقة من الناقلين.
+                                    {{ __('client_benefit1_description') }}
                                 </p>
                             </div>
                         </div>
@@ -372,10 +370,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    عمال موثوقون
+                                    {{ __('client_benefit2_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    جميع العمال موثقون ويتم تقييمهم لضمان جودة الخدمة.
+                                    {{ __('client_benefit2_description') }}
                                 </p>
                             </div>
                         </div>
@@ -390,10 +388,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    عملية طلب سهلة
+                                    {{ __('client_benefit3_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    قدّم طلبك للنقل بسهولة خلال بضع نقرات فقط — دون تعقيد.
+                                    {{ __('client_benefit3_description') }}
                                 </p>
                             </div>
                         </div>
@@ -403,7 +401,7 @@
                 <!-- فوائد العاملين -->
                 <div class="bg-white p-8 rounded-lg shadow-md">
                     <h3 class="text-2xl font-bold mb-6 text-center text-worker ">
-                        للعاملين
+                        {{ __('worker_benefits_title') }}
                     </h3>
                     <div class="flex flex-col gap-8">
                         <!-- عمل مرن -->
@@ -419,10 +417,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    عمل مرن
+                                    {{ __('worker_benefit1_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    اختر وقت ومكان عملك بما يناسب جدولك اليومي.
+                                    {{ __('worker_benefit1_description') }}
                                 </p>
                             </div>
                         </div>
@@ -439,10 +437,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    مدفوعات مضمونة
+                                    {{ __('worker_benefit2_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    تحصل على مستحقاتك فوراً بعد إتمام التوصيلات — بدون استثناء.
+                                    {{ __('worker_benefit2_description') }}
                                 </p>
                             </div>
                         </div>
@@ -462,10 +460,10 @@
                             </div>
                             <div>
                                 <h4 class="text-lg font-semibold mb-2 text-[#1b1718] ">
-                                    إعداد سهل
+                                    {{ __('worker_benefit3_title') }}
                                 </h4>
                                 <p class="text-gray-600 ">
-                                    ابدأ العمل بسرعة من خلال عملية تسجيل مبسطة.
+                                    {{ __('worker_benefit3_description') }}
                                 </p>
                             </div>
                         </div>
