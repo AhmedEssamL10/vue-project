@@ -72,12 +72,19 @@ export default {
     },
     methods: {
         handleSubmit() {
-            if ((this.formData.email === 'admin@3m-services.com') && (this.formData.password === '123456789')) {
-                this.authStore.setToken('as21d6as5d1as5d13as2d1asd1');
-                this.$router.push({ name: "Dashboard" });
-            } else {
-                this.authStore.setToken(null);
-            }
+            window.$axios.post('/admin/login', {...this.formData})
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            // if ((this.formData.email === 'admin@3m-services.com') && (this.formData.password === '123456789')) {
+            //     this.authStore.setToken('as21d6as5d1as5d13as2d1asd1');
+            //     this.$router.push({ name: "Dashboard" });
+            // } else {
+            //     this.authStore.setToken(null);
+            // }
         }
     }
 }

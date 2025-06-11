@@ -7,6 +7,7 @@ import "./swipers.js";
 import "./tabs.js";
 import "./vueInit.js";
 import "./dashboard-vueInit.js";
+import "./axios.js";
 
 // Prevent number input scroll behavior globally
 document.addEventListener('wheel', function (event) {
