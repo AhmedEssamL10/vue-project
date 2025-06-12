@@ -15,9 +15,9 @@
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link active">الرئيسية</a>
-            <a href="/login" class="nav-link">تسجيل دخول</a>
-            <a href="/register" class="nav-link">تسجيل حساب</a>
+            <a href="/" class="nav-link active">{{ __('home') }}</a>
+            <a href="/login" class="nav-link"> {{ __('Login') }}</a>
+            <a href="/register" class="nav-link"> {{ __('Register') }}</a>
             <a class="flex items-center gap-[2px] transition-all duration-500 hover:opacity-80"
                 href="{{ $switchUrl }}">
                 @if (app()->getLocale() === 'de')
@@ -59,17 +59,17 @@
         <div>
             <!-- Home -->
             <a class="block nav_link text-base mb-2 active" href="/">
-                الرئيسية
+                {{ __('home') }}
             </a>
 
             <!-- Login -->
             <a class="block nav_link text-base mb-2" href="/login">
-                تسجيل دخول
+                {{ __('Login') }}
             </a>
 
             <!-- About -->
             <a class="block nav_link text-base mb-2" href="/register">
-                تسجيل حساب
+                {{ __('Register') }}
             </a>
         </div>
     </div>

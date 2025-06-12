@@ -43,7 +43,32 @@
     "worker_benefit2_title": "مدفوعات مضمونة",
     "worker_benefit2_description": "تحصل على مستحقاتك فوراً بعد إتمام التوصيلات — بدون استثناء.",
     "worker_benefit3_title": "إعداد سهل",
-    "worker_benefit3_description": "ابدأ العمل بسرعة من خلال عملية تسجيل مبسطة."
+    "worker_benefit3_description": "ابدأ العمل بسرعة من خلال عملية تسجيل مبسطة.",
+
+    "Don't have an account?": "ليس لديك حساب ؟",
+    "Register": "تسجيل حساب",
+    "Remember me": "تذكرني",
+    "First Name": "الاسم الأول",
+    "Email": "البريد الإلكترونى",
+    "Password": "كلمة المرور",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "User Type": "نوع المستخدم",
+    "Client": "عميل",
+    "Worker": "عامل",
+    "Client Type": "نوع العميل",
+    "Individual": "شخص",
+    "Company": "شركة",
+    "Already have an account?": "لديك حساب بالفعل ؟",
+    "Login": "تسجيل دخول",
+    "home": "الرئيسية",
+    "footer_description": "نجعل النقل بسيطًا وموثوقًا ومتاحًا للجميع.",
+    "facebook": "فيسبوك",
+    "tiktok": "تيك توك",
+    "x_twitter": "إكس (تويتر سابقاً)",
+    "instagram": "إنستغرام",
+    "whatsapp": "واتساب",
+    "contact_us": " تواصل معنا",
+    "copy_rights":"جميع الحقوق محفوظة. 3 إم للخدمات"
 
 
 }

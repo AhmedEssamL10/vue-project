@@ -43,6 +43,32 @@
     "worker_benefit2_title": "Garantierte Zahlungen",
     "worker_benefit2_description": "Erhalte deine Zahlungen sofort nach Abschluss der Lieferungen – ohne Ausnahme.",
     "worker_benefit3_title": "Einfache Einrichtung",
-    "worker_benefit3_description": "Beginne schnell zu arbeiten durch einen unkomplizierten Registrierungsprozess."
+    "worker_benefit3_description": "Beginne schnell zu arbeiten durch einen unkomplizierten Registrierungsprozess.",
+    
+    "Don't have an account?": "Sie haben noch kein Konto?",
+    "Register": "Registrieren",
+    "Remember me": "Angemeldet bleiben",
+    "First Name": "Vorname",
+    "Email": "E-Mail",
+    "Password": "Passwort",
+    "Confirm Password": "Passwort bestätigen",
+    "User Type": "Benutzertyp",
+    "Client": "Kunde",
+    "Worker": "Arbeiter",
+    "Client Type": "Kundentyp",
+    "Individual": "Einzelperson",
+    "Company": "Firma",
+    "Already have an account?": "Sie haben bereits ein Konto?",
+    "Login": "Anmelden",
+    "home": "Startseite",
+    "footer_description": "Wir machen Transport einfach, zuverlässig und für alle zugänglich.",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "x_twitter": "X (Twitter)",
+    "instagram": "Instagram",
+    "whatsapp": "WhatsApp",
+    "contact_us": "Kontaktieren Sie uns",
+    "copy_rights": "Alle Rechte vorbehalten. 3M Services",
+    "fast_links": "Schnellzugriffe"
 
 }

@@ -19,11 +19,11 @@ Route::prefix('{locale}')
         })->name('home');
 
         Route::get('/login', function () {
-            return view('login'); // Blade-only view
+            return view('auth.login'); // Blade-only view
         })->name('login');
 
         Route::get('/register', function () {
-            return view('register'); // Blade-only view
+            return view('auth.register'); // Blade-only view
         })->name('register');
         Route::get('/request', function () {
             return view('vue-request'); // Vue entrypoint Blade file    
