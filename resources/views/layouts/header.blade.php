@@ -21,7 +21,7 @@
                 {{ __('home') }}
             </a>
 
-            @if(!$isLogged)
+            @if (!Auth::check())
                 <a href="{{ route('auth.login', app()->getLocale()) }}"
                     class="nav-link {{ Route::currentRouteName() === 'auth.login' ? 'active' : '' }}">
                     {{ __('Login') }}
