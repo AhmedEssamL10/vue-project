@@ -19,7 +19,7 @@
                         {{ __('Login') }}
                     </h1>
 
-                    <form class="flex flex-col gap-6">
+                    <div class="flex flex-col gap-6">
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
@@ -50,7 +50,7 @@
                             class="w-full py-3 px-4 bg-worker-light hover:bg-worker text-white font-medium rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.01]">
                             {{ __('Login') }}
                         </button>
-                    </form>
+                    </div>
 
                     <!-- Registration Link -->
                     <div class="mt-6 text-center">
