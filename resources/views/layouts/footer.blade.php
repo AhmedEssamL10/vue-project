@@ -54,17 +54,29 @@
                 </div>
             </div>
             <div>
-                <h3 class="text-lg font-semibold mb-4">{{ __('fast_links') }} </h3>
+                <h3 class="text-lg font-semibold mb-4">{{ __('fast_links') }}</h3>
                 <ul class="flex flex-col gap-2">
                     <li>
-                        <a href="/" class="footer-link active-footer-link">{{ __('home') }}</a>
+                        <a href="{{ route('home', app()->getLocale()) }}"
+                            class="footer-link {{ Route::currentRouteName() === 'home' ? 'active-footer-link' : '' }}">
+                            {{ __('home') }}
+                        </a>
                     </li>
-                    <li><a href="/login" class="footer-link"> {{ __('Login') }}</a></li>
                     <li>
-                        <a href="/register" class="footer-link"> {{ __('Register') }}</a>
+                        <a href="{{ route('auth.login', app()->getLocale()) }}"
+                            class="footer-link {{ Route::currentRouteName() === 'auth.login' ? 'active-footer-link' : '' }}">
+                            {{ __('Login') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('auth.register', app()->getLocale()) }}"
+                            class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
+                            {{ __('Register') }}
+                        </a>
                     </li>
                 </ul>
             </div>
+
             <div>
                 <h3 class="text-lg font-semibold mb-4">{{ __('contact_us') }} </h3>
                 <ul class="flex flex-col gap-2">
