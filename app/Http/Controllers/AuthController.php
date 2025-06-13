@@ -21,7 +21,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'message' => $validator->errors(),
+                'errors' => $validator->errors(),
             ], 422); 
         }
 
@@ -39,6 +39,7 @@ class AuthController extends Controller
             'status' => 'success',
             'message' => 'Registration successful!',
             'redirect_url' => $redirectUrl,
+            'isSuccess' => true,
         ], 200); 
     }
 

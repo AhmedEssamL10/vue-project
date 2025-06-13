@@ -12,6 +12,7 @@
             $segments = request()->segments();
             $segments[0] = $newLocale;
             $switchUrl = url(implode('/', $segments));
+            $isLogged = false;
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
@@ -20,15 +21,31 @@
                 {{ __('home') }}
             </a>
 
-            <a href="{{ route('auth.login', app()->getLocale()) }}"
-                class="nav-link {{ Route::currentRouteName() === 'auth.login' ? 'active' : '' }}">
-                {{ __('Login') }}
-            </a>
+            @if(!$isLogged)
+                <a href="{{ route('auth.login', app()->getLocale()) }}"
+                    class="nav-link {{ Route::currentRouteName() === 'auth.login' ? 'active' : '' }}">
+                    {{ __('Login') }}
+                </a>
 
-            <a href="{{ route('auth.register', app()->getLocale()) }}"
-                class="nav-link {{ Route::currentRouteName() === 'auth.register' ? 'active' : '' }}">
-                {{ __('Register') }}
-            </a>
+                <a href="{{ route('auth.register', app()->getLocale()) }}"
+                    class="nav-link {{ Route::currentRouteName() === 'auth.register' ? 'active' : '' }}">
+                    {{ __('Register') }}
+                </a>
+            @else
+                <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
+                    <span tabindex="0" role="button" class="nav-link">الملف الشخصية</span>
+                    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                        <li>
+                            <a href="#">
+                                الصفحة لشخصية
+                            </a>
+                        </li>
+                        <li class="handleLogout">
+                            <span>تسجيل خروج</span>
+                        </li>
+                    </ul>
+                </div>
+            @endif
 
             <a class="flex items-center gap-[2px] transition-all duration-500 hover:opacity-80"
                 href="{{ $switchUrl }}">

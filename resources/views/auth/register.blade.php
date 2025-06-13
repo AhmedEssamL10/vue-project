@@ -1,6 +1,6 @@
    @extends('layouts.main')
    @section('content')
-       <form method="POST" action="{{ route('register') }}">
+       <form id="registerForm" method="POST" action="{{ route('register') }}">
            @csrf
 
            <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
@@ -81,12 +81,12 @@
                                </div>
                                <div class="form-control flex gap-8">
                                    <label class="label cursor-pointer">
-                                       <input type="radio" name="type"
+                                       <input type="radio" name="type" value="individual"
                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                        <span class="label-text text-[#1b1718]">{{ __('Individual') }}</span>
                                    </label>
                                    <label class="label cursor-pointer">
-                                       <input type="radio" name="type"
+                                       <input type="radio" name="type" value="company"
                                            class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                                        <span class="label-text text-[#1b1718]">{{ __('Company') }}</span>
                                    </label>
@@ -97,8 +97,9 @@
 
                            <!-- Login Button -->
                            <button type="submit"
-                               class="w-full py-3 px-4 bg-worker-light hover:bg-worker text-white font-medium rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.01]">
-                               {{ __('Register') }}
+                               class="submitBtn">
+                                <span class="loading loading-spinner"></span>
+                               <span>{{ __('Register') }}</span>
                            </button>
                        </div>
 
