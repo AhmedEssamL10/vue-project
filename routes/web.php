@@ -20,18 +20,17 @@ Route::prefix('{locale}')
 
         Route::get('/login', function () {
             return view('auth.login'); // Blade-only view
-        })->name('login');
+        })->name('auth.login');
 
         Route::get('/register', function () {
             return view('auth.register'); // Blade-only view
-        })->name('register');
+        })->name('auth.register');
         Route::get('/request', function () {
             return view('vue-request'); // Vue entrypoint Blade file    
         })->name('vue-request');
     });
 
-Route::post('/ship-request', [RequestController::class, 'storeRequest'])
-    ->name('register'); // Register route
+Route::post('/ship-request', [RequestController::class, 'storeRequest']); // Register route
 
 // Vue app section (catch-all)
 

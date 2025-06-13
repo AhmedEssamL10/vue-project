@@ -15,9 +15,21 @@
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
-            <a href="/" class="nav-link active">{{ __('home') }}</a>
-            <a href="/login" class="nav-link"> {{ __('Login') }}</a>
-            <a href="/register" class="nav-link"> {{ __('Register') }}</a>
+            <a href="{{ route('home', app()->getLocale()) }}"
+                class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
+                {{ __('home') }}
+            </a>
+
+            <a href="{{ route('auth.login', app()->getLocale()) }}"
+                class="nav-link {{ Route::currentRouteName() === 'auth.login' ? 'active' : '' }}">
+                {{ __('Login') }}
+            </a>
+
+            <a href="{{ route('auth.register', app()->getLocale()) }}"
+                class="nav-link {{ Route::currentRouteName() === 'auth.register' ? 'active' : '' }}">
+                {{ __('Register') }}
+            </a>
+
             <a class="flex items-center gap-[2px] transition-all duration-500 hover:opacity-80"
                 href="{{ $switchUrl }}">
                 @if (app()->getLocale() === 'de')
@@ -58,17 +70,17 @@
     <div class="max-h-[80vh] overflow-auto">
         <div>
             <!-- Home -->
-            <a class="block nav_link text-base mb-2 active" href="/">
+            <a class="block nav_link text-base mb-2 active" href="{{ route('home', app()->getLocale()) }}">
                 {{ __('home') }}
             </a>
 
             <!-- Login -->
-            <a class="block nav_link text-base mb-2" href="/login">
+            <a class="block nav_link text-base mb-2" href="{{ route('login', app()->getLocale()) }}">
                 {{ __('Login') }}
             </a>
 
             <!-- About -->
-            <a class="block nav_link text-base mb-2" href="/register">
+            <a class="block nav_link text-base mb-2" href="{{ route('register', app()->getLocale()) }}">
                 {{ __('Register') }}
             </a>
         </div>
