@@ -12,54 +12,67 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        // Validate the registration data
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed', // Ensure password and confirmation match
+            'password' => 'required|min:8|confirmed',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors(),
+            ], 422); 
         }
 
-        // Create the user
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Log the user in
         Auth::login($user);
 
-        // Redirect to home/dashboard after registration
-        return redirect()->route('home', ['locale' => session('locale') ?? app()->getLocale()])
-            ->with('success', 'Registration successful!');
+        $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Registration successful!',
+            'redirect_url' => $redirectUrl,
+        ], 200); 
     }
+
+    
     public function login(Request $request)
     {
-        // Validate the login data
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
-        // Attempt to login the user
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Redirect to dashboard or home
-            return redirect()->route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+            $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+            return response()->json([
+                'status' => 'success',
+                'redirect_url' => $redirectUrl,
+            ], 200); 
         }
 
-        // If login fails
-        return back()->withErrors(['email' => 'These credentials do not match our records.']);
+        return response()->json([
+            'status' => 'error',
+            'message' => 'These credentials do not match our records.',
+        ], 401); 
     }
-
     public function logout(Request $request)
     {
         Auth::logout();
 
-        // Redirect to the login page
-        return redirect()->route('login');
+        $redirectUrl = route('login');
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully logged out.',
+            'redirect_url' => $redirectUrl,
+        ], 200);
     }
 }
