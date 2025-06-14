@@ -72,6 +72,9 @@
     "fast_links": "Schnellzugriffe",
     "Profile": "Profil",
     "My Profile Page": "Meine Profilseite",
-    "Logout": "Abmelden"
-
+    "Logout": "Abmelden",
+    "personal information": "Persönliche Informationen",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefonnummer"
 }

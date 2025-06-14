@@ -6,7 +6,7 @@
             <div>
                 <div class="flex items-center mb-4">
                     <img class="max-w-[150px] whiteImgFilter"
-                        src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg" alt="Logo" />
+                        src="{{ asset('assets/images/Pur.png') }}" alt="Logo" />
                 </div>
                 <p class="text-gray-400 mb-4">
                     {{ __('footer_description') }}
