@@ -62,6 +62,7 @@
                             {{ __('home') }}
                         </a>
                     </li>
+                    @if (!Auth::check())
                     <li>
                         <a href="{{ route('auth.login', app()->getLocale()) }}"
                             class="footer-link {{ Route::currentRouteName() === 'auth.login' ? 'active-footer-link' : '' }}">
@@ -74,6 +75,14 @@
                             {{ __('Register') }}
                         </a>
                     </li>
+                    @else
+                    <li>
+                        <a href="#"
+                            class="footer-link">
+                            {{ __('Profile') }}
+                        </a>
+                    </li>
+                    @endif
                 </ul>
             </div>
 

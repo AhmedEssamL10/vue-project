@@ -12,7 +12,6 @@
             $segments = request()->segments();
             $segments[0] = $newLocale;
             $switchUrl = url(implode('/', $segments));
-            $isLogged = false;
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
