@@ -1,6 +1,6 @@
    @extends('layouts.main')
    @section('content')
-       <form data-url="{{ env('APP_URL') }}register" id="authForm" method="POST" action="{{ route('register') }}">
+       <form id="authForm" method="POST" action="{{ route('register') }}">
            @csrf
 
            <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
@@ -96,9 +96,8 @@
 
 
                            <!-- Login Button -->
-                           <button type="submit"
-                               class="submitBtn">
-                                <span class="loading loading-spinner"></span>
+                           <button type="submit" class="submitBtn">
+                               <span class="loading loading-spinner"></span>
                                <span>{{ __('Register') }}</span>
                            </button>
                        </div>
