@@ -21,6 +21,10 @@
     *:not(input, textarea){
         user-select: none;
     }
+
+    main {
+        @apply min-h-[60vh];
+    }
 }
 
 @layer components {

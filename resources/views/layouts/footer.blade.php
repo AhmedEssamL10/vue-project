@@ -77,7 +77,7 @@
                     </li>
                     @else
                     <li>
-                        <a href="#"
+                        <a href="{{ route('profile.edit', app()->getLocale()) }}"
                             class="footer-link">
                             {{ __('Profile') }}
                         </a>

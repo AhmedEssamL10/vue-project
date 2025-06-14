@@ -35,11 +35,11 @@
                     <span tabindex="0" role="button" class="nav-link"> {{ __('Profile') }}</span>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                         <li>
-                            <a href="#">
+                            <a href="{{ route('profile.edit', app()->getLocale()) }}">
                                 {{ __('My Profile Page') }}
                             </a>
                         </li>
-                        <li class="handleLogout">
+                        <li data-logout-url="{{ route('logout') }}" id="handleLogout">
                             <span>{{ __('Logout') }} </span>
                         </li>
                     </ul>

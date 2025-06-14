@@ -52,7 +52,7 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+            $redirectUrl = route('profile.edit', ['locale' => session('locale') ?? app()->getLocale()]);
             return response()->json([
                 'status' => 'success',
                 'redirect_url' => $redirectUrl,
@@ -69,7 +69,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        $redirectUrl = route('login');
+        $redirectUrl = route('home');
         
         return response()->json([
             'status' => 'success',

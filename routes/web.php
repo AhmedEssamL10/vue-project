@@ -28,6 +28,12 @@ Route::prefix('{locale}')
         Route::get('/request', function () {
             return view('vue-request'); // Vue entrypoint Blade file    
         })->name('vue-request');
+
+        Route::middleware('auth')->group(function () {
+            Route::get('/profile', function () {
+                return view('profile.edit'); // Blade-only view for profile editing
+            })->name('profile.edit');
+        });
     });
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest']); // Register route
@@ -44,9 +50,9 @@ Route::get('/dashboard/{any?}', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', function () {
-        return view('profile.edit'); // Blade-only view for profile editing
-    })->name('profile.edit');
+    // Route::get('/profile', function () {
+    //     return view('profile.edit'); // Blade-only view for profile editing
+    // })->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });

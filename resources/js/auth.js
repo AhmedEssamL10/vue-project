@@ -40,7 +40,6 @@ if(formSubmittion) {
                         window.location.href = redirectUrl;
                     }
                 }
-                // Handle success, maybe redirect or show a success message
             })
             .catch(error => {
                 const errors = error.response?.data?.errors;
@@ -68,3 +67,24 @@ if(formSubmittion) {
     
     })
 };
+
+const logoutBtn = document.querySelector('#handleLogout');
+
+if(logoutBtn){
+    logoutBtn.addEventListener('click', function(e){
+        const logoutUrl = this.getAttribute('data-logout-url');
+        $axios.post(logoutUrl)
+            .then(response => {
+                if(response.data.isSuccess){
+                    const redirectUrl = response.data.redirect_url;
+                    if(redirectUrl){
+                        window.location.href = redirectUrl;
+                    }
+                }
+            })
+            .catch(error => {
+                makeAlert(error.response?.data?.message, 'error')
+            })
+            .finally(() => {})
+    })
+}
