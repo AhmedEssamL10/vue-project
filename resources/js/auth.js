@@ -20,47 +20,51 @@ authInput.forEach((input) => {
 
 const formSubmittion = document.querySelector('#authForm');
 
-formSubmittion.addEventListener('submit', function(e){
-    e.submitter.classList.add('isloading')
-    e.preventDefault();
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
-
-    $axios.post(this.dataset.url, data)
-        .then(response => {
-            if(response.data.isSuccess){
-                const redirectUrl = response.data.redirect_url;
-                if(redirectUrl){
-                    window.location.href = redirectUrl;
-                }
-            }
-            // Handle success, maybe redirect or show a success message
-        })
-        .catch(error => {
-            const errors = error.response?.data?.errors;
-            if(errors){
-                for (const key in errors) {
-                    const errorMessages = errors[key];
-                    const inputElement = document.querySelector(`[name="${key}"]`);
-                    if (inputElement) {
-                        let errorContainer = inputElement.nextElementSibling;
-                        if (!errorContainer || !errorContainer.classList.contains('error-message')) {
-                            errorContainer = document.createElement('div');
-                            errorContainer.classList.add('error-message');
-                            inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
-                        }
-                        errorContainer.innerHTML = errorMessages.join('<br>');
+if(formSubmittion) {
+    formSubmittion.addEventListener('submit', function(e){
+        e.submitter.classList.add('isloading')
+        e.preventDefault();
+        const formData = new FormData(this);
+        const actionUrl = e.target.getAttribute('action');
+        
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+    
+        $axios.post(actionUrl, data)
+            .then(response => {
+                if(response.data.isSuccess){
+                    const redirectUrl = response.data.redirect_url;
+                    if(redirectUrl){
+                        window.location.href = redirectUrl;
                     }
                 }
-            }
-
-            makeAlert(error.response?.data?.message, 'error')
-        })
-        .finally(() => {
-            e.submitter.classList.remove('isloading')
-        })
-
-})
+                // Handle success, maybe redirect or show a success message
+            })
+            .catch(error => {
+                const errors = error.response?.data?.errors;
+                if(errors){
+                    for (const key in errors) {
+                        const errorMessages = errors[key];
+                        const inputElement = document.querySelector(`[name="${key}"]`);
+                        if (inputElement) {
+                            let errorContainer = inputElement.nextElementSibling;
+                            if (!errorContainer || !errorContainer.classList.contains('error-message')) {
+                                errorContainer = document.createElement('div');
+                                errorContainer.classList.add('error-message');
+                                inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
+                            }
+                            errorContainer.innerHTML = errorMessages.join('<br>');
+                        }
+                    }
+                }
+    
+                makeAlert(error.response?.data?.message, 'error')
+            })
+            .finally(() => {
+                e.submitter.classList.remove('isloading')
+            })
+    
+    })
+};

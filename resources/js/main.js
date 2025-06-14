@@ -29,6 +29,10 @@ if (existingAlert) {
 }
 
 window.makeAlert = function(message = '', type = 'success'){
+  if(!message){
+    return;
+  }
+
   const alertBox = document.createElement('div');
   const successIcon = `<svg
             xmlns="http://www.w3.org/2000/svg"

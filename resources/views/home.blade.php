@@ -118,8 +118,8 @@
 
                 <!-- Image -->
                 <div class="relative">
-                    <img src="https://3m-services-v4.netlify.app/assets/about-B72MrHvm.jpg" alt="نقل الأثاث"
-                        class="rounded-xl shadow-lg w-full object-cover max-h-[80vh]">
+                    <img src="{{ asset('assets/images/about.jpg') }}" alt="نقل الأثاث"
+                        class="rounded-xl shadow-lg w-full max-h-[80vh]">
                 </div>
 
                 <!-- Content -->
