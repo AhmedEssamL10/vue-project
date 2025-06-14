@@ -32,15 +32,15 @@
                 </a>
             @else
                 <div class="dropdown dropdown-hover dropdown-bottom dropdown-end">
-                    <span tabindex="0" role="button" class="nav-link">الملف الشخصية</span>
+                    <span tabindex="0" role="button" class="nav-link"> {{ __('Profile') }}</span>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                         <li>
                             <a href="#">
-                                الصفحة لشخصية
+                                {{ __('My Profile Page') }}
                             </a>
                         </li>
                         <li class="handleLogout">
-                            <span>تسجيل خروج</span>
+                            <span>{{ __('Logout') }} </span>
                         </li>
                     </ul>
                 </div>
