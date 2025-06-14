@@ -18,11 +18,9 @@ authInput.forEach((input) => {
 })
 
 
-const registerForm = document.querySelector('#registerForm');
+const formSubmittion = document.querySelector('#authForm');
 
-registerForm.addEventListener('submit', function(e){
-    console.log("e")
-    console.log(e)
+formSubmittion.addEventListener('submit', function(e){
     e.submitter.classList.add('isloading')
     e.preventDefault();
     const formData = new FormData(this);
@@ -31,7 +29,7 @@ registerForm.addEventListener('submit', function(e){
         data[key] = value;
     });
 
-    $axios.post('http://127.0.0.1:8000/register', data)
+    $axios.post(this.dataset.url, data)
         .then(response => {
             if(response.data.isSuccess){
                 const redirectUrl = response.data.redirect_url;
@@ -43,21 +41,23 @@ registerForm.addEventListener('submit', function(e){
         })
         .catch(error => {
             const errors = error.response?.data?.errors;
-            
-            for (const key in errors) {
-                const errorMessages = errors[key];
-                const inputElement = document.querySelector(`[name="${key}"]`);
-                if (inputElement) {
-                    let errorContainer = inputElement.nextElementSibling;
-                    if (!errorContainer || !errorContainer.classList.contains('error-message')) {
-                        errorContainer = document.createElement('div');
-                        errorContainer.classList.add('error-message');
-                        inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
+            if(errors){
+                for (const key in errors) {
+                    const errorMessages = errors[key];
+                    const inputElement = document.querySelector(`[name="${key}"]`);
+                    if (inputElement) {
+                        let errorContainer = inputElement.nextElementSibling;
+                        if (!errorContainer || !errorContainer.classList.contains('error-message')) {
+                            errorContainer = document.createElement('div');
+                            errorContainer.classList.add('error-message');
+                            inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
+                        }
+                        errorContainer.innerHTML = errorMessages.join('<br>');
                     }
-                    errorContainer.innerHTML = errorMessages.join('<br>');
                 }
             }
-            // Handle error, show error messages
+
+            makeAlert(error.response?.data?.message, 'error')
         })
         .finally(() => {
             e.submitter.classList.remove('isloading')

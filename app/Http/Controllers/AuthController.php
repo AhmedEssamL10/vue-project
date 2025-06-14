@@ -56,6 +56,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'success',
                 'redirect_url' => $redirectUrl,
+                'isSuccess' => true
             ], 200); 
         }
 

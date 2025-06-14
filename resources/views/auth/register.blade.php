@@ -1,6 +1,6 @@
    @extends('layouts.main')
    @section('content')
-       <form id="registerForm" method="POST" action="{{ route('register') }}">
+       <form data-url="{{ env('APP_URL') }}register" id="authForm" method="POST" action="{{ route('register') }}">
            @csrf
 
            <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
@@ -107,7 +107,7 @@
                        <div class="mt-6 text-center">
                            <p class="text-sm text-gray-600">
                                {{ __('Already have an account?') }}
-                               <a href="/login"
+                               <a href="{{ route('auth.login', app()->getLocale()) }}"
                                    class="font-medium link-hover text-orange-500 hover:text-purple-600 transition duration-200">{{ __('Login') }}
                                </a>
                            </p>

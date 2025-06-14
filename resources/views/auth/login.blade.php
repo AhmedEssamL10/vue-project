@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <form method="POST" action="{{ route('login') }} ">
+    <form data-url="{{ env('APP_URL') }}login" id="authForm" method="POST" action="{{ route('login') }} ">
         @csrf
         <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
             <div class="container">
@@ -47,8 +47,9 @@
 
                         <!-- Login Button -->
                         <button type="submit"
-                            class="w-full py-3 px-4 bg-worker-light hover:bg-worker text-white font-medium rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.01]">
-                            {{ __('Login') }}
+                            class="submitBtn">
+                            <span class="loading loading-spinner"></span>
+                            <span>{{ __('Login') }}</span>
                         </button>
                     </div>
 
@@ -56,7 +57,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-sm text-gray-600">
                             {{ __('Don\'t have an account?') }}
-                            <a href="/register"
+                            <a href="{{ route('auth.register', app()->getLocale()) }}"
                                 class="font-medium link-hover text-orange-500 hover:text-purple-600 transition duration-200">
                                 {{ __('Register') }} </a>
                         </p>
