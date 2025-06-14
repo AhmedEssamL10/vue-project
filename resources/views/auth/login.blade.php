@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <form data-url="{{ env('APP_URL') }}login" id="authForm" method="POST" action="{{ route('login') }} ">
+    <form id="authForm" method="POST" action="{{ route('login') }} ">
         @csrf
         <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
             <div class="container">
@@ -37,17 +37,16 @@
                             <input type="password" id="password" name="password" placeholder=" {{ __('Password') }} "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                             <!-- <div class="flex justify-end mt-2">
-                                    <a
-                                    href="#"
-                                    class="text-sm link-hover text-gray-600 hover:text-purple-600 transition duration-200"
-                                    >Forgot your password?</a
-                                    >
-                                </div> -->
+                                                    <a
+                                                    href="#"
+                                                    class="text-sm link-hover text-gray-600 hover:text-purple-600 transition duration-200"
+                                                    >Forgot your password?</a
+                                                    >
+                                                </div> -->
                         </div>
 
                         <!-- Login Button -->
-                        <button type="submit"
-                            class="submitBtn">
+                        <button type="submit" class="submitBtn">
                             <span class="loading loading-spinner"></span>
                             <span>{{ __('Login') }}</span>
                         </button>
