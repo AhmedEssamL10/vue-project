@@ -22,7 +22,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'errors' => $validator->errors(),
-            ], 422); 
+            ], 422);
         }
 
         $user = User::create([
@@ -34,16 +34,16 @@ class AuthController extends Controller
         Auth::login($user);
 
         $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
-        
+
         return response()->json([
             'status' => 'success',
             'message' => 'Registration successful!',
             'redirect_url' => $redirectUrl,
             'isSuccess' => true,
-        ], 200); 
+        ], 200);
     }
 
-    
+
     public function login(Request $request)
     {
         $request->validate([
@@ -57,23 +57,23 @@ class AuthController extends Controller
                 'status' => 'success',
                 'redirect_url' => $redirectUrl,
                 'isSuccess' => true
-            ], 200); 
+            ], 200);
         }
 
         return response()->json([
             'status' => 'error',
             'message' => 'These credentials do not match our records.',
-        ], 401); 
+        ], 401);
     }
     public function logout(Request $request)
     {
         Auth::logout();
 
-        $redirectUrl = route('home');
-        
+        $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully logged out.',
+            'isSuccess' => true,
             'redirect_url' => $redirectUrl,
         ], 200);
     }
