@@ -1817,12 +1817,11 @@ export default {
     submitCompanyRequestData() {
       if (!this.isLoading) {
         let formData = this.workersFormFields;
+        formData.userType = this.clientType;
         this.isLoading = true;
         delete formData.date;
         axios.post('http://127.0.0.1:8000/api/factor-request', formData)
           .then(res => {
-            console.log("res")
-            console.log(res)
             if (res.data.isSuccess) {
               if (res.data.services) {
                 this.resultsReady = true;
@@ -1867,6 +1866,7 @@ export default {
       if (!this.isLoading) {
         this.isLoading = true;
         // const data = this.v$.formData ;
+        this.formData.userType = this.clientType;
         Object.keys(this.formData).forEach((key) => {
           if (this.v$.formData[key]) {
             this.formData[key] = this.v$.formData[key].$model

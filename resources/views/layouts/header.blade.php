@@ -39,7 +39,7 @@
                                 {{ __('My Profile Page') }}
                             </a>
                         </li>
-                        <li data-logout-url="{{ route('logout') }}" id="handleLogout">
+                        <li data-logout-url="{{ route('logout') }}" class="handleLogout">
                             <span>{{ __('Logout') }} </span>
                         </li>
                     </ul>
@@ -89,16 +89,22 @@
             <a class="block nav_link text-base mb-2 active" href="{{ route('home', app()->getLocale()) }}">
                 {{ __('home') }}
             </a>
-
+            @if (!Auth::check())
             <!-- Login -->
-            <a class="block nav_link text-base mb-2" href="{{ route('login', app()->getLocale()) }}">
-                {{ __('Login') }}
-            </a>
-
-            <!-- About -->
-            <a class="block nav_link text-base mb-2" href="{{ route('register', app()->getLocale()) }}">
-                {{ __('Register') }}
-            </a>
+                <a class="block nav_link text-base mb-2" href="{{ route('auth.login', app()->getLocale()) }}">
+                    {{ __('Login') }}
+                </a>
+                <a class="block nav_link text-base mb-2" href="{{ route('auth.register', app()->getLocale()) }}">
+                    {{ __('Register') }}
+                </a>
+            @else
+                <a class="block nav_link text-base mb-2" href="{{ route('profile.edit', app()->getLocale()) }}">
+                    {{ __('My Profile Page') }}
+                </a>
+                <a data-logout-url="{{ route('logout') }}" class="handleLogout block nav_link text-base mb-2" href="javascript:;">
+                    {{ __('Logout') }}
+                </a>
+            @endif
         </div>
     </div>
 </div>

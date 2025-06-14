@@ -20,7 +20,7 @@ class RequestController extends Controller
             'pickupPostalCode' => 'required|integer',
             'pickupLocation' => 'required|string|max:255',
             'pickupAddress' => 'required|string|max:255',
-            'pickupNo' => 'required|string|max:10',
+            'pickupNo' => 'required|integer',
 
             'pickupLifterExistance' => 'nullable',
             'pickupDistanceToCar' => 'nullable|integer',
@@ -36,7 +36,7 @@ class RequestController extends Controller
             'dropOffPostalCode' => 'required|integer',
             'dropOffLocation' => 'required|string|max:255',
             'dropOffAddress' => 'required|string|max:255',
-            'dropOffNo' => 'required|string|max:10',
+            'dropOffNo' => 'required|integer',
 
             'dropOffDistanceToCar' => 'nullable|integer',
             'dropOffFloorNumber' => 'nullable|integer',

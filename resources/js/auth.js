@@ -68,23 +68,25 @@ if(formSubmittion) {
     })
 };
 
-const logoutBtn = document.querySelector('#handleLogout');
+const logoutBtn = document.querySelectorAll('.handleLogout');
 
-if(logoutBtn){
-    logoutBtn.addEventListener('click', function(e){
-        const logoutUrl = this.getAttribute('data-logout-url');
-        $axios.post(logoutUrl)
-            .then(response => {
-                if(response.data.isSuccess){
-                    const redirectUrl = response.data.redirect_url;
-                    if(redirectUrl){
-                        window.location.href = redirectUrl;
+if(logoutBtn && logoutBtn.length){
+    logoutBtn.forEach((btn) => {
+        btn.addEventListener('click', function(e){
+            const logoutUrl = this.getAttribute('data-logout-url');
+            $axios.post(logoutUrl)
+                .then(response => {
+                    if(response.data.isSuccess){
+                        const redirectUrl = response.data.redirect_url;
+                        if(redirectUrl){
+                            window.location.href = redirectUrl;
+                        }
                     }
-                }
-            })
-            .catch(error => {
-                makeAlert(error.response?.data?.message, 'error')
-            })
-            .finally(() => {})
+                })
+                .catch(error => {
+                    makeAlert(error.response?.data?.message, 'error')
+                })
+                .finally(() => {})
+        })
     })
 }
