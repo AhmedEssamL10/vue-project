@@ -17,7 +17,7 @@ class RequestController extends Controller
     public function storeRequest(Request $request)
     {
         $validated = $request->validate([
-            'pickupPostalCode' => 'required|integer',
+            'pickupPostalCode' => 'required|string',
             'pickupLocation' => 'required|string|max:255',
             'pickupAddress' => 'required|string|max:255',
             'pickupNo' => 'required|integer',
@@ -33,7 +33,7 @@ class RequestController extends Controller
             'storeArea' => 'nullable|string|max:50',
 
             // Dropoff details
-            'dropOffPostalCode' => 'required|integer',
+            'dropOffPostalCode' => 'required|string',
             'dropOffLocation' => 'required|string|max:255',
             'dropOffAddress' => 'required|string|max:255',
             'dropOffNo' => 'required|integer',

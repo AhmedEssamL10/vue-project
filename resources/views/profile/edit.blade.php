@@ -43,7 +43,7 @@
                         <label class="block text-sm font-medium text-gray-700">{{ __('phone') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ $user->phone ?? 'Will be availabel soon' }}
+                                {{ $user->phone ?? '01000000000' }}
                             </span>
                         </div>
                     </div>
@@ -100,18 +100,18 @@
                     {{-- Your Requests Section --}}
                     <div class="bg-white rounded-lg shadow-md p-6">
                         <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b border-gray-200 pb-3">
-                            Your Requests
+                            {{ __('yourRequests') }}
                         </h2>
 
                         @foreach ($requests as $shipRequest)
-                            <div class="mb-6 border p-4 rounded shadow-sm bg-gray-50">
+                            <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
                                 <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                                    Request #{{ $shipRequest->id }} (Created at:
-                                    {{ $shipRequest->created_at->format('Y-m-d H:i') }})
+                                    {{ __('request') }} #{{ $shipRequest->id }}
+                                    {{-- {{ $shipRequest->created_at->format('Y-m-d H:i') }}) --}}
                                 </h3>
-                                <table class="table-auto w-full text-sm text-left text-gray-700">
+                                <table class="table-auto w-full text-sm text-gray-700">
                                     <tbody>
-                                        @foreach ($shipRequest->toArray() as $key => $value)
+                                        {{-- @foreach ($shipRequest->toArray() as $key => $value)
                                             <tr class="border-b">
                                                 <td class="py-2 pr-4 font-medium capitalize">
                                                     {{ str_replace('_', ' ', $key) }}</td>
@@ -127,7 +127,55 @@
                                                     @endphp
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                id
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->id }}
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('name') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->client_name }}
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('email') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->client_email }}
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('phone') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->client_phone }}
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('requestType') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->requestType }}
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('totalCost') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->total_cost ?? '0' }} {{ __('euro') }}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -138,7 +186,7 @@
 
 
 
-                <div class="text-center py-12">
+                {{-- <div class="text-center py-12">
                     <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
                         <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -149,7 +197,7 @@
                     <p class="text-gray-600">
                         Your service requests and their status will be displayed here once the feature is available
                     </p>
-                </div>
+                </div> --}}
         </div>
     </div>
     @endif

@@ -76,5 +76,10 @@
     "personal information": "Persönliche Informationen",
     "name": "Name",
     "email": "E-Mail",
-    "phone": "Telefonnummer"
+    "phone": "Telefonnummer",
+    "totalCost": "Gesamtkosten",
+    "euro": "Euro",
+    "request": "Anfrage",
+    "yourRequests": "Ihre Anfragen",
+    "requestType": ""
 }

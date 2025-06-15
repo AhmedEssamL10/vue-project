@@ -76,5 +76,10 @@
     "personal information": "المعلومات الشخصية",
     "name": "الاسم",
     "email": "البريد الإلكترونى",
-    "phone": "رقم الجوال"
+    "phone": "رقم الجوال",
+    "totalCost": "التكلفة",
+    "euro": "يورو",
+    "request": "طلب",
+    "yourRequests": "طلباتك",
+    "requestType": "نوع الطلب"
 }
