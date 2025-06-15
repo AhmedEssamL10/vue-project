@@ -264,7 +264,7 @@ class RequestController extends Controller
         if ($request->filled('date_from') && $request->filled('date_to')) {
             $from = Carbon::parse($request->date_from);
             $to = Carbon::parse($request->date_to);
-            $days = $from->diffInDays($to);
+            $days = $from->diffInDays($to) || 1;
         }
         $price = ServicePrice::where('key', 'workerPerDay')->first();
         $totalPrice = $price ? $price->value * ($days ?? 1) * $request->count : 0;

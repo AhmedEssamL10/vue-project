@@ -23,7 +23,7 @@
                         <label class="block text-sm font-medium text-gray-700">{{ __('name') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ $user->name }}
+                                {{ auth()->user()->name }}
                             </span>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <label class="block text-sm font-medium text-gray-700">{{ __('email') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ $user->email }}
+                                {{ auth()->user()->email }}
                             </span>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                         <label class="block text-sm font-medium text-gray-700">{{ __('phone') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ $user->phone ?? '01000000000' }}
+                                {{ auth()->user()->phone ?? '01000000000' }}
                             </span>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
             </div>
 
             <!-- Worker-Specific Sections -->
-            @if ($user->user_type === 'worker')
+            @if (auth()->user()->user_type === 'worker')
                 <div class="space-y-6 mb-6">
                     <!-- Previous Jobs Section -->
                     <div class="bg-white rounded-lg shadow-md p-6">
@@ -95,7 +95,7 @@
             @endif
 
             <!-- Client-Specific Sections -->
-            @if ($user->user_type === 'client')
+            @if (auth()->user()->user_type === 'client')
                 <div class="space-y-6 mb-6">
                     {{-- Your Requests Section --}}
                     <div class="bg-white rounded-lg shadow-md p-6">
