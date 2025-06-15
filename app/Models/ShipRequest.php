@@ -66,5 +66,6 @@ class ShipRequest extends Model
         'client_name',
         'client_email',
         'client_phone',
+        'user_id'
     ];
 }

@@ -30,9 +30,7 @@ Route::prefix('{locale}')
         })->name('vue-request');
 
         Route::middleware('auth')->group(function () {
-            Route::get('/profile', function () {
-                return view('profile.edit'); // Blade-only view for profile editing
-            })->name('profile.edit');
+            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.edit'); // Blade-only view for profile editing
         });
     });
 
