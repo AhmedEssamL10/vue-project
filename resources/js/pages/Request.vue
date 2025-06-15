@@ -1820,7 +1820,7 @@ export default {
         formData.userType = this.clientType;
         this.isLoading = true;
         delete formData.date;
-        axios.post('http://127.0.0.1:8000/api/factor-request', formData)
+        axios.post('/api/factor-request', formData)
           .then(res => {
             if (res.data.isSuccess) {
               if (res.data.services) {
@@ -1873,7 +1873,7 @@ export default {
           }
         })
 
-        axios.post('http://127.0.0.1:8000/api/ship-request', this.formData)
+        axios.post('/api/ship-request', this.formData)
           .then(res => {
             if (res.data.isSuccess) {
               if (res.data.services) {
