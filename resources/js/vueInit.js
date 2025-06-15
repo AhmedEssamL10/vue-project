@@ -11,6 +11,14 @@ const pinia = createPinia()
 
 const app = createApp(App);
 
+const appDiv = document.getElementById('app')
+const userData = JSON.parse(appDiv.dataset.user)
+
+// Provide the user data globally or pass as props
+app.provide('user', userData)
+
+appDiv.dataset.user = null;
+
 app.use(router);
 app.use(pinia)
 app.use(i18n)

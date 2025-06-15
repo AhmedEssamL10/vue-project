@@ -27,7 +27,7 @@
                             </span>
                         </div>
                     </div>
-
+                    
                     <!-- Email Field -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-700">{{ __('email') }}</label>
@@ -39,11 +39,20 @@
                     </div>
 
                     <!-- Phone Field -->
-                    <div class="space-y-2 md:col-span-2">
+                    <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-700">{{ __('phone') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
                                 {{ auth()->user()->phone ?? 'Will be availabel soon' }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">{{ __('Client Type') }}</label>
+                        <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
+                            <span class="text-gray-900">
+                                {{ auth()->user()->user_type }}
                             </span>
                         </div>
                     </div>

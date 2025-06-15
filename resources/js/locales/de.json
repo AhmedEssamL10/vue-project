@@ -217,5 +217,8 @@
   "makeAnotherRequest": "Eine weitere Anfrage stellen",
   "goToHome": "Zur Startseite gehen",
   "euro": "Euro",
-  "workersCost": "Arbeitskosten"
+  "workersCost": "Arbeitskosten",
+  "prefilledDataNotice": "Dieses Formular wurde mit Ihren aktuellen Informationen vorausgefüllt. Bitte überprüfen Sie die Angaben und aktualisieren Sie sie bei Bedarf.",
+  "notice": "Hinweis",
+  "close": "Schließen"
 }

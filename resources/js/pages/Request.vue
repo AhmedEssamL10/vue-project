@@ -256,6 +256,10 @@
                   <div class="form_panel">
                     <div class="form_step_parent">
                       <!-- Step 5: Contact Information -->
+                      <div v-if="user && prefilledDataAlertShown" class="alert alert-info mb-4 flex flex-col items-start gap-2">
+                        <p><strong>{{ $t('notice') }}:</strong> {{ $t('prefilledDataNotice') }}</p>
+                        <button @click="prefilledDataAlertShown = false" type="button" class="btn btn-outline">{{$t('close')}}</button>
+                      </div>
                       <form class="form-step" id="contactInformation">
                         <div class="mb-4">
                           <h3 class="text-xl font-bold mb-4">{{ $t('contact_information') }}</h3>
@@ -1046,6 +1050,10 @@
 
                 <!-- Step 4 Contact and Personal Info -->
                 <template v-if="stepNumber === 4">
+                  <div v-if="user && prefilledDataAlertShown" class="alert alert-info mb-4 flex flex-col items-start gap-2">
+                    <p><strong>{{ $t('notice') }}:</strong> {{ $t('prefilledDataNotice') }}</p>
+                    <button @click="prefilledDataAlertShown = false" type="button" class="btn btn-outline">{{$t('close')}}</button>
+                  </div>
                   <div class="form_panel">
                     <div class="form_step_parent">
                       <!-- Step 5: Contact Information -->
@@ -1310,14 +1318,14 @@
 <script>
 import { required, requiredIf, email, helpers } from '@vuelidate/validators'
 import useVuelidate from '@vuelidate/core'
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, inject } from 'vue'
 import axios from 'axios'
 import { useUiStore } from '../stores/uiStore';
 
 export default {
   name: "Request",
   setup() {
-    
+    const user = inject('user')
     const germanPostalCode = helpers.regex(/^\d{5}$/)
     const fields = reactive({
       formData: {
@@ -1503,6 +1511,7 @@ export default {
       v$,
       v2$,
       uiStore,
+      user,
       // resetForm,
     }
   },
@@ -1511,6 +1520,7 @@ export default {
       stepNumber: 0,
       companyStepNumber: 0,
       isLoading: false,
+      prefilledDataAlertShown: false,
       resultsReady: false,
       noOfBoxesError: false,
       clientType: "",
@@ -2031,6 +2041,19 @@ export default {
     },
     'v$.formData.noOfBoxes.$model': function (newVal) {
       this.noOfBoxesError = !newVal;
+    },
+    user: {
+      handler(val){
+        this.workersFormFields.clientName = val.name;
+        this.workersFormFields.clientEmail = val.email;
+        this.workersFormFields.clientPhone = val.phone;
+        this.formData.clientName = val.name;
+        this.formData.clientEmail = val.email;
+        this.formData.clientPhone = val.phone;
+        this.prefilledDataAlertShown = true;
+      },
+      immediate: true,
+      deep: true
     }
   }
 }
