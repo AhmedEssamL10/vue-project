@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\ShipRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,5 +58,11 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+    public function index(Request $request): View
+    {
+        $user = User::findOrFail(Auth::id());
+        $requests = ShipRequest::where('user_id', $user->id)->get();
+        return view('profile.edit', compact('user', 'requests'));
     }
 }

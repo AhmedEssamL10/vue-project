@@ -170,6 +170,21 @@ class RequestController extends Controller
             $total = $total + $services['tax'];
         }
 
+        $user = null;
+        if ($request->saveData) {
+            $user = User::firstOrCreate(
+                ['email' => $request->clientEmail],
+                [
+                    'name' => $request->clientName,
+                    'phone' => $request->clientPhone,
+                    'password' => Hash::make('12345678'),
+                    'user_type' => 'client',
+                    'client_type' => $request->userType
+                ]
+            );
+        }
+        // dd($user->id);
+
         $shipRequest = ShipRequest::create(
             [
                 'pickup_postal_code' => $request->pickupPostalCode,
@@ -213,20 +228,11 @@ class RequestController extends Controller
                 'client_name' => $request->clientName,
                 'client_email' => $request->clientEmail,
                 'client_phone' => $request->clientPhone,
+                'user_id' => $user ? $user->id : null,
             ]
         );
 
-        $user = null;
-        if ($request->saveData) {
-            $user = User::firstOrCreate(
-                ['email' => $request->clientEmail],
-                [
-                    'name' => $request->clientName,
-                    'phone' => $request->clientPhone,
-                    'password' => Hash::make('12345678'),
-                ]
-            );
-        }
+
 
         return response()->json([
             'message' => 'Request created successfully',
