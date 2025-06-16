@@ -56,10 +56,14 @@
     </main>
 </template>
 <script setup>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useAuthStore } from '../../stores/auth';
 import router from '../../router/dashboard-router';
+import { useRoute, useRouter } from 'vue-router'
+
 const authStore = useAuthStore()
+const route = useRoute()   // Get current route info
+const $router = useRouter() // Programmatic navigation
 
 const isLoggedIn = computed(() => {
     return authStore.isLoggedIn;
@@ -69,4 +73,12 @@ const handleLogout = () => {
     authStore.logout();
     router.push({ name: "adminLogin" });
 }
+
+onMounted(() => {
+    if(route.name == "Dashboard" && !isLoggedIn.value){
+        router.push({ name: "adminLogin" });
+    }
+})
+
+
 </script>

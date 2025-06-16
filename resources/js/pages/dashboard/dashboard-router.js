@@ -16,6 +16,7 @@ const router = createRouter({
       path: '/dashboard', 
       component: Dashboard,
       name: "Dashboard",
+      meta: { requiresAuth: true },
       children: [
         { 
           name: "requestConfigPage", 
@@ -65,8 +66,8 @@ router.beforeEach((to, from, next) => {
 })
 
 router.beforeEach((to, from, next) => {
-  const auth = useAuthStore()
-  
+  const auth = useAuthStore();
+
   if (to.meta.requiresAuth && !auth.isLoggedIn) {
     next({ name: 'adminLogin' }) // or any login route name
   } else {

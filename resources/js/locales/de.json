@@ -220,5 +220,7 @@
   "workersCost": "Arbeitskosten",
   "prefilledDataNotice": "Dieses Formular wurde mit Ihren aktuellen Informationen vorausgefüllt. Bitte überprüfen Sie die Angaben und aktualisieren Sie sie bei Bedarf.",
   "notice": "Hinweis",
-  "close": "Schließen"
+  "close": "Schließen",
+  "loginSuccessfully": "Erfolgreich angemeldet",
+  "savedSuccessfully": "Daten erfolgreich gespeichert"
 }

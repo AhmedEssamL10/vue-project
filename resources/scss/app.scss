@@ -122,16 +122,24 @@
 
     .submitBtn {
         @apply w-full py-3 px-4 bg-worker-light hover:bg-worker text-white font-medium rounded-lg transition duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.01] flex items-center justify-center gap-2;
-        .loading {
-            @apply hidden;
-        }
-
-        &.isloading {
-            @apply pointer-events-none grayscale;
+        &:not(.dashboardBtn){
             .loading {
-                @apply inline-block;
-            } 
+                @apply hidden;
+            }
+            &.isloading {
+                @apply pointer-events-none grayscale;
+                .loading {
+                    @apply inline-block;
+                } 
+            }
         }
+    }
+
+    .isloading {
+        @apply pointer-events-none grayscale;
+        .loading {
+            @apply inline-block;
+        } 
     }
 
 }

@@ -338,8 +338,10 @@
 
                 <div class="max-w-xl mx-auto">
                     <div class="btn_wrapper flex items-center gap-2">
-                        <button @click="saveRequestData()" type="button"
-                            class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">حفظ البيانات</button>
+                        <button @click="saveRequestData()" :class="isloading ? 'isloading' : ''" type="button" class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">
+                            <span v-if="isloading" class="loading loading-spinner"></span>
+                            <span>حفظ البيانات</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -424,7 +426,7 @@ export default {
     },
     data() {
         return {
-
+            isloading: false,
         }
     },
     methods: {
@@ -434,37 +436,36 @@ export default {
                 return
             }
             this.sendRequestConfigData();
-            console.log(this.formData)
         },
         getRequestConfigData(){
-            axios.get('http://127.0.0.1:8000/api/service-prices')
+            axios.get('/api/service-prices')
                 .then(res => {
                     if(res.data.isSuccess){
                         this.formData = res.data.data;
-                        // alert('Data Fetched Successfully');
                     }
                 })
                 .catch(err => {
-                    console.loog("err")
                     console.loog(err)
+                    makeAlert(err.response?.data?.message, 'error')
                 })
                 .finally(() => {
 
                 })
         },
         sendRequestConfigData(){
-            axios.post('http://127.0.0.1:8000/api/service-price', this.formData)
+            this.isloading = true;
+            axios.post('/api/service-price', this.formData)
                 .then(res => {
                     if(res.data.isSuccess){
-                        alert('Data Updated Successfully');
+                        makeAlert(this.$t('savedSuccessfully'));
                     }
                 })
                 .catch(err => {
-                    console.loog("err")
                     console.loog(err)
+                    makeAlert(err.response?.data?.message, 'error')
                 })
                 .finally(() => {
-
+                    this.isloading = false;
                 })
         },
     },

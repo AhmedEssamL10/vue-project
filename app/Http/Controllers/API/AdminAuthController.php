@@ -31,6 +31,7 @@ class AdminAuthController extends Controller
         return response()->json([
             'admin' => $admin,
             'token' => $token,
+            'isSuccess' => true
         ]);
     }
 
@@ -54,6 +55,7 @@ class AdminAuthController extends Controller
         return response()->json([
             'admin' => $admin,
             'token' => $token,
+            'isSuccess' => true
         ]);
     }
 
