@@ -27,7 +27,7 @@
                             </span>
                         </div>
                     </div>
-                    
+
                     <!-- Email Field -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-700">{{ __('email') }}</label>
@@ -165,7 +165,7 @@
                                                 {{ __('requestType') }}
                                             </td>
                                             <td class="py-2">
-                                                {{ $shipRequest->requestType }}
+                                                {{ __('shippingType') }}
                                             </td>
                                         </tr>
                                         <tr class="">
@@ -173,7 +173,7 @@
                                                 {{ __('totalCost') }}
                                             </td>
                                             <td class="py-2">
-                                                {{ $shipRequest->total_cost ?? '0' }} {{ __('euro') }}
+                                                {{ $shipRequest->total ?? '0' }} {{ __('euro') }}
                                             </td>
                                         </tr>
                                     </tbody>

@@ -39,10 +39,12 @@ class ShipRequest extends Model
         'dropoff_distance_to_car',
         'dropoff_floor_number',
         'dropoff_lifter_existance',
-
+        'total',
         'time_type',
         'specific_date',
         'range_date',
+        'range_date_from',
+        'range_date_to',
 
         'packing_services',
         'dismanting_furniture',

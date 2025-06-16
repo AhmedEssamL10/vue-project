@@ -81,5 +81,6 @@
     "euro": "Euro",
     "request": "Anfrage",
     "yourRequests": "Ihre Anfragen",
-    "requestType": "Anfragetyp"
+    "requestType": "Anfragetyp",
+    "shippingType":"Versand"
 }
