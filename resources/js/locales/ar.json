@@ -217,5 +217,6 @@
   "notice": "تنبية",
   "close": "إغلاق",
   "loginSuccessfully": "تم تسجيل الدخول بنجاح",
+  "logoutSuccessfully": "تم تسجيل الخروج بنجاح",
   "savedSuccessfully": "تم حفظ البيانات بنجاح"
 }
