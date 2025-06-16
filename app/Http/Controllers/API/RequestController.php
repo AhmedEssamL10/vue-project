@@ -229,6 +229,7 @@ class RequestController extends Controller
                 'client_email' => $request->clientEmail,
                 'client_phone' => $request->clientPhone,
                 'user_id' => $user ? $user->id : null,
+                'total' => $total,
             ]
         );
 

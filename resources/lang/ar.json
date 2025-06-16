@@ -81,5 +81,6 @@
     "euro": "يورو",
     "request": "طلب",
     "yourRequests": "طلباتك",
-    "requestType": "نوع الطلب"
+    "requestType": "نوع الطلب",
+    "shippingType":"شحن"
 }
