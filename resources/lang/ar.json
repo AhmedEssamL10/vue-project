@@ -82,5 +82,6 @@
     "request": "طلب",
     "yourRequests": "طلباتك",
     "requestType": "نوع الطلب",
-    "shippingType":"شحن"
+    "shippingType":"طلب شحن",
+    "WorkerType":"طلب عمال"
 }

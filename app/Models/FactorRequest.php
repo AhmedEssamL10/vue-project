@@ -13,5 +13,7 @@ class FactorRequest extends Model
         'client_name',
         'client_email',
         'client_phone',
+        'total',
+        'user_id'
     ];
 }

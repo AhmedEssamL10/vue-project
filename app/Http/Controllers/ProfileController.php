@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\FactorRequest;
 use App\Models\ShipRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -63,6 +64,7 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $requests = ShipRequest::where('user_id', $user->id)->get();
-        return view('profile.edit', compact('user', 'requests'));
+        $factorRequests = FactorRequest::where('user_id', $user->id)->get();
+        return view('profile.edit', compact('user', 'requests', 'factorRequests'));
     }
 }

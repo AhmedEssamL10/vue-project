@@ -82,5 +82,7 @@
     "request": "Anfrage",
     "yourRequests": "Ihre Anfragen",
     "requestType": "Anfragetyp",
-    "shippingType":"Versand"
+    "shippingType":"Versandanfrage",
+    "WorkerType":"Antrag der Arbeitnehmer"
+
 }

@@ -265,17 +265,21 @@ class RequestController extends Controller
         if ($request->filled('date_from') && $request->filled('date_to')) {
             $from = Carbon::parse($request->date_from);
             $to = Carbon::parse($request->date_to);
-            $days = $from->diffInDays($to) || 1;
+            $days = $from->diffInDays($to);
         }
         $price = ServicePrice::where('key', 'workerPerDay')->first();
-        $totalPrice = $price ? $price->value * ($days ?? 1) * $request->count : 0;
-        if ($request->boolean('saveData')) {
-            User::firstOrCreate(
+        $totalPrice = $price ? $price->value * ($days == 0 ? 1 : $days) * $request->count : 0;
+        $user = null;
+        if ($request->saveData) {
+
+            $user = User::firstOrCreate(
                 ['email' => $request->clientEmail],
                 [
                     'name' => $request->clientName,
                     'phone' => $request->clientPhone,
                     'password' => Hash::make('12345678'),
+                    'user_type' => 'client',
+                    'client_type' => $request->userType,
                 ]
             );
         }
@@ -287,6 +291,9 @@ class RequestController extends Controller
             'client_name' => $request->clientName,
             'client_email' => $request->clientEmail,
             'client_phone' => $request->clientPhone,
+            'user_id' => $user ? $user->id : null,
+            'total' => $totalPrice,
+
         ]);
 
         return response()->json([
