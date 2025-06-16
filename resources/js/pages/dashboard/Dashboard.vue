@@ -59,17 +59,36 @@
 import { computed, onMounted } from 'vue';
 import { useAuthStore } from '../../stores/auth';
 import router from '../../router/dashboard-router';
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 const authStore = useAuthStore()
 const route = useRoute()   // Get current route info
-const $router = useRouter() // Programmatic navigation
 
 const isLoggedIn = computed(() => {
     return authStore.isLoggedIn;
 })
 
 const handleLogout = () => {
+    window.$axios.post('/admin/logout',{}, {
+        headers: {
+            Authorization: `Bearer ${authStore.token}`
+        }
+    })
+        .then(response => {
+            if(response.data.isSuccess){
+                makeAlert(this.$t('logoutSuccessfully'), 'success')
+                this.authStore.setToken(null);
+                window.$axios.defaults.headers.common['Authorization'] = `Bearer `;
+                this.$router.push({ name: "Dashboard" });
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            makeAlert(error.response?.data?.message, 'error')
+        })
+        .finally(() => {
+            this.isloading = false;
+        })
     authStore.logout();
     router.push({ name: "adminLogin" });
 }
