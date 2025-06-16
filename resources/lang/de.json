@@ -83,6 +83,7 @@
     "yourRequests": "Ihre Anfragen",
     "requestType": "Anfragetyp",
     "shippingType":"Versandanfrage",
-    "WorkerType":"Antrag der Arbeitnehmer"
+    "WorkerType":"Antrag der Arbeitnehmer",
+    "noOfWorkers": "Anzahl der Arbeiter"
 
 }

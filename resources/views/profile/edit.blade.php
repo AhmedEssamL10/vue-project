@@ -249,6 +249,14 @@
                                                 {{ __('WorkerType') }}
                                             </td>
                                         </tr>
+                                        <tr class="border-b">
+                                            <td class="py-2 pr-4 font-medium capitalize">
+                                                {{ __('noOfWorkers') }}
+                                            </td>
+                                            <td class="py-2">
+                                                {{ $shipRequest->count }}
+                                            </td>
+                                        </tr>
                                         <tr class="">
                                             <td class="py-2 pr-4 font-medium capitalize">
                                                 {{ __('totalCost') }}
