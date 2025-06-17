@@ -84,5 +84,6 @@
     "requestType": "نوع الطلب",
     "shippingType":"طلب شحن",
     "WorkerType":"طلب عمال",
-    "noOfWorkers": "عدد العمال"
+    "noOfWorkers": "عدد العمال",
+    "noRequests": "لا توجد طلبات حتى الان"
 }

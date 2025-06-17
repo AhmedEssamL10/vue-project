@@ -56,7 +56,7 @@ class RequestController extends Controller
             'kitchenLong' => 'nullable',
             'movingBoxes' => 'nullable|string',
             'furnitureStoreDays' => 'nullable|integer',
-            'furnitureQuantity' => 'nullable|integer',
+            'furnitureQuantity' => 'nullable|string',
 
             'unpackingServices' => 'nullable',
             'furnitureAssembly' => 'nullable',

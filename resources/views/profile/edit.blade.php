@@ -103,172 +103,177 @@
                             {{ __('yourRequests') }}
                         </h2>
 
-                        @foreach ($requests as $shipRequest)
-                            <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
-                                <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                                    {{ __('request') }} #{{ $shipRequest->id }}
-                                    {{-- {{ $shipRequest->created_at->format('Y-m-d H:i') }}) --}}
-                                </h3>
-                                <table class="table-auto w-full text-sm text-gray-700">
-                                    <tbody>
-                                        {{-- @foreach ($shipRequest->toArray() as $key => $value)
+                        @if(isset($requests) && count($requests) > 0)
+                            @foreach ($requests as $shipRequest)
+                                <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
+                                    <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                                        {{ __('request') }} #{{ $shipRequest->id }}
+                                        {{-- {{ $shipRequest->created_at->format('Y-m-d H:i') }}) --}}
+                                    </h3>
+                                    <table class="table-auto w-full text-sm text-gray-700">
+                                        <tbody>
+                                            {{-- @foreach ($shipRequest->toArray() as $key => $value)
+                                                <tr class="border-b">
+                                                    <td class="py-2 pr-4 font-medium capitalize">
+                                                        {{ str_replace('_', ' ', $key) }}</td>
+                                                    <td class="py-2">
+                                                        @php
+                                                            if (is_bool($value)) {
+                                                                echo $value ? 'Yes' : 'No';
+                                                            } elseif ($value instanceof \Carbon\Carbon) {
+                                                                echo $value->format('Y-m-d H:i');
+                                                            } else {
+                                                                echo $value ?? '—';
+                                                            }
+                                                        @endphp
+                                                    </td>
+                                                </tr>
+                                            @endforeach --}}
                                             <tr class="border-b">
                                                 <td class="py-2 pr-4 font-medium capitalize">
-                                                    {{ str_replace('_', ' ', $key) }}</td>
+                                                    id
+                                                </td>
                                                 <td class="py-2">
-                                                    @php
-                                                        if (is_bool($value)) {
-                                                            echo $value ? 'Yes' : 'No';
-                                                        } elseif ($value instanceof \Carbon\Carbon) {
-                                                            echo $value->format('Y-m-d H:i');
-                                                        } else {
-                                                            echo $value ?? '—';
-                                                        }
-                                                    @endphp
+                                                    {{ $shipRequest->id }}
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                id
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->id }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('name') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_name }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('email') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_email }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('phone') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_phone }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('requestType') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ __('shippingType') }}
-                                            </td>
-                                        </tr>
-                                        <tr class="">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('totalCost') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->total ?? '0' }} {{ __('euro') }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endforeach
-
-
-
-
-                        @foreach ($factorRequests as $shipRequest)
-                            <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
-                                <h3 class="text-lg font-semibold text-gray-700 mb-3">
-                                    {{ __('request') }} #{{ $shipRequest->id }}
-                                    {{-- {{ $shipRequest->created_at->format('Y-m-d H:i') }}) --}}
-                                </h3>
-                                <table class="table-auto w-full text-sm text-gray-700">
-                                    <tbody>
-                                        {{-- @foreach ($shipRequest->toArray() as $key => $value)
                                             <tr class="border-b">
                                                 <td class="py-2 pr-4 font-medium capitalize">
-                                                    {{ str_replace('_', ' ', $key) }}</td>
+                                                    {{ __('name') }}
+                                                </td>
                                                 <td class="py-2">
-                                                    @php
-                                                        if (is_bool($value)) {
-                                                            echo $value ? 'Yes' : 'No';
-                                                        } elseif ($value instanceof \Carbon\Carbon) {
-                                                            echo $value->format('Y-m-d H:i');
-                                                        } else {
-                                                            echo $value ?? '—';
-                                                        }
-                                                    @endphp
+                                                    {{ $shipRequest->client_name }}
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                id
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->id }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('name') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_name }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('email') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_email }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('phone') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->client_phone }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('requestType') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ __('WorkerType') }}
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('noOfWorkers') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->count }}
-                                            </td>
-                                        </tr>
-                                        <tr class="">
-                                            <td class="py-2 pr-4 font-medium capitalize">
-                                                {{ __('totalCost') }}
-                                            </td>
-                                            <td class="py-2">
-                                                {{ $shipRequest->total ?? '0' }} {{ __('euro') }}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        @endforeach
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('email') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->client_email }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('phone') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->client_phone }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('requestType') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ __('shippingType') }}
+                                                </td>
+                                            </tr>
+                                            <tr class="">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('totalCost') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->total ?? '0' }} {{ __('euro') }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endforeach
+                        @endif
+                        
+                        @if(isset($factorRequests) && count($factorRequests) > 0)
+                            @foreach ($factorRequests as $shipRequest)
+                                <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
+                                    <h3 class="text-lg font-semibold text-gray-700 mb-3">
+                                        {{ __('request') }} #{{ $shipRequest->id }}
+                                        {{-- {{ $shipRequest->created_at->format('Y-m-d H:i') }}) --}}
+                                    </h3>
+                                    <table class="table-auto w-full text-sm text-gray-700">
+                                        <tbody>
+                                            {{-- @foreach ($shipRequest->toArray() as $key => $value)
+                                                <tr class="border-b">
+                                                    <td class="py-2 pr-4 font-medium capitalize">
+                                                        {{ str_replace('_', ' ', $key) }}</td>
+                                                    <td class="py-2">
+                                                        @php
+                                                            if (is_bool($value)) {
+                                                                echo $value ? 'Yes' : 'No';
+                                                            } elseif ($value instanceof \Carbon\Carbon) {
+                                                                echo $value->format('Y-m-d H:i');
+                                                            } else {
+                                                                echo $value ?? '—';
+                                                            }
+                                                        @endphp
+                                                    </td>
+                                                </tr>
+                                            @endforeach --}}
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    id
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->id }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('name') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->client_name }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('email') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->client_email }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('phone') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->client_phone }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('requestType') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ __('WorkerType') }}
+                                                </td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('noOfWorkers') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->count }}
+                                                </td>
+                                            </tr>
+                                            <tr class="">
+                                                <td class="py-2 pr-4 font-medium capitalize">
+                                                    {{ __('totalCost') }}
+                                                </td>
+                                                <td class="py-2">
+                                                    {{ $shipRequest->total ?? '0' }} {{ __('euro') }}
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @endforeach
+                        @endif
+                        
+                        @if((!isset($requests) || count($requests) == 0) && (!isset($factorRequests) || count($factorRequests) == 0))
+                            <div class="text-center text-black py-2 text-xl">{{ __('noRequests') }}</div>
+                        @endif
                     </div>
                 </div>
 

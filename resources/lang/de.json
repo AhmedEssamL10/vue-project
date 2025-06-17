@@ -84,6 +84,7 @@
     "requestType": "Anfragetyp",
     "shippingType":"Versandanfrage",
     "WorkerType":"Antrag der Arbeitnehmer",
-    "noOfWorkers": "Anzahl der Arbeiter"
+    "noOfWorkers": "Anzahl der Arbeiter",
+    "noRequests": "Es gibt noch keine Anfragen"
 
 }
