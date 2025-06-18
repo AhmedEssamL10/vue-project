@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\RequestController;
-use App\Http\Controllers\API\ServicePriceController;
 use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\API\ServicePriceController;
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest'])
     ->name('ship-request');
@@ -19,6 +20,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login']);
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/logout', [AdminAuthController::class, 'logout']);
+        Route::post('/logout', [AdminController::class, 'logout']);
+        Route::get('/clients', [AdminController::class, 'clients']);
+        Route::get('/workers', [AdminController::class, 'workers']);
+        Route::get('/user/{id}', [AdminController::class, 'user']);
+        Route::get('/requests', [AdminController::class, 'requests']);
+        Route::get('/ship-request/{id}', [AdminController::class, 'shipRequest']);
+        Route::get('/factor-request/{id}', [AdminController::class, 'factorRequest']);
     });
 });

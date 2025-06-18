@@ -48,4 +48,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function shipRequests()
+    {
+        return $this->hasMany(ShipRequest::class);
+    }
+    public function factorRequests()
+    {
+        return $this->hasMany(FactorRequest::class);
+    }
 }
