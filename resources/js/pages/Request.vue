@@ -2044,13 +2044,15 @@ export default {
     },
     user: {
       handler(val){
-        this.workersFormFields.clientName = val.name;
-        this.workersFormFields.clientEmail = val.email;
-        this.workersFormFields.clientPhone = val.phone;
-        this.formData.clientName = val.name;
-        this.formData.clientEmail = val.email;
-        this.formData.clientPhone = val.phone;
-        this.prefilledDataAlertShown = true;
+        if(val){
+          this.workersFormFields.clientName = val.name;
+          this.workersFormFields.clientEmail = val.email;
+          this.workersFormFields.clientPhone = val.phone;
+          this.formData.clientName = val.name;
+          this.formData.clientEmail = val.email;
+          this.formData.clientPhone = val.phone;
+          this.prefilledDataAlertShown = true;
+        }
       },
       immediate: true,
       deep: true
