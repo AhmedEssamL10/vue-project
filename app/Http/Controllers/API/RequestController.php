@@ -171,17 +171,27 @@ class RequestController extends Controller
         }
 
         $user = null;
+        $isNewUser = false;
+        $generatedPassword = null;
+
         if ($request->saveData) {
-            $user = User::firstOrCreate(
-                ['email' => $request->clientEmail],
-                [
+            // Check if user already exists
+            $existingUser = User::where('email', $request->clientEmail)->first();
+
+            if (!$existingUser) {
+                $generatedPassword = Str::random(8); // generate random password
+                $user = User::create([
                     'name' => $request->clientName,
+                    'email' => $request->clientEmail,
                     'phone' => $request->clientPhone,
-                    'password' => Hash::make('12345678'),
+                    'password' => Hash::make($generatedPassword),
                     'user_type' => 'client',
-                    'client_type' => $request->userType
-                ]
-            );
+                    'client_type' => $request->userType,
+                ]);
+                $isNewUser = true;
+            } else {
+                $user = $existingUser;
+            }
         }
         // dd($user->id);
 
@@ -241,8 +251,11 @@ class RequestController extends Controller
             // 'data' => $shipRequest,
             'services' => $services,
             'total_price' => $total,
-            'user_created' => $user ? true : false,
-            'user' => $user,
+            'user_created' => $isNewUser,
+            'credentials' => $isNewUser ? [
+                'email' => $user->email,
+                'password' => $generatedPassword,
+            ] : null,
         ], 201);
     }
 
@@ -270,18 +283,27 @@ class RequestController extends Controller
         $price = ServicePrice::where('key', 'workerPerDay')->first();
         $totalPrice = $price ? $price->value * ($days == 0 ? 1 : $days) * $request->count : 0;
         $user = null;
-        if ($request->saveData) {
+        $isNewUser = false;
+        $generatedPassword = null;
 
-            $user = User::firstOrCreate(
-                ['email' => $request->clientEmail],
-                [
+        if ($request->saveData) {
+            // Check if user already exists
+            $existingUser = User::where('email', $request->clientEmail)->first();
+
+            if (!$existingUser) {
+                $generatedPassword = Str::random(8); // generate random password
+                $user = User::create([
                     'name' => $request->clientName,
+                    'email' => $request->clientEmail,
                     'phone' => $request->clientPhone,
-                    'password' => Hash::make('12345678'),
+                    'password' => Hash::make($generatedPassword),
                     'user_type' => 'client',
                     'client_type' => $request->userType,
-                ]
-            );
+                ]);
+                $isNewUser = true;
+            } else {
+                $user = $existingUser;
+            }
         }
 
         $factorRequest = FactorRequest::create([
@@ -303,7 +325,12 @@ class RequestController extends Controller
             'services' => [
                 'workers_cost' => $totalPrice,
                 'workers_form' => true,
-            ]
+            ],
+            'user_created' => $isNewUser,
+            'credentials' => $isNewUser ? [
+                'email' => $user->email,
+                'password' => $generatedPassword,
+            ] : null,
             // 'data' => $factorRequest
         ], 201);
     }
