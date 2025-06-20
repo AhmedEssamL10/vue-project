@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Dashboard from '../pages/dashboard/Dashboard.vue';
 import Profile from '../pages/dashboard/Profile.vue';
 import usersList from '../pages/dashboard/usersList.vue';
+import workersList from '../pages/dashboard/workersList.vue';
 import RequestsList from '../pages/dashboard/RequestsList.vue';
 import RequestDetails from '../pages/dashboard/RequestDetails.vue';
 import Login from '../pages/dashboard/login.vue';
@@ -36,14 +37,20 @@ const router = createRouter({
           meta: { requiresAuth: true } 
         },
         { 
-          name: "RequestsList", 
-          path: '/dashboard/requests-list', 
-          component: RequestsList, 
+          name: "WorkersList", 
+          path: '/dashboard/workers-list', 
+          component: workersList, 
           meta: { requiresAuth: true } 
         },
         { 
+          name: "RequestsList", 
+          path: '/dashboard/requests-list', 
+          component: RequestsList, 
+          meta: { requiresAuth: true },
+        },
+        { 
           name: "RequestDetails", 
-          path: '/dashboard/requests-list/:id', 
+          path: '/dashboard/requests/:type/:id', 
           component: RequestDetails, 
           meta: { requiresAuth: true } 
         },

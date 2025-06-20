@@ -1,8 +1,8 @@
 <template>
     <div class="overflow-x-auto text-black py-6">
-        <h2 class="mb-4 text-xl font-bold">قائمة المستخدمين</h2>
+        <h2 class="mb-4 text-xl font-bold">قائمة العملاء</h2>
         <div class="py-6">
-            <table class="table">
+            <table v-if="clientsList?.length" class="table">
                 <!-- head -->
                 <thead class="text-black">
                     <tr>
@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     <!-- row 1 -->
-                    <tr v-for="(request, index) in requestsList">
+                    <tr v-for="(client, index) in clientsList">
                         <!-- <th>
                             <label>
                                 <input type="checkbox" v-model="request.isSelected" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
@@ -30,13 +30,13 @@
                             <span>{{ index+1 }}</span>
                         </td>
                         <td>
-                            <span>{{ request.name }}</span>
+                            <span>{{ client.name }}</span>
                         </td>
                         <td>
-                            <span>{{ request.phone }}</span>
+                            <span>{{ client.phone || '-' }}</span>
                         </td>
                         <td>
-                            <span>{{ request.email }}</span>
+                            <span>{{ client.email }}</span>
                         </td>
                         <!-- <td>
                             <span class="cursor-pointer group hover:opacity-80">
@@ -48,46 +48,45 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="text-center p-3 text-lg bg-[#E1E1E1]" v-else>
+                لا يوجد عملاء
+            </div>
         </div>
     </div>
 </template>
 <script>
+import { useAuthStore } from '../../stores/auth';
+
 export default {
-    data(){
+    setup(){
+        const authStore = useAuthStore()
         return {
-            requestsList: [
-                {
-                    id: 1,
-                    name: "Salem",
-                    phone: '01093967431',
-                    email: 'test@gmail.com',
-                    isSelected: false
-                },
-                {
-                    id: 2,
-                    name: "Salem2",
-                    phone: '01093967431',
-                    email: 'test2@gmail.com',
-                    isSelected: false
-                },
-                {
-                    id: 3,
-                    name: "Salem3",
-                    phone: '01093967431',
-                    email: 'test3@gmail.com',
-                    isSelected: false
-                },
-                {
-                    id: 4,
-                    name: "Salem4",
-                    phone: '01093967431',
-                    email: 'test4@gmail.com',
-                    isSelected: false
-                },
-            ]
+            authStore
         }
     },
+    data(){
+        return {
+            clientsList: []
+        }
+    },
+    mounted(){
+        this.fetchClients();
+    },
     methods: {
+        fetchClients(){
+            $axios.get('/admin/clients', {
+                headers: {
+                    Authorization: `Bearer ${this.authStore.token}`
+                }
+            })
+                .then(response => {
+                   console.log("response")
+                   console.log(response)
+                    if(response.data.isSuccess){
+                        this.clientsList = response.data?.data || [];
+                    }
+                })
+        },
         toggleSelectionAll(e){
             const isSelected = e.target.checked;
             

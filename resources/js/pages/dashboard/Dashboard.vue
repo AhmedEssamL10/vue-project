@@ -45,7 +45,10 @@
                         <router-link class="sideMenuItem" :to="{ name: 'requestConfigPage' }">أسعار حساب التكلفة</router-link>
                     </li>
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'UsersList' }">قائمة المستخدمين</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'UsersList' }">قائمة العملاء</router-link>
+                    </li>
+                    <li>
+                        <router-link class="sideMenuItem" :to="{ name: 'WorkersList' }">قائمة العمال</router-link>
                     </li>
                     <li>
                         <router-link class="sideMenuItem" :to="{ name: 'RequestsList' }">قائمة الطلبات</router-link>

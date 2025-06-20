@@ -14,6 +14,7 @@ class AdminController extends Controller
     {
         $users = User::where('user_type', 'client')->get();
         return response()->json([
+            'isSuccess' => true,
             'status' => 'success',
             'data' => $users,
         ]);
@@ -22,6 +23,7 @@ class AdminController extends Controller
     {
         $users = User::where('user_type', 'worker')->get();
         return response()->json([
+            'isSuccess' => true,
             'status' => 'success',
             'data' => $users,
         ]);
@@ -30,6 +32,7 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         return response()->json([
+            'isSuccess' => true,
             'status' => 'success',
             'data' => $user,
         ]);
@@ -39,7 +42,7 @@ class AdminController extends Controller
         $shipRequests = ShipRequest::with('user')->get();
         $factorRequests = FactorRequest::with('user')->get(); // Assuming you want to fetch factor requests similarly
         return response()->json([
-            'success' => true,
+            'isSuccess' => true,
             'shipRequests' => $shipRequests,
             'factorRequests' => $factorRequests,
         ]);
@@ -48,6 +51,7 @@ class AdminController extends Controller
     {
         $shipRequest = ShipRequest::with('user')->findOrFail($id);
         return response()->json([
+            'isSuccess' => true,
             'status' => 'success',
             'data' => $shipRequest,
         ]);
@@ -56,6 +60,7 @@ class AdminController extends Controller
     {
         $factorRequest = FactorRequest::with('user')->findOrFail($id);
         return response()->json([
+            'isSuccess' => true,
             'status' => 'success',
             'data' => $factorRequest,
         ]);
