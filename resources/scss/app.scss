@@ -171,7 +171,7 @@ body[dir="rtl"] {
 }
 
 .alert {
-    @apply fixed top-[20px] ltr:right-[20px] rtl:left-[20px] max-w-[95%] w-[400px] border-none;
+    @apply fixed top-[20px] ltr:right-[20px] rtl:left-[20px] max-w-[95%] w-[400px] border-none z-[999999];
     
     &.alert-success {
         @apply bg-green-500 text-white;

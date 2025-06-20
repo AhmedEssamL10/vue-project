@@ -1,8 +1,10 @@
 <template>
-  <GenericToaster v-if="getToasterData.visible" :message="getToasterData.message" :type="getToasterData.type" />
-  <main>
+  <Teleport to="body">
+    <GenericToaster v-if="getToasterData.visible" :message="getToasterData.message" :type="getToasterData.type" />
+  </Teleport>
+  <template v-if="languageIsReady">
     <router-view />
-  </main>
+  </template>
 </template>
 
 <script>
@@ -14,6 +16,11 @@ export default {
     const uiStore = useUiStore()
     return {
       uiStore
+    }
+  },
+  data(){
+    return {
+      languageIsReady: false,
     }
   },
   components: {
@@ -29,6 +36,7 @@ export default {
       if(this.$route?.params?.lang){
         this.$i18n.locale = this.$route.params.lang || this.$i18n.fallbackLocale;
       }
+      this.languageIsReady = true;
     }, 200)
   }
 };

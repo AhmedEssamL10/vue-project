@@ -14,9 +14,11 @@ const app = createApp(App);
 const appDiv = document.getElementById('app')
 if(appDiv){
     const userData = JSON.parse(appDiv.dataset.user)
+    const loginPageUrl = appDiv.dataset.loginurl;
     
     // Provide the user data globally or pass as props
     app.provide('user', userData)
+    app.provide('loginPageUrl', loginPageUrl)
     
     appDiv.dataset.user = null;
 }
