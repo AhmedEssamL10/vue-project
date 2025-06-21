@@ -37,13 +37,13 @@
                             <input type="password" id="password" name="password" placeholder=" {{ __('Password') }} "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                         </div>
-                        
+
                         <div>
                             <div class="flex items-center mb-1 gap-2">
-                                <input type="checkbox" id="checkbox" name="checkbox"
+                                <input type="checkbox" id="checkbox" name="remember"
                                     class="w-[20px] h-[20px] rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                                 <label for="checkbox" class="block text-sm font-medium text-gray-700">
-                                    {{ __('Remember me') }} 
+                                    {{ __('Remember me') }}
                                 </label>
                             </div>
                         </div>

@@ -57,8 +57,11 @@ class AuthController extends Controller
             'password' => 'required|min:8',
         ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        $remember = $request->has('remember'); // will be true if checkbox is checked
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
             $redirectUrl = route('profile.edit', ['locale' => session('locale') ?? app()->getLocale()]);
+
             return response()->json([
                 'status' => 'success',
                 'redirect_url' => $redirectUrl,
