@@ -65,4 +65,26 @@ class AdminController extends Controller
             'data' => $factorRequest,
         ]);
     }
+    public function getStats()
+    {
+        $clientCount = User::where('user_type', 'client')->count();
+        $workerCount = User::where('user_type', 'worker')->count();
+        $individuals = User::where('client_type', 'individual')->count();
+        $companies = User::where('client_type', 'company')->count();
+        $shipRequestCount = ShipRequest::count();
+        $factorRequestCount = FactorRequest::count();
+
+        return response()->json([
+            'isSuccess' => true,
+            'status' => 'success',
+            'data' => [
+                'total_clients' => $clientCount,
+                'total_workers' => $workerCount,
+                'total_individuals' => $individuals,
+                'total_companies' => $companies,
+                'total_factor_requests' => $factorRequestCount,
+                'total_ship_requests' => $shipRequestCount,
+            ]
+        ]);
+    }
 }

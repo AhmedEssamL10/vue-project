@@ -9,10 +9,13 @@ use App\Http\Controllers\API\ServicePriceController;
 Route::post('/ship-request', [RequestController::class, 'storeRequest'])
     ->name('ship-request');
 Route::post('/factor-request', [RequestController::class, 'storeFactorRequest']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/stats', [AdminController::class, 'getStats']);
 
-Route::get('/service-prices', [ServicePriceController::class, 'index'])
-    ->name('service-prices');
-Route::post('/service-price', [ServicePriceController::class, 'store']);
+    Route::get('/service-prices', [ServicePriceController::class, 'index'])
+        ->name('service-prices');
+    Route::post('/service-price', [ServicePriceController::class, 'store']);
+});
 
 
 Route::prefix('admin')->group(function () {
