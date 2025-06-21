@@ -1,4 +1,7 @@
    @extends('layouts.main')
+    @php
+        $userType = request()->get('user-type');
+    @endphp
    @section('content')
        <form id="authForm" method="POST" action="{{ route('register') }}">
            @csrf
@@ -36,8 +39,8 @@
                            </div>
                            <div>
                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                                   {{ __('Phone') }}</label>
-                               <input type="tel" id="phone" name="phone" placeholder=" {{ __('Phone') }}"
+                                   {{ __('phone') }}</label>
+                               <input type="text" id="phone" name="phone" placeholder=" {{ __('phone') }}"
                                    class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                            </div>
 
@@ -73,7 +76,7 @@
                                        <span class="label-text text-[#1b1718]">{{ __('Client') }}</span>
                                    </label>
                                    <label class="label cursor-pointer">
-                                       <input type="radio" name="user_type" value="worker"
+                                       <input {{ $userType === 'worker' ? 'checked' : '' }} type="radio" name="user_type" value="worker"
                                            class="radio border !bg-transparent checked:border-worker-dark border-worker-dark checked:before:bg-worker-dark" />
                                        <span class="label-text text-[#1b1718]">{{ __('Worker') }}</span>
                                    </label>

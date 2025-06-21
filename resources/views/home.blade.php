@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('content')
     <!-- Hero Section -->
     <section class="pt-28 pb-20 bg-white relative overflow-hidden">
@@ -15,30 +14,16 @@
 
         <div class="container relative z-10">
             <div class="max-w-3xl mx-auto">
-                <!-- <h1
-                                                                                                                                                                                                        class="text-4xl lg:text-5xl font-bold mb-6 text-[#1b1718] !leading-relaxed "
-                                                                                                                                                                                                        >
-                                                                                                                                                                                                        قم بنقل أي شيء، في أي مكان — <br class="hidden sm:block" />
-                                                                                                                                                                                                        <span
-                                                                                                                                                                                                            class="bg-gradient-to-r from-client to-worker bg-clip-text text-transparent"
-                                                                                                                                                                                                            >بسهولة وبسرعة !</span
-                                                                                                                                                                                                        >
-                                                                                                                                                                                                        </h1> -->
-
-                <!-- <p class="text-lg md:text-xl text-gray-700 mb-10 ">
-                                                                                                                                                                                                        ابحث عن عمال موثوق بهم لنقل الأغراض الخاصة بك، أو اكسب المال عن طريق
-                                                                                                                                                                                                        نقلها!
-                                                                                                                                                                                                        </p> -->
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <a href="{{ route('vue-request', app()->getLocale()) }}"
                         class="cursor-pointer bg-client hover:bg-client-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
                         {{ __('client') }}
                     </a>
-                    <span data-target="workerTab"
-                        class="tabBtn cursor-pointer bg-worker hover:bg-worker-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
+                    <a href="{{ route('auth.register', app()->getLocale()) }}?user-type=worker"
+                        class="cursor-pointer bg-worker hover:bg-worker-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
                         {{ __('worker') }}
-                    </span>
+                    </a>
                 </div>
 
                 <div class="mt-8">

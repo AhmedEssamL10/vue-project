@@ -115,6 +115,11 @@ export default {
                         this.requestsList = [...allRequests];
                     }
                 })
+                .catch(err => {
+                    if(err.status == 401){
+                        this.authStore.logout();
+                    }
+                })
         },
         toggleSelectionAll(e){
             const isSelected = e.target.checked;

@@ -12,6 +12,10 @@
             $segments = request()->segments();
             $segments[0] = $newLocale;
             $switchUrl = url(implode('/', $segments));
+
+            if (request()->getQueryString()) {
+                $switchUrl .= '?' . request()->getQueryString();
+            }
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">

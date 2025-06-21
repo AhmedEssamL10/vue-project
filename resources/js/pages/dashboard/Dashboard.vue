@@ -82,7 +82,7 @@ const handleLogout = () => {
                 makeAlert(this.$t('logoutSuccessfully'), 'success')
                 this.authStore.setToken(null);
                 window.$axios.defaults.headers.common['Authorization'] = `Bearer `;
-                this.$router.push({ name: "Dashboard" });
+                this.$router.push({ name: "adminLogin" });
             }
         })
         .catch(error => {

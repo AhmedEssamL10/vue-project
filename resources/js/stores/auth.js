@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 const token = localStorage.getItem('token');
+import router from '../router/dashboard-router.js'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
@@ -16,6 +17,7 @@ export const useAuthStore = defineStore('auth', {
       logout() {
         this.token = null;
         localStorage.removeItem('token');
+        router.push({ name: 'adminLogin' });
       },
     }
 })

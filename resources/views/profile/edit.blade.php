@@ -60,7 +60,7 @@
                         </div>
                     </div>
 
-                    @if (auth()->user()->user_type === 'worker')
+                    {{-- @if (auth()->user()->user_type === 'worker')
                         <div class="space-y-2 md:col-span-2">
                             <label class="block text-sm font-medium text-gray-700">Availability</label>
                             <div class="flex items-center gap-2">
@@ -68,12 +68,12 @@
                                 <span class="text-green-700 font-medium">Available</span>
                             </div>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
 
             <!-- Worker-Specific Sections -->
-            @if (auth()->user()->user_type === 'worker')
+            {{-- @if (auth()->user()->user_type === 'worker')
                 <div class="space-y-6 mb-6">
                     <!-- Previous Jobs Section -->
                     <div class="bg-white rounded-lg shadow-md p-6">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif --}}
 
             <!-- Client-Specific Sections -->
             @if (auth()->user()->user_type === 'client')

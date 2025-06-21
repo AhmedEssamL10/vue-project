@@ -447,6 +447,9 @@ export default {
                 .catch(err => {
                     console.loog(err)
                     makeAlert(err.response?.data?.message, 'error')
+                    if(err.status == 401){
+                        this.authStore.logout();
+                    }
                 })
                 .finally(() => {
 

@@ -54,6 +54,11 @@ export default {
                         this.requestDetails = response.data?.data || {};
                     }
                 })
+                .catch(err => {
+                    if(err.status == 401){
+                        this.authStore.logout();
+                    }
+                })
         }
     }
 }
