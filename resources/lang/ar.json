@@ -85,5 +85,9 @@
     "shippingType":"طلب شحن",
     "WorkerType":"طلب عمال",
     "noOfWorkers": "عدد العمال",
-    "noRequests": "لا توجد طلبات حتى الان"
+    "noRequests": "لا توجد طلبات حتى الان",
+    "current_password": "كلمة المرور الحالية",
+    "new_password": "كلمة المرور الجديدة",
+    "new_password_confirmation": "تأكيد كلمة المرور الجديدة",
+    "change_password": "تغيير كلمة المرور"
 }

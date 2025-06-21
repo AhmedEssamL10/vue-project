@@ -85,6 +85,10 @@
     "shippingType":"Versandanfrage",
     "WorkerType":"Antrag der Arbeitnehmer",
     "noOfWorkers": "Anzahl der Arbeiter",
-    "noRequests": "Es gibt noch keine Anfragen"
+    "noRequests": "Es gibt noch keine Anfragen",
+    "current_password": "Aktuelles Passwort",
+    "new_password": "Neues Passwort",
+    "new_password_confirmation": "Neues Passwort bestätigen",
+    "change_password": "Passwort ändern"
 
 }

@@ -30,9 +30,11 @@ Route::prefix('{locale}')
         })->name('vue-request');
 
         Route::middleware('auth')->group(function () {
-            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.edit'); // Blade-only view for profile editing
+            Route::get('/profile', [ProfileController::class, 'index'])->name('profile.edit');
+            Route::get('/profile/change-password', [ProfileController::class, 'getChangePassword'])->name('profile.change-password');
         });
     });
+Route::post('/profile/change-password', [ProfileController::class, 'PostChangePassword'])->name('profile.change-password.post');
 
 Route::post('/ship-request', [RequestController::class, 'storeRequest']); // Register route
 
