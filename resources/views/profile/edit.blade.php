@@ -3,11 +3,14 @@
     {{-- <h1>Hello {{ $user->name }}</h1> --}}
     <div class="p-6 bg-[#E1E1E1]">
         <!-- Main Container -->
-        <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="container mx-auto md:px-4 py-8 max-w-4xl">
 
             <!-- Page Header -->
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ __('My Profile Page') }}</h1>
+            <div class="mb-6">
+                <div class="flex flex-col items-start gap-3">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ __('My Profile Page') }}</h1>
+                    <a href="{{ route('profile.change-password', app()->getLocale()) }}" class="btn btn-outline text-gray-900 border-gray-900 hover:text-white self-end">{{ __('change_password') }}</a>
+                </div>
                 {{-- <p class="text-gray-600">Manage your account information</p> --}}
             </div>
 

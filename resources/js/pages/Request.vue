@@ -1938,6 +1938,7 @@ export default {
               if(res.data.user_created){
                 this.credentials = { ...res.data.credentials };
                 this.creditionals_modal_shown = true;
+                sessionStorage.setItem("tempCredentials", JSON.stringify(this.credentials));
                 setTimeout(() => {
                   if(this.$refs?.creditionals_modal){
                     this.$refs.creditionals_modal.showModal();

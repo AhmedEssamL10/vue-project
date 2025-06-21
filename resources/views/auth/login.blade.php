@@ -24,7 +24,7 @@
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
                                 {{ __('Email') }}</label>
-                            <input type="email" id="email" name="email" placeholder=" {{ __('Email') }}"
+                            <input autocomplete="off" type="email" id="email" name="email" placeholder=" {{ __('Email') }}"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                         </div>
 
@@ -34,7 +34,7 @@
                                 <label for="password" class="block text-sm font-medium text-gray-700">
                                     {{ __('Password') }} </label>
                             </div>
-                            <input type="password" id="password" name="password" placeholder=" {{ __('Password') }} "
+                            <input autocomplete="off" type="password" id="password" name="password" placeholder=" {{ __('Password') }} "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                         </div>
 
@@ -69,3 +69,19 @@
         </div>
     </form>
 @endsection
+
+<script>
+    window.addEventListener('load', () => {
+        const tempCredentials = sessionStorage.getItem('tempCredentials');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        if (tempCredentials) {
+            const credentials = JSON.parse(tempCredentials);
+            setTimeout(() => {
+                emailInput.value = credentials.email;
+                passwordInput.value = credentials.password;
+            }, 100);
+            sessionStorage.removeItem('tempCredentials');
+        }
+    });
+</script>
