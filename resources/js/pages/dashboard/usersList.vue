@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-x-auto text-black py-6">
-        <h2 class="mb-4 text-xl font-bold">قائمة العملاء</h2>
+        <h2 class="mb-4 text-xl font-bold">{{ $t('usersList.title') }}</h2>
         <div class="py-6">
             <table v-if="clientsList?.length" class="table">
                 <!-- head -->
@@ -11,10 +11,11 @@
                                 <input @change="toggleSelectionAll" type="checkbox" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                             </label>
                         </th> -->
-                        <th>التسلسل</th>
-                        <th>الإسم</th>
-                        <th>رقم الهاتف</th>
-                        <th>البريد الإلكترونى</th>
+                        <th>{{ $t('usersList.sequence') }}</th>
+                        <th>{{ $t('usersList.name') }}</th>
+                        <th>{{ $t('usersList.phoneNumber') }}</th>
+                        <th>{{ $t('usersList.email') }}</th>
+                        <th>{{ $t('usersList.clientType') }}</th>
                         <!-- <th></th> -->
                     </tr>
                 </thead>
@@ -38,6 +39,9 @@
                         <td>
                             <span>{{ client.email }}</span>
                         </td>
+                        <td>
+                            <span>{{ client.client_type ? $t(client.client_type) : '-' }}</span>
+                        </td>
                         <!-- <td>
                             <span class="cursor-pointer group hover:opacity-80">
                                 <svg class="group-hover:fill-client-dark" width="24" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -49,7 +53,7 @@
                 </tbody>
             </table>
             <div class="text-center p-3 text-lg bg-[#E1E1E1]" v-else>
-                لا يوجد عملاء
+                {{ $t('usersList.noUsers') }}
             </div>
         </div>
     </div>

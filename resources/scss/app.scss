@@ -115,6 +115,16 @@
         margin: 0;
     }
 
+    input[type="date"]{
+        &::-webkit-datetime-edit {
+            @apply flex justify-end ;
+        }
+
+        &::-webkit-calendar-picker-indicator {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAxMUgyMlYyMEMyMiAyMC41NTIzIDIxLjU1MjMgMjEgMjEgMjFIM0MyLjQ0NzcyIDIxIDIgMjAuNTUyMyAyIDIwVjExWk0xNyAzSDIxQzIxLjU1MjMgMyAyMiAzLjQ0NzcyIDIyIDRWOUgyVjRDMiAzLjQ0NzcyIDIuNDQ3NzIgMyAzIDNIN1YxSDlWM0gxNVYxSDE3VjNaIj48L3BhdGg+PC9zdmc+);
+        }
+    }
+
     /* Firefox */
     input[type=number] {
         -moz-appearance: textfield;
@@ -140,6 +150,18 @@
         .loading {
             @apply inline-block;
         } 
+    }
+
+    .tabBtnClient {
+        &.active, &:hover {
+            @apply bg-client-dark text-white;
+        }
+    }
+
+    .tabBtnWorker {
+        &.active, &:hover {
+            @apply bg-worker-dark text-white;
+        }
     }
 
 }

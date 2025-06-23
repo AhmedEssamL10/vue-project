@@ -89,7 +89,7 @@ export default {
                         if(response.data.token){
                             this.authStore.setToken(response.data.token);
                         }
-                        this.$router.push({ name: "Dashboard" });
+                        this.$router.push({ name: "DashboardStats" });
                     }
                 })
                 .catch(error => {

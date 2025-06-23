@@ -13,24 +13,23 @@
             <div class="max-w-[600px] mx-auto z-10 relative">
                 <h1
                     class="text-3xl md:text-4xl font-bold mb-6 !leading-normal text-center uppercase bg-gradient-to-r from-client to-worker bg-clip-text text-transparent">
-                    تسجيل دخول
+                    {{ $t('login') }}
                 </h1>
 
                 <form @submit.prevent="handleSubmit" class="flex flex-col gap-6">
                     <!-- Email Input -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">البريد
-                            الإلكترونى</label>
-                        <input type="email" v-model="formData.email" placeholder="البريد الإلكترونى"
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{$t('email')}}</label>
+                        <input type="email" v-model="formData.email" :placeholder="$t('email')"
                             class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                     </div>
 
                     <!-- Password Input -->
                     <div>
                         <div class="flex justify-between items-center mb-1">
-                            <label for="password" class="block text-sm font-medium text-gray-700">كلمة المرور</label>
+                            <label for="password" class="block text-sm font-medium text-gray-700">{{$t('password')}}</label>
                         </div>
-                        <input type="password" id="password" v-model="formData.password" placeholder="كلمة المرور"
+                        <input type="password" id="password" v-model="formData.password" :placeholder="$t('password')"
                             class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                         <!-- <div class="flex justify-end mt-2">
                 <a
@@ -44,7 +43,7 @@
                     <!-- Login Button -->
                     <button :class="isloading ? 'isloading' : ''" type="submit" class="submitBtn dashboardBtn">
                         <span v-if="isloading" class="loading loading-spinner"></span>
-                        <span>تسجيل دخول</span>
+                        <span>{{ $t('login') }}</span>
                     </button>
                 </form>
             </div>
@@ -81,7 +80,7 @@ export default {
                         if(response.data?.token){
                             this.authStore.setToken(response.data.token);
                         }
-                        this.$router.push({ name: "Dashboard" });
+                        this.$router.push({ name: "DashboardStats" });
                     }
                 })
                 .catch(error => {

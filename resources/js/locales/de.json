@@ -337,5 +337,96 @@
       "updated_at": "Konto aktualisiert am",
       "client_type": "Kundentyp"
     }
-  }
+  },
+  "workingHoursAccordingtoEuropeanLaw": "Arbeiten gemäß europäischem Gesetz: 5 Tage pro Woche und 8 Stunden pro Tag",
+  "stats": {
+    "individualClientsCount": "Anzahl privater Kunden",
+    "companyClientsCount": "Anzahl der Firmenkunden",
+    "totalClientsCount": "Gesamtanzahl der Kunden",
+    "shippingRequestsCount": "Anzahl der Versandaufträge",
+    "laborRequestsCount": "Anzahl der Arbeitsanfragen",
+    "workersCount": "Anzahl der Arbeiter"
+  },
+  "requestPrices": {
+    "title": "Kostenberechnungspreise",
+    "saveData": "Daten speichern",
+    "additionalServicesTitle": "Preise für Zusatzleistungen",
+    "packingServicePriceLabel": "Preis für Einpackservice",
+    "unpackingServicePriceLabel": "Preis für Auspackservice",
+    "furnitureUncollectingPriceLabel": "Preis für Demontage der Möbel",
+    "furnitureCollectingPriceLabel": "Preis für Montage der Möbel",
+    "KitchenMeterunInstallingPriceLabel": "Preis für Demontage pro Küchenmeter",
+    "KitchenMeterInstallingPriceLabel": "Preis für Montage pro Küchenmeter",
+    "rentPackingBoxesPriceLabel": "Preis für Miettransportboxen",
+    "buyPackingBoxesPriceLabel": "Preis für Kauf von Transportboxen",
+    "furnitureStoreDayPriceLabel": "Tagespreis für Möbellagerung",
+    "furnitureGitRedOfPriceLabel": "Preis für Entsorgung von Möbeln",
+    "cleaningPriceLabel": "Preis für Endreinigung",
+    "connectingWashingMachinePriceLabel": "Preis für Anschluss der Waschmaschine",
+    "furnitureLifterToolPriceLabel": "Preis für Möbellift",
+    "noParkingPriceLabel": "Preis für Einrichtung einer Halteverbotszone"
+  },
+  "workerServicesPrices": {
+    "title": "Preise für Arbeiterdienste",
+    "workerPriceLabel": "Preis pro Arbeiter und Tag",
+    "workerPricePlaceholder": "Preis pro Arbeiter und Tag"
+  },
+  "basicServicesPrices": {
+    "title": "Preise für Basisdienstleistungen",
+    "kiloMeterPriceLabel": "Preis pro Kilometer für die Entfernung",
+    "kiloMeterPricePlaceholder": "Preis pro Kilometer für die Entfernung",
+    "meterPriceLabel": "Preis pro Meter für die zurückgelegte Entfernung",
+    "meterPricePlaceholder": "Preis pro Meter für die zurückgelegte Entfernung",
+    "floorWithoutLifterLabel": "Preis für Stockwerk ohne Aufzug",
+    "floorWithoutLifterPlaceholder": "Preis für Stockwerk ohne Aufzug",
+    "floorWithLifterLabel": "Preis für Stockwerk mit Aufzug",
+    "floorWithLifterPlaceholder": "Preis für Stockwerk mit Aufzug",
+    "boxPriceLabel": "Preis für die Kiste",
+    "boxPricePlaceholder": "Preis für die Kiste",
+    "meterInBasementLabel": "Preis pro Meter im zusätzlichen Lagerraum",
+    "meterInBasementPlaceholder": "Preis pro Meter im zusätzlichen Lagerraum",
+    "roomPriceLabel": "Preis für das Zimmer",
+    "roomPricePlaceholder": "Preis für das Zimmer",
+    "squareMeterPriceLabel": "Preis pro Quadratmeter der Immobilie",
+    "squareMeterPricePlaceholder": "Preis pro Quadratmeter der Immobilie"
+  },
+  "usersList": {
+    "title": "Kundenliste",
+    "sequence": "Sequenz",
+    "name": "Name",
+    "phoneNumber": "Telefonnummer",
+    "email": "E-Mail",
+    "clientType": "Kundentyp",
+    "noUsers": "Keine Benutzer vorhanden"
+  },
+  "workersList": {
+    "title": "Liste der Arbeiter",
+    "sequence": "Sequenz",
+    "name": "Name",
+    "phoneNumber": "Telefonnummer",
+    "email": "E-Mail",
+    "noWorkers": "Keine Arbeiter vorhanden"
+  },
+  "requestsList": {
+    "title": "Bestellliste",
+    "sequence": "Reihenfolge",
+    "requestType": "Bestellart",
+    "clientName": "Name des Kunden",
+    "clientType": "Kundentyp",
+    "email": "E-Mail",
+    "noRequests": "Keine Anfragen vorhanden",
+    "total": "Gesamtkosten",
+    "details": "Details",
+    "request": "Anfrage"
+  },
+  "sideMenu": {
+    "dashboard": "Dashboard",
+    "requestPricing": "Kalkulationspreise",
+    "clientsList": "Kundenliste",
+    "workersList": "Arbeiterliste",
+    "requestsList": "Anfrageliste"
+  },
+  "profile": "Profil",
+  "logout": "Abmelden"
+
 }

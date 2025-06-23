@@ -263,6 +263,9 @@
                                 </template>
                               </VDatePicker>
                             </div>
+                            <span class="text-info font-bold text-xs">
+                              {{ $t('workingHoursAccordingtoEuropeanLaw') }}
+                            </span>
                             <span v-if="v2$.workersFormFields.date.$error" class="error-msg">
                               {{ v2$.workersFormFields.date.$errors[0].$message }}
                             </span>

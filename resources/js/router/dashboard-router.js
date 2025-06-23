@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Dashboard from '../pages/dashboard/Dashboard.vue';
+import Stats from '../pages/dashboard/Stats.vue';
 import Profile from '../pages/dashboard/Profile.vue';
 import usersList from '../pages/dashboard/usersList.vue';
 import workersList from '../pages/dashboard/workersList.vue';
@@ -18,6 +19,12 @@ const router = createRouter({
       component: Dashboard,
       name: "Dashboard",
       children: [
+        { 
+          name: "DashboardStats", 
+          path: '', 
+          component: Stats, 
+          meta: { requiresAuth: true } 
+        },
         { 
           name: "requestConfigPage", 
           path: '/dashboard/request-configurations', 

@@ -1,6 +1,6 @@
 {
-    "client": "Ich bin ein Kunde",
-    "worker": "Ich bin ein Arbeiter",
+    "client": "Kunde",
+    "worker": "Arbeiter",
     "worker_description": "Treten Sie einem Netzwerk vertrauenswürdiger Arbeiter bei und verdienen Sie Geld durch Transportdienstleistungen.",
     "latest_offers": "Neueste Angebote",
     "about_us": "Wer sind wir?",
@@ -47,6 +47,8 @@
     
     "Don't have an account?": "Sie haben noch kein Konto?",
     "Register": "Registrieren",
+    "RegisterClient": "Kundenregistrierung",
+    "RegisterWorker": "Mitarbeiterregistrierung",
     "Remember me": "Angemeldet bleiben",
     "First Name": "Vorname",
     "Email": "E-Mail",
@@ -89,6 +91,26 @@
     "current_password": "Aktuelles Passwort",
     "new_password": "Neues Passwort",
     "new_password_confirmation": "Neues Passwort bestätigen",
-    "change_password": "Passwort ändern"
+    "change_password": "Passwort ändern",
+    "whenToStart": "Wann können Sie anfangen?",
+  "selectJob": "Für welche Position bewerben Sie sich?",
+  "shippingWorker": "Transportarbeiter",
+  "driver": "Fahrer",
+  "fittingWorker": "Montagearbeiter",
+  "hasExperience": "Haben Sie Erfahrung im Transportbereich?",
+  "yes": "Ja",
+  "no": "Nein",
+  "abilityTeamWork": "Sind Sie körperlich fit und teamfähig?",
+  "drivingLicense": "Haben Sie einen Führerschein?",
+  "licenseClassB": "Klasse B",
+  "licenseClassC_C1": "Klasse C/C1",
+  "whyWorkWithUs": "Warum möchten Sie bei uns arbeiten?",
+  "cv": "Lebenslauf",
+  "otherDocs": "Weitere Dokumente",
+  "agreeDataStorage": "Ich stimme der Speicherung und Verarbeitung meiner Daten für Bewerbungszwecke zu.",
+  "Last Name": "Nachname",
+  "Birth Day": "Geburtsdatum",
+  "address": "Adresse",
+  "updateRequestMessage": "Wenn Sie eine Anfrage aktualisieren möchten, kontaktieren Sie uns bitte oder stellen Sie eine neue Anfrage."
 
 }

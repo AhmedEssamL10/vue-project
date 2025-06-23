@@ -23,6 +23,21 @@ export default {
     getToasterData(){
       return this.uiStore.getToasterData;
     }
+  },
+  mounted(){
+    // this.$i18n.locale = 'de';
+  },
+  watch: {
+    '$i18n.locale': {
+      handler(val){
+        if(val === 'ar'){
+          document.body.dir = 'rtl';
+        }else{
+          document.body.dir = 'ltr';
+        }
+      },
+      immediate: true
+    }
   }
 };
 </script>

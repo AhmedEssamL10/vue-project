@@ -3,25 +3,26 @@
         <div class="container flex justify-between items-center">
             <div class="flex items-center">
                 <router-link :to="{ name: 'Dashboard' }">
-                    <img class="w-[150px]" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg" alt="Logo" />
+                    <img class="w-[150px]" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg"
+                        alt="Logo" />
                 </router-link>
             </div>
 
             <!-- Desktop Navigation -->
             <nav class="flex items-center gap-8">
                 <router-link v-if="!isLoggedIn" class="nav-link" :to="{ name: 'adminLogin' }">
-                    تسجيل دخول
+                    {{ $t('login') }}
                 </router-link>
                 <div v-else class="dropdown dropdown-hover dropdown-bottom dropdown-end">
-                    <span tabindex="0" role="button" class="nav-link">الملف الشخصية</span>
+                    <span tabindex="0" role="button" class="nav-link">{{ $t('profile') }}</span>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                         <li>
                             <router-link :to="{ name: 'adminProfile' }">
-                                الصفحة لشخصية
+                                {{ $t('profile') }}
                             </router-link>
                         </li>
                         <li @click="handleLogout">
-                            <span>تسجيل خروج</span>
+                            <span>{{ $t('logout') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -39,19 +40,29 @@
                 <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4 gap-2">
                     <!-- Sidebar content here -->
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'Dashboard' }">الرئيسية</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'DashboardStats' }">
+                            {{ $t('sideMenu.dashboard') }}
+                        </router-link>
                     </li>
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'requestConfigPage' }">أسعار حساب التكلفة</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'requestConfigPage' }">
+                            {{ $t('sideMenu.requestPricing') }}
+                        </router-link>
                     </li>
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'UsersList' }">قائمة العملاء</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'UsersList' }">
+                            {{ $t('sideMenu.clientsList') }}
+                        </router-link>
                     </li>
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'WorkersList' }">قائمة العمال</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'WorkersList' }">
+                            {{ $t('sideMenu.workersList') }}
+                        </router-link>
                     </li>
                     <li>
-                        <router-link class="sideMenuItem" :to="{ name: 'RequestsList' }">قائمة الطلبات</router-link>
+                        <router-link class="sideMenuItem" :to="{ name: 'RequestsList' }">
+                            {{ $t('sideMenu.requestsList') }}
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -72,13 +83,13 @@ const isLoggedIn = computed(() => {
 })
 
 const handleLogout = () => {
-    window.$axios.post('/admin/logout',{}, {
+    window.$axios.post('/admin/logout', {}, {
         headers: {
             Authorization: `Bearer ${authStore.token}`
         }
     })
         .then(response => {
-            if(response.data.isSuccess){
+            if (response.data.isSuccess) {
                 makeAlert(this.$t('logoutSuccessfully'), 'success')
                 this.authStore.setToken(null);
                 window.$axios.defaults.headers.common['Authorization'] = `Bearer `;
@@ -97,7 +108,7 @@ const handleLogout = () => {
 }
 
 onMounted(() => {
-    if(route.name == "Dashboard" && !isLoggedIn.value){
+    if (route.name == "Dashboard" && !isLoggedIn.value) {
         router.push({ name: "adminLogin" });
     }
 })

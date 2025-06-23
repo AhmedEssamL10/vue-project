@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-x-auto text-black py-6">
-        <h2 class="mb-4 text-xl font-bold">قائمة العمال</h2>
+        <h2 class="mb-4 text-xl font-bold">{{ $t('workersList.title') }}</h2>
         <div class="py-6">
             <table v-if="workersList?.length" class="table">
                 <!-- head -->
@@ -11,10 +11,10 @@
                                 <input @change="toggleSelectionAll" type="checkbox" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                             </label>
                         </th> -->
-                        <th>التسلسل</th>
-                        <th>الإسم</th>
-                        <th>رقم الهاتف</th>
-                        <th>البريد الإلكترونى</th>
+                        <th>{{ $t('workersList.sequence') }}</th>
+                        <th>{{ $t('workersList.name') }}</th>
+                        <th>{{ $t('workersList.phoneNumber') }}</th>
+                        <th>{{ $t('workersList.email') }}</th>
                         <!-- <th></th> -->
                     </tr>
                 </thead>
@@ -49,7 +49,7 @@
                 </tbody>
             </table>
             <div class="text-center p-3 text-lg bg-[#E1E1E1]" v-else>
-                لا يوجد عمال
+                {{ $t('workersList.noWorkers') }}
             </div>
         </div>
     </div>

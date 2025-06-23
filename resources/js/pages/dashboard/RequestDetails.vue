@@ -1,7 +1,7 @@
 <template>
     <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
         <h3 class="text-lg font-semibold text-gray-700 mb-3">
-            طلب #{{ requestDetails?.id }}
+            {{ $t('requestsList.request') }} #{{ requestDetails?.id }}
         </h3>
         <table class="table-auto w-full text-sm text-gray-700">
             <tbody>
@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         fetchRequestDetails(id, type){
-            const requestUrl = type == '' ? 'admin/factor-request' : 'admin/ship-request'
+            const requestUrl = type == 'shipping' ? 'admin/factor-request' : 'admin/ship-request'
             $axios.get(`${requestUrl}/${id}`, {
                 headers: {
                     Authorization: `Bearer ${this.authStore.token}`

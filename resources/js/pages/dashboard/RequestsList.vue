@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-x-auto text-black py-6">
-        <h2 class="mb-4 text-xl font-bold">قائمة الطلبات</h2>
+        <h2 class="mb-4 text-xl font-bold">{{ $t('requestsList.title') }}</h2>
         <div class="py-6">
             <div class="flex gap-3 items-center mb-6">
                 <button class="btn" :class="requestList === 'shipping' ? '' : 'btn-outline'" @click="requestList = 'shipping';activeRequestsList = [...shipRequests]" type="button">{{ $t('request.shippingRequest.type') }}</button>
@@ -15,12 +15,12 @@
                                 <input @change="toggleSelectionAll" type="checkbox" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
                             </label>
                         </th> -->
-                        <th>التسلسل</th>
-                        <th>نوع الطلب</th>
-                        <th>اسم العميل</th>
-                        <th>نوع العميل</th>
-                        <th>البريد الإلكترونى</th>
-                        <th>التكلفة الإجمالية</th>
+                        <th>{{ $t('requestsList.sequence') }}</th>
+                        <th>{{ $t('requestsList.requestType') }}</th>
+                        <th>{{ $t('requestsList.clientName') }}</th>
+                        <th>{{ $t('requestsList.clientType') }}</th>
+                        <th>{{ $t('requestsList.email') }}</th>
+                        <th>{{ $t('requestsList.total') }}</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -42,7 +42,7 @@
                             <span>{{ request.client_name || ' - ' }}</span>
                         </td>
                         <td>
-                            <span>{{ request.user?.client_type || ' - ' }}</span>
+                            <span>{{ request.user?.client_type ? $t(request.user?.client_type) : ' - ' }}</span>
                         </td>
                         <td>
                             <span>{{ request.client_email }}</span>
@@ -51,7 +51,7 @@
                             <span>{{ request.total || 0 }} يورو</span>
                         </td>
                         <td>
-                            <router-link class="underline font-semibold" :to="{ name: 'RequestDetails', params: { id: request.id, type: requestList } }">تفاصيل</router-link>
+                            <router-link class="underline font-semibold" :to="{ name: 'RequestDetails', params: { id: request.id, type: requestList } }">{{ $t('requestsList.details') }}</router-link>
                         </td>
                         <!-- <td>
                             <span class="cursor-pointer group hover:opacity-80">
@@ -64,7 +64,7 @@
                 </tbody>
             </table>
             <div class="text-center p-3 text-lg bg-[#E1E1E1]" v-else>
-                لا يوجد طلبات
+                {{ $t('requestsList.noRequests') }}
             </div>
         </div>
     </div>

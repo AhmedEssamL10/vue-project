@@ -7,15 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
             // Hide all tab contents
             tabContents.forEach((content) => {
-            content.classList.add('hidden');
+                content.classList.add('hidden');
             });
     
             // Show the selected tab content
             document.getElementById(target).classList.remove('hidden');
     
             // Remove active class from all tabs
-            tabs.forEach((t) => {
-            t.classList.remove('active');
+            tabs.forEach((tab) => {
+                tab.classList.remove('active');
             });
     
             // Add active class to the clicked tab

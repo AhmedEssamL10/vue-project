@@ -9,7 +9,8 @@
             <div class="mb-6">
                 <div class="flex flex-col items-start gap-3">
                     <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ __('My Profile Page') }}</h1>
-                    <a href="{{ route('profile.change-password', app()->getLocale()) }}" class="btn btn-outline text-gray-900 border-gray-900 hover:text-white self-end">{{ __('change_password') }}</a>
+                    <a href="{{ route('profile.change-password', app()->getLocale()) }}"
+                        class="btn btn-outline text-gray-900 border-gray-900 hover:text-white self-end">{{ __('change_password') }}</a>
                 </div>
                 {{-- <p class="text-gray-600">Manage your account information</p> --}}
             </div>
@@ -55,7 +56,7 @@
                         <label class="block text-sm font-medium text-gray-700">{{ __('Client Type') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ auth()->user()->user_type }}
+                                {{ auth()->user()->user_type ? __(auth()->user()->user_type) : '-' }}
                             </span>
                         </div>
                     </div>
@@ -102,11 +103,14 @@
                 <div class="space-y-6 mb-6">
                     {{-- Your Requests Section --}}
                     <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="text-xs font-bold text-info mb-3">
+                            {{ __('updateRequestMessage') }}
+                        </div>
                         <h2 class="text-2xl font-semibold text-gray-800 mb-6 border-b border-gray-200 pb-3">
                             {{ __('yourRequests') }}
                         </h2>
 
-                        @if(isset($requests) && count($requests) > 0)
+                        @if (isset($requests) && count($requests) > 0)
                             @foreach ($requests as $shipRequest)
                                 <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
                                     <h3 class="text-lg font-semibold text-gray-700 mb-3">
@@ -185,8 +189,8 @@
                                 </div>
                             @endforeach
                         @endif
-                        
-                        @if(isset($factorRequests) && count($factorRequests) > 0)
+
+                        @if (isset($factorRequests) && count($factorRequests) > 0)
                             @foreach ($factorRequests as $shipRequest)
                                 <div class="mb-6 border px-4 pt-4 rounded shadow-sm bg-gray-50">
                                     <h3 class="text-lg font-semibold text-gray-700 mb-3">
@@ -273,40 +277,13 @@
                                 </div>
                             @endforeach
                         @endif
-                        
-                        @if((!isset($requests) || count($requests) == 0) && (!isset($factorRequests) || count($factorRequests) == 0))
+
+                        @if ((!isset($requests) || count($requests) == 0) && (!isset($factorRequests) || count($factorRequests) == 0))
                             <div class="text-center text-black py-2 text-xl">{{ __('noRequests') }}</div>
                         @endif
                     </div>
                 </div>
-
-
-
-                {{-- <div class="text-center py-12">
-                    <div class="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-lg font-medium text-gray-900 mb-2">Coming Soon</h3>
-                    <p class="text-gray-600">
-                        Your service requests and their status will be displayed here once the feature is available
-                    </p>
-                </div> --}}
         </div>
     </div>
     @endif
-
-    <!-- Action Buttons -->
-    {{-- <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-            <button class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors duration-200 font-medium">
-                Edit Profile
-            </button>
-            <button class="bg-gray-200 text-gray-800 px-6 py-2 rounded-md hover:bg-gray-300 transition-colors duration-200 font-medium">
-                Account Settings
-            </button>
-        </div> --}}
-    </div>
-    </div>
 @endsection

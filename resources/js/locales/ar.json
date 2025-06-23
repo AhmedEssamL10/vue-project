@@ -332,6 +332,96 @@
       "updated_at": "تاريخ آخر تعديل",
       "client_type": "نوع العميل"
     }
-  }
+  },
+  "workingHoursAccordingtoEuropeanLaw": "العمل طبقا للقانون الأوروبى 5 أيام فى الأسبوع و 8 ساعات فى اليوم",
+  "stats": {
+    "individualClientsCount": "عدد العملاء الأفراد",
+    "companyClientsCount": "عدد العملاء الشركات",
+    "totalClientsCount": "عدد العملاء الكلى",
+    "shippingRequestsCount": "عدد طلبات الشحن",
+    "laborRequestsCount": "عدد طلبات العمالة",
+    "workersCount": "عدد العمال"
+  },
+  "requestPrices": {
+    "title": "أسعار حساب التكلفة",
+    "saveData": "حفظ البيانات",
+    "additionalServicesTitle": "أسعار الخدمات الإضافية",
+    "packingServicePriceLabel": "سعر خدمة التعبئة و التغليف",
+    "unpackingServicePriceLabel": "سعر تفريغ الصناديق",
+    "furnitureUncollectingPriceLabel": "سعر تفكيك الأثاث",
+    "furnitureCollectingPriceLabel": "سعر تجميع الأثاث",
+    "KitchenMeterunInstallingPriceLabel": "سعر تفكيك متر المطبخ",
+    "KitchenMeterInstallingPriceLabel": "سعر تركيب متر المطبخ",
+    "rentPackingBoxesPriceLabel": "سعر إيجار صناديق النقل",
+    "buyPackingBoxesPriceLabel": "سعر شراء صناديق النقل",
+    "furnitureStoreDayPriceLabel": "سعر اليوم لتخزين الأثاث",
+    "furnitureGitRedOfPriceLabel": "سعر التخلص من الأثاث",
+    "cleaningPriceLabel": "سعر التنظيف النهائى",
+    "connectingWashingMachinePriceLabel": "سعر توصيل الغسالة",
+    "furnitureLifterToolPriceLabel": "سعر رافعة الأثاث",
+    "noParkingPriceLabel": "سعر إنشاء منطقه ممنوع الوقوف"
+  },
+  "workerServicesPrices": {
+    "title": "أسعار خدمات العمال",
+    "workerPriceLabel": "سعر العامل فى اليوم",
+    "workerPricePlaceholder": "سعر العامل فى اليوم"
+  },
+  "basicServicesPrices": {
+    "title": "أسعار الخدمات الأساسية",
+    "kiloMeterPriceLabel": "سعر الكيلو متر للمسافة",
+    "kiloMeterPricePlaceholder": "سعر الكيلو متر للمسافة",
+    "meterPriceLabel": "سعر المتر للمسافة المقطوعة",
+    "meterPricePlaceholder": "سعر المتر للمسافة المقطوعة",
+    "floorWithoutLifterLabel": "سعر الطابق بدون أسانسير",
+    "floorWithoutLifterPlaceholder": "سعر الطابق بدون أسانسير",
+    "floorWithLifterLabel": "سعر الطابق فى وجود أسانسير",
+    "floorWithLifterPlaceholder": "سعر الطابق فى وجود أسانسير",
+    "boxPriceLabel": "سعر الصندوق",
+    "boxPricePlaceholder": "سعر الصندوق",
+    "meterInBasementLabel": "سعر المتر فى مساحة التخزين الإضافية",
+    "meterInBasementPlaceholder": "سعر المتر فى مساحة التخزين الإضافية",
+    "roomPriceLabel": "سعر الحجرة",
+    "roomPricePlaceholder": "سعر الحجرة",
+    "squareMeterPriceLabel": "سعر المتر المربع للعقار",
+    "squareMeterPricePlaceholder": "سعر المتر المربع للعقار"
+  },
+  "usersList": {
+    "title": "قائمة العملاء",
+    "sequence": "التسلسل",
+    "name": "الإسم",
+    "phoneNumber": "رقم الهاتف",
+    "email": "البريد الإلكترونى",
+    "clientType": "نوع العميل",
+    "noUsers": "لا يوجد عملاء"
+  },
+  "workersList": {
+    "title": "قائمة العمال",
+    "sequence": "التسلسل",
+    "name": "الإسم",
+    "phoneNumber": "رقم الهاتف",
+    "email": "البريد الإلكترونى",
+    "noWorkers": "لا يوجد عمال"
+  },
+  "requestsList": {
+    "title": "قائمة الطلبات",
+    "sequence": "التسلسل",
+    "requestType": "نوع الطلب",
+    "clientName": "إسم العميل",
+    "clientType": "نوع العميل",
+    "email": "البريد الإلكترونى",
+    "noRequests": "لا توجد طلبات",
+    "total": "التكلفة الإجمالية",
+    "details": "تفاصيل",
+    "request": "طلب"
+  },
+  "sideMenu": {
+    "dashboard": "الرئيسية",
+    "requestPricing": "أسعار حساب التكلفة",
+    "clientsList": "قائمة العملاء",
+    "workersList": "قائمة العمال",
+    "requestsList": "قائمة الطلبات"
+  },
+  "profile": "الملف الشخصية",
+  "logout": "تسجيل خروج"
 
 }
