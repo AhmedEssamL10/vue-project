@@ -149,14 +149,14 @@
                                     <label for="cv" class="block text-sm font-medium text-gray-700 mb-1">
                                         {{ __('cv') }}*
                                     </label>
-                                    <input id="cv" name="cv" type="file"
+                                    <input id="cv" name="cv" type="file" accept=".doc,.docx,.pdf"
                                         class="file-input file-input-bordered w-full rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                                 </div>
                                 <div>
                                     <label for="otherDocs" class="block text-sm font-medium text-gray-700 mb-1">
                                         {{ __('otherDocs') }}
                                     </label>
-                                    <input id="otherDocs" name="otherDocs" multiple type="file"
+                                    <input id="otherDocs" name="otherDocs" accept=".doc,.docx,.pdf" multiple type="file"
                                         class="file-input file-input-bordered w-full rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                                 </div>
                                 <div>

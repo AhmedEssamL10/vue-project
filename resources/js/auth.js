@@ -31,12 +31,12 @@ if (formSubmissions.length) {
             const formData = new FormData(form);
             const actionUrl = form.getAttribute('action');
 
-            const data = {};
-            formData.forEach((value, key) => {
-                data[key] = value;
-            });
+            // const data = {};
+            // formData.forEach((value, key) => {
+            //     data[key] = value;
+            // });
 
-            $axios.post(actionUrl, data)
+            $axios.post(actionUrl, formData)
                 .then(response => {
                     if (response.data.isSuccess) {
                         const redirectUrl = response.data.redirect_url;
