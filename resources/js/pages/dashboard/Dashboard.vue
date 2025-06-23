@@ -2,7 +2,7 @@
     <header class="w-full bg-white shadow-sm py-4 z-20">
         <div class="container flex justify-between items-center">
             <div class="flex items-center">
-                <router-link :to="{ name: 'Dashboard' }">
+                <router-link :to="{ name: 'DashboardStats' }">
                     <img class="w-[150px]" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg"
                         alt="Logo" />
                 </router-link>
@@ -26,6 +26,10 @@
                         </li>
                     </ul>
                 </div>
+                <button @click="changeLanguage(this.$i18n.locale)" class="flex items-center gap-1 transition-all duration-500 hover:opacity-80 text-black">
+                    <img width="20px" :src="locale === 'de' ? arabicFlag : germanFlag" alt="arabicFlag" />
+                    <span>{{ locale == 'ar' ? 'De' : 'Ar' }}</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -70,14 +74,17 @@
     </main>
 </template>
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, watch } from 'vue';
 import { useAuthStore } from '../../stores/auth';
 import router from '../../router/dashboard-router';
 import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+import arabicFlag from '@assets/images/arabic.webp';
+import germanFlag from '@assets/images/germany.png';
 
 const authStore = useAuthStore()
 const route = useRoute()   // Get current route info
-
+const { locale } = useI18n()
 const isLoggedIn = computed(() => {
     return authStore.isLoggedIn;
 })
@@ -107,11 +114,29 @@ const handleLogout = () => {
     router.push({ name: "adminLogin" });
 }
 
+const changeLanguage = (currentLocale) => {
+    locale.value = currentLocale == 'ar' ? 'de' : 'ar';
+    localStorage.setItem('locale', locale.value);
+}
+
 onMounted(() => {
     if (route.name == "Dashboard" && !isLoggedIn.value) {
         router.push({ name: "adminLogin" });
     }
+    locale.value = localStorage.getItem('locale') || 'de';
+
 })
 
+watch('$i18n.locale', async (newLocale) => {
+    document.body.dir = newLocale === 'ar' ? 'rtl' : 'ltr';
+    router.push({
+        name: route.name,
+        params: {
+        ...route.params,
+        locale: newLocale,
+        },
+        query: route.query,
+    })
+})
 
 </script>

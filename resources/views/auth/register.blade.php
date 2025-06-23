@@ -139,6 +139,13 @@
                                         class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]"></textarea>
                                 </div>
                                 <div>
+                                    <label for="applicantMessage" class="block text-sm font-medium text-gray-700 mb-1">
+                                        {{ __('applicantMessage') }}
+                                    </label>
+                                    <textarea id="applicantMessage" name="applicantMessage" placeholder="{{ __('applicantMessage') }}"
+                                        class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]"></textarea>
+                                </div>
+                                <div>
                                     <label for="cv" class="block text-sm font-medium text-gray-700 mb-1">
                                         {{ __('cv') }}*
                                     </label>

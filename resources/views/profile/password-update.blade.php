@@ -56,7 +56,7 @@
                         <!-- Login Button -->
                         <button type="submit" class="submitBtn">
                             <span class="loading loading-spinner"></span>
-                            <span>{{ __('Login') }}</span>
+                            <span>{{ __('change_password') }}</span>
                         </button>
                     </div>
 
