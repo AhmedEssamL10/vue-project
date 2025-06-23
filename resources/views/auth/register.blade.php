@@ -14,7 +14,7 @@
             </a>
         </div>
         <div id="workerTab" class="tabContent {{$userType === 'client' ? 'hidden' : ''}}">
-            <form id="authForm" method="POST" action="{{ route('register') }}">
+            <form class="authForm" method="POST" action="{{ route('register') }}">
                 @csrf
                 <input type="hidden" name="user_type" value="worker">
         
@@ -207,7 +207,7 @@
             </form>
         </div>
         <div id="clientTab" class="tabContent {{$userType === 'worker' ? 'hidden' : ''}}">
-            <form id="authForm" method="POST" action="{{ route('register') }}">
+            <form class="authForm" method="POST" action="{{ route('register') }}">
                 @csrf
                  <input type="hidden" name="user_type" value="client">
                  <div class="bg-[#f2f2f2] py-8 relative">
