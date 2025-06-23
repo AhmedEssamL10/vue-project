@@ -24,6 +24,14 @@ class User extends Authenticatable
         'phone',
         'user_type',
         'client_type',
+        'last_name',
+        'birthDay',
+        'address',
+        'cv',
+        'otherDocs',
+        'whenToStart',
+        'whyWorkWithUs',
+        'message'
     ];
 
     /**

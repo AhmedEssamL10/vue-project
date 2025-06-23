@@ -12,14 +12,30 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // Common validation rules
+        $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
             'phone' => 'required|string|max:15',
-            'user_type' => 'required',
+            'user_type' => 'required|in:client,worker',
+        ];
 
-        ]);
+        // Additional rules if the user is a worker
+        if ($request->user_type === 'worker') {
+            $rules = array_merge($rules, [
+                'last_name' => 'required|string|max:255',
+                'birthDay' => 'required|date',
+                'address' => 'required|string|max:255',
+                // 'cv' => 'required|file|mimes:pdf,doc,docx|max:2048',
+                // 'otherDocs' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
+                'whenToStart' => 'required|string',
+                'whyWorkWithUs' => 'required|string',
+            ]);
+        }
+
+        // Validate request
+        $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return response()->json([
@@ -28,15 +44,37 @@ class AuthController extends Controller
             ], 422);
         }
 
+        // Handle file uploads if worker
+        $cvPath = null;
+        $otherDocsPath = null;
+
+        if ($request->user_type === 'worker') {
+            if ($request->hasFile('cv')) {
+                $cvPath = $request->file('cv')->store('cvs', 'public');
+            }
+            if ($request->hasFile('otherDocs')) {
+                $otherDocsPath = $request->file('otherDocs')->store('documents', 'public');
+            }
+        }
+
+        // Create user
         $user = User::create([
             'name' => $request->name,
+            'last_name' => $request->last_name ?? null,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'user_type' => $request->user_type,
             'client_type' => $request->type ?? null,
+            'birthDay' => $request->birthDay ?? null,
+            'address' => $request->address ?? null,
+            'cv' =>  $request->cv ?? null,
+            'otherDocs' => $request->otherDocs ?? null,
+            'whenToStart' => $request->whenToStart ?? null,
+            'whyWorkWithUs' => $request->whyWorkWithUs ?? null,
         ]);
 
+        // Auto login
         Auth::login($user);
 
         $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
@@ -48,6 +86,7 @@ class AuthController extends Controller
             'isSuccess' => true,
         ], 200);
     }
+
 
 
     public function login(Request $request)
