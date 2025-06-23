@@ -27,8 +27,9 @@ class AuthController extends Controller
                 'last_name' => 'required|string|max:255',
                 'birthDay' => 'required|date',
                 'address' => 'required|string|max:255',
-                // 'cv' => 'required|file|mimes:pdf,doc,docx|max:2048',
-                // 'otherDocs' => 'nullable|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
+                'cv' => 'required|file|mimes:pdf,doc,docx|max:5120',
+                'otherDocs' => 'nullable|array',
+                'otherDocs.*' => 'file|mimes:pdf,doc,docx,jpg,jpeg,png|max:5120',
                 'whenToStart' => 'required|string',
                 'whyWorkWithUs' => 'required|string',
             ]);
@@ -46,16 +47,23 @@ class AuthController extends Controller
 
         // Handle file uploads if worker
         $cvPath = null;
-        $otherDocsPath = null;
-
+        $otherDocsPaths = [];
+        // dd($request->file('cv'));
         if ($request->user_type === 'worker') {
+            // Store single CV file
             if ($request->hasFile('cv')) {
                 $cvPath = $request->file('cv')->store('cvs', 'public');
             }
+
+            // Store multiple otherDocs files
             if ($request->hasFile('otherDocs')) {
-                $otherDocsPath = $request->file('otherDocs')->store('documents', 'public');
+                foreach ($request->file('otherDocs') as $file) {
+                    $path = $file->store('documents', 'public');
+                    $otherDocsPaths[] = $path;
+                }
             }
         }
+
 
         // Create user
         $user = User::create([
@@ -68,8 +76,8 @@ class AuthController extends Controller
             'client_type' => $request->type ?? null,
             'birthDay' => $request->birthDay ?? null,
             'address' => $request->address ?? null,
-            // 'cv' =>  $request->cv ?? null,
-            // 'otherDocs' => $request->otherDocs ?? null,
+            'cv' =>  $cvPath ?? null,
+            'otherDocs' => $otherDocsPaths ?? null,
             'whenToStart' => $request->whenToStart ?? null,
             'whyWorkWithUs' => $request->whyWorkWithUs ?? null,
             'message' => $request->applicantMessage ?? null

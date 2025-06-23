@@ -156,7 +156,7 @@
                                     <label for="otherDocs" class="block text-sm font-medium text-gray-700 mb-1">
                                         {{ __('otherDocs') }}
                                     </label>
-                                    <input id="otherDocs" name="otherDocs" accept=".doc,.docx,.pdf" multiple type="file"
+                                    <input id="otherDocs" name="otherDocs[]" accept=".doc,.docx,.pdf" multiple type="file"
                                         class="file-input file-input-bordered w-full rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                                 </div>
                                 <div>
