@@ -17,7 +17,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8|confirmed',
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|string',
             'user_type' => 'required|in:client,worker',
         ];
 
@@ -72,6 +72,7 @@ class AuthController extends Controller
             'otherDocs' => $request->otherDocs ?? null,
             'whenToStart' => $request->whenToStart ?? null,
             'whyWorkWithUs' => $request->whyWorkWithUs ?? null,
+            'message' => $request->applicantMessage ?? null
         ]);
 
         // Auto login
