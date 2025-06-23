@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <form id="authForm" method="POST" action="{{ route('login') }} ">
+    <form class="authForm" method="POST" action="{{ route('login') }} ">
         @csrf
         <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
             <div class="container">

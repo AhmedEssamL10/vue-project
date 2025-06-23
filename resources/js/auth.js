@@ -18,55 +18,60 @@ authInput.forEach((input) => {
 })
 
 
-const formSubmittion = document.querySelector('#authForm');
+const formSubmissions = document.querySelectorAll('.authForm');
 
-if(formSubmittion) {
-    formSubmittion.addEventListener('submit', function(e){
-        e.submitter.classList.add('isloading')
-        e.preventDefault();
-        const formData = new FormData(this);
-        const actionUrl = e.target.getAttribute('action');
-        
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
-    
-        $axios.post(actionUrl, data)
-            .then(response => {
-                if(response.data.isSuccess){
-                    const redirectUrl = response.data.redirect_url;
-                    if(redirectUrl){
-                        window.location.href = redirectUrl;
-                    }
-                }
-            })
-            .catch(error => {
-                const errors = error.response?.data?.errors;
-                if(errors){
-                    for (const key in errors) {
-                        const errorMessages = errors[key];
-                        const inputElement = document.querySelector(`[name="${key}"]`);
-                        if (inputElement) {
-                            let errorContainer = inputElement.nextElementSibling;
-                            if (!errorContainer || !errorContainer.classList.contains('error-message')) {
-                                errorContainer = document.createElement('div');
-                                errorContainer.classList.add('error-message');
-                                inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
-                            }
-                            errorContainer.innerHTML = errorMessages.join('<br>');
+if (formSubmissions.length) {
+    formSubmissions.forEach((form) => {
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = e.submitter;
+            if (submitBtn) submitBtn.classList.add('isloading');
+
+            const formData = new FormData(form);
+            const actionUrl = form.getAttribute('action');
+
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            $axios.post(actionUrl, data)
+                .then(response => {
+                    if (response.data.isSuccess) {
+                        const redirectUrl = response.data.redirect_url;
+                        if (redirectUrl) {
+                            window.location.href = redirectUrl;
                         }
                     }
-                }
-    
-                makeAlert(error.response?.data?.message, 'error')
-            })
-            .finally(() => {
-                e.submitter.classList.remove('isloading')
-            })
-    
-    })
-};
+                })
+                .catch(error => {
+                    const errors = error.response?.data?.errors;
+                    if (errors) {
+                        for (const key in errors) {
+                            const errorMessages = errors[key];
+                            const inputElement = form.querySelector(`[name="${key}"]`);
+                            if (inputElement) {
+                                let errorContainer = inputElement.nextElementSibling;
+                                if (!errorContainer || !errorContainer.classList.contains('error-message')) {
+                                    errorContainer = document.createElement('div');
+                                    errorContainer.classList.add('error-message');
+                                    inputElement.parentNode.insertBefore(errorContainer, inputElement.nextSibling);
+                                }
+                                errorContainer.innerHTML = errorMessages.join('<br>');
+                            }
+                        }
+                    }
+
+                    makeAlert(error.response?.data?.message || 'حدث خطأ ما', 'error');
+                })
+                .finally(() => {
+                    if (submitBtn) submitBtn.classList.remove('isloading');
+                });
+        });
+    });
+}
+
 
 const logoutBtn = document.querySelectorAll('.handleLogout');
 
