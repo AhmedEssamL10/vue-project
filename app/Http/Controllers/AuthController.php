@@ -68,8 +68,8 @@ class AuthController extends Controller
             'client_type' => $request->type ?? null,
             'birthDay' => $request->birthDay ?? null,
             'address' => $request->address ?? null,
-            'cv' =>  $request->cv ?? null,
-            'otherDocs' => $request->otherDocs ?? null,
+            // 'cv' =>  $request->cv ?? null,
+            // 'otherDocs' => $request->otherDocs ?? null,
             'whenToStart' => $request->whenToStart ?? null,
             'whyWorkWithUs' => $request->whyWorkWithUs ?? null,
             'message' => $request->applicantMessage ?? null
