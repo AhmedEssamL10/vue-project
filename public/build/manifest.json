@@ -1,11 +1,23 @@
 {
+  "public/assets/images/arabic.webp": {
+    "file": "assets/arabic-Cu_frfOx.webp",
+    "src": "public/assets/images/arabic.webp"
+  },
+  "public/assets/images/germany.png": {
+    "file": "assets/germany-5ab2_35V.png",
+    "src": "public/assets/images/germany.png"
+  },
   "resources/js/main.js": {
-    "file": "assets/main-D0yT4vYS.js",
+    "file": "assets/main-DE6DuUOd.js",
     "name": "main",
     "src": "resources/js/main.js",
     "isEntry": true,
     "css": [
-      "assets/main-CP9Ye3jX.css"
+      "assets/main-B5xXX7pZ.css"
+    ],
+    "assets": [
+      "assets/arabic-Cu_frfOx.webp",
+      "assets/germany-5ab2_35V.png"
     ]
   }
 }

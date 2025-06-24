@@ -19,8 +19,8 @@
                 <form @submit.prevent="handleSubmit" class="flex flex-col gap-6">
                     <!-- Email Input -->
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{$t('email')}}</label>
-                        <input type="email" v-model="formData.email" :placeholder="$t('email')"
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{$t('email_required')}}</label>
+                        <input type="email" v-model="formData.email" :placeholder="$t('email_required')"
                             class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
                     </div>
 
