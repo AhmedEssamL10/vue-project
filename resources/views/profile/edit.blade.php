@@ -20,14 +20,13 @@
                 <h2 class="text-xl font-semibold text-gray-800 mb-6 border-b border-gray-200 pb-3">
                     {{ __('personal information') }}
                 </h2>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Name Field -->
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-700">{{ __('name') }}</label>
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
-                                {{ auth()->user()->name }}
+                                {{ auth()->user()->name }} {{ auth()->user()->last_name || '' }}
                             </span>
                         </div>
                     </div>
@@ -48,6 +47,15 @@
                         <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
                             <span class="text-gray-900">
                                 {{ auth()->user()->phone ?? '01000000000' }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">{{ __('Birth Day') }}</label>
+                        <div class="bg-gray-50 border border-gray-200 rounded-md px-3 py-2">
+                            <span class="text-gray-900">
+                                {{ auth()->user()->birthDay ?? '-' }}
                             </span>
                         </div>
                     </div>

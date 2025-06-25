@@ -26,7 +26,7 @@
                         </li>
                     </ul>
                 </div>
-                <button @click="changeLanguage(this.$i18n.locale)" class="flex items-center gap-1 transition-all duration-500 hover:opacity-80 text-black">
+                <button @click="changeLanguage(locale)" class="flex items-center gap-1 transition-all duration-500 hover:opacity-80 text-black">
                     <img width="20px" :src="locale === 'de' ? arabicFlag : germanFlag" alt="arabicFlag" />
                     <span>{{ locale == 'ar' ? 'De' : 'Ar' }}</span>
                 </button>

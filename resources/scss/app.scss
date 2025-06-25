@@ -207,3 +207,20 @@ body[dir="rtl"] {
 .error-message {
     @apply text-red-500 text-sm ;
 }
+
+.password_wrapper {
+    .showPasswordIcon {
+        @apply hidden;
+    }
+    .hidePasswordIcon {
+        @apply block;
+    }
+    &.passwordHidden {
+        .showPasswordIcon {
+            @apply block;
+        }
+        .hidePasswordIcon {
+            @apply hidden;
+        }
+    }
+}

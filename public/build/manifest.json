@@ -8,12 +8,12 @@
     "src": "public/assets/images/germany.png"
   },
   "resources/js/main.js": {
-    "file": "assets/main-DE6DuUOd.js",
+    "file": "assets/main-C9ZAIHcv.js",
     "name": "main",
     "src": "resources/js/main.js",
     "isEntry": true,
     "css": [
-      "assets/main-B5xXX7pZ.css"
+      "assets/main-CbZGpr4A.css"
     ],
     "assets": [
       "assets/arabic-Cu_frfOx.webp",
