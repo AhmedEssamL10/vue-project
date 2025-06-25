@@ -95,3 +95,19 @@ if(logoutBtn && logoutBtn.length){
         })
     })
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.toggle-password').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const container = toggle.closest('.password_wrapper');
+            const input = container.querySelector('input[type="password"], input[type="text"]');
+            if (input) {
+                const isPassword = input.type === 'password';
+                input.type = isPassword ? 'text' : 'password';
+                container.classList.toggle('passwordHidden');
+                // Optional: toggle SVG or class
+                // Example: toggle.classList.toggle('showing');
+            }
+        });
+    });
+});
