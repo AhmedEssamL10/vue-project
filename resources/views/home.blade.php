@@ -49,48 +49,16 @@
                 data-autoplay='{"delay": 3000}'
                 data-breakpoints='{"640": {"slidesPerView": 1.5}, "768": {"slidesPerView": 2}, "1024": {"slidesPerView": 3}, "1200": {"slidesPerView": 4}}'>
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
-                    <div class="swiper-slide group">
-                        <a href="#">
-                            <img src="https://media.istockphoto.com/id/598820096/vector/twenty-percents-sale.jpg?s=612x612&w=0&k=20&c=nGIUSXRYbzRyL7T8r5Rexyemmu8-jIlflQ4RI3wIKEw="
-                                class="w-full group-hover:scale-125 transition duration-500" alt="sss" />
-                        </a>
-                    </div>
+                    @foreach ($items as $item)
+                        <div class="swiper-slide group">
+                            <a href="#">
+                                <img src="{{ asset('storage/' . $item->image) }}"
+                                    class="w-full group-hover:scale-125 transition duration-500"
+                                    alt="{{ $item->title }}" />
+                            </a>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>

@@ -136,7 +136,7 @@ class RequestController extends Controller
             $services['furnitureCollectingPrice'] = $prices['furnitureCollectingPrice'] ?? 0;
         }
         if ($request->kitchenLongMoveOut) {
-            $services['KitchenMeterInstallingPrice'] = $request->kitchenLongMoveOut * ($prices['KitchenMeterInstallingPrice'] ?? 0);
+            $services['KitchenMeterInstallingPrice'] = (int) $request->kitchenLongMoveOut * ($prices['KitchenMeterInstallingPrice'] ?? 0);
         }
         if ($request->kitchenLong) {
             $services['KitchenMeterunInstallingPrice'] = $request->kitchenLong * ($prices['KitchenMeterunInstallingPrice'] ?? 0);

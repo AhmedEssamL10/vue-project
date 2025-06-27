@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Item;
 use Illuminate\Support\Facades\App;
 use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
@@ -8,14 +9,21 @@ use App\Http\Controllers\API\RequestController;
 
 // Blade homepage
 Route::get('/', function () {
-    return redirect('/' . (session('locale') ?? App::getLocale()));
+    $locale = session('locale', App::getLocale());
+
+    if (!in_array($locale, ['de', 'ar'])) {
+        $locale = 'de'; // fallback to default language
+    }
+
+    return redirect("/$locale");
 });
 Route::prefix('{locale}')
     ->where(['locale' => 'de|ar'])
     ->middleware(Localization::class)
     ->group(function () {
         Route::get('/', function () {
-            return view('home'); // Blade-only view
+            $items = Item::all();
+            return view('home', compact('items')); // Blade-only view
         })->name('home');
 
         Route::get('/login', function () {

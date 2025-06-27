@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\API\AdminController;
 use App\Http\Controllers\API\RequestController;
 use App\Http\Controllers\API\AdminAuthController;
@@ -30,5 +31,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/requests', [AdminController::class, 'requests']);
         Route::get('/ship-request/{id}', [AdminController::class, 'shipRequest']);
         Route::get('/factor-request/{id}', [AdminController::class, 'factorRequest']);
+        Route::apiResource('items', ItemController::class);
     });
 });
