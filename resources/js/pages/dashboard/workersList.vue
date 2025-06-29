@@ -36,7 +36,7 @@
                             <span>{{ client.phone || '-' }}</span>
                         </td>
                         <td>
-                            <span>{{ client.email }}</span>
+                            <span class="select-all cursor-pointer">{{ client.email }}</span>
                         </td>
                         <!-- <td>
                             <span class="cursor-pointer group hover:opacity-80">

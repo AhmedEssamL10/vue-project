@@ -39,6 +39,7 @@
     </section>
 
     <!-- Offers -->
+    @if(isSet($items) && $items->count())
     <section class="pb-4 pt-8 bg-[#f1f1f1]">
         <div class="container">
             <h2 class="text-3xl md:text-4xl font-bold text-center lg:text-start mb-4 text-client-dark">
@@ -63,9 +64,9 @@
             </div>
         </div>
     </section>
-
+    @endif
     <!-- About Us -->
-    <section class="bg-white py-16 px-4 sm:px-6 lg:px-8">
+    <section class="bg-white {{ (isSet($items) && $items->count()) ? 'py-16' : '' }} px-4 sm:px-6 lg:px-8">
         <div class="container">
             <div class="grid md:grid-cols-2 gap-10 items-center">
 

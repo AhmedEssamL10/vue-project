@@ -326,6 +326,9 @@
     "created_at": "Erstellt am",
     "updated_at": "Aktualisiert am",
     "total": "Gesamtbetrag",
+    "count": "Anzahl der Arbeiter",
+    "date_from": "Von Datum",
+    "date_to": "Bis Datum",
     "user": {
       "id": "Kundennummer",
       "name": "Name",
@@ -343,9 +346,9 @@
     "individualClientsCount": "Anzahl privater Kunden",
     "companyClientsCount": "Anzahl der Firmenkunden",
     "totalClientsCount": "Gesamtanzahl der Kunden",
-    "shippingRequestsCount": "Anzahl der Versandaufträge",
+    "shippingRequestsCount": "Anzahl die Umzuge",
     "laborRequestsCount": "Anzahl der Arbeitsanfragen",
-    "workersCount": "Anzahl der Arbeiter"
+    "workersCount": "Anzahl die Mitarbeiter"
   },
   "requestPrices": {
     "title": "Kostenberechnungspreise",
@@ -427,6 +430,10 @@
     "requestsList": "Anfrageliste"
   },
   "profile": "Profil",
-  "logout": "Abmelden"
+  "logout": "Abmelden",
+  "notRegistered": "Nicht registriert",
+  "These credentials do not match our records.": "Die E-Mail-Adresse oder das Passwort sind nicht korrekt.",
+  "search": "Suche",
+  "something_went_wrong": "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
 
 }

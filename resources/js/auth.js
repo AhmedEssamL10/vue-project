@@ -1,6 +1,7 @@
+import i18n from './i18n.js';
+
 const authInput = document.querySelectorAll('input[name="user_type"]');
 const company_form_input = document.querySelectorAll('.company_form_input');
-
 
 authInput.forEach((input) => {
     input.addEventListener('change', function(e) {
@@ -63,7 +64,7 @@ if (formSubmissions.length) {
                         }
                     }
 
-                    makeAlert(error.response?.data?.message || 'حدث خطأ ما', 'error');
+                    makeAlert(error.response?.data?.message ? i18n.global.t(error.response?.data?.message) : i18n.global.t('something_went_wrong'), 'error');
                 })
                 .finally(() => {
                     if (submitBtn) submitBtn.classList.remove('isloading');

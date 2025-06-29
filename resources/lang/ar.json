@@ -10,16 +10,16 @@
     "feature_2": "نقل مؤمن بالكامل وآمن",
     "feature_3": "ضمان التوصيل في الموعد المحدد",
     
-    "transfer_steps_title": "انقل أغراضك في",
+    "transfer_steps_title": "إستلم عرضك في",
     "three_steps": "3 خطوات",
     "transfer_step1_title": "التسجيل",
     "transfer_step1_description": "أنشئ حسابك في بضع خطوات بسيطة لتبدأ باستخدام خدماتنا.",
     "transfer_step2_title": "أنشئ طلب",
     "transfer_step2_description": "صف ما تريد نقله، متى وأين. حدد ميزانيتك.",
-    "transfer_step3_title": "استلم أغراضك",
-    "transfer_step3_description": "تتبع أغراضك واستلمها في الموقع المحدد. قيّم الخدمة.",
+    "transfer_step3_title": "استلم عرضك",
+    "transfer_step3_description": "تتبع عرضك واستلمها في الموقع المحدد. قيّم الخدمة.",
 
-    "worker_steps_title": "اربح المال في ",
+    "worker_steps_title": "كن شريكنا في ",
     "worker_step1_title": "التسجيل",
     "worker_step1_description": "سجّل كعامل، وقم بتوثيق هويتك وحدد مواعيد توفرّك للعمل.",
     "worker_step2_title": "استلام الطلبات",
@@ -112,5 +112,6 @@
   "Birth Day": "تاريخ الميلاد",
   "address": "العنوان",
   "updateRequestMessage": "إذا كنت ترغب في تعديل أي طلب، يرجى التواصل معنا أو إنشاء طلب جديد.",
-  "applicantMessage": "رسالة التقديم"
+  "applicantMessage": "رسالة التقديم",
+  "close": "إغلاق"
 }

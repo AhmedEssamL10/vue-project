@@ -45,7 +45,7 @@
                             <span>{{ request.user?.client_type ? $t(request.user?.client_type) : ' - ' }}</span>
                         </td>
                         <td>
-                            <span>{{ request.client_email }}</span>
+                            <span class="select-all cursor-pointer">{{ request.client_email }}</span>
                         </td>
                         <td>
                             <span>{{ request.total || 0 }} يورو</span>

@@ -321,6 +321,9 @@
     "created_at": "تاريخ الإنشاء",
     "updated_at": "تاريخ التعديل",
     "total": "الإجمالي",
+    "count": "عدد العمال",
+    "date_from": "من تاريخ",
+    "date_to": "إلى تاريخ",
     "user": {
       "id": "رقم العميل",
       "name": "اسم العميل",
@@ -422,6 +425,10 @@
     "requestsList": "قائمة الطلبات"
   },
   "profile": "الملف الشخصية",
-  "logout": "تسجيل خروج"
+  "logout": "تسجيل خروج",
+  "notRegistered": "غير مسجل",
+  "search": "بحث",
+  "These credentials do not match our records.": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+  "something_went_wrong": "حدث خطأ ما، الرجاء المحاولة لاحقًا."
 
 }

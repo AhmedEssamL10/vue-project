@@ -10,16 +10,15 @@
     "feature_2": "Vollständig gesicherter und sicherer Transport",
     "feature_3": "Zustellung zum vereinbarten Termin garantiert",
     
-    "transfer_steps_title": "Transportiere deine Sachen in",
+    "transfer_steps_title": "Erhalte dein Angebot um",
     "three_steps": "3 Schritte",
     "transfer_step1_title": "Registrierung",
     "transfer_step1_description": "Erstelle dein Konto in wenigen einfachen Schritten, um unsere Dienste zu nutzen.",
     "transfer_step2_title": "Erstelle eine Anfrage",
     "transfer_step2_description": "Beschreibe, was du transportieren möchtest, wann und wo. Lege dein Budget fest.",
-    "transfer_step3_title": "Empfange deine Gegenstände",
-    "transfer_step3_description": "Verfolge deine Gegenstände und erhalte sie am angegebenen Ort. Bewerte den Service.",
-
-    "worker_steps_title": "Verdiene Geld in 3 Schritten",
+    "transfer_step3_title": "Empfange dein Angebot",
+    "transfer_step3_description": "Verfolge dein Angebot und erhalte es am angegebenen Ort. Bewerte den Service.",
+    "worker_steps_title": "Werde unser Partner in ",
     "worker_step1_title": "Registrierung",
     "worker_step1_description": "Registriere dich als Arbeiter, verifiziere deine Identität und lege deine Verfügbarkeitszeiten fest.",
     "worker_step2_title": "Auftragsannahme",
@@ -112,6 +111,7 @@
   "Birth Day": "Geburtsdatum",
   "address": "Adresse",
   "updateRequestMessage": "Wenn Sie eine Anfrage aktualisieren möchten, kontaktieren Sie uns bitte oder stellen Sie eine neue Anfrage.",
-  "applicantMessage": "Bewerbungsnachricht"
+  "applicantMessage": "Bewerbungsnachricht",
+  "close": "Schließen"
 
 }

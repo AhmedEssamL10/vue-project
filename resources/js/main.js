@@ -63,3 +63,11 @@ window.makeAlert = function(message = '', type = 'success'){
     currentAlertTimeout = null;
   }, alertDuration);
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+  const isClosed = sessionStorage.getItem('cookiesModalClosed');
+  if(!isClosed){
+    cookiesModal.showModal();
+    sessionStorage.setItem('cookiesModalClosed', 'true');
+  }
+})

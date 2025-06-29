@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         fetchRequestDetails(id, type){
-            const requestUrl = type == 'shipping' ? 'admin/factor-request' : 'admin/ship-request'
+            const requestUrl = type == 'shipping' ? 'admin/ship-request' : 'admin/factor-request'
             $axios.get(`${requestUrl}/${id}`, {
                 headers: {
                     Authorization: `Bearer ${this.authStore.token}`

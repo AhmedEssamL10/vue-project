@@ -107,7 +107,7 @@
             @endif --}}
 
             <!-- Client-Specific Sections -->
-            @if (auth()->user()->user_type === 'client')
+            {{-- @if (auth()->user()->user_type === 'client') --}}
                 <div class="space-y-6 mb-6">
                     {{-- Your Requests Section --}}
                     <div class="bg-white rounded-lg shadow-md p-6">
@@ -293,5 +293,5 @@
                 </div>
         </div>
     </div>
-    @endif
+    {{-- @endif --}}
 @endsection

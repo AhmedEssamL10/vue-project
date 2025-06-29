@@ -1,6 +1,24 @@
 <template>
     <div class="overflow-x-auto text-black py-6">
         <h2 class="mb-4 text-xl font-bold">{{ $t('usersList.title') }}</h2>
+        <div class="filters flex items-end justify-between gap-4">
+            <div class="form-control w-full max-w-xs">
+                <label class="label mb-1">
+                    <span class="label-text">{{ $t('usersList.name') }}</span>
+                </label>
+                <input v-model="filters.name" type="text" :placeholder="$t('usersList.name')" class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
+            </div>
+            <div class="form-control w-full max-w-xs">
+                <label class="label mb-1">
+                    <span class="label-text">{{ $t('usersList.email') }}</span>
+                </label>
+                <input v-model="filters.email" type="text" :placeholder="$t('usersList.email')" class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none text-[#1b1718]" />
+            </div>
+            <div class="form-control w-full max-w-xs">
+                <button @click="filterClients" class="btn btn-primary px-6 min-w-[150px]">{{ $t('search') }}</button>
+            </div>
+        </div>
+
         <div class="py-6">
             <table v-if="clientsList?.length" class="table">
                 <!-- head -->
@@ -21,7 +39,7 @@
                 </thead>
                 <tbody>
                     <!-- row 1 -->
-                    <tr v-for="(client, index) in clientsList">
+                    <tr v-for="(client, index) in filteredClients">
                         <!-- <th>
                             <label>
                                 <input type="checkbox" v-model="request.isSelected" class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
@@ -37,7 +55,7 @@
                             <span>{{ client.phone || '-' }}</span>
                         </td>
                         <td>
-                            <span>{{ client.email }}</span>
+                            <span class="select-all cursor-pointer">{{ client.email }}</span>
                         </td>
                         <td>
                             <span>{{ client.client_type ? $t(client.client_type) : '-' }}</span>
@@ -70,7 +88,12 @@ export default {
     },
     data(){
         return {
-            clientsList: []
+            clientsList: [],
+            filteredClients: [],
+            filters: {
+                name: "",
+                email: "",
+            }
         }
     },
     mounted(){
@@ -84,10 +107,9 @@ export default {
                 }
             })
                 .then(response => {
-                   console.log("response")
-                   console.log(response)
                     if(response.data.isSuccess){
                         this.clientsList = response.data?.data || [];
+                        this.filteredClients = [...this.clientsList];
                     }
                 })
                 .catch(err => {
@@ -95,6 +117,18 @@ export default {
                         this.authStore.logout();
                     }
                 })
+        },
+        filterClients(){
+            this.filteredClients = this.clientsList.filter(client => {
+                if(this.filters.name && !client.name?.toLowerCase().includes(this.filters.name?.toLowerCase())){
+                    return false;
+                }
+
+                if(this.filters.email && !client.email?.toLowerCase().includes(this.filters.email?.toLowerCase())){
+                    return false;
+                }
+                return true;
+            });
         },
         toggleSelectionAll(e){
             const isSelected = e.target.checked;
