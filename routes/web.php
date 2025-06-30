@@ -23,7 +23,7 @@ Route::prefix('{locale}')
     ->middleware(Localization::class)
     ->group(function () {
         Route::get('/', function () {
-            $items = Item::all();
+            $items = Item::where('status', 'active')->get(); // Fetch only active items
             return view('home', compact('items')); // Blade-only view
         })->name('homepage');
         Route::middleware('guest')->group(function () {
@@ -70,7 +70,7 @@ $locale = session('locale', App::getLocale());
 Route::get($locale . '/login', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
 Route::get($locale . '/', function () {
-    $items = Item::all();
+    $items = Item::where('status', 'active')->get(); // Fetch only active items
     return view('home', compact('items')); // Blade-only view
 })->name('homepage');
 require __DIR__ . '/auth.php';
