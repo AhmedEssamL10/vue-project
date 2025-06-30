@@ -7,7 +7,8 @@ import workersList from '../pages/dashboard/workersList.vue';
 import RequestsList from '../pages/dashboard/RequestsList.vue';
 import RequestDetails from '../pages/dashboard/RequestDetails.vue';
 import Login from '../pages/dashboard/login.vue';
-import Register from '../pages/dashboard/Register.vue';
+// import Register from '../pages/dashboard/Register.vue';
+import offersList from '../pages/dashboard/offersList.vue';
 import RequestConfig from '../pages/dashboard/RequestConfig.vue';
 import { useAuthStore } from '../stores/auth'
 
@@ -50,6 +51,12 @@ const router = createRouter({
           meta: { requiresAuth: true } 
         },
         { 
+          name: "OffersList", 
+          path: '/dashboard/offers-list', 
+          component: offersList, 
+          meta: { requiresAuth: true },
+        },
+        { 
           name: "RequestsList", 
           path: '/dashboard/requests-list', 
           component: RequestsList, 
@@ -64,7 +71,7 @@ const router = createRouter({
       ]
     },
     { name: "adminLogin", path: '/dashboard/login', component: Login, meta: { guest: true } },
-    { name: "adminRegister", path: '/dashboard/register', component: Register, meta: { guest: true } },
+    // { name: "adminRegister", path: '/dashboard/register', component: Register, meta: { guest: true } },
   ],
 });
 

@@ -422,12 +422,36 @@
     "details": "Details",
     "request": "Anfrage"
   },
+  "offersList": {
+    "title": "Angebotsliste",
+    "sequence": "Reihenfolge",
+    "offerTitle": "Titel",
+    "image": "Bild",
+    "status": "Status",
+    "active": "Aktiv",
+    "inactive": "Inaktiv",
+    "noOffers": "Keine Angebote vorhanden",
+    "addNewOffer": "Neues Angebot hinzufügen",
+    "editOffer": "Angebot bearbeiten",
+    "offerImage": "Angebotsbild",
+    "offerStatus": "Angebotsstatus",
+    "saveOffer": "Angebot speichern",
+    "cancel": "Abbrechen",
+    "offerCreated": "Angebot erfolgreich erstellt",
+    "offerUpdated": "Angebot erfolgreich aktualisiert",
+    "offerDeleted": "Angebot erfolgreich gelöscht",
+    "selectImage": "Bild auswählen",
+    "imagePreview": "Bildvorschau",
+    "noImage": "Kein Bild",
+    "actions": "Aktionen"
+  },
   "sideMenu": {
     "dashboard": "Dashboard",
     "requestPricing": "Kalkulationspreise",
     "clientsList": "Kundenliste",
     "workersList": "Arbeiterliste",
-    "requestsList": "Anfrageliste"
+    "requestsList": "Anfrageliste",
+    "offersList": "Angebotsliste"
   },
   "profile": "Profil",
   "logout": "Abmelden",

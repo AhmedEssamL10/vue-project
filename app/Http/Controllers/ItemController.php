@@ -11,7 +11,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return response()->json(["data" => Item::all()]);
+        return response()->json(["data" => Item::all(), "isSuccess" => true]);
     }
 
     public function store(Request $request)
@@ -19,7 +19,11 @@ class ItemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => 'required|in:true,false,1,0',
         ]);
+
+        // Convert status to boolean
+        $validated['status'] = in_array($validated['status'], ['true', '1'], true);
 
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('items', 'public');
@@ -27,12 +31,19 @@ class ItemController extends Controller
 
         $item = Item::create($validated);
 
-        return response()->json($item, 201);
+        return response()->json([
+            'data' => $item,
+            'isSuccess' => true,
+            'message' => 'Offer created successfully'
+        ], 201);
     }
 
     public function show(Item $item)
     {
-        return response()->json($item);
+        return response()->json([
+            'data' => $item,
+            'isSuccess' => true
+        ]);
     }
 
     public function update(Request $request, Item $item)
@@ -40,7 +51,11 @@ class ItemController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'status' => 'required|in:true,false,1,0',
         ]);
+
+        // Convert status to boolean
+        $validated['status'] = in_array($validated['status'], ['true', '1'], true);
 
         if ($request->hasFile('image')) {
             if ($item->image) {
@@ -51,7 +66,11 @@ class ItemController extends Controller
 
         $item->update($validated);
 
-        return response()->json($item);
+        return response()->json([
+            'data' => $item,
+            'isSuccess' => true,
+            'message' => 'Offer updated successfully'
+        ]);
     }
 
     public function destroy(Item $item)
@@ -61,6 +80,9 @@ class ItemController extends Controller
         }
         $item->delete();
 
-        return response()->json(['message' => 'Item deleted']);
+        return response()->json([
+            'isSuccess' => true,
+            'message' => 'Offer deleted successfully'
+        ]);
     }
 }
