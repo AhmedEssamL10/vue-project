@@ -11,7 +11,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return response()->json(["data" => Item::all()]);
+        return response()->json(["data" => Item::whre('status', 'active')->get()]);
     }
 
     public function store(Request $request)
