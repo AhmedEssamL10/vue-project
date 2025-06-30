@@ -57,7 +57,7 @@
                 <h3 class="text-lg font-semibold mb-4">{{ __('fast_links') }}</h3>
                 <ul class="flex flex-col gap-2">
                     <li>
-                        <a href="{{ route('home', app()->getLocale()) }}"
+                        <a href="{{ route('homepage', app()->getLocale()) }}"
                             class="footer-link {{ Route::currentRouteName() === 'home' ? 'active-footer-link' : '' }}">
                             {{ __('home') }}
                         </a>

@@ -1,7 +1,7 @@
 <header class="w-full bg-white shadow-sm py-4 {{ Request::is('/') ? 'fixed top-0 left-0 right-0' : '' }} z-20">
     <div class="container flex justify-between items-center">
         <div class="flex items-center">
-            <a href="{{ route('home', app()->getLocale()) }}">
+            <a href="{{ route('homepage', app()->getLocale()) }}">
                 <img class="w-[150px]" src="{{ asset('assets/images/Pur.png') }}" alt="Logo" />
             </a>
         </div>
@@ -19,8 +19,8 @@
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ route('home', app()->getLocale()) }}"
-                class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
+            <a href="{{ route('homepage', app()->getLocale()) }}"
+                class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'active' : '' }}">
                 {{ __('home') }}
             </a>
 
@@ -104,11 +104,11 @@
     <div class="max-h-[80vh] overflow-auto">
         <div>
             <!-- Home -->
-            <a class="block nav_link text-base mb-2 active" href="{{ route('home', app()->getLocale()) }}">
+            <a class="block nav_link text-base mb-2 active" href="{{ route('homepage', app()->getLocale()) }}">
                 {{ __('home') }}
             </a>
             @if (!Auth::check())
-            <!-- Login -->
+                <!-- Login -->
                 <a class="block nav_link text-base mb-2" href="{{ route('auth.login', app()->getLocale()) }}">
                     {{ __('Login') }}
                 </a>
@@ -119,7 +119,8 @@
                 <a class="block nav_link text-base mb-2" href="{{ route('profile.edit', app()->getLocale()) }}">
                     {{ __('My Profile Page') }}
                 </a>
-                <a data-logout-url="{{ route('logout') }}" class="handleLogout block nav_link text-base mb-2" href="javascript:;">
+                <a data-logout-url="{{ route('logout') }}" class="handleLogout block nav_link text-base mb-2"
+                    href="javascript:;">
                     {{ __('Logout') }}
                 </a>
             @endif

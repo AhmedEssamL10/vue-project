@@ -86,7 +86,7 @@ class AuthController extends Controller
         // Auto login
         Auth::login($user);
 
-        $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+        $redirectUrl = route('homepage', ['locale' => session('locale') ?? app()->getLocale()]);
 
         return response()->json([
             'status' => 'success',
@@ -126,7 +126,7 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        $redirectUrl = route('home', ['locale' => session('locale') ?? app()->getLocale()]);
+        $redirectUrl = route('homepage', ['locale' => session('locale') ?? app()->getLocale()]);
 
         return response()->json([
             'status' => 'success',

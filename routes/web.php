@@ -6,6 +6,7 @@ use App\Http\Middleware\Localization;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\API\RequestController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 // Blade homepage
 Route::get('/', function () {
@@ -16,7 +17,7 @@ Route::get('/', function () {
     }
 
     return redirect("/$locale");
-});
+})->name('home');
 Route::prefix('{locale}')
     ->where(['locale' => 'de|ar'])
     ->middleware(Localization::class)
@@ -24,15 +25,16 @@ Route::prefix('{locale}')
         Route::get('/', function () {
             $items = Item::all();
             return view('home', compact('items')); // Blade-only view
-        })->name('home');
+        })->name('homepage');
+        Route::middleware('guest')->group(function () {
+            Route::get('/login', function () {
+                return view('auth.login'); // Blade-only view
+            })->name('auth.login');
 
-        Route::get('/login', function () {
-            return view('auth.login'); // Blade-only view
-        })->name('auth.login');
-
-        Route::get('/register', function () {
-            return view('auth.register'); // Blade-only view
-        })->name('auth.register');
+            Route::get('/register', function () {
+                return view('auth.register'); // Blade-only view
+            })->name('auth.register');
+        });
         Route::get('/request', function () {
             return view('vue-request'); // Vue entrypoint Blade file    
         })->name('vue-request');
@@ -64,5 +66,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+$locale = session('locale', App::getLocale());
+Route::get($locale . '/login', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
+Route::get($locale . '/', function () {
+    $items = Item::all();
+    return view('home', compact('items')); // Blade-only view
+})->name('homepage');
 require __DIR__ . '/auth.php';
