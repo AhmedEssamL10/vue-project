@@ -66,7 +66,8 @@ window.makeAlert = function(message = '', type = 'success'){
 
 document.addEventListener('DOMContentLoaded', function(){
   const isClosed = sessionStorage.getItem('cookiesModalClosed');
-  if(!isClosed){
+  const cookiesModal = document.getElementById('cookiesModal');
+  if(!isClosed && cookiesModal){
     cookiesModal.showModal();
     sessionStorage.setItem('cookiesModalClosed', 'true');
   }

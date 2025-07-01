@@ -417,12 +417,36 @@
     "details": "تفاصيل",
     "request": "طلب"
   },
+  "offersList": {
+    "title": "قائمة العروض",
+    "sequence": "التسلسل",
+    "offerTitle": "العنوان",
+    "image": "الصورة",
+    "status": "الحالة",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "noOffers": "لا يوجد عروض",
+    "addNewOffer": "إضافة عرض جديد",
+    "editOffer": "تعديل العرض",
+    "offerImage": "صورة العرض",
+    "offerStatus": "حالة العرض",
+    "saveOffer": "حفظ العرض",
+    "cancel": "إلغاء",
+    "offerCreated": "تم إنشاء العرض بنجاح",
+    "offerUpdated": "تم تحديث العرض بنجاح",
+    "offerDeleted": "تم حذف العرض بنجاح",
+    "selectImage": "اختر صورة",
+    "imagePreview": "معاينة الصورة",
+    "noImage": "لا توجد صورة",
+    "actions": "الإجراءات"
+  },
   "sideMenu": {
     "dashboard": "الرئيسية",
     "requestPricing": "أسعار حساب التكلفة",
     "clientsList": "قائمة العملاء",
     "workersList": "قائمة العمال",
-    "requestsList": "قائمة الطلبات"
+    "requestsList": "قائمة الطلبات",
+    "offersList": "قائمة العروض"
   },
   "profile": "الملف الشخصية",
   "logout": "تسجيل خروج",

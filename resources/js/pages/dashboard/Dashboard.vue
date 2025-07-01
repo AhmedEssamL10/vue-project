@@ -68,6 +68,11 @@
                             {{ $t('sideMenu.requestsList') }}
                         </router-link>
                     </li>
+                    <li>
+                        <router-link class="sideMenuItem" :to="{ name: 'OffersList' }">
+                            {{ $t('sideMenu.offersList') }}
+                        </router-link>
+                    </li>
                 </ul>
             </div>
         </div>

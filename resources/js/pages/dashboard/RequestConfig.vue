@@ -382,7 +382,7 @@ export default {
         const fields = reactive({
             formData: {
                 kiloMeterPrice: '',
-                movementPrice: '',
+                // movementPrice: '',
                 meterPrice: '',
                 floorWithLifterPrice: '',
                 floorWithoutLifterPrice: '',
@@ -413,7 +413,7 @@ export default {
         const rules = reactive({
             formData: {
                 kiloMeterPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
-                movementPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
+                // movementPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
                 meterPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
                 floorWithLifterPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
                 floorWithoutLifterPrice: { required: helpers.withMessage('هذا الحقل مطلوب.', required) },
@@ -464,7 +464,7 @@ export default {
             this.sendRequestConfigData();
         },
         getRequestConfigData() {
-            $axios.get('service-prices', {
+            $axios.get('/service-prices', {
                 headers: {
                     Authorization: `Bearer ${this.authStore.token}`
                 }
@@ -486,7 +486,11 @@ export default {
         },
         sendRequestConfigData() {
             this.isloading = true;
-            axios.post('/api/service-price', this.formData)
+            $axios.post('/service-price', {...this.formData}, {
+                headers: {
+                    Authorization: `Bearer ${this.authStore.token}`
+                }
+            })
                 .then(res => {
                     if (res.data.isSuccess) {
                         makeAlert(this.$t('savedSuccessfully'));
