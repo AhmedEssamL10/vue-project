@@ -112,6 +112,16 @@
   "address": "Adresse",
   "updateRequestMessage": "Wenn Sie eine Anfrage aktualisieren möchten, kontaktieren Sie uns bitte oder stellen Sie eine neue Anfrage.",
   "applicantMessage": "Bewerbungsnachricht",
-  "close": "Schließen"
-
+  "close": "Schließen",
+  "cookiesTitle": "Wir verwenden Cookies",
+  "cookiesContent": "Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Durch die Nutzung unserer Website erklären Sie sich damit einverstanden, dass wir Cookies verwenden.",
+  "cookiesAccept": "Akzeptieren",
+  "termsAndConditions": "Allgemeine Geschäftsbedingungen",
+  "privacyPolicy": "Datenschutzerklärung",
+  "impressum": "Impressum",
+  "deleteConfirmationTitle": "Löschung bestätigen",
+  "deleteConfirmationQuestion": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "showDeleteModal": "Lösch-Modal anzeigen"
 }

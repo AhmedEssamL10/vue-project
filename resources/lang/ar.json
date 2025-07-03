@@ -113,5 +113,16 @@
   "address": "العنوان",
   "updateRequestMessage": "إذا كنت ترغب في تعديل أي طلب، يرجى التواصل معنا أو إنشاء طلب جديد.",
   "applicantMessage": "رسالة التقديم",
-  "close": "إغلاق"
+  "close": "إغلاق",
+  "cookiesTitle": "نحن نستخدم ملفات تعريف الارتباط",
+  "cookiesContent": "نحن نستخدم ملفات تعريف الارتباط لتحسين تجربتك على موقعنا. باستخدامك للموقع، فإنك توافق على استخدامنا لملفات تعريف الارتباط.",
+  "cookiesAccept": "قبول",
+  "termsAndConditions": "الشروط والأحكام",
+  "privacyPolicy": "سياسة الخصوصية",
+  "impressum": "بيانات النشر",
+  "deleteConfirmationTitle": "تأكيد الحذف",
+  "deleteConfirmationQuestion": "هل أنت متأكد من أنك تريد حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء.",
+  "cancel": "إلغاء",
+  "delete": "حذف",
+  "showDeleteModal": "عرض نافذة الحذف"
 }

@@ -39,6 +39,19 @@ Route::prefix('{locale}')
             return view('vue-request'); // Vue entrypoint Blade file    
         })->name('vue-request');
 
+        // Legal pages
+        Route::get('/terms-and-conditions', function () {
+            return view('terms-and-conditions');
+        })->name('terms-and-conditions');
+
+        Route::get('/privacy-policy', function () {
+            return view('privacy-policy');
+        })->name('privacy-policy');
+
+        Route::get('/impressum', function () {
+            return view('impressum');
+        })->name('impressum');
+
         Route::middleware('auth')->group(function () {
             Route::get('/profile', [ProfileController::class, 'index'])->name('profile.edit');
             Route::get('/profile/change-password', [ProfileController::class, 'getChangePassword'])->name('profile.change-password');

@@ -1,6 +1,6 @@
 <!-- <footer class="bg-[#1A1F2C] text-white"> -->
 <!-- Footer -->
-<footer class="bg-gray-800 text-white pt-12 pb-8">
+<footer class="bg-gray-800 text-white pt-12 pb-4">
     <div class="container">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
@@ -78,7 +78,7 @@
                     @else
                     <li>
                         <a href="{{ route('profile.edit', app()->getLocale()) }}"
-                            class="footer-link">
+                            class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
                             {{ __('Profile') }}
                         </a>
                     </li>
@@ -121,11 +121,41 @@
                         </svg>
                         <span class="text-gray-400">Laaker Straße 67, 47137 Duisburg</span>
                     </li>
+                    <!-- <li class="mt-2">
+                        <div class="flex">
+                            <a href="{{ route('terms-and-conditions', app()->getLocale()) }}"
+                                class="footer-link text-xs pe-3 me-3 border-e border-white {{ Route::currentRouteName() === 'terms-and-conditions' ? 'active-footer-link' : '' }}">
+                                {{ __('termsAndConditions') }}
+                            </a>
+                            <a href="{{ route('privacy-policy', app()->getLocale()) }}"
+                                class="footer-link text-xs pe-3 me-3 border-e border-white {{ Route::currentRouteName() === 'privacy-policy' ? 'active-footer-link' : '' }}">
+                                {{ __('privacyPolicy') }}
+                            </a>
+                            <a href="{{ route('impressum', app()->getLocale()) }}"
+                                class="footer-link text-xs pe-3 me-3 {{ Route::currentRouteName() === 'impressum' ? 'active-footer-link' : '' }}">
+                                {{ __('impressum') }}
+                            </a>
+                        </div>
+                    </li> -->
                 </ul>
             </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; {{ __('copy_rights') }}</p>
+        <div class="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-400 flex flex-col gap-3 items-center md:justify-between md:flex-row">
+            <p>&copy; {{ __('copy_rights') }} {{ date('Y') }}</p>
+            <div class="flex justify-center items-center">
+                <a href="{{ route('terms-and-conditions', app()->getLocale()) }}"
+                    class="footer-link text-xs pe-3 me-3 border-e border-white {{ Route::currentRouteName() === 'terms-and-conditions' ? 'active-footer-link' : '' }}">
+                    {{ __('termsAndConditions') }}
+                </a>
+                <a href="{{ route('privacy-policy', app()->getLocale()) }}"
+                    class="footer-link text-xs pe-3 me-3 border-e border-white {{ Route::currentRouteName() === 'privacy-policy' ? 'active-footer-link' : '' }}">
+                    {{ __('privacyPolicy') }}
+                </a>
+                <a href="{{ route('impressum', app()->getLocale()) }}"
+                    class="footer-link text-xs {{ Route::currentRouteName() === 'impressum' ? 'active-footer-link' : '' }}">
+                    {{ __('impressum') }}
+                </a>
+            </div>
         </div>
     </div>
 </footer>

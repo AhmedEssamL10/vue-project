@@ -52,11 +52,9 @@
                 <div class="swiper-wrapper">
                     @foreach ($items as $item)
                         <div class="swiper-slide group">
-                            <a href="#">
-                                <img src="{{ asset('storage/' . $item->image) }}"
-                                    class="w-full group-hover:scale-125 transition duration-500"
-                                    alt="{{ $item->title }}" />
-                            </a>
+                            <img src="{{ asset('storage/app/public/' . $item->image) }}"
+                                class="w-full group-hover:scale-125 transition duration-500"
+                                alt="{{ $item->title }}" />
                         </div>
                     @endforeach
 

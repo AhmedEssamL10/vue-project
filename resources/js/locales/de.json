@@ -443,7 +443,13 @@
     "selectImage": "Bild auswählen",
     "imagePreview": "Bildvorschau",
     "noImage": "Kein Bild",
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "deleteConfirmation": {
+      "title": "Angebot löschen",
+      "question": "Sind Sie sicher,  dass Sie dieses Angebot löschen möchten?",
+      "confirm": "Löschen",
+      "cancel": "Abbrechen"
+    }
   },
   "sideMenu": {
     "dashboard": "Dashboard",

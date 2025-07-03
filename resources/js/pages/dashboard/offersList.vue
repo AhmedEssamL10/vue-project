@@ -6,7 +6,7 @@
             </h2>
             <button 
                 @click="openModal()" 
-                class="btn btn-primary bg-client text-white hover:bg-client-dark"
+                class="btn border border-client bg-client text-white hover:bg-client-dark hover:border-client-dark"
             >
                 {{ $t('offersList.addNewOffer') }}
             </button>
@@ -37,7 +37,7 @@
                             <span v-else class="text-gray-400">{{ $t('offersList.noImage') }}</span>
                         </td>
                         <td>
-                            <span :class="client.status ? 'badge badge-success' : 'badge badge-error'">
+                            <span :class="client.status === 'active' ? 'badge badge-success' : 'badge badge-error'">
                                 {{ client.status ? $t('offersList.active') : $t('offersList.inactive') }}
                             </span>
                         </td>
@@ -68,47 +68,47 @@
 
         <!-- Modal for Add/Edit Offer -->
         <div v-if="showModal" class="modal modal-open">
-            <div class="modal-box">
+            <div class="modal-box bg-[#f1f1f1] text-black">
                 <h3 class="font-bold text-lg mb-4">
                     {{ isEditing ? $t('offersList.editOffer') : $t('offersList.addNewOffer') }}
                 </h3>
                 
                 <form @submit.prevent="saveOffer" class="space-y-4">
                     <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">{{ $t('offersList.offerTitle') }}</span>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ $t('offersList.offerTitle') }}
                         </label>
                         <input 
                             v-model="formData.title" 
                             type="text" 
-                            class="input input-bordered" 
+                            class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" 
                             :placeholder="$t('offersList.offerTitle')"
                             required
                         />
                     </div>
 
                     <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">{{ $t('offersList.offerImage') }}</span>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ $t('offersList.offerImage') }}
                         </label>
                         <input 
                             @change="handleImageUpload" 
                             type="file" 
                             accept="image/*"
-                            class="file-input file-input-bordered" 
+                            class="file-input file-input-bordered w-full rounded-lg bg-white border border-[#1b1718] text-[#1b1718]" 
                         />
                         <div v-if="imagePreview" class="mt-2">
-                            <img :src="imagePreview" alt="Preview" class="w-32 h-32 object-cover rounded" />
+                            <img :src="imagePreview" alt="Preview" class="w-32 h-32 object-cover rounded-lg" />
                         </div>
                     </div>
 
                     <div class="form-control">
-                        <label class="label">
-                            <span class="label-text">{{ $t('offersList.offerStatus') }}</span>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            {{ $t('offersList.offerStatus') }}
                         </label>
-                        <select v-model="formData.status" class="select select-bordered">
-                            <option :value="true">{{ $t('offersList.active') }}</option>
-                            <option :value="false">{{ $t('offersList.inactive') }}</option>
+                        <select v-model="formData.status" class="w-full px-4 py-2 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]">
+                            <option value="active">{{ $t('offersList.active') }}</option>
+                            <option value="inactive">{{ $t('offersList.inactive') }}</option>
                         </select>
                     </div>
 
@@ -116,7 +116,7 @@
                         <button type="button" @click="closeModal" class="btn">
                             {{ $t('offersList.cancel') }}
                         </button>
-                        <button type="submit" class="btn btn-primary" :disabled="loading">
+                        <button type="submit" class="btn border border-client bg-client text-white hover:bg-client-dark hover:border-client-dark" :class="loading ? 'isloading' : ''">
                             <span v-if="loading" class="loading loading-spinner loading-sm"></span>
                             {{ $t('offersList.saveOffer') }}
                         </button>
@@ -124,31 +124,60 @@
                 </form>
             </div>
         </div>
+
+        <!-- Modal for Delete Confirmation -->
+        <div v-if="showDeleteModal" class="modal modal-open">
+            <div class="modal-box bg-[#f1f1f1] text-black">
+                <h3 class="font-bold text-lg mb-4">
+                    {{ $t('offersList.deleteConfirmation.title') }}
+                </h3>
+                
+                <p class="mb-6 text-gray-700">
+                    {{ $t('offersList.deleteConfirmation.question') }}
+                </p>
+
+                <div class="modal-action">
+                    <button @click="closeDeleteModal" class="btn">
+                        {{ $t('offersList.deleteConfirmation.cancel') }}
+                    </button>
+                    <button @click="confirmDelete" class="btn btn-error text-white" :disabled="deleteLoading">
+                        <span v-if="deleteLoading" class="loading loading-spinner loading-sm"></span>
+                        {{ $t('offersList.deleteConfirmation.confirm') }}
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
 import { useAuthStore } from '../../stores/auth';
+import { useUiStore } from '../../stores/uiStore';
 
 export default {
     setup(){
         const authStore = useAuthStore()
+        const uiStore = useUiStore()
         return {
-            authStore
+            authStore,
+            uiStore
         }
     },
     data(){
         return {
             workersList: [],
             showModal: false,
+            showDeleteModal: false,
             isEditing: false,
             loading: false,
+            deleteLoading: false,
             formData: {
                 title: '',
                 image: null,
-                status: true
+                status: 'active'
             },
             imagePreview: null,
-            editingId: null
+            editingId: null,
+            deletingId: null
         }
     },
     mounted(){
@@ -187,7 +216,7 @@ export default {
             this.formData = {
                 title: '',
                 image: null,
-                status: true
+                status: 'active'
             };
             this.imagePreview = null;
             this.editingId = null;
@@ -197,12 +226,12 @@ export default {
             this.editingId = offer.id;
             this.formData = {
                 title: offer.title,
-                image: null,
+                image: offer.image,
                 status: offer.status
             };
-            if (offer.image) {
-                this.imagePreview = `/storage/${offer.image}`;
-            }
+            // if (offer.image) {
+            //     this.imagePreview = `/storage/${offer.image}`;
+            // }
             this.showModal = true;
         },
         handleImageUpload(event) {
@@ -231,20 +260,25 @@ export default {
                 }
             })
             .then(response => {
-                console.log("response")
-                console.log(response)
                 if (response.data.isSuccess) {
                     this.closeModal();
                     this.fetchOffers();
-                    // Show success message
-                    this.$toast.success(this.isEditing ? this.$t('offersList.offerUpdated') : this.$t('offersList.offerCreated'));
+                    this.uiStore.setToaster({
+                        type: "success",
+                        duration: 5000,
+                        message: this.isEditing ? this.$t('offersList.offerUpdated') : this.$t('offersList.offerCreated'),
+                    });
                 }
             })
             .catch(err => {
                 if (err.status == 401) {
                     this.authStore.logout();
-                } else {
-                    this.$toast.error(this.$t('something_went_wrong'));
+                } else {    
+                    this.uiStore.setToaster({
+                        type: "error",
+                        duration: 5000,
+                        message: this.$t('somethingWentWrong'),
+                    });
                 }
             })
             .finally(() => {
@@ -252,26 +286,45 @@ export default {
             });
         },
         deleteOffer(id) {
-            if (confirm('Are you sure you want to delete this offer?')) {
-                $axios.delete(`/admin/items/${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${this.authStore.token}`
-                    }
-                })
-                .then(response => {
-                    if (response.data.isSuccess) {
-                        this.fetchOffers();
-                        this.$toast.success(this.$t('offersList.offerDeleted'));
-                    }
-                })
-                .catch(err => {
-                    if (err.status == 401) {
-                        this.authStore.logout();
-                    } else {
-                        this.$toast.error(this.$t('something_went_wrong'));
-                    }
-                });
-            }
+            this.deletingId = id;
+            this.showDeleteModal = true;
+        },
+        closeDeleteModal() {
+            this.showDeleteModal = false;
+            this.deletingId = null;
+        },
+        confirmDelete() {
+            this.deleteLoading = true;
+            $axios.delete(`/admin/items/${this.deletingId}`, {
+                headers: {
+                    Authorization: `Bearer ${this.authStore.token}`
+                }
+            })
+            .then(response => {
+                if (response.data.isSuccess) {
+                    this.closeDeleteModal();
+                    this.fetchOffers();
+                    this.uiStore.setToaster({
+                        type: "success",
+                        duration: 5000,
+                        message: this.$t('offersList.offerDeleted'),
+                    });
+                }
+            })
+            .catch(err => {
+                if (err.status == 401) {
+                    this.authStore.logout();
+                } else {
+                    this.uiStore.setToaster({
+                        type: "error",
+                        duration: 5000,
+                        message: this.$t('somethingWentWrong'),
+                    });
+                }
+            })
+            .finally(() => {
+                this.deleteLoading = false;
+            });
         }
     }
 }

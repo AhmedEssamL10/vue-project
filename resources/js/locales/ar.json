@@ -438,7 +438,13 @@
     "selectImage": "اختر صورة",
     "imagePreview": "معاينة الصورة",
     "noImage": "لا توجد صورة",
-    "actions": "الإجراءات"
+    "actions": "الإجراءات",
+    "deleteConfirmation": {
+      "title": "حذف العرض",
+      "question": "هل أنت متأكد من أنك تريد حذف هذا العرض؟",
+      "confirm": "حذف",
+      "cancel": "إلغاء"
+    }
   },
   "sideMenu": {
     "dashboard": "الرئيسية",

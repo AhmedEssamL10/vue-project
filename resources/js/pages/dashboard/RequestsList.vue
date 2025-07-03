@@ -99,8 +99,8 @@ export default {
             })
                 .then(response => {
                     if(response.data.isSuccess){
-                        this.factorRequests = response.data?.factorRequests || [];
-                        this.shipRequests = response.data.shipRequests || [];
+                        this.factorRequests = response.data?.factorRequests?.reverse() || [];
+                        this.shipRequests = response.data.shipRequests?.reverse() || [];
                         this.factorRequests = this.factorRequests.map(request => ({
                             ...request,
                             requestType: this.$t('request.companyRequest.type')
