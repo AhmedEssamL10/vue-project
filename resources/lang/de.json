@@ -123,5 +123,6 @@
   "deleteConfirmationQuestion": "Sind Sie sicher, dass Sie diesen Eintrag löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
   "cancel": "Abbrechen",
   "delete": "Löschen",
-  "showDeleteModal": "Lösch-Modal anzeigen"
+  "showDeleteModal": "Lösch-Modal anzeigen",
+  "home_title":"3M Services - Startseite"
 }

@@ -1,4 +1,6 @@
 @extends('layouts.main')
+@section('title', __('home_title'))
+
 @section('content')
     <!-- Hero Section -->
     <section class="pt-28 pb-20 bg-white relative overflow-hidden">

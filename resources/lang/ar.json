@@ -124,5 +124,6 @@
   "deleteConfirmationQuestion": "هل أنت متأكد من أنك تريد حذف هذا العنصر؟ لا يمكن التراجع عن هذا الإجراء.",
   "cancel": "إلغاء",
   "delete": "حذف",
-  "showDeleteModal": "عرض نافذة الحذف"
+  "showDeleteModal": "عرض نافذة الحذف",
+  "home_title":"ثرى إم للخدمات - الصفحة الرئيسية"
 }
