@@ -95,7 +95,6 @@
                             @change="handleImageUpload" 
                             type="file" 
                             accept="image/*"
-                            required
                             class="file-input file-input-bordered w-full rounded-lg bg-white border border-[#1b1718] text-[#1b1718]" 
                         />
                         <div v-if="imagePreview" class="mt-2">
