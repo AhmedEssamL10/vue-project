@@ -1,7 +1,7 @@
 <header class="w-full bg-white shadow-sm py-4 {{ Request::is('/') ? 'fixed top-0 left-0 right-0' : '' }} z-20">
     <div class="container flex justify-between items-center">
         <div class="flex items-center">
-            <a href="{{ route('homepage', app()->getLocale()) }}">
+            <a href="{{ route('home') }}">
                 <img class="w-[150px]" src="{{ asset('assets/images/Pur.png') }}" alt="Logo" />
             </a>
         </div>
@@ -19,8 +19,7 @@
         @endphp
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-8">
-            <a href="{{ route('homepage', app()->getLocale()) }}"
-                class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'active' : '' }}">
+            <a href="{{ route('home') }}" class="nav-link {{ Route::currentRouteName() === 'homepage' ? 'active' : '' }}">
                 {{ __('home') }}
             </a>
 

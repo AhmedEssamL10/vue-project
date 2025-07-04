@@ -11,7 +11,7 @@ class ItemController extends Controller
 {
     public function index()
     {
-        return response()->json(["data" => Item::where('status', 'active')->get(), "isSuccess" => true]);
+        return response()->json(["data" => Item::get(), "isSuccess" => true]);
     }
 
     public function store(Request $request)

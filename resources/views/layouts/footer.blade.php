@@ -5,8 +5,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center mb-4">
-                    <img class="max-w-[150px] whiteImgFilter"
-                        src="{{ asset('assets/images/Pur.png') }}" alt="Logo" />
+                    <img class="max-w-[150px] whiteImgFilter" src="{{ asset('assets/images/Pur.png') }}" alt="Logo" />
                 </div>
                 <p class="text-gray-400 mb-4">
                     {{ __('footer_description') }}
@@ -57,31 +56,31 @@
                 <h3 class="text-lg font-semibold mb-4">{{ __('fast_links') }}</h3>
                 <ul class="flex flex-col gap-2">
                     <li>
-                        <a href="{{ route('homepage', app()->getLocale()) }}"
+                        <a href="{{ route('home') }}"
                             class="footer-link {{ Route::currentRouteName() === 'home' ? 'active-footer-link' : '' }}">
                             {{ __('home') }}
                         </a>
                     </li>
                     @if (!Auth::check())
-                    <li>
-                        <a href="{{ route('auth.login', app()->getLocale()) }}"
-                            class="footer-link {{ Route::currentRouteName() === 'auth.login' ? 'active-footer-link' : '' }}">
-                            {{ __('Login') }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('auth.register', app()->getLocale()) }}"
-                            class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
-                            {{ __('Register') }}
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ route('auth.login', app()->getLocale()) }}"
+                                class="footer-link {{ Route::currentRouteName() === 'auth.login' ? 'active-footer-link' : '' }}">
+                                {{ __('Login') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('auth.register', app()->getLocale()) }}"
+                                class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
+                                {{ __('Register') }}
+                            </a>
+                        </li>
                     @else
-                    <li>
-                        <a href="{{ route('profile.edit', app()->getLocale()) }}"
-                            class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
-                            {{ __('Profile') }}
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ route('profile.edit', app()->getLocale()) }}"
+                                class="footer-link {{ Route::currentRouteName() === 'auth.register' ? 'active-footer-link' : '' }}">
+                                {{ __('Profile') }}
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -140,7 +139,8 @@
                 </ul>
             </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-400 flex flex-col gap-3 items-center md:justify-between md:flex-row">
+        <div
+            class="border-t border-gray-700 mt-8 pt-4 text-sm text-gray-400 flex flex-col gap-3 items-center md:justify-between md:flex-row">
             <p>&copy; {{ __('copy_rights') }} {{ date('Y') }}</p>
             <div class="flex justify-center items-center">
                 <a href="{{ route('terms-and-conditions', app()->getLocale()) }}"
