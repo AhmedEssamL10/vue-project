@@ -79,11 +79,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-$locale = session('locale', App::getLocale());
-Route::get($locale . '/login', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
-Route::get($locale . '/', function () {
-    $items = Item::where('status', 'active')->get(); // Fetch only active items
-    return view('home', compact('items')); // Blade-only view
-})->name('homepage');
+
+// $locale = session('locale', App::getLocale());
+// Route::get($locale . '/login', [AuthenticatedSessionController::class, 'create'])
+//     ->name('login');
+// Route::get($locale . '/', function () {
+//     $items = Item::where('status', 'active')->get(); // Fetch only active items
+//     return view('home', compact('items')); // Blade-only view
+// })->name('homepage');
+
 require __DIR__ . '/auth.php';
