@@ -31,6 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/requests', [AdminController::class, 'requests']);
         Route::get('/ship-request/{id}', [AdminController::class, 'shipRequest']);
         Route::get('/factor-request/{id}', [AdminController::class, 'factorRequest']);
-        Route::apiResource('items', ItemController::class);
+        Route::apiResource('items', ItemController::class)->except(['update']);
+        Route::post('items/{item}', [ItemController::class, 'update'])->name('items.update');
     });
 });
