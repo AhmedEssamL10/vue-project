@@ -47,15 +47,26 @@ class ItemController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'status' => 'string'
+            'status' => 'string',
         ]);
 
         if ($request->hasFile('image')) {
+            $request->validate([
+                'image' => 'image|mimes:jpg,jpeg,png|max:2048',
+            ]);
+
+            // Delete old image
             if ($item->image) {
                 Storage::disk('public')->delete($item->image);
             }
+
             $validated['image'] = $request->file('image')->store('items', 'public');
+        } elseif ($request->filled('image')) {
+            // User sent old image path - trust it as is
+            $validated['image'] = $request->input('image');
+        } else {
+            // Neither new file nor existing image path sent - remove image
+            $validated['image'] = null;
         }
 
         $item->update($validated);
@@ -66,6 +77,7 @@ class ItemController extends Controller
             'message' => 'Offer updated successfully'
         ]);
     }
+
 
     public function destroy(Item $item)
     {
