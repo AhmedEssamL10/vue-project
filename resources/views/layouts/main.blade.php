@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@yield('title', __('home_title'))</title>
+    <meta name="google-site-verification" content="W9sNWwbAi7s5HFzC32suun2EWpahencqeIEuwPydA0s" />
     <!-- SEO Meta Tags -->
     <meta name="description" content="@yield('description', __('about_description'))">
     <meta name="keywords" content="@yield('home_title', __('home_title'))">

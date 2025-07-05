@@ -1,2 +1,27 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow admin and authentication pages
+Disallow: /dashboard/
+Disallow: /login
+Disallow: /register
+Disallow: /profile/
+Disallow: /admin/
+
+# Allow important pages
+Allow: /de/
+Allow: /ar/
+Allow: /de/request
+Allow: /ar/request
+Allow: /de/terms-and-conditions
+Allow: /ar/terms-and-conditions
+Allow: /de/privacy-policy
+Allow: /ar/privacy-policy
+Allow: /de/impressum
+Allow: /ar/impressum
+
+# Sitemap
+Sitemap: https://3mserv.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

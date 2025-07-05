@@ -38,7 +38,7 @@
                         </td>
                         <td>
                             <span :class="client.status === 'active' ? 'badge badge-success' : 'badge badge-error'">
-                                {{ client.status ? $t('offersList.active') : $t('offersList.inactive') }}
+                                {{ client.status === 'active' ? $t('offersList.active') : $t('offersList.inactive') }}
                             </span>
                         </td>
                         <td>
@@ -191,8 +191,6 @@ export default {
                 }
             })
                 .then(response => {
-                   console.log("response")
-                   console.log(response)
                     if(response.data.isSuccess){
                         this.workersList = response.data?.data || [];
                     }
@@ -252,7 +250,7 @@ export default {
             }
 
             const url = this.isEditing ? `/admin/items/${this.editingId}` : '/admin/items';
-            const method = this.isEditing ? 'put' : 'post';
+            const method = 'post';
 
             $axios[method](url, formData, {
                 headers: {
