@@ -1,4 +1,45 @@
 @extends('layouts.main')
+
+@section('title', __('login_title'))
+@section('description', __('login_description'))
+@section('keywords', __('login_keywords'))
+@section('og_title', __('login_title'))
+@section('og_description', __('login_description'))
+@section('og_type', 'website')
+@section('twitter_title', __('login_title'))
+@section('twitter_description', __('login_description'))
+@section('robots', 'noindex, nofollow')
+
+@section('additional_meta')
+<!-- Structured Data for Login Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ __('login_title') }}",
+  "description": "{{ __('login_description') }}",
+  "url": "{{ url()->current() }}",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ __('home') }}",
+        "item": "{{ url('/') }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ __('Login') }}",
+        "item": "{{ url()->current() }}"
+      }
+    ]
+  }
+}
+</script>
+@endsection
+
 @section('content')
     <form class="authForm" method="POST" action="{{ route('user.login') }} ">
         @csrf

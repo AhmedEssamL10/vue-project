@@ -1,5 +1,68 @@
 @extends('layouts.main')
+
 @section('title', __('home_title'))
+@section('description', __('about_description'))
+@section('keywords', 'furniture shipping, moving services, worker requests, 3M Services, نقل الأثاث, خدمات النقل, Möbeltransport, Transportdienstleistungen')
+@section('og_title', __('home_title'))
+@section('og_description', __('about_description'))
+@section('og_type', 'website')
+@section('twitter_title', __('home_title'))
+@section('twitter_description', __('about_description'))
+
+@section('og_image')
+<meta property="og:image" content="{{ asset('assets/images/about.jpg') }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="3M Services - Professional Furniture Moving">
+@endsection
+
+@section('twitter_image')
+<meta name="twitter:image" content="{{ asset('assets/images/about.jpg') }}">
+<meta name="twitter:image:alt" content="3M Services - Professional Furniture Moving">
+@endsection
+
+@section('additional_meta')
+<!-- Structured Data for Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "3M Services",
+  "url": "{{ url('/') }}",
+  "logo": "{{ asset('assets/images/Pur.svg') }}",
+  "description": "{{ __('about_description') }}",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "DE"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service"
+  },
+  "sameAs": [
+    "https://facebook.com/3mservices",
+    "https://instagram.com/3mservices"
+  ]
+}
+</script>
+
+<!-- Structured Data for Service -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Furniture Moving Services",
+  "provider": {
+    "@type": "Organization",
+    "name": "3M Services"
+  },
+  "description": "{{ __('about_description') }}",
+  "serviceType": "Furniture Moving and Transport",
+  "areaServed": "Germany",
+  "availableLanguage": ["de", "ar"]
+}
+</script>
+@endsection
 
 @section('content')
     <!-- Hero Section -->

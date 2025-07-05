@@ -1,31 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Page-specific SEO -->
     <title>@yield('title', __('home_title'))</title>
-    <meta name="google-site-verification" content="W9sNWwbAi7s5HFzC32suun2EWpahencqeIEuwPydA0s" />
-    <!-- SEO Meta Tags -->
     <meta name="description" content="@yield('description', __('about_description'))">
-    <meta name="keywords" content="@yield('home_title', __('home_title'))">
-
+    <meta name="keywords" content="@yield('keywords', 'furniture shipping, moving services, worker requests, 3M Services, نقل الأثاث, خدمات النقل')">
+    <meta name="author" content="3M Services">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
+    
+    <!-- Language and Region -->
+    <meta name="language" content="{{ app()->getLocale() }}">
+    <meta name="geo.region" content="DE">
+    <meta name="geo.placename" content="Germany">
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="W9sNWwbAi7s5HFzC32suun2EWpahencqeIEuwPydA0s" />
+    
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content=" {{ __('home_title') }}">
-    <meta property="og:description" content=" {{ __('about_description') }}">
-    {{-- <meta property="og:image" content="@yield('og_image', asset('images/default-og-image.jpg'))"> --}}
+    <meta property="og:title" content="@yield('og_title', __('home_title'))">
+    <meta property="og:description" content="@yield('og_description', __('about_description'))">
+    <meta property="og:type" content="@yield('og_type', 'website')">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
-
+    <meta property="og:site_name" content="3M Services">
+    <meta property="og:locale" content="{{ app()->getLocale() }}">
+    @yield('og_image')
+    
     <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content=" {{ __('home_title') }}">
-    <meta name="twitter:description" content=" {{ __('about_description') }}">
-    {{-- <meta name="twitter:image" content="@yield('twitter_image', '@yield('og_image')')"> --}}
-
+    <meta name="twitter:card" content="@yield('twitter_card', 'summary_large_image')">
+    <meta name="twitter:title" content="@yield('twitter_title', __('home_title'))">
+    <meta name="twitter:description" content="@yield('twitter_description', __('about_description'))">
+    @yield('twitter_image')
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
+    
+    <!-- Alternate Language Versions -->
+    <link rel="alternate" hreflang="de" href="{{ str_replace('/ar/', '/de/', url()->current()) }}">
+    <link rel="alternate" hreflang="ar" href="{{ str_replace('/de/', '/ar/', url()->current()) }}">
+    <link rel="alternate" hreflang="x-default" href="{{ str_replace('/ar/', '/de/', url()->current()) }}">
+    
+    <!-- Favicon -->
     <link rel="icon" href="https://3m-services-v44.netlify.app/assets/Pur-Z7YkYTxg.png" type="image/x-icon">
+    
+    <!-- Additional Page-specific Meta Tags -->
+    @yield('additional_meta')
+    
     <style>
         @font-face {
             font-family: Cairo;

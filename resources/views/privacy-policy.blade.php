@@ -1,5 +1,44 @@
 @extends('layouts.main')
 
+@section('title', __('privacy_title'))
+@section('description', __('privacy_description'))
+@section('keywords', 'privacy policy, data protection, 3M Services, personal data, سياسة الخصوصية, Datenschutzerklärung')
+@section('og_title', __('privacy_title'))
+@section('og_description', __('privacy_description'))
+@section('og_type', 'website')
+@section('twitter_title', __('privacy_title'))
+@section('twitter_description', __('privacy_description'))
+
+@section('additional_meta')
+<!-- Structured Data for Privacy Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ __('privacy_title') }}",
+  "description": "{{ __('privacy_description') }}",
+  "url": "{{ url()->current() }}",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ __('home') }}",
+        "item": "{{ url('/') }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ __('privacyPolicy') }}",
+        "item": "{{ url()->current() }}"
+      }
+    ]
+  }
+}
+</script>
+@endsection
+
 @section('content')
 <section class="py-8 bg-[#f1f1f1] text-black">
     <div class="container">

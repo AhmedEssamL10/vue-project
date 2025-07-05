@@ -124,5 +124,20 @@
   "cancel": "Abbrechen",
   "delete": "Löschen",
   "showDeleteModal": "Lösch-Modal anzeigen",
-  "home_title":"3M Services - Startseite"
+  "home_title":"3M Services - Startseite",
+  "login_title": "Anmelden - 3M Services",
+  "login_description": "Melden Sie sich als Kunde oder Arbeiter an, um auf unsere spezialisierten Transport- und Anfrageservices zuzugreifen",
+  "login_keywords": "Anmeldung, Kunde, Arbeiter, Möbeltransport, Transportdienstleistungen, 3M Services",
+  "register_title": "Neues Konto registrieren - 3M Services",
+  "register_description": "Erstellen Sie Ihr Konto als Kunde für Transportanfragen oder als Arbeiter, um unserem Team beizutreten",
+  "register_keywords": "Kontoregistrierung, neuer Kunde, neuer Arbeiter, Möbeltransport, Transportdienstleistungen, 3M Services",
+  "request_title": "Anfrage erstellen - 3M Services",
+  "request_description": "Erstellen Sie Ihre Anfrage für Möbeltransport oder Anfragen für spezialisierte Transport- und Montagearbeiter",
+  "request_keywords": "Transportanfrage, Möbeltransport, Arbeiteranfrage, Transportdienstleistungen, 3M Services",
+  "terms_title": "Allgemeine Geschäftsbedingungen - 3M Services",
+  "terms_description": "Lesen Sie die Geschäftsbedingungen für unsere Transport- und Anfrageservices",
+  "privacy_title": "Datenschutzerklärung - 3M Services",
+  "privacy_description": "Erfahren Sie, wie wir Ihre persönlichen Daten in unseren Services schützen",
+  "impressum_title": "Impressum - 3M Services",
+  "impressum_description": "Unternehmensinformationen und rechtliche Daten von 3M Services"
 }

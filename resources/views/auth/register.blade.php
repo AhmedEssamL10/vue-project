@@ -2,6 +2,47 @@
     @php
         $userType = request()->get('user-type') ?? 'client';
     @endphp
+
+@section('title', __('register_title'))
+@section('description', __('register_description'))
+@section('keywords', __('register_keywords'))
+@section('og_title', __('register_title'))
+@section('og_description', __('register_description'))
+@section('og_type', 'website')
+@section('twitter_title', __('register_title'))
+@section('twitter_description', __('register_description'))
+@section('robots', 'noindex, nofollow')
+
+@section('additional_meta')
+<!-- Structured Data for Registration Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ __('register_title') }}",
+  "description": "{{ __('register_description') }}",
+  "url": "{{ url()->current() }}",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ __('home') }}",
+        "item": "{{ url('/') }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ __('Register') }}",
+        "item": "{{ url()->current() }}"
+      }
+    ]
+  }
+}
+</script>
+@endsection
+
    @section('content')
         <div class="flex items-center justify-center gap-4 bg-[#f2f2f2] py-6">
             <a href="javascript:;"

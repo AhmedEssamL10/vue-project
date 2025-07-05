@@ -1,5 +1,44 @@
 @extends('layouts.main')
 
+@section('title', __('terms_title'))
+@section('description', __('terms_description'))
+@section('keywords', 'terms and conditions, 3M Services, transport services, moving services, الشروط والأحكام, Allgemeine Geschäftsbedingungen')
+@section('og_title', __('terms_title'))
+@section('og_description', __('terms_description'))
+@section('og_type', 'website')
+@section('twitter_title', __('terms_title'))
+@section('twitter_description', __('terms_description'))
+
+@section('additional_meta')
+<!-- Structured Data for Terms Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ __('terms_title') }}",
+  "description": "{{ __('terms_description') }}",
+  "url": "{{ url()->current() }}",
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "{{ __('home') }}",
+        "item": "{{ url('/') }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "{{ __('termsAndConditions') }}",
+        "item": "{{ url()->current() }}"
+      }
+    ]
+  }
+}
+</script>
+@endsection
+
 @section('content')
 <section class="py-8 bg-[#f1f1f1] text-black">
     <div class="container">
