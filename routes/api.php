@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login']);
 
     Route::middleware('auth:sanctum')->group(function () {
-        Route::post('/logout', [AdminController::class, 'logout']);
+        Route::post('/logout', [AdminAuthController::class, 'logout']);
         Route::get('/clients', [AdminController::class, 'clients']);
         Route::get('/workers', [AdminController::class, 'workers']);
         Route::get('/user/{id}', [AdminController::class, 'user']);

@@ -16,11 +16,11 @@
                 <div v-else class="dropdown dropdown-hover dropdown-bottom dropdown-end">
                     <span tabindex="0" role="button" class="nav-link">{{ $t('profile') }}</span>
                     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                        <li>
+                        <!-- <li>
                             <router-link :to="{ name: 'adminProfile' }">
                                 {{ $t('profile') }}
                             </router-link>
-                        </li>
+                        </li> -->
                         <li @click="handleLogout">
                             <span>{{ $t('logout') }}</span>
                         </li>

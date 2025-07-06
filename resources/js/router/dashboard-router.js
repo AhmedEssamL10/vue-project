@@ -1,13 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Dashboard from '../pages/dashboard/Dashboard.vue';
 import Stats from '../pages/dashboard/Stats.vue';
-import Profile from '../pages/dashboard/Profile.vue';
 import usersList from '../pages/dashboard/usersList.vue';
 import workersList from '../pages/dashboard/workersList.vue';
 import RequestsList from '../pages/dashboard/RequestsList.vue';
 import RequestDetails from '../pages/dashboard/RequestDetails.vue';
 import Login from '../pages/dashboard/login.vue';
-// import Register from '../pages/dashboard/Register.vue';
 import offersList from '../pages/dashboard/offersList.vue';
 import RequestConfig from '../pages/dashboard/RequestConfig.vue';
 import { useAuthStore } from '../stores/auth'
@@ -30,12 +28,6 @@ const router = createRouter({
           name: "requestConfigPage", 
           path: '/dashboard/request-configurations', 
           component: RequestConfig, 
-          meta: { requiresAuth: true } 
-        },
-        { 
-          name: "adminProfile", 
-          path: '/dashboard/profile', 
-          component: Profile, 
           meta: { requiresAuth: true } 
         },
         { 
@@ -68,10 +60,15 @@ const router = createRouter({
           component: RequestDetails, 
           meta: { requiresAuth: true } 
         },
+        // Catch-all route for non-existent dashboard paths - redirect to DashboardStats
+        { 
+          path: '/dashboard/:pathMatch(.*)*', 
+          redirect: { name: 'DashboardStats' },
+          meta: { requiresAuth: true } 
+        },
       ]
     },
     { name: "adminLogin", path: '/dashboard/login', component: Login, meta: { guest: true } },
-    // { name: "adminRegister", path: '/dashboard/register', component: Register, meta: { guest: true } },
   ],
 });
 
