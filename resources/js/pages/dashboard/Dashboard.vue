@@ -84,7 +84,7 @@ import { useAuthStore } from '../../stores/auth';
 import router from '../../router/dashboard-router';
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import arabicFlag from '@assets/images/arabic.webp';
+import arabicFlag from '@assets/images/arabic.png';
 import germanFlag from '@assets/images/germany.png';
 
 const authStore = useAuthStore()

@@ -4,176 +4,415 @@
       <div class="max-w-3xl mx-auto">
         <div class="mt-8">
           <dialog v-if="creditionals_modal_shown" ref="creditionals_modal" id="creditionals_modal" class="modal">
-              <div class="modal-box bg-[#f1f1f1] text-black">
-                <h3 class="text-lg font-bold">{{ $t('credntialsPopUpTitle') }}</h3>
-                <p class="py-4">{{ $t('credntialsPopUpMessage') }} </p>
-                <div>
-                  <div class="flex flex-col gap-1 mb-2">
-                    <label>{{ $t('email_required') }}</label>
-                    <div class="relative bg-[#E1E1E1]">
-                      <input class="p-3 bg-transparent" readonly :value="credentials?.email || ''" />
-                      <span @click="copyToClipboard(credentials?.email || '', false)" :title="$t('copyEmail')">
-                        <svg width="25px" class="cursor-pointer hover:opacity-70 hover:scale-110 absolute left-2 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4V8H18V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H6ZM8 2H16V6H8V2Z"></path></svg>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col gap-1 mb-2">
-                    <label>{{ $t('password') }}</label>
-                    <div class="relative bg-[#E1E1E1]">
-                      <input class="p-3 bg-transparent" readonly :value="credentials?.password || ''" />
-                      <span @click="copyToClipboard(credentials?.password || '', true)" :title="$t('copyPassword')">
-                        <svg width="25px" class="cursor-pointer hover:opacity-70 hover:scale-110 absolute left-2 top-1/2 -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4V8H18V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H6ZM8 2H16V6H8V2Z"></path></svg>
-                      </span>
-                    </div>
+            <div class="modal-box bg-[#f1f1f1] text-black">
+              <h3 class="text-lg font-bold">
+                {{ $t("credntialsPopUpTitle") }}
+              </h3>
+              <p class="py-4">
+                {{ $t("credntialsPopUpMessage") }}
+              </p>
+              <div>
+                <div class="flex flex-col gap-1 mb-2">
+                  <label>{{ $t("email_required") }}</label>
+                  <div class="relative bg-[#E1E1E1]">
+                    <input class="p-3 bg-transparent" :value="credentials?.email || ''" />
+                    <span @click="
+                      copyToClipboard(
+                        credentials?.email || '',
+                        false
+                      )
+                      " :title="$t('copyEmail')">
+                      <svg width="25px"
+                        class="cursor-pointer hover:opacity-70 hover:scale-110 absolute left-2 top-1/2 -translate-y-1/2"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M6 4V8H18V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H6ZM8 2H16V6H8V2Z">
+                        </path>
+                      </svg>
+                    </span>
                   </div>
                 </div>
-                <span class="text-sm text-red-500">
-                  <span class="font-bold">{{ $t('notice') }}: </span>
-                  <span>{{ $t('saveCredentials') }}</span>
-                </span>
-                <div class="modal-action">
-                  <button @click="closeCredentialsModal" type="button" class="btn btn-outline">{{ $t('close') }}</button>
-                  <a :href="loginPageUrl" class="btn">{{ $t('login') }}</a>
+                <div class="flex flex-col gap-1 mb-2">
+                  <label>{{ $t("password") }}</label>
+                  <div class="relative bg-[#E1E1E1]">
+                    <input class="p-3 bg-transparent" :value="credentials?.password || ''" />
+                    <span @click="
+                      copyToClipboard(
+                        credentials?.password || '',
+                        true
+                      )
+                      " :title="$t('copyPassword')">
+                      <svg width="25px"
+                        class="cursor-pointer hover:opacity-70 hover:scale-110 absolute left-2 top-1/2 -translate-y-1/2"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                          d="M6 4V8H18V4H20.0066C20.5552 4 21 4.44495 21 4.9934V21.0066C21 21.5552 20.5551 22 20.0066 22H3.9934C3.44476 22 3 21.5551 3 21.0066V4.9934C3 4.44476 3.44495 4 3.9934 4H6ZM8 2H16V6H8V2Z">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
                 </div>
               </div>
+              <span class="text-sm text-red-500">
+                <span class="font-bold">{{ $t("notice") }}:
+                </span>
+                <span>{{ $t("saveCredentials") }}</span>
+              </span>
+              <div class="modal-action">
+                <button @click="closeCredentialsModal" type="button" class="btn btn-outline">
+                  {{ $t("close") }}
+                </button>
+                <a :href="loginPageUrl" class="btn">{{
+                  $t("login")
+                }}</a>
+              </div>
+            </div>
           </dialog>
           <!-- Multi-Step Form Start -->
           <template v-if="resultsReady">
             <div class="form_panel !max-w-3xl">
               <template v-if="servicesCosts.workers_form">
-                <div v-if="servicesCosts.workers_cost && servicesCosts.workers_cost != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                  <span>{{ $t('workersCost') }}</span>
-                  <span class="font-bold">{{ servicesCosts.workers_cost }} {{ $t('euro') }}</span>
+                <div v-if="
+                  servicesCosts.workers_cost &&
+                  servicesCosts.workers_cost != '0'
+                " class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                  <span>{{ $t("workersCost") }}</span>
+                  <span class="font-bold">{{ servicesCosts.workers_cost }}
+                    {{ $t("euro") }}</span>
                 </div>
               </template>
               <template v-else>
                 <div class="mb-8">
-                  <h3 class="text-xl font-bold mb-8">{{ $t('basicServicesCost') }}</h3>
+                  <h3 class="text-xl font-bold mb-8">
+                    {{ $t("basicServicesCost") }}
+                  </h3>
                   <div class="flex flex-col">
-                    <div class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('gasolineCost') }}</span>
-                      <span class="font-bold">200</span>
+                    <div v-if="
+                      servicesCosts.boxPrice &&
+                      servicesCosts.boxPrice !=
+                      '0'
+                    " class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("boxesCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.boxPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.pickupFloorWithoutLifterPrice && servicesCosts.pickupFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('pickupFloorCostFrom') }}</span>
-                      <span class="font-bold">{{ servicesCosts.pickupFloorWithoutLifterPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.distancePrice &&
+                      servicesCosts.distancePrice !=
+                      '0'
+                    " class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("gasolineCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.distancePrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.dropOffFloorWithoutLifterPrice && servicesCosts.dropOffFloorWithoutLifterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('dropOffFloorCostTo') }}</span>
-                      <span class="font-bold">{{ servicesCosts.dropOffFloorWithoutLifterPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.pickupFloorWithoutLifterPrice &&
+                      servicesCosts.pickupFloorWithoutLifterPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("pickupFloorCostFrom")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.pickupFloorWithoutLifterPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.meterInBasementPrice && servicesCosts.meterInBasementPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('additionalStorageCost') }}</span>
-                      <span class="font-bold">{{ servicesCosts.meterInBasementPrice }}</span>
+                    <div v-if="
+                      servicesCosts.dropOffFloorWithoutLifterPrice &&
+                      servicesCosts.dropOffFloorWithoutLifterPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("dropOffFloorCostTo")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.dropOffFloorWithoutLifterPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.squareMeterPrice && servicesCosts.squareMeterPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('homeSpaceCost') }}</span>
-                      <span class="font-bold">{{ servicesCosts.squareMeterPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.meterInBasementPrice &&
+                      servicesCosts.meterInBasementPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("additionalStorageCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.meterInBasementPrice
+                      }}</span>
+                    </div>
+                    <div v-if="
+                      servicesCosts.squareMeterPrice &&
+                      servicesCosts.squareMeterPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("homeSpaceCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.squareMeterPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
                   </div>
                 </div>
                 <div class="mb-8">
-                  <h3 class="text-xl font-bold mb-8">{{ $t('additionalServicesCost') }}</h3>
+                  <h3 class="text-xl font-bold mb-8">
+                    {{ $t("additionalServicesCost") }}
+                  </h3>
                   <div class="flex flex-col">
-                    <div v-if="servicesCosts.furnitureStoreDayPrice && servicesCosts.furnitureStoreDayPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('furnitureStorage') }}</span>
-                      <span class="font-bold">{{ servicesCosts.furnitureStoreDayPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.furnitureStoreDayPrice &&
+                      servicesCosts.furnitureStoreDayPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("furnitureStorage")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.furnitureStoreDayPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.cleaningPrice && servicesCosts.cleaningPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('cleaning') }}</span>
-                      <span class="font-bold">{{ servicesCosts.cleaningPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.cleaningPrice &&
+                      servicesCosts.cleaningPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{ $t("cleaning") }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.cleaningPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.furnitureLifterToolPrice && servicesCosts.furnitureLifterToolPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('furnitureLifter') }}</span>
-                      <span class="font-bold">{{ servicesCosts.furnitureLifterToolPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.furnitureLifterToolPrice &&
+                      servicesCosts.furnitureLifterToolPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("furnitureLifter")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.furnitureLifterToolPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.connectingWashingMachinePrice && servicesCosts.connectingWashingMachinePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('washingMachineConnection') }}</span>
-                      <span class="font-bold">{{ servicesCosts.connectingWashingMachinePrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.connectingWashingMachinePrice &&
+                      servicesCosts.connectingWashingMachinePrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("washingMachineConnection")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.connectingWashingMachinePrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.packingServicePrice && servicesCosts.packingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('packingService') }}</span>
-                      <span class="font-bold">{{ servicesCosts.packingServicePrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.packingServicePrice &&
+                      servicesCosts.packingServicePrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("packingService")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.packingServicePrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.unpackingServicePrice && servicesCosts.unpackingServicePrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('unpackingService') }}</span>
-                      <span class="font-bold">{{ servicesCosts.unpackingServicePrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.unpackingServicePrice &&
+                      servicesCosts.unpackingServicePrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("unpackingService")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.unpackingServicePrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.KitchenMeterunInstallingPrice && servicesCosts.KitchenMeterunInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('kitchenUninstall') }}</span>
-                      <span class="font-bold">{{ servicesCosts.KitchenMeterunInstallingPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.KitchenMeterunInstallingPrice &&
+                      servicesCosts.KitchenMeterunInstallingPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("kitchenUninstall")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.KitchenMeterunInstallingPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.KitchenMeterInstallingPrice && servicesCosts.KitchenMeterInstallingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('kitchenInstall') }}</span>
-                      <span class="font-bold">{{ servicesCosts.KitchenMeterInstallingPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.KitchenMeterInstallingPrice &&
+                      servicesCosts.KitchenMeterInstallingPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("kitchenInstall")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.KitchenMeterInstallingPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.buyPackingBoxesPrice && servicesCosts.buyPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('buyPackingBoxes') }}</span>
-                      <span class="font-bold">{{ servicesCosts.buyPackingBoxesPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.buyPackingBoxesPrice &&
+                      servicesCosts.buyPackingBoxesPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("buyPackingBoxes")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.buyPackingBoxesPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.rentPackingBoxesPrice && servicesCosts.rentPackingBoxesPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('rentPackingBoxes') }}</span>
-                      <span class="font-bold">{{ servicesCosts.rentPackingBoxesPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.rentPackingBoxesPrice &&
+                      servicesCosts.rentPackingBoxesPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("rentPackingBoxes")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.rentPackingBoxesPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
-                    <div v-if="servicesCosts.noParkingPrice && servicesCosts.noParkingPrice != '0'" class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
-                      <span>{{ $t('noParkingZone') }}</span>
-                      <span class="font-bold">{{ servicesCosts.noParkingPrice }} {{ $t('euro') }}</span>
+                    <div v-if="
+                      servicesCosts.noParkingPrice &&
+                      servicesCosts.noParkingPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("noParkingZone")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.noParkingPrice
+                      }}
+                        {{ $t("euro") }}</span>
                     </div>
                   </div>
                 </div>
               </template>
               <div class="flex justify-between items-center">
-                <span class="font-bold text-xl">{{ $t('totalCost') }}</span>
+                <span class="font-bold text-xl">{{
+                  $t("totalCost")
+                }}</span>
                 <span class="flex flex-col">
-                  <span class="font-bold text-xl">{{ totalCost }} {{ $t('euro') }}</span>
-                  <span v-if="servicesCosts?.tax">({{ $t('includingTax') }} {{ servicesCosts.tax }}
-                    {{ $t('euro') }})</span>
+                  <span class="font-bold text-xl">{{ Number(totalCost).toFixed(2) }} {{ $t("euro") }}</span>
+                  <span v-if="servicesCosts?.tax">({{ $t("includingTax") }}
+                    {{ Number(servicesCosts.tax).toFixed(2) }}
+                    {{ $t("euro") }})</span>
                 </span>
               </div>
             </div>
             <div class="btn_wrapper flex items-center gap-2">
               <button @click="reloadPage" type="button"
-                class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{ $t('makeAnotherRequest') }}</button>
+                class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                {{ $t("makeAnotherRequest") }}
+              </button>
               <button @click="navigateToHome" type="button"
-                class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{ $t('goToHome') }}</button>
+                class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                {{ $t("goToHome") }}
+              </button>
             </div>
           </template>
           <template v-else>
             <!-- Client Type -->
-            <template v-if="(stepNumber === 0 && companyStepNumber === 0)">
+            <template v-if="stepNumber === 0 && companyStepNumber === 0">
               <div class="form_panel">
                 <div class="form_step_parent">
                   <!-- Step 1: Pickup Details -->
                   <form class="form-step">
-                    <h3 class="text-xl font-bold mb-4">{{ $t('client_type') }}</h3>
+                    <h3 class="text-xl font-bold mb-4">
+                      {{ $t("client_type") }}
+                    </h3>
                     <div class="flex flex-col gap-4 mb-4">
                       <div class="form_control_wrapper">
                         <div class="flex flex-col gap-3">
                           <label class="label cursor-pointer">
-                            <input @change="clientTypeError = false" type="radio" v-model="clientType"
-                              value="personal" name="clientType"
-                              class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                              :class="clientTypeError ? 'input-error' : ''" />
-                            <span class="label-text text-[`#1b1718`]">{{ $t('personal') }}</span>
-                          </label>
-                          <label class="label cursor-pointer">
-                            <input @change="clientTypeError = false" type="radio" v-model="clientType" value="company"
+                            <input @change="
+                              clientTypeError = false
+                              " type="radio" v-model="clientType" value="personal"
                               name="clientType"
                               class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                              :class="clientTypeError ? 'input-error' : ''" />
-                            <span class="label-text text-[`#1b1718`]">{{ $t('company') }}</span>
+                              :class="clientTypeError
+                                  ? 'input-error'
+                                  : ''
+                                " />
+                            <span class="label-text text-[`#1b1718`]">{{
+                              $t("personal")
+                            }}</span>
+                          </label>
+                          <label class="label cursor-pointer">
+                            <input @change="
+                              clientTypeError = false
+                              " type="radio" v-model="clientType" value="company"
+                              name="clientType"
+                              class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
+                              :class="clientTypeError
+                                  ? 'input-error'
+                                  : ''
+                                " />
+                            <span class="label-text text-[`#1b1718`]">{{
+                              $t("company")
+                            }}</span>
                           </label>
                         </div>
-                        <span v-if="clientTypeError" class="error-msg">{{ $t('please_select_client_type') }}</span>
+                        <span v-if="clientTypeError" class="error-msg">{{
+                          $t(
+                            "please_select_client_type"
+                          )
+                        }}</span>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
               <div class="max-w-xl mx-auto">
-                <button type="button" @click="handleNextStepOfCompanyOrPersonal(clientType)"
+                <button type="button" @click="
+                  handleNextStepOfCompanyOrPersonal(
+                    clientType
+                  )
+                  "
                   class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
-                  {{ $t('next') }}
+                  {{ $t("next") }}
                 </button>
               </div>
             </template>
@@ -184,27 +423,52 @@
                   <div class="form_step_parent">
                     <!-- Step 1: Pickup Details -->
                     <form class="form-step">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('what_do_you_need') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("what_do_you_need") }}
+                      </h3>
                       <div class="flex flex-col gap-4">
                         <div class="form_control_wrapper">
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input @change="companyChooseError = false" type="radio" v-model="companyOption"
-                                value="shipping" name="companyOption"
+                              <input @change="
+                                companyChooseError = false
+                                " type="radio" v-model="companyOption
+                                                                  " value="shipping" name="companyOption"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="companyChooseError ? 'input-error' : ''" />
-                              <span class="label-text text-[#1b1718]">{{ $t('shipping') }}</span>
+                                :class="companyChooseError
+                                    ? 'input-error'
+                                    : ''
+                                  " />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "shipping"
+                                )
+                              }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input @change="companyChooseError = false" type="radio" v-model="companyOption"
-                                value="workers" name="companyOption"
+                              <input @change="
+                                companyChooseError = false
+                                " type="radio" v-model="companyOption
+                                                                  " value="workers" name="companyOption"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="companyChooseError ? 'input-error' : ''" />
-                              <span class="label-text text-[#1b1718]">{{ $t('workers_support') }}</span>
+                                :class="companyChooseError
+                                    ? 'input-error'
+                                    : ''
+                                  " />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "workers_support"
+                                )
+                              }}</span>
                             </label>
                           </div>
-                          <span v-if="companyChooseError" class="error-msg">{{ $t('please_choose_what_you_want')
-                          }}</span>
+                          <span v-if="
+                            companyChooseError
+                          " class="error-msg">{{
+                                                          $t(
+                                                            "please_choose_what_you_want"
+                                                          )
+                                                        }}</span>
                         </div>
                       </div>
                     </form>
@@ -214,11 +478,15 @@
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="companyStepNumber = 0" type="button"
                       class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
-                      {{ $t('back') }}
+                      {{ $t("back") }}
                     </button>
-                    <button type="button" @click="handleStepAfterCompanyOptionSelection(companyOption)"
+                    <button type="button" @click="
+                      handleStepAfterCompanyOptionSelection(
+                        companyOption
+                      )
+                      "
                       class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
-                      {{ $t('next') }}
+                      {{ $t("next") }}
                     </button>
                   </div>
                 </div>
@@ -228,46 +496,117 @@
                   <div class="form_step_parent">
                     <!-- Step 1: Pickup Details -->
                     <form class="form-step" id="pickupDetails">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('workers_data') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("workers_data") }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div>
                             <label for="workersCount" class="block text-sm font-medium text-gray-700 mb-1">
-                              {{ $t('workers_count') }}*
+                              {{
+                                $t(
+                                  "workers_count"
+                                )
+                              }}*
                             </label>
-                            <input id="workersCount" type="number" v-model="v2$.workersFormFields.count.$model"
-                              :placeholder="$t('workers_count_placeholder')"
+                            <input id="workersCount" type="number" v-model="v2$
+                                .workersFormFields
+                                .count
+                                .$model
+                              " :placeholder="$t(
+                                                              'workers_count_placeholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="v2$.workersFormFields.count.$error ? 'input-error' : ''" />
+                              :class="v2$
+                                  .workersFormFields
+                                  .count
+                                  .$error
+                                  ? 'input-error'
+                                  : ''
+                                " />
                           </div>
-                          <span v-if="v2$.workersFormFields.count.$error" class="error-msg">
-                            {{ v2$.workersFormFields.count.$errors[0].$message }}
+                          <span v-if="
+                            v2$
+                              .workersFormFields
+                              .count.$error
+                          " class="error-msg">
+                            {{
+                              v2$
+                                .workersFormFields
+                                .count
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div>
                           <div class="form_control_wrapper">
                             <div>
                               <label class="block text-sm font-medium text-gray-700 mb-1">
-                                {{ $t('workers_duration') }}*
+                                {{
+                                  $t(
+                                    "workers_duration"
+                                  )
+                                }}*
                               </label>
                               <!-- <VCalendar /> -->
-                              <VDatePicker is-range :min-date="new Date()" v-model="v2$.workersFormFields.date.$model"
-                                :masks="masks" :locale="$i18n.locale">
-                                <template #default="{ inputValue, showPopover }">
-                                  <input :placeholder="$t('date_or_period_placeholder')"
+                              <VDatePicker is-range :min-date="new Date()
+                                " v-model="v2$
+                                                                    .workersFormFields
+                                                                    .date
+                                                                    .$model
+                                                                  " :masks="masks" :locale="$i18n.locale
+                                                                  ">
+                                <template #default="{
+                                  inputValue,
+                                  showPopover,
+                                }">
+                                  <input :placeholder="$t(
+                                    'date_or_period_placeholder'
+                                  )
+                                    "
                                     class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                    type="text"
-                                    :value="`${(inputValue.start || inputValue.end) ? `${inputValue.start || ''} ${inputValue.end ? ` - ${inputValue.end}` : ''}` : ''}`"
-                                    :class="v2$.workersFormFields.date.$error ? 'input-error' : ''"
-                                    @focus="showPopover">
+                                    type="text" :value="`${inputValue.start ||
+                                        inputValue.end
+                                        ? `${inputValue.start ||
+                                        ''
+                                        } ${inputValue.end
+                                          ? ` - ${inputValue.end}`
+                                          : ''
+                                        }`
+                                        : ''
+                                      }`" :class="v2$
+                                                                            .workersFormFields
+                                                                            .date
+                                                                            .$error
+                                                                            ? 'input-error'
+                                                                            : ''
+                                                                          " @focus="
+                                                                          showPopover
+                                                                        " />
                                 </template>
                               </VDatePicker>
                             </div>
                             <span class="text-info font-bold text-xs">
-                              {{ $t('workingHoursAccordingtoEuropeanLaw') }}
+                              {{
+                                $t(
+                                  "workingHoursAccordingtoEuropeanLaw"
+                                )
+                              }}
                             </span>
-                            <span v-if="v2$.workersFormFields.date.$error" class="error-msg">
-                              {{ v2$.workersFormFields.date.$errors[0].$message }}
+                            <span v-if="
+                              v2$
+                                .workersFormFields
+                                .date.$error
+                            " class="error-msg">
+                              {{
+                                v2$
+                                  .workersFormFields
+                                  .date
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
                         </div>
@@ -279,11 +618,11 @@
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="companyStepNumber = 1" type="button"
                       class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
-                      {{ $t('back') }}
+                      {{ $t("back") }}
                     </button>
                     <button type="button" @click="nextStepForCompany()"
                       class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
-                      {{ $t('next') }}
+                      {{ $t("next") }}
                     </button>
                   </div>
                 </div>
@@ -292,55 +631,151 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <!-- Step 5: Contact Information -->
-                    <div v-if="user && prefilledDataAlertShown" class="alert alert-info mb-4 flex flex-col items-start gap-2">
-                      <p><strong>{{ $t('notice') }}:</strong> {{ $t('prefilledDataNotice') }}</p>
-                      <button @click="prefilledDataAlertShown = false" type="button" class="btn btn-outline">{{$t('close')}}</button>
+                    <div v-if="
+                      user && prefilledDataAlertShown
+                    " class="alert alert-info mb-4 flex flex-col items-start gap-2">
+                      <p>
+                        <strong>{{ $t("notice") }}:</strong>
+                        {{ $t("prefilledDataNotice") }}
+                      </p>
+                      <button @click="
+                        prefilledDataAlertShown = false
+                        " type="button" class="btn btn-outline">
+                        {{ $t("close") }}
+                      </button>
                     </div>
                     <form class="form-step" id="contactInformation">
                       <div class="mb-4">
-                        <h3 class="text-xl font-bold mb-4">{{ $t('contact_information') }}</h3>
+                        <h3 class="text-xl font-bold mb-4">
+                          {{
+                            $t(
+                              "contact_information"
+                            )
+                          }}
+                        </h3>
                         <div class="flex flex-col gap-4 mb-4">
                           <div class="form_control_wrapper">
                             <div>
                               <label for="name" class="block text-sm font-medium text-gray-700 mb-1">
-                                {{ $t('name_required') }}*
+                                {{
+                                  $t(
+                                    "name_required"
+                                  )
+                                }}*
                               </label>
-                              <input id="name" v-model="v2$.workersFormFields.clientName.$model"
-                                :placeholder="$t('name_placeholder')"
+                              <input id="name" v-model="v2$
+                                  .workersFormFields
+                                  .clientName
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'name_placeholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v2$.workersFormFields.clientName.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v2$
+                                      .workersFormFields
+                                      .clientName
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v2$.workersFormFields.clientName.$error">
-                              {{ v2$.workersFormFields.clientName.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v2$
+                                .workersFormFields
+                                .clientName
+                                .$error
+                            ">
+                              {{
+                                v2$
+                                  .workersFormFields
+                                  .clientName
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
 
                           <div class="form_control_wrapper">
                             <div>
                               <label for="email" class="block text-sm font-medium text-gray-700 mb-1">
-                                {{ $t('email_required') }}*
+                                {{
+                                  $t(
+                                    "email_required"
+                                  )
+                                }}*
                               </label>
-                              <input id="email" v-model="v2$.workersFormFields.clientEmail.$model"
-                                :placeholder="$t('email_placeholder')"
+                              <input id="email" v-model="v2$
+                                  .workersFormFields
+                                  .clientEmail
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'email_placeholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v2$.workersFormFields.clientEmail.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v2$
+                                      .workersFormFields
+                                      .clientEmail
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v2$.workersFormFields.clientEmail.$error">
-                              {{ v2$.workersFormFields.clientEmail.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v2$
+                                .workersFormFields
+                                .clientEmail
+                                .$error
+                            ">
+                              {{
+                                v2$
+                                  .workersFormFields
+                                  .clientEmail
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
                           <div class="form_control_wrapper">
                             <div>
                               <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
-                                {{ $t('phone_required') }}*
+                                {{
+                                  $t(
+                                    "phone_required"
+                                  )
+                                }}*
                               </label>
-                              <input id="phone" v-model="v2$.workersFormFields.clientPhone.$model"
-                                :placeholder="$t('phone_placeholder')"
+                              <input id="phone" v-model="v2$
+                                  .workersFormFields
+                                  .clientPhone
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'phone_placeholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v2$.workersFormFields.clientPhone.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v2$
+                                      .workersFormFields
+                                      .clientPhone
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v2$.workersFormFields.clientPhone.$error">
-                              {{ v2$.workersFormFields.clientPhone.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v2$
+                                .workersFormFields
+                                .clientPhone
+                                .$error
+                            ">
+                              {{
+                                v2$
+                                  .workersFormFields
+                                  .clientPhone
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
                         </div>
@@ -352,44 +787,56 @@
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="companyStepNumber = 2" type="button"
                       class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
-                      {{ $t('back') }}
+                      {{ $t("back") }}
                     </button>
                     <button @click="nextStepForCompany()" type="button"
                       class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
-                      {{ $t('next') }}
+                      {{ $t("next") }}
                     </button>
                   </div>
                 </div>
               </template>
               <dialog ref="companySaveDataModal" id="companySaveDataModal" class="modal text-black">
                 <form @submit.prevent class="modal-box bg-white saveDataForm">
-                  <h3 class="text-lg font-bold">{{ $t('save_data') }}</h3>
-                  <p class="py-4">{{ $t('save_data_question') }}</p>
+                  <h3 class="text-lg font-bold">
+                    {{ $t("save_data") }}
+                  </h3>
+                  <p class="py-4">
+                    {{ $t("save_data_question") }}
+                  </p>
                   <div>
                     <div class="flex flex-col gap-3">
                       <label class="label cursor-pointer">
-                        <input type="radio" :value="true" v-model="v2$.workersFormFields.saveData.$model"
-                          name="companySaveData"
+                        <input type="radio" :value="true" v-model="v2$.workersFormFields
+                            .saveData.$model
+                          " name="companySaveData"
                           class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                        <span class="label-text text-[#1b1718]">{{ $t('save_data_option') }}</span>
+                        <span class="label-text text-[#1b1718]">{{
+                          $t("save_data_option")
+                        }}</span>
                       </label>
                       <label class="label cursor-pointer">
-                        <input checked type="radio" :value="false" v-model="v2$.workersFormFields.saveData.$model"
-                          name="companySaveData"
+                        <input checked type="radio" :value="false" v-model="v2$.workersFormFields
+                            .saveData.$model
+                          " name="companySaveData"
                           class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                        <span class="label-text text-[#1b1718]">{{ $t('cancel_save') }}</span>
+                        <span class="label-text text-[#1b1718]">{{
+                          $t("cancel_save")
+                        }}</span>
                       </label>
                     </div>
                   </div>
                   <div class="modal-action">
-                    <button @click="submitCompanyRequestData"
-                      :class="isLoading ? 'opacity-50 pointer-events-none' : ''" type="button" class="btn">
+                    <button @click="submitCompanyRequestData" :class="isLoading
+                        ? 'opacity-50 pointer-events-none'
+                        : ''
+                      " type="button" class="btn">
                       <template v-if="isLoading">
                         <span class="loading loading-spinner"></span>
-                        {{ $t('submit_request') }}
+                        {{ $t("submit_request") }}
                       </template>
                       <template v-else>
-                        {{ $t('submit_request') }}
+                        {{ $t("submit_request") }}
                       </template>
                     </button>
                   </div>
@@ -397,64 +844,177 @@
               </dialog>
             </template>
 
-            <template v-if="(clientType === 'personal' || companyOption === 'shipping')">
+            <template v-if="
+              clientType === 'personal' ||
+              companyOption === 'shipping'
+            ">
               <template v-if="stepNumber === 1">
                 <!-- Location PickUp Data -->
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="movingFrom">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('pickup.title') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("pickup.title") }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div>
                             <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('pickup.postalCode') }}*</label>
-                            <input id="postalCode" v-model="v$.formData.pickupPostalCode.$model"
-                              :placeholder="$t('pickup.postalCodePlaceholder')"
+                              $t(
+                                "pickup.postalCode"
+                              )
+                            }}*</label>
+                            <input id="postalCode" @change="
+                              postalCodeChanged(
+                                'pickup',
+                                v$.formData
+                                  .pickupPostalCode
+                                  .$model
+                              )
+                              " v-model="v$.formData
+                                                                .pickupPostalCode
+                                                                .$model
+                                                              " :placeholder="$t(
+                                                              'pickup.postalCodePlaceholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.pickupPostalCode.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .pickupPostalCode
+                                    .$error,
+                              }" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupPostalCode.$error">
-                            {{ v$.formData.pickupPostalCode.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupPostalCode
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupPostalCode
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div>
                             <label for="location" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('pickup.city') }}*</label>
-                            <input id="location" v-model="v$.formData.pickupLocation.$model"
-                              :placeholder="$t('pickup.cityPlaceholder')"
+                              $t(
+                                "pickup.city"
+                              )
+                            }}*</label>
+                            <input id="location" readonly v-model="v$.formData
+                                .pickupLocation
+                                .$model
+                              " :placeholder="$t(
+                                                              'pickup.cityPlaceholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.pickupLocation.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .pickupLocation
+                                    .$error,
+                              }" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupLocation.$error">
-                            {{ v$.formData.pickupLocation.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupLocation
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupLocation
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div class="grid grid-cols-[auto_100px] gap-2">
                             <div>
                               <label for="address" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('pickup.street') }}*</label>
-                              <input id="address" v-model="v$.formData.pickupAddress.$model"
+                                $t(
+                                  "pickup.street"
+                                )
+                              }}*</label>
+                              <select id="address" v-model="v$.formData
+                                  .pickupAddress
+                                  .$model
+                                "
+                                class="w-full px-4 py-2 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupAddress
+                                      .$error,
+                                }">
+                                <option value="">
+                                  {{
+                                    $t(
+                                      "pickup.streetPlaceholder"
+                                    )
+                                  }}
+                                </option>
+                                <option v-for="street in pickupStreets" :value="street
+                                  ">
+                                  {{ street }}
+                                </option>
+                              </select>
+                              <!-- <input id="address" v-model="v$.formData.pickupAddress.$model"
                                 :placeholder="$t('pickup.streetPlaceholder')"
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.pickupAddress.$error }" />
+                                :class="{ 'input-error': v$.formData.pickupAddress.$error }" /> -->
                             </div>
                             <div>
                               <label for="number" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('pickup.number') }}*</label>
-                              <input id="number" v-model="v$.formData.pickupNo.$model"
-                                :placeholder="$t('pickup.numberPlaceholder')"
+                                $t(
+                                  "pickup.number"
+                                )
+                              }}*</label>
+                              <input id="number" v-model="v$.formData
+                                  .pickupNo
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'pickup.numberPlaceholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.pickupNo.$error }" type="number" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupNo
+                                      .$error,
+                                }" type="number" />
                             </div>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupAddress.$error">
-                            {{ v$.formData.pickupAddress.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupAddress
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupAddress
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
-                          <span class="error-msg" v-if="v$.formData.pickupNo.$error">
-                            {{ v$.formData.pickupNo.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData.pickupNo
+                              .$error
+                          ">
+                            {{
+                              v$.formData.pickupNo
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                       </div>
@@ -466,60 +1026,150 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="whatNeedToShip">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('floorAndLift.title') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("floorAndLift.title") }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div>
                             <label for="pickUpDistanceToCar" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('floorAndLift.distanceToCar') }}*</label>
+                              $t(
+                                "floorAndLift.distanceToCar"
+                              )
+                            }}*</label>
                             <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                              <input type="number" id="pickUpDistanceToCar"
-                                v-model="v$.formData.pickupDistanceToCar.$model"
-                                :placeholder="$t('floorAndLift.distanceToCarPlaceholder')"
+                              <input type="number" id="pickUpDistanceToCar" v-model="v$.formData
+                                  .pickupDistanceToCar
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'floorAndLift.distanceToCarPlaceholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.pickupDistanceToCar.$error }" />
-                              <span>{{ $t('floorAndLift.meter') }}</span>
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupDistanceToCar
+                                      .$error,
+                                }" />
+                              <span>{{
+                                $t(
+                                  "floorAndLift.meter"
+                                )
+                              }}</span>
                             </div>
-                            <span class="text-xs">{{ $t('floorAndLift.ifNoDisctanceWriteZero') }}</span>
+                            <span class="text-xs">{{
+                              $t(
+                                "floorAndLift.ifNoDisctanceWriteZero"
+                              )
+                            }}</span>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupDistanceToCar.$error">
-                            {{ v$.formData.pickupDistanceToCar.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupDistanceToCar
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupDistanceToCar
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div>
                             <label for="floorNumber" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('floorAndLift.floorNumber') }}*</label>
-                            <input id="floorNumber" type="number" v-model="v$.formData.pickupFloorNumber.$model"
-                              :placeholder="$t('floorAndLift.floorNumberPlaceholder')"
+                              $t(
+                                "floorAndLift.floorNumber"
+                              )
+                            }}*</label>
+                            <input id="floorNumber" type="number" v-model="v$.formData
+                                .pickupFloorNumber
+                                .$model
+                              " :placeholder="$t(
+                                                              'floorAndLift.floorNumberPlaceholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.pickupFloorNumber.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .pickupFloorNumber
+                                    .$error,
+                              }" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupFloorNumber.$error">
-                            {{ v$.formData.pickupFloorNumber.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupFloorNumber
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupFloorNumber
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
-                          <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('floorAndLift.liftExists')
+                          <label class="block text-sm font-medium text-gray-700 mb-1">{{
+                            $t(
+                              "floorAndLift.liftExists"
+                            )
                           }}*</label>
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveFrom" value="true"
-                                v-model="v$.formData.pickupLifterExistance.$model"
+                              <input type="radio" name="lifterExistMoveFrom" value="true" v-model="v$.formData
+                                  .pickupLifterExistance
+                                  .$model
+                                "
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
-                              <span class="label-text text-[#1b1718]">{{ $t('floorAndLift.yes') }}</span>
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupLifterExistance
+                                      .$error,
+                                }" />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "floorAndLift.yes"
+                                )
+                              }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveFrom" value="false"
-                                v-model="v$.formData.pickupLifterExistance.$model"
+                              <input type="radio" name="lifterExistMoveFrom" value="false" v-model="v$.formData
+                                  .pickupLifterExistance
+                                  .$model
+                                "
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="{ 'input-error': v$.formData.pickupLifterExistance.$error }" />
-                              <span class="label-text text-[#1b1718]">{{ $t('floorAndLift.no') }}</span>
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupLifterExistance
+                                      .$error,
+                                }" />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "floorAndLift.no"
+                                )
+                              }}</span>
                             </label>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.pickupLifterExistance.$error">
-                            {{ v$.formData.pickupLifterExistance.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .pickupLifterExistance
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .pickupLifterExistance
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                       </div>
@@ -532,13 +1182,23 @@
                   <div class="form_step_parent">
                     <form class="form-step" id="homeOutInTypes">
                       <div class="mb-4">
-                        <h3 class="text-lg font-semibold mb-4">{{ $t('propertyDetails.title') }}</h3>
+                        <h3 class="text-lg font-semibold mb-4">
+                          {{
+                            $t(
+                              "propertyDetails.title"
+                            )
+                          }}
+                        </h3>
                         <div class="flex flex-col gap-4 mb-4">
                           <div>
                             <div class="form_control_wrapper">
                               <div class="flex flex-col items-start gap-3 mb-3">
                                 <label class="custom-option p-3 grid grid-cols-[35px_auto] gap-2">
-                                  <input v-model="v$.formData.selectedPickUpType.$model" type="radio" value="all"
+                                  <input v-model="v$
+                                      .formData
+                                      .selectedPickUpType
+                                      .$model
+                                    " type="radio" value="all"
                                     class="opacity-0 radio mt-2" />
                                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -549,13 +1209,25 @@
                                   </svg>
                                   <span class="label-text w-full text-start">
                                     <span class="flex justify-between mb-1">
-                                      <span class="text-base">{{ $t('propertyDetails.moveTypes.all.title') }}</span>
+                                      <span class="text-base">{{
+                                        $t(
+                                          "propertyDetails.moveTypes.all.title"
+                                        )
+                                      }}</span>
                                     </span>
-                                    <span>{{ $t('propertyDetails.moveTypes.all.description') }}</span>
+                                    <span>{{
+                                      $t(
+                                        "propertyDetails.moveTypes.all.description"
+                                      )
+                                    }}</span>
                                   </span>
                                 </label>
                                 <label class="custom-option p-3 grid grid-cols-[35px_auto] gap-2">
-                                  <input v-model="v$.formData.selectedPickUpType.$model" type="radio" value="part"
+                                  <input v-model="v$
+                                      .formData
+                                      .selectedPickUpType
+                                      .$model
+                                    " type="radio" value="part"
                                     class="opacity-0 radio mt-2" />
 
                                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="32" viewBox="0 0 30 32"
@@ -570,13 +1242,25 @@
                                   </svg>
                                   <span class="label-text w-full text-start">
                                     <span class="flex justify-between mb-1">
-                                      <span class="text-base">{{ $t('propertyDetails.moveTypes.part.title') }}</span>
+                                      <span class="text-base">{{
+                                        $t(
+                                          "propertyDetails.moveTypes.part.title"
+                                        )
+                                      }}</span>
                                     </span>
-                                    <span>{{ $t('propertyDetails.moveTypes.part.description') }}</span>
+                                    <span>{{
+                                      $t(
+                                        "propertyDetails.moveTypes.part.description"
+                                      )
+                                    }}</span>
                                   </span>
                                 </label>
                                 <label class="custom-option p-3 grid grid-cols-[35px_auto] gap-2">
-                                  <input v-model="v$.formData.selectedPickUpType.$model" type="radio" value="boxes"
+                                  <input v-model="v$
+                                      .formData
+                                      .selectedPickUpType
+                                      .$model
+                                    " type="radio" value="boxes"
                                     class="opacity-0 radio mt-2" />
                                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -587,120 +1271,330 @@
                                   </svg>
                                   <span class="label-text w-full text-start">
                                     <span class="flex justify-between mb-1">
-                                      <span class="text-base">{{ $t('propertyDetails.moveTypes.boxes.title') }}</span>
+                                      <span class="text-base">{{
+                                        $t(
+                                          "propertyDetails.moveTypes.boxes.title"
+                                        )
+                                      }}</span>
                                     </span>
-                                    <span>{{ $t('propertyDetails.moveTypes.boxes.description') }}</span>
+                                    <span>{{
+                                      $t(
+                                        "propertyDetails.moveTypes.boxes.description"
+                                      )
+                                    }}</span>
                                   </span>
                                 </label>
                               </div>
-                              <span class="error-msg" v-if="v$.formData.selectedPickUpType.$error">
-                                {{ v$.formData.selectedPickUpType.$errors[0].$message }}
+                              <span class="error-msg" v-if="
+                                v$.formData
+                                  .selectedPickUpType
+                                  .$error
+                              ">
+                                {{
+                                  v$.formData
+                                    .selectedPickUpType
+                                    .$errors[0]
+                                    .$message
+                                }}
                               </span>
                             </div>
 
-                            <div v-if="v$.formData.selectedPickUpType.$model === 'boxes'" id="boxesNumber"
-                              class="form_control_wrapper mb-3">
+                            <div v-if="
+                              v$.formData
+                                .selectedPickUpType
+                                .$model ===
+                              'boxes'
+                            " id="boxesNumber" class="form_control_wrapper mb-3">
                               <div>
-                                <label for="boxesNumber" class="block text-sm font-medium text-gray-700 mb-1"> {{
-                                  $t('propertyDetails.boxesNumber') }}*</label>
-                                <input id="boxesNumber" v-model="v$.formData.boxesNumber.$model"
-                                  :placeholder="$t('propertyDetails.boxesNumber')"
+                                <label for="boxesNumber" class="block text-sm font-medium text-gray-700 mb-1">
+                                  {{
+                                    $t(
+                                      "propertyDetails.boxesNumber"
+                                    )
+                                  }}*</label>
+                                <input id="boxesNumber" v-model="v$
+                                    .formData
+                                    .boxesNumber
+                                    .$model
+                                  " :placeholder="$t(
+                                                                      'propertyDetails.boxesNumber'
+                                                                    )
+                                                                      "
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                  type="number" :class="{ 'input-error': v$.formData.boxesNumber.$error }" />
+                                  type="number" :class="{
+                                    'input-error':
+                                      v$
+                                        .formData
+                                        .boxesNumber
+                                        .$error,
+                                  }" />
                               </div>
-                              <span class="error-msg" v-if="v$.formData.boxesNumber.$error">
-                                {{ v$.formData.boxesNumber.$errors[0].$message }}
+                              <span class="error-msg" v-if="
+                                v$.formData
+                                  .boxesNumber
+                                  .$error
+                              ">
+                                {{
+                                  v$.formData
+                                    .boxesNumber
+                                    .$errors[0]
+                                    .$message
+                                }}
                               </span>
                             </div>
 
-                            <div
-                              v-if="v$.formData.selectedPickUpType.$model === 'all' || v$.formData.selectedPickUpType.$model === 'part'"
-                              id="roomsNumber_area" class="mb-3">
+                            <div v-if="
+                              v$.formData
+                                .selectedPickUpType
+                                .$model ===
+                              'all' ||
+                              v$.formData
+                                .selectedPickUpType
+                                .$model ===
+                              'part'
+                            " id="roomsNumber_area" class="mb-3">
                               <div class="grid grid-cols-[50%_40%] gap-4">
                                 <div class="form_control_wrapper">
                                   <span class="block text-sm font-medium text-gray-700 mb-1">{{
-                                    $t('propertyDetails.roomsNumber') }}*</span>
+                                    $t(
+                                      "propertyDetails.roomsNumber"
+                                    )
+                                  }}*</span>
                                   <div class="join">
-                                    <input v-model="v$.formData.roomsNumber.$model"
+                                    <input v-model="v$
+                                        .formData
+                                        .roomsNumber
+                                        .$model
+                                      "
                                       class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                      :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                      name="roomsCount" aria-label="1" value="1" />
-                                    <input v-model="v$.formData.roomsNumber.$model"
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .roomsNumber
+                                            .$error,
+                                      }" type="radio" name="roomsCount"
+                                      aria-label="1" value="1" />
+                                    <input v-model="v$
+                                        .formData
+                                        .roomsNumber
+                                        .$model
+                                      "
                                       class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                      :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                      name="roomsCount" aria-label="2" value="2" />
-                                    <input v-model="v$.formData.roomsNumber.$model"
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .roomsNumber
+                                            .$error,
+                                      }" type="radio" name="roomsCount"
+                                      aria-label="2" value="2" />
+                                    <input v-model="v$
+                                        .formData
+                                        .roomsNumber
+                                        .$model
+                                      "
                                       class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                      :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                      name="roomsCount" aria-label="3" value="3" />
-                                    <input v-model="v$.formData.roomsNumber.$model"
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .roomsNumber
+                                            .$error,
+                                      }" type="radio" name="roomsCount"
+                                      aria-label="3" value="3" />
+                                    <input v-model="v$
+                                        .formData
+                                        .roomsNumber
+                                        .$model
+                                      "
                                       class="join-item bg-white text-client-dark btn btn-square checked:bg-client-dark checked:text-white"
-                                      :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                      name="roomsCount" aria-label="4" value="4" />
-                                    <input v-model="v$.formData.roomsNumber.$model"
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .roomsNumber
+                                            .$error,
+                                      }" type="radio" name="roomsCount"
+                                      aria-label="4" value="4" />
+                                    <input v-model="v$
+                                        .formData
+                                        .roomsNumber
+                                        .$model
+                                      "
                                       class="join-item bg-white text-client-dark btn checked:bg-client-dark checked:text-white"
-                                      :class="{ 'input-error': v$.formData.roomsNumber.$error }" type="radio"
-                                      name="roomsCount" :aria-label="`5 ${$t('propertyDetails.roomsMore')}`"
-                                      value="5+" />
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .roomsNumber
+                                            .$error,
+                                      }" type="radio" name="roomsCount"
+                                      :aria-label="`5 ${$t(
+                                        'propertyDetails.roomsMore'
+                                      )}`" value="5+" />
                                   </div>
-                                  <span class="error-msg" v-if="v$.formData.roomsNumber.$error">
-                                    {{ v$.formData.roomsNumber.$errors[0].$message }}
+                                  <span class="error-msg" v-if="
+                                    v$
+                                      .formData
+                                      .roomsNumber
+                                      .$error
+                                  ">
+                                    {{
+                                      v$
+                                        .formData
+                                        .roomsNumber
+                                        .$errors[0]
+                                        .$message
+                                    }}
                                   </span>
                                 </div>
                                 <div class="form_control_wrapper">
                                   <label for="spaceArea" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                    $t('propertyDetails.area') }}*</label>
+                                    $t(
+                                      "propertyDetails.area"
+                                    )
+                                  }}*</label>
                                   <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                                    <input type="number" id="spaceArea"
-                                      :class="{ 'input-error': v$.formData.spaceArea.$error }"
-                                      v-model="v$.formData.spaceArea.$model" :placeholder="$t('propertyDetails.area')"
+                                    <input type="number" id="spaceArea" :class="{
+                                      'input-error':
+                                        v$
+                                          .formData
+                                          .spaceArea
+                                          .$error,
+                                    }" v-model="v$
+                                                                                .formData
+                                                                                .spaceArea
+                                                                                .$model
+                                                                              " :placeholder="$t(
+                                                                              'propertyDetails.area'
+                                                                            )
+                                                                              "
                                       class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                                     <span>m<sup>2</sup></span>
                                   </div>
-                                  <span class="error-msg" v-if="v$.formData.spaceArea.$error">
-                                    {{ v$.formData.spaceArea.$errors[0].$message }}
+                                  <span class="error-msg" v-if="
+                                    v$
+                                      .formData
+                                      .spaceArea
+                                      .$error
+                                  ">
+                                    {{
+                                      v$
+                                        .formData
+                                        .spaceArea
+                                        .$errors[0]
+                                        .$message
+                                    }}
                                   </span>
                                 </div>
-                                <div class="form_control_wrapper col-span-full"
-                                  v-if="v$.formData.selectedPickUpType.$model === 'part'">
+                                <div class="form_control_wrapper col-span-full" v-if="
+                                  v$
+                                    .formData
+                                    .selectedPickUpType
+                                    .$model ===
+                                  'part'
+                                ">
                                   <label class="block text-sm font-medium text-gray-700 mb-1">{{
-                                    $t('propertyDetails.whatToMove') }}*</label>
+                                    $t(
+                                      "propertyDetails.whatToMove"
+                                    )
+                                  }}*</label>
                                   <div class="grid grid-cols-2 gap-3">
                                     <label class="label cursor-pointer">
-                                      <input type="radio" name="whatParts" value="bedRoom"
-                                        v-model="v$.formData.whatParts.$model"
+                                      <input type="radio" name="whatParts" value="bedRoom" v-model="v$
+                                          .formData
+                                          .whatParts
+                                          .$model
+                                        "
                                         class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                        :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                        :class="{
+                                          'input-error':
+                                            v$
+                                              .formData
+                                              .whatParts
+                                              .$error,
+                                        }" />
                                       <span class="label-text text-[#1b1718]">{{
-                                        $t('propertyDetails.roomTypes.bedRoom') }}</span>
+                                        $t(
+                                          "propertyDetails.roomTypes.bedRoom"
+                                        )
+                                      }}</span>
                                     </label>
                                     <label class="label cursor-pointer">
-                                      <input type="radio" name="whatParts" value="childrenRoom"
-                                        v-model="v$.formData.whatParts.$model"
+                                      <input type="radio" name="whatParts" value="childrenRoom" v-model="v$
+                                          .formData
+                                          .whatParts
+                                          .$model
+                                        "
                                         class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                        :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                        :class="{
+                                          'input-error':
+                                            v$
+                                              .formData
+                                              .whatParts
+                                              .$error,
+                                        }" />
                                       <span class="label-text text-[#1b1718]">{{
-                                        $t('propertyDetails.roomTypes.childrenRoom') }}</span>
+                                        $t(
+                                          "propertyDetails.roomTypes.childrenRoom"
+                                        )
+                                      }}</span>
                                     </label>
                                     <label class="label cursor-pointer">
-                                      <input type="radio" name="whatParts" value="kitchen"
-                                        v-model="v$.formData.whatParts.$model"
+                                      <input type="radio" name="whatParts" value="kitchen" v-model="v$
+                                          .formData
+                                          .whatParts
+                                          .$model
+                                        "
                                         class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                        :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                        :class="{
+                                          'input-error':
+                                            v$
+                                              .formData
+                                              .whatParts
+                                              .$error,
+                                        }" />
                                       <span class="label-text text-[#1b1718]">{{
-                                        $t('propertyDetails.roomTypes.kitchen') }}</span>
+                                        $t(
+                                          "propertyDetails.roomTypes.kitchen"
+                                        )
+                                      }}</span>
                                     </label>
                                     <label class="label cursor-pointer">
-                                      <input type="radio" name="whatParts" value="bathroom"
-                                        v-model="v$.formData.whatParts.$model"
+                                      <input type="radio" name="whatParts" value="bathroom" v-model="v$
+                                          .formData
+                                          .whatParts
+                                          .$model
+                                        "
                                         class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                        :class="{ 'input-error': v$.formData.whatParts.$error }" />
+                                        :class="{
+                                          'input-error':
+                                            v$
+                                              .formData
+                                              .whatParts
+                                              .$error,
+                                        }" />
                                       <span class="label-text text-[#1b1718]">{{
-                                        $t('propertyDetails.roomTypes.bathroom') }}</span>
+                                        $t(
+                                          "propertyDetails.roomTypes.bathroom"
+                                        )
+                                      }}</span>
                                     </label>
                                   </div>
-                                  <span class="error-msg" v-if="v$.formData.whatParts.$error">
-                                    {{ v$.formData.whatParts.$errors[0].$message }}
+                                  <span class="error-msg" v-if="
+                                    v$
+                                      .formData
+                                      .whatParts
+                                      .$error
+                                  ">
+                                    {{
+                                      v$
+                                        .formData
+                                        .whatParts
+                                        .$errors[0]
+                                        .$message
+                                    }}
                                   </span>
                                 </div>
                               </div>
@@ -709,9 +1603,15 @@
                             <div id="storeArea" class="form_control_wrapper mb-3">
                               <div>
                                 <label for="storeArea" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('propertyDetails.storeArea') }}</label>
-                                <input id="storeArea" type="number" v-model="formData.storeArea"
-                                  :placeholder="$t('propertyDetails.storeAreaPlaceholder')"
+                                  $t(
+                                    "propertyDetails.storeArea"
+                                  )
+                                }}</label>
+                                <input id="storeArea" type="number" v-model="formData.storeArea
+                                  " :placeholder="$t(
+                                                                      'propertyDetails.storeAreaPlaceholder'
+                                                                    )
+                                                                      "
                                   class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                               </div>
                             </div>
@@ -726,70 +1626,159 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="whatNeedToShip">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('additionalServices.title') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{
+                          $t(
+                            "additionalServices.title"
+                          )
+                        }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.packingServices.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .packingServices
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('additionalServices.packingServices')
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "additionalServices.packingServices"
+                                )
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.dismantingFurniture.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .dismantingFurniture
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('additionalServices.dismantingFurniture')
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "additionalServices.dismantingFurniture"
+                                )
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input :readonly="true" :checked="isKitchenDismantingChecked"
-                                @click="handleCheckToggle($event, 'kitchenLong', 'kitchenDismanting')" type="checkbox"
+                              <input :readonly="true" :checked="isKitchenDismantingChecked
+                                " @click="
+                                                                  handleCheckToggle(
+                                                                    $event,
+                                                                    'kitchenLong',
+                                                                    'kitchenDismanting'
+                                                                  )
+                                                                  " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span @click.prevent="showModal('kitchenDismanting', 'kitchenLong')"
-                                class="label-text text-[#1b1718]">{{ $t('additionalServices.kitchenDismanting')
-                                }}</span>
+                              <span @click.prevent="
+                                showModal(
+                                  'kitchenDismanting',
+                                  'kitchenLong'
+                                )
+                                " class="label-text text-[#1b1718]">{{
+                                                                  $t(
+                                                                    "additionalServices.kitchenDismanting"
+                                                                  )
+                                                                }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input :readonly="true" :checked="isMovingBoxesChecked"
-                                @click="handleCheckToggle($event, 'movingBoxes', 'movingBoxes')" type="checkbox"
+                              <input :readonly="true" :checked="isMovingBoxesChecked
+                                " @click="
+                                                                  handleCheckToggle(
+                                                                    $event,
+                                                                    'movingBoxes',
+                                                                    'movingBoxes'
+                                                                  )
+                                                                  " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span @click.prevent="showModal('movingBoxes', 'movingBoxes')"
-                                class="label-text text-[#1b1718]">{{ $t('additionalServices.movingBoxes') }}</span>
+                              <span @click.prevent="
+                                showModal(
+                                  'movingBoxes',
+                                  'movingBoxes'
+                                )
+                                " class="label-text text-[#1b1718]">{{
+                                                                  $t(
+                                                                    "additionalServices.movingBoxes"
+                                                                  )
+                                                                }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input :readonly="true" :checked="isFurnitureStoreChecked"
-                                @click="handleCheckToggle($event, 'furnitureStoreDays', 'furnitureStore')"
-                                type="checkbox"
+                              <input :readonly="true" :checked="isFurnitureStoreChecked
+                                " @click="
+                                                                  handleCheckToggle(
+                                                                    $event,
+                                                                    'furnitureStoreDays',
+                                                                    'furnitureStore'
+                                                                  )
+                                                                  " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span @click.prevent="showModal('furnitureStore', 'furnitureStoreDays')"
-                                class="label-text text-[#1b1718]">{{ $t('additionalServices.furnitureStore') }}</span>
+                              <span @click.prevent="
+                                showModal(
+                                  'furnitureStore',
+                                  'furnitureStoreDays'
+                                )
+                                " class="label-text text-[#1b1718]">{{
+                                                                  $t(
+                                                                    "additionalServices.furnitureStore"
+                                                                  )
+                                                                }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input :readonly="true" :checked="isFurnitureQuantityChecked"
-                                @click="handleCheckToggle($event, 'furnitureQuantity', 'furnitureQuantity')"
-                                type="checkbox"
+                              <input :readonly="true" :checked="isFurnitureQuantityChecked
+                                " @click="
+                                                                  handleCheckToggle(
+                                                                    $event,
+                                                                    'furnitureQuantity',
+                                                                    'furnitureQuantity'
+                                                                  )
+                                                                  " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span @click.prevent="showModal('furnitureQuantity', 'furnitureQuantity')"
-                                class="label-text text-[#1b1718]">{{ $t('additionalServices.furnitureQuantity')
-                                }}</span>
+                              <span @click.prevent="
+                                showModal(
+                                  'furnitureQuantity',
+                                  'furnitureQuantity'
+                                )
+                                " class="label-text text-[#1b1718]">{{
+                                                                  $t(
+                                                                    "additionalServices.furnitureQuantity"
+                                                                  )
+                                                                }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.finalCleaning.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .finalCleaning
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('additionalServices.finalCleaning')
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "additionalServices.finalCleaning"
+                                )
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.furnitureLifter.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .furnitureLifter
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('additionalServices.furnitureLifter')
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "additionalServices.furnitureLifter"
+                                )
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.noParking.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .noParking
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('additionalServices.noParking') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "additionalServices.noParking"
+                                )
+                              }}</span>
                             </label>
                           </div>
                         </div>
@@ -801,11 +1790,13 @@
                 <div class="max-w-xl mx-auto">
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="stepNumber = 0" type="button"
-                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{
-                        $t('back') }}</button>
+                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                      {{ $t("back") }}
+                    </button>
                     <button @click="nextStep()" type="button"
-                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">{{
-                        $t('next') }}</button>
+                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">
+                      {{ $t("next") }}
+                    </button>
                   </div>
                 </div>
               </template>
@@ -816,58 +1807,185 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="movingFrom">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('dropoff_location') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("dropoff_location") }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div>
                             <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('postal_code') }}*</label>
-                            <input id="postalCode" v-model="v$.formData.dropOffPostalCode.$model"
-                              :placeholder="$t('postal_code_placeholder')"
+                              $t(
+                                "postal_code"
+                              )
+                            }}*</label>
+                            <input id="postalCode" @change="
+                              postalCodeChanged(
+                                'dropOff',
+                                v$.formData
+                                  .dropOffPostalCode
+                                  .$model
+                              )
+                              " v-model="v$.formData
+                                                                .dropOffPostalCode
+                                                                .$model
+                                                              " :placeholder="$t(
+                                                              'postal_code_placeholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.dropOffPostalCode.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .dropOffPostalCode
+                                    .$error,
+                              }" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOffPostalCode.$error">
-                            {{ v$.formData.dropOffPostalCode.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffPostalCode
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffPostalCode
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div>
-                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">{{ $t('city')
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">{{
+                              $t("city")
                             }}*</label>
-                            <input id="location" v-model="v$.formData.dropOffLocation.$model"
-                              :placeholder="$t('city_placeholder')"
+                            <input id="location" readonly v-model="v$.formData
+                                .dropOffLocation
+                                .$model
+                              " :placeholder="$t(
+                                                              'city_placeholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.dropOffLocation.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .dropOffLocation
+                                    .$error,
+                              }" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOffLocation.$error">
-                            {{ v$.formData.dropOffLocation.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffLocation
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffLocation
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div class="grid grid-cols-[auto_100px] gap-2">
                             <div>
                               <label for="address" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('street') }}*</label>
-                              <input id="address" v-model="v$.formData.dropOffAddress.$model"
-                                :placeholder="$t('street_placeholder')"
-                                class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.dropOffAddress.$error }" />
+                                $t(
+                                  "street"
+                                )
+                              }}*</label>
+                              <select id="address" v-model="v$.formData
+                                  .dropOffAddress
+                                  .$model
+                                "
+                                class="w-full px-4 py-2 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .pickupAddress
+                                      .$error,
+                                }">
+                                <option value="">
+                                  {{
+                                    $t(
+                                      "pickup.streetPlaceholder"
+                                    )
+                                  }}
+                                </option>
+                                <option v-for="street in dropOffStreets" :value="street
+                                  ">
+                                  {{ street }}
+                                </option>
+                              </select>
+                              <!-- <input
+                                                                id="address"
+                                                                v-model="
+                                                                    v$.formData
+                                                                        .dropOffAddress
+                                                                        .$model
+                                                                "
+                                                                :placeholder="
+                                                                    $t(
+                                                                        'street_placeholder'
+                                                                    )
+                                                                "
+                                                                class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
+                                                                :class="{
+                                                                    'input-error':
+                                                                        v$
+                                                                            .formData
+                                                                            .dropOffAddress
+                                                                            .$error,
+                                                                }"
+                                                            /> -->
                             </div>
                             <div>
-                              <label for="number" class="block text-sm font-medium text-gray-700 mb-1">{{ $t('number')
+                              <label for="number" class="block text-sm font-medium text-gray-700 mb-1">{{
+                                $t(
+                                  "number"
+                                )
                               }}*</label>
-                              <input id="number" v-model="v$.formData.dropOffNo.$model"
-                                :placeholder="$t('number_placeholder')"
+                              <input id="number" v-model="v$.formData
+                                  .dropOffNo
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'number_placeholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.dropOffNo.$error }" type="number" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .dropOffNo
+                                      .$error,
+                                }" type="number" />
                             </div>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOffAddress.$error">
-                            {{ v$.formData.dropOffAddress.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffAddress
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffAddress
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
-                          <span class="error-msg" v-if="v$.formData.dropOffNo.$error">
-                            {{ v$.formData.dropOffNo.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffNo
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffNo
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                       </div>
@@ -879,60 +1997,144 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="whatNeedToShip">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('floor_lifter_distance') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{
+                          $t("floor_lifter_distance")
+                        }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div>
                             <label for="distanceToCar" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('distance_to_car') }}*</label>
+                              $t(
+                                "distance_to_car"
+                              )
+                            }}*</label>
                             <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                              <input type="number" id="distanceToCar"
-                                v-model="v$.formData.dropOffDistanceToCar.$model"
-                                :placeholder="$t('distance_to_car_placeholder')"
+                              <input type="number" id="distanceToCar" v-model="v$.formData
+                                  .dropOffDistanceToCar
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'distance_to_car_placeholder'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.dropOffDistanceToCar.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .dropOffDistanceToCar
+                                      .$error,
+                                }" />
                               <span>m</span>
                             </div>
-                            <span class="text-xs">{{ $t('floorAndLift.ifNoDisctanceWriteZero') }}</span>
+                            <span class="text-xs">{{
+                              $t(
+                                "floorAndLift.ifNoDisctanceWriteZero"
+                              )
+                            }}</span>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOffDistanceToCar.$error">
-                            {{ v$.formData.dropOffDistanceToCar.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffDistanceToCar
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffDistanceToCar
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div>
                             <label for="floor" class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('floor_number') }}*</label>
-                            <input id="floor" v-model="v$.formData.dropOffFloorNumber.$model"
-                              :placeholder="$t('floor_number_placeholder')"
+                              $t(
+                                "floor_number"
+                              )
+                            }}*</label>
+                            <input id="floor" v-model="v$.formData
+                                .dropOffFloorNumber
+                                .$model
+                              " :placeholder="$t(
+                                                              'floor_number_placeholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.dropOffFloorNumber.$error }" type="number" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .dropOffFloorNumber
+                                    .$error,
+                              }" type="number" />
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOffFloorNumber.$error">
-                            {{ v$.formData.dropOffFloorNumber.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOffFloorNumber
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOffFloorNumber
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
-                          <label class="block text-sm font-medium text-gray-700 mb-1">{{ $t('lifter_existence')
+                          <label class="block text-sm font-medium text-gray-700 mb-1">{{
+                            $t(
+                              "lifter_existence"
+                            )
                           }}*</label>
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveTo" value="true"
-                                v-model="v$.formData.dropOfflifterExistance.$model"
+                              <input type="radio" name="lifterExistMoveTo" value="true" v-model="v$.formData
+                                  .dropOfflifterExistance
+                                  .$model
+                                "
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
-                              <span class="label-text text-[#1b1718]">{{ $t('yes') }}</span>
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .dropOfflifterExistance
+                                      .$error,
+                                }" />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t("yes")
+                              }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveTo" value="false"
-                                v-model="v$.formData.dropOfflifterExistance.$model"
+                              <input type="radio" name="lifterExistMoveTo" value="false" v-model="v$.formData
+                                  .dropOfflifterExistance
+                                  .$model
+                                "
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                :class="{ 'input-error': v$.formData.dropOfflifterExistance.$error }" />
-                              <span class="label-text text-[#1b1718]">{{ $t('no') }}</span>
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .dropOfflifterExistance
+                                      .$error,
+                                }" />
+                              <span class="label-text text-[#1b1718]">{{
+                                $t("no")
+                              }}</span>
                             </label>
                           </div>
-                          <span class="error-msg" v-if="v$.formData.dropOfflifterExistance.$error">
-                            {{ v$.formData.dropOfflifterExistance.$errors[0].$message }}
+                          <span class="error-msg" v-if="
+                            v$.formData
+                              .dropOfflifterExistance
+                              .$error
+                          ">
+                            {{
+                              v$.formData
+                                .dropOfflifterExistance
+                                .$errors[0]
+                                .$message
+                            }}
                           </span>
                         </div>
                       </div>
@@ -944,34 +2146,70 @@
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <form class="form-step" id="whatNeedToShip">
-                      <h3 class="text-xl font-bold mb-4">{{ $t('additional_services') }}</h3>
+                      <h3 class="text-xl font-bold mb-4">
+                        {{ $t("additional_services") }}
+                      </h3>
                       <div class="flex flex-col gap-4 mb-4">
                         <div class="form_control_wrapper">
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.unpackingServices.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .unpackingServices
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('unpacking_service') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "unpacking_service"
+                                )
+                              }}</span>
                             </label>
 
                             <label class="label cursor-pointer">
-                              <input :readonly="true" :checked="isKitchenConstructionChecked"
-                                @click="handleCheckToggle($event, 'kitchenLongMoveOut', 'kitchenConstruction')"
-                                type="checkbox"
+                              <input :readonly="true" :checked="isKitchenConstructionChecked
+                                " @click="
+                                                                  handleCheckToggle(
+                                                                    $event,
+                                                                    'kitchenLongMoveOut',
+                                                                    'kitchenConstruction'
+                                                                  )
+                                                                  " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client !cursor-pointer !opacity-100" />
-                              <span @click.prevent="showModal('kitchenConstruction', 'kitchenLongMoveOut')"
-                                class="label-text text-[#1b1718]">{{ $t('kitchen_assembly') }}</span>
+                              <span @click.prevent="
+                                showModal(
+                                  'kitchenConstruction',
+                                  'kitchenLongMoveOut'
+                                )
+                                " class="label-text text-[#1b1718]">{{
+                                                                  $t(
+                                                                    "kitchen_assembly"
+                                                                  )
+                                                                }}</span>
                             </label>
 
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.connectWashingMachine.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .connectWashingMachine
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('washing_machine_connection') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "washing_machine_connection"
+                                )
+                              }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input v-model="v$.formData.furnitureAssembly.$model" type="checkbox"
+                              <input v-model="v$.formData
+                                  .furnitureAssembly
+                                  .$model
+                                " type="checkbox"
                                 class="checkbox border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('furniture_assembly') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "furniture_assembly"
+                                )
+                              }}</span>
                             </label>
                           </div>
                         </div>
@@ -983,11 +2221,13 @@
                 <div class="max-w-xl mx-auto">
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="stepNumber = 1" type="button"
-                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{
-                        $t('back') }}</button>
+                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                      {{ $t("back") }}
+                    </button>
                     <button @click="nextStep()" type="button"
-                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded ">{{
-                        $t('next') }}</button>
+                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded">
+                      {{ $t("next") }}
+                    </button>
                   </div>
                 </div>
               </template>
@@ -999,70 +2239,184 @@
                     <!-- Step 4: When do you want to Ship ? -->
                     <form class="form-step">
                       <div class="mb-4">
-                        <h3 class="text-xl font-bold mb-4">{{ $t('shippingStep.question') }}</h3>
+                        <h3 class="text-xl font-bold mb-4">
+                          {{
+                            $t(
+                              "shippingStep.question"
+                            )
+                          }}
+                        </h3>
                         <div class="flex flex-col gap-4 mb-4">
                           <div>
                             <div class="form_control_wrapper">
                               <div class="flex flex-col gap-3">
                                 <label class="label cursor-pointer">
-                                  <input type="radio" v-model="v$.formData.timeType.$model" value="specific"
+                                  <input type="radio" v-model="v$
+                                      .formData
+                                      .timeType
+                                      .$model
+                                    " value="specific"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                    :class="{ 'input-error': v$.formData.timeType.$error }" />
-                                  <span class="label-text text-[#1b1718]">{{ $t('shippingStep.specificDate') }}</span>
+                                    :class="{
+                                      'input-error':
+                                        v$
+                                          .formData
+                                          .timeType
+                                          .$error,
+                                    }" />
+                                  <span class="label-text text-[#1b1718]">{{
+                                    $t(
+                                      "shippingStep.specificDate"
+                                    )
+                                  }}</span>
                                 </label>
                                 <label class="label cursor-pointer">
-                                  <input type="radio" v-model="v$.formData.timeType.$model" value="range"
+                                  <input type="radio" v-model="v$
+                                      .formData
+                                      .timeType
+                                      .$model
+                                    " value="range"
                                     class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                    :class="{ 'input-error': v$.formData.timeType.$error }" />
-                                  <span class="label-text text-[#1b1718]">{{ $t('shippingStep.flexibleDate') }}</span>
+                                    :class="{
+                                      'input-error':
+                                        v$
+                                          .formData
+                                          .timeType
+                                          .$error,
+                                    }" />
+                                  <span class="label-text text-[#1b1718]">{{
+                                    $t(
+                                      "shippingStep.flexibleDate"
+                                    )
+                                  }}</span>
                                 </label>
                               </div>
-                              <span class="error-msg" v-if="v$.formData.timeType.$error">
-                                {{ v$.formData.timeType.$errors[0].$message }}
+                              <span class="error-msg" v-if="
+                                v$.formData
+                                  .timeType
+                                  .$error
+                              ">
+                                {{
+                                  v$.formData
+                                    .timeType
+                                    .$errors[0]
+                                    .$message
+                                }}
                               </span>
                             </div>
                           </div>
-                          <div id="specificDatepickerWrapper" v-if="v$.formData.timeType.$model === 'specific'"
-                            class="specificDatepicker">
+                          <div id="specificDatepickerWrapper" v-if="
+                            v$.formData.timeType
+                              .$model ===
+                            'specific'
+                          " class="specificDatepicker">
                             <div class="form_control_wrapper">
                               <div>
-                                <label for="specificDatepicker"
-                                  class="block text-sm font-medium text-gray-700 mb-1">{{ $t('shippingStep.date')
-                                  }}*</label>
+                                <label for="specificDatepicker" class="block text-sm font-medium text-gray-700 mb-1">{{
+                                  $t(
+                                    "shippingStep.date"
+                                  )
+                                }}*</label>
                                 <!-- <VCalendar /> -->
-                                <VDatePicker :min-date="new Date()" v-model="v$.formData.specificDate.$model"
-                                  :masks="masks" :locale="$i18n.locale">
-                                  <template #default="{ inputValue, showPopover, hidePopover }">
+                                <VDatePicker :min-date="new Date()
+                                  " v-model="v$
+                                                                        .formData
+                                                                        .specificDate
+                                                                        .$model
+                                                                      " :masks="masks
+                                                                      " :locale="$i18n.locale
+                                                                      ">
+                                  <template #default="{
+                                    inputValue,
+                                    showPopover,
+                                    hidePopover,
+                                  }">
                                     <input
                                       class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                      :class="{ 'input-error': v$.formData.specificDate.$error }" type="text"
-                                      :value="inputValue" @focus="showPopover">
+                                      :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .specificDate
+                                            .$error,
+                                      }" type="text" :value="inputValue
+                                                                              " @focus="
+                                                                              showPopover
+                                                                            " />
                                   </template>
                                 </VDatePicker>
                               </div>
-                              <span class="error-msg" v-if="v$.formData.specificDate.$error">
-                                {{ v$.formData.specificDate.$errors[0].$message }}
+                              <span class="error-msg" v-if="
+                                v$.formData
+                                  .specificDate
+                                  .$error
+                              ">
+                                {{
+                                  v$.formData
+                                    .specificDate
+                                    .$errors[0]
+                                    .$message
+                                }}
                               </span>
                             </div>
                           </div>
-                          <div id="dateRangeWrapper" v-if="v$.formData.timeType.$model === 'range'" class="dateRange">
+                          <div id="dateRangeWrapper" v-if="
+                            v$.formData.timeType
+                              .$model ===
+                            'range'
+                          " class="dateRange">
                             <div class="form_control_wrapper">
                               <div>
                                 <label for="dateRange" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                  $t('shippingStep.period') }}*</label>
-                                <VDatePicker :min-date="new Date()" is-range v-model="v$.formData.rangeDate.$model"
-                                  :masks="masks" :locale="'ge'">
-                                  <template #default="{ inputValue, showPopover, hidePopover }">
+                                  $t(
+                                    "shippingStep.period"
+                                  )
+                                }}*</label>
+                                <VDatePicker :min-date="new Date()
+                                  " is-range v-model="v$
+                                                                        .formData
+                                                                        .rangeDate
+                                                                        .$model
+                                                                      " :masks="masks
+                                                                      " :locale="'ge'">
+                                  <template #default="{
+                                    inputValue,
+                                    showPopover,
+                                    hidePopover,
+                                  }">
                                     <input
                                       class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                      type="text" :class="{ 'input-error': v$.formData.rangeDate.$error }"
-                                      :value="`${inputValue.start || ''} ${(inputValue.start || inputValue.end) ? ' - ' : ''} ${inputValue.end || ''}`"
-                                      @focus="showPopover">
+                                      type="text" :class="{
+                                        'input-error':
+                                          v$
+                                            .formData
+                                            .rangeDate
+                                            .$error,
+                                      }" :value="`${inputValue.start ||
+                                                                              ''
+                                                                              } ${inputValue.start ||
+                                                                                inputValue.end
+                                                                                ? ' - '
+                                                                                : ''
+                                                                              } ${inputValue.end ||
+                                                                              ''
+                                                                              }`" @focus="
+                                                                              showPopover
+                                                                            " />
                                   </template>
                                 </VDatePicker>
                               </div>
-                              <span class="error-msg" v-if="(v$.formData.rangeDate.$error)">
-                                {{ v$.formData.rangeDate.$errors[0].$message }}
+                              <span class="error-msg" v-if="
+                                v$.formData
+                                  .rangeDate
+                                  .$error
+                              ">
+                                {{
+                                  v$.formData
+                                    .rangeDate
+                                    .$errors[0]
+                                    .$message
+                                }}
                               </span>
                             </div>
                           </div>
@@ -1075,96 +2429,232 @@
                 <div class="max-w-xl mx-auto">
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="stepNumber = 2" type="button"
-                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{
-                        $t('buttons.back') }}</button>
+                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                      {{ $t("buttons.back") }}
+                    </button>
                     <button @click="nextStep()" type="button"
-                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">{{
-                        $t('buttons.next') }}</button>
+                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
+                      {{ $t("buttons.next") }}
+                    </button>
                   </div>
                 </div>
               </template>
 
               <!-- Step 4 Contact and Personal Info -->
               <template v-if="stepNumber === 4">
-                <div v-if="user && prefilledDataAlertShown" class="alert alert-info mb-4 flex flex-col items-start gap-2">
-                  <p><strong>{{ $t('notice') }}:</strong> {{ $t('prefilledDataNotice') }}</p>
-                  <button @click="prefilledDataAlertShown = false" type="button" class="btn btn-outline">{{$t('close')}}</button>
+                <div v-if="user && prefilledDataAlertShown"
+                  class="alert alert-info mb-4 flex flex-col items-start gap-2">
+                  <p>
+                    <strong>{{ $t("notice") }}:</strong>
+                    {{ $t("prefilledDataNotice") }}
+                  </p>
+                  <button @click="prefilledDataAlertShown = false" type="button" class="btn btn-outline">
+                    {{ $t("close") }}
+                  </button>
                 </div>
                 <div class="form_panel">
                   <div class="form_step_parent">
                     <!-- Step 5: Contact Information -->
                     <form class="form-step" id="contactInformation">
                       <div class="mb-4">
-                        <h3 class="text-xl font-bold mb-4">{{ $t('contact_information') }}</h3>
+                        <h3 class="text-xl font-bold mb-4">
+                          {{
+                            $t(
+                              "contact_information"
+                            )
+                          }}
+                        </h3>
                         <div class="flex flex-col gap-4 mb-4">
                           <div class="form_control_wrapper">
                             <div>
                               <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('name_required') }}*</label>
-                              <input id="name" v-model="v$.formData.clientName.$model"
-                                :placeholder="$t('name_required')"
+                                $t(
+                                  "name_required"
+                                )
+                              }}*</label>
+                              <input id="name" v-model="v$.formData
+                                  .clientName
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'name_required'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.clientName.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .clientName
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v$.formData.clientName.$error">
-                              {{ v$.formData.clientName.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v$.formData
+                                .clientName
+                                .$error
+                            ">
+                              {{
+                                v$.formData
+                                  .clientName
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
 
                           <div class="form_control_wrapper">
                             <div>
                               <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('email_required') }}*</label>
-                              <input id="email" v-model="v$.formData.clientEmail.$model"
-                                :placeholder="$t('email_required')"
+                                $t(
+                                  "email_required"
+                                )
+                              }}*</label>
+                              <input id="email" v-model="v$.formData
+                                  .clientEmail
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'email_required'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.clientEmail.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .clientEmail
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v$.formData.clientEmail.$error">
-                              {{ v$.formData.clientEmail.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v$.formData
+                                .clientEmail
+                                .$error
+                            ">
+                              {{
+                                v$.formData
+                                  .clientEmail
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
 
                           <div class="form_control_wrapper">
                             <div>
                               <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">{{
-                                $t('phone_required') }}*</label>
-                              <input id="phone" v-model="v$.formData.clientPhone.$model"
-                                :placeholder="$t('phone_required')"
+                                $t(
+                                  "phone_required"
+                                )
+                              }}*</label>
+                              <input id="phone" v-model="v$.formData
+                                  .clientPhone
+                                  .$model
+                                " :placeholder="$t(
+                                                                  'phone_required'
+                                                                )
+                                                                  "
                                 class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                                :class="{ 'input-error': v$.formData.clientPhone.$error }" />
+                                :class="{
+                                  'input-error':
+                                    v$
+                                      .formData
+                                      .clientPhone
+                                      .$error,
+                                }" />
                             </div>
-                            <span class="error-msg" v-if="v$.formData.clientPhone.$error">
-                              {{ v$.formData.clientPhone.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v$.formData
+                                .clientPhone
+                                .$error
+                            ">
+                              {{
+                                v$.formData
+                                  .clientPhone
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
 
                           <div class="form_control_wrapper">
                             <label class="block text-sm font-medium text-gray-700 mb-1">{{
-                              $t('contactInformation.whoWillPay') }}*</label>
+                              $t(
+                                "contactInformation.whoWillPay"
+                              )
+                            }}*</label>
                             <div class="flex flex-col gap-3">
                               <label class="label cursor-pointer">
-                                <input type="radio" value="private" v-model="v$.formData.whoWillPay.$model"
+                                <input type="radio" value="private" v-model="v$
+                                    .formData
+                                    .whoWillPay
+                                    .$model
+                                  "
                                   class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                  :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
-                                <span class="label-text text-[#1b1718]">{{ $t('contactInformation.client') }}</span>
+                                  :class="{
+                                    'input-error':
+                                      v$
+                                        .formData
+                                        .whoWillPay
+                                        .$error,
+                                  }" />
+                                <span class="label-text text-[#1b1718]">{{
+                                  $t(
+                                    "contactInformation.client"
+                                  )
+                                }}</span>
                               </label>
                               <label class="label cursor-pointer">
-                                <input type="radio" value="manager" v-model="v$.formData.whoWillPay.$model"
+                                <input type="radio" value="manager" v-model="v$
+                                    .formData
+                                    .whoWillPay
+                                    .$model
+                                  "
                                   class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                  :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
-                                <span class="label-text text-[#1b1718]">{{ $t('contactInformation.manager') }}</span>
+                                  :class="{
+                                    'input-error':
+                                      v$
+                                        .formData
+                                        .whoWillPay
+                                        .$error,
+                                  }" />
+                                <span class="label-text text-[#1b1718]">{{
+                                  $t(
+                                    "contactInformation.manager"
+                                  )
+                                }}</span>
                               </label>
                               <label class="label cursor-pointer">
-                                <input type="radio" value="government" v-model="v$.formData.whoWillPay.$model"
+                                <input type="radio" value="government" v-model="v$
+                                    .formData
+                                    .whoWillPay
+                                    .$model
+                                  "
                                   class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client"
-                                  :class="{ 'input-error': v$.formData.whoWillPay.$error }" />
-                                <span class="label-text text-[#1b1718]">{{ $t('contactInformation.government')
+                                  :class="{
+                                    'input-error':
+                                      v$
+                                        .formData
+                                        .whoWillPay
+                                        .$error,
+                                  }" />
+                                <span class="label-text text-[#1b1718]">{{
+                                  $t(
+                                    "contactInformation.government"
+                                  )
                                 }}</span>
                               </label>
                             </div>
-                            <span class="error-msg" v-if="v$.formData.whoWillPay.$error">
-                              {{ v$.formData.whoWillPay.$errors[0].$message }}
+                            <span class="error-msg" v-if="
+                              v$.formData
+                                .whoWillPay
+                                .$error
+                            ">
+                              {{
+                                v$.formData
+                                  .whoWillPay
+                                  .$errors[0]
+                                  .$message
+                              }}
                             </span>
                           </div>
                         </div>
@@ -1175,11 +2665,13 @@
                 <div class="max-w-xl mx-auto">
                   <div class="btn_wrapper flex items-center gap-2">
                     <button @click="stepNumber = 3" type="button"
-                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2 ">{{
-                        $t('buttons.back') }}</button>
+                      class="bg-transparent border border-client hover:bg-client-dark transition hover:text-white text-client px-6 py-2 rounded mr-2">
+                      {{ $t("buttons.back") }}
+                    </button>
                     <button @click="nextStep()" type="button"
-                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">{{
-                        $t('buttons.next') }}</button>
+                      class="bg-client-dark hover:bg-client-dark/80 transition text-white px-6 py-2 rounded nextStepBtn">
+                      {{ $t("buttons.next") }}
+                    </button>
                   </div>
                 </div>
               </template>
@@ -1187,154 +2679,352 @@
               <dialog id="saveDataModal" class="modal text-black">
                 <form @submit.prevent class="modal-box bg-white saveDataForm">
                   <template v-if="currentPopupType === 'saveData'">
-                    <h3 class="text-lg font-bold">{{ $t('saveData.title') }}</h3>
-                    <p class="py-4">{{ $t('saveData.message') }}</p>
+                    <h3 class="text-lg font-bold">
+                      {{ $t("saveData.title") }}
+                    </h3>
+                    <p class="py-4">
+                      {{ $t("saveData.message") }}
+                    </p>
                     <div>
                       <div class="flex flex-col gap-3">
                         <label class="label cursor-pointer">
-                          <input type="radio" value="true" v-model="v$.formData.saveData.$model" name="saveData"
+                          <input type="radio" value="true" v-model="v$.formData.saveData
+                              .$model
+                            " name="saveData"
                             class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                          <span class="label-text text-[#1b1718]">{{ $t('saveData.save') }}</span>
+                          <span class="label-text text-[#1b1718]">{{
+                            $t("saveData.save")
+                          }}</span>
                         </label>
                         <label class="label cursor-pointer">
-                          <input checked type="radio" value="false" v-model="v$.formData.saveData.$model"
-                            name="saveData"
+                          <input checked type="radio" value="false" v-model="v$.formData.saveData
+                              .$model
+                            " name="saveData"
                             class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                          <span class="label-text text-[#1b1718]">{{ $t('saveData.cancel') }}</span>
+                          <span class="label-text text-[#1b1718]">{{
+                            $t(
+                              "saveData.cancel"
+                            )
+                          }}</span>
                         </label>
                       </div>
                     </div>
                     <div class="modal-action">
-                      <button @click="submitRequestData" :class="isLoading ? 'opacity-50 pointer-events-none' : ''"
-                        type="button" class="btn">
+                      <button @click="submitRequestData" :class="isLoading
+                          ? 'opacity-50 pointer-events-none'
+                          : ''
+                        " type="button" class="btn">
                         <template v-if="isLoading">
                           <span class="loading loading-spinner"></span>
-                          {{ $t('saveData.submit') }}
+                          {{ $t("saveData.submit") }}
                         </template>
                         <template v-else>
-                          {{ $t('saveData.submit') }}
+                          {{ $t("saveData.submit") }}
                         </template>
                       </button>
                     </div>
                   </template>
                   <template v-else>
-                    <template v-if="currentPopupType === 'kitchenDismanting'">
+                    <template v-if="
+                      currentPopupType ===
+                      'kitchenDismanting'
+                    ">
                       <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold">{{ $t('kitchenDismantlingModal.title') }}</h3>
-                        <button @click="closeModal({ modelValue: 'kitchenLong', checkboxValue: 'kitchenDismanting' })"
-                          type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
+                        <h3 class="text-lg font-bold">
+                          {{
+                            $t(
+                              "kitchenDismantlingModal.title"
+                            )
+                          }}
+                        </h3>
+                        <button @click="
+                          closeModal({
+                            modelValue:
+                              'kitchenLong',
+                            checkboxValue:
+                              'kitchenDismanting',
+                          })
+                          " type="button" class="btn btn-sm btn-circle btn-ghost text-xl">
+                          ✕
+                        </button>
                       </div>
-                      <h3 class="text-lg font-semibold mb-2">{{ $t('kitchenDismantlingModal.question') }}</h3>
+                      <h3 class="text-lg font-semibold mb-2">
+                        {{
+                          $t(
+                            "kitchenDismantlingModal.question"
+                          )
+                        }}
+                      </h3>
                       <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                        <input type="number" v-model="tempFormData.kitchenLong"
-                          :placeholder="$t('kitchenDismantlingModal.placeholder')"
+                        <input type="number" v-model="tempFormData.kitchenLong
+                          " :placeholder="$t(
+                                                      'kitchenDismantlingModal.placeholder'
+                                                    )
+                                                      "
                           class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                         <span>m</span>
                       </div>
                       <div class="modal-action">
-                        <button @click="saveData('kitchenLong', 'kitchenDismanting')" type="button"
-                          class="btn">{{ $t('common.save') }}</button>
+                        <button @click="
+                          saveData(
+                            'kitchenLong',
+                            'kitchenDismanting'
+                          )
+                          " type="button" class="btn">
+                          {{ $t("common.save") }}
+                        </button>
                       </div>
                     </template>
 
-                    <template v-if="currentPopupType === 'kitchenConstruction'">
+                    <template v-if="
+                      currentPopupType ===
+                      'kitchenConstruction'
+                    ">
                       <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold">{{ $t('kitchenConstructionModal.title') }}</h3>
-                        <button
-                          @click="closeModal({ modelValue: 'kitchenLongMoveOut', checkboxValue: 'kitchenConstructionModal' })"
-                          type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
+                        <h3 class="text-lg font-bold">
+                          {{
+                            $t(
+                              "kitchenConstructionModal.title"
+                            )
+                          }}
+                        </h3>
+                        <button @click="
+                          closeModal({
+                            modelValue:
+                              'kitchenLongMoveOut',
+                            checkboxValue:
+                              'kitchenConstructionModal',
+                          })
+                          " type="button" class="btn btn-sm btn-circle btn-ghost text-xl">
+                          ✕
+                        </button>
                       </div>
-                      <h3 class="text-lg font-semibold mb-2">{{ $t('kitchenConstructionModal.question') }}</h3>
+                      <h3 class="text-lg font-semibold mb-2">
+                        {{
+                          $t(
+                            "kitchenConstructionModal.question"
+                          )
+                        }}
+                      </h3>
                       <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                        <input v-model="tempFormData.kitchenLongMoveOut"
-                          :placeholder="$t('kitchenConstructionModal.placeholder')"
+                        <input v-model="tempFormData.kitchenLongMoveOut
+                          " :placeholder="$t(
+                                                      'kitchenConstructionModal.placeholder'
+                                                    )
+                                                      "
                           class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                         <span>m</span>
                       </div>
                       <div class="modal-action">
-                        <button @click="saveData('kitchenLongMoveOut', 'kitchenConstruction')" type="button"
-                          class="btn">{{ $t('common.save') }}</button>
+                        <button @click="
+                          saveData(
+                            'kitchenLongMoveOut',
+                            'kitchenConstruction'
+                          )
+                          " type="button" class="btn">
+                          {{ $t("common.save") }}
+                        </button>
                       </div>
                     </template>
 
-                    <template v-if="currentPopupType === 'movingBoxes'">
+                    <template v-if="
+                      currentPopupType ===
+                      'movingBoxes'
+                    ">
                       <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold">{{ $t('movingBoxesModal.title') }}</h3>
-                        <button @click="closeModal({ modelValue: 'movingBoxes', checkboxValue: 'movingBoxes' })"
-                          type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
+                        <h3 class="text-lg font-bold">
+                          {{
+                            $t(
+                              "movingBoxesModal.title"
+                            )
+                          }}
+                        </h3>
+                        <button @click="
+                          closeModal({
+                            modelValue:
+                              'movingBoxes',
+                            checkboxValue:
+                              'movingBoxes',
+                          })
+                          " type="button" class="btn btn-sm btn-circle btn-ghost text-xl">
+                          ✕
+                        </button>
                       </div>
-                      <h3 class="text-lg font-semibold mb-2">{{ $t('movingBoxesModal.question') }}</h3>
+                      <h3 class="text-lg font-semibold mb-2">
+                        {{
+                          $t(
+                            "movingBoxesModal.question"
+                          )
+                        }}
+                      </h3>
                       <div class="flex flex-col gap-4">
                         <div class="form_control_wrapper">
                           <div>
-                            <label for="name"
-                              class="block text-sm font-medium text-gray-700 mb-1">{{ $t('movingBoxesModal.label') }}</label>
-                            <input type="number" id="name" v-model="v$.formData.noOfBoxes.$model"
-                              :placeholder="$t('movingBoxesModal.placeholder')"
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">{{
+                              $t(
+                                "movingBoxesModal.label"
+                              )
+                            }}</label>
+                            <input type="number" id="name" v-model="v$.formData
+                                .noOfBoxes
+                                .$model
+                              " :placeholder="$t(
+                                                              'movingBoxesModal.placeholder'
+                                                            )
+                                                              "
                               class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]"
-                              :class="{ 'input-error': v$.formData.noOfBoxes.$error }" />
+                              :class="{
+                                'input-error':
+                                  v$.formData
+                                    .noOfBoxes
+                                    .$error,
+                              }" />
                           </div>
                           <span class="error-msg" v-if="noOfBoxesError">
-                            {{ $t('movingBoxesModal.error') }}
+                            {{
+                              $t(
+                                "movingBoxesModal.error"
+                              )
+                            }}
                           </span>
                         </div>
                         <div class="form_control_wrapper">
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
-                                value="rent"
+                              <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes
+                                " value="rent"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('movingBoxesModal.rent') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "movingBoxesModal.rent"
+                                )
+                              }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes"
-                                value="buy"
+                              <input type="radio" name="movingBoxesType" v-model="tempFormData.movingBoxes
+                                " value="buy"
                                 class="radio border !bg-transparent checked:border-client-dark border-client-dark checked:before:bg-client" />
-                              <span class="label-text text-[#1b1718]">{{ $t('movingBoxesModal.buy') }}</span>
+                              <span class="label-text text-[#1b1718]">{{
+                                $t(
+                                  "movingBoxesModal.buy"
+                                )
+                              }}</span>
                             </label>
                           </div>
                         </div>
                       </div>
                       <div class="modal-action">
-                        <button @click="saveData('movingBoxes', 'movingBoxes')" type="button"
-                          class="btn">{{ $t('common.save') }}</button>
+                        <button @click="
+                          saveData(
+                            'movingBoxes',
+                            'movingBoxes'
+                          )
+                          " type="button" class="btn">
+                          {{ $t("common.save") }}
+                        </button>
                       </div>
                     </template>
 
-                    <template v-if="currentPopupType === 'furnitureStore'">
+                    <template v-if="
+                      currentPopupType ===
+                      'furnitureStore'
+                    ">
                       <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold">{{ $t('furnitureStoreModal.title') }}</h3>
-                        <button
-                          @click="closeModal({ modelValue: 'furnitureStoreDays', checkboxValue: 'furnitureStore' })"
-                          type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
+                        <h3 class="text-lg font-bold">
+                          {{
+                            $t(
+                              "furnitureStoreModal.title"
+                            )
+                          }}
+                        </h3>
+                        <button @click="
+                          closeModal({
+                            modelValue:
+                              'furnitureStoreDays',
+                            checkboxValue:
+                              'furnitureStore',
+                          })
+                          " type="button" class="btn btn-sm btn-circle btn-ghost text-xl">
+                          ✕
+                        </button>
                       </div>
-                      <h3 class="text-lg font-semibold mb-2">{{ $t('furnitureStoreModal.question') }}</h3>
+                      <h3 class="text-lg font-semibold mb-2">
+                        {{
+                          $t(
+                            "furnitureStoreModal.question"
+                          )
+                        }}
+                      </h3>
                       <div class="grid grid-cols-[auto_20px] gap-2 items-center">
-                        <input type="number" v-model="tempFormData.furnitureStoreDays"
-                          :placeholder="$t('furnitureStoreModal.placeholder')"
+                        <input type="number" v-model="tempFormData.furnitureStoreDays
+                          " :placeholder="$t(
+                                                      'furnitureStoreModal.placeholder'
+                                                    )
+                                                      "
                           class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
-                        <span>{{ $t('furnitureStoreModal.unit') }}</span>
+                        <span>{{
+                          $t(
+                            "furnitureStoreModal.unit"
+                          )
+                        }}</span>
                       </div>
                       <div class="modal-action">
-                        <button @click="saveData('furnitureStoreDays', 'furnitureStore')" type="button"
-                          class="btn">{{ $t('common.save') }}</button>
+                        <button @click="
+                          saveData(
+                            'furnitureStoreDays',
+                            'furnitureStore'
+                          )
+                          " type="button" class="btn">
+                          {{ $t("common.save") }}
+                        </button>
                       </div>
                     </template>
 
-                    <template v-if="currentPopupType === 'furnitureQuantity'">
+                    <template v-if="
+                      currentPopupType ===
+                      'furnitureQuantity'
+                    ">
                       <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-bold">{{ $t('furnitureQuantityModal.title') }}</h3>
-                        <button
-                          @click="closeModal({ modelValue: 'furnitureQuantity', checkboxValue: 'furnitureQuantity' })"
-                          type="button" class="btn btn-sm btn-circle btn-ghost text-xl">✕</button>
+                        <h3 class="text-lg font-bold">
+                          {{
+                            $t(
+                              "furnitureQuantityModal.title"
+                            )
+                          }}
+                        </h3>
+                        <button @click="
+                          closeModal({
+                            modelValue:
+                              'furnitureQuantity',
+                            checkboxValue:
+                              'furnitureQuantity',
+                          })
+                          " type="button" class="btn btn-sm btn-circle btn-ghost text-xl">
+                          ✕
+                        </button>
                       </div>
-                      <h3 class="text-lg font-semibold mb-2">{{ $t('furnitureQuantityModal.question') }}</h3>
-                      <input v-model="tempFormData.furnitureQuantity"
-                        :placeholder="$t('furnitureQuantityModal.placeholder')"
+                      <h3 class="text-lg font-semibold mb-2">
+                        {{
+                          $t(
+                            "furnitureQuantityModal.question"
+                          )
+                        }}
+                      </h3>
+                      <input v-model="tempFormData.furnitureQuantity
+                        " :placeholder="$t(
+                                                  'furnitureQuantityModal.placeholder'
+                                                )
+                                                  "
                         class="w-full px-4 py-3 rounded-lg bg-white transition duration-200 outline-none border border-[#1b1718] text-[#1b1718]" />
                       <div class="modal-action">
-                        <button @click="saveData('furnitureQuantity', 'furnitureQuantity')" type="button"
-                          class="btn">{{ $t('common.save') }}</button>
+                        <button @click="
+                          saveData(
+                            'furnitureQuantity',
+                            'furnitureQuantity'
+                          )
+                          " type="button" class="btn">
+                          {{ $t("common.save") }}
+                        </button>
                       </div>
                     </template>
                   </template>
@@ -1344,63 +3034,66 @@
             <!-- Multi-Step Form End -->
           </template>
         </div>
-
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import { required, requiredIf, email, helpers } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
-import { reactive, toRefs, inject } from 'vue'
-import axios from 'axios'
-import { useUiStore } from '../stores/uiStore';
-import { useI18n } from 'vue-i18n'
+import { required, requiredIf, email, helpers } from "@vuelidate/validators";
+import useVuelidate from "@vuelidate/core";
+import { reactive, toRefs, inject } from "vue";
+import axios from "axios";
+import { useUiStore } from "../stores/uiStore";
+import { useI18n } from "vue-i18n";
 
 export default {
   name: "Request",
   setup() {
-    const user = inject('user')
-    const loginPageUrl = inject('loginPageUrl')
+    const user = inject("user");
+    const loginPageUrl = inject("loginPageUrl");
     const germanPostalCode = helpers.regex(/^\d{5}$/);
-    const { t } = useI18n()
+    const { t } = useI18n();
     const fields = reactive({
       formData: {
-        pickupPostalCode: '',
-        pickupLocation: '',
-        pickupAddress: '',
-        pickupNo: '',
+        pickupPostalCode: "",
+        pickupLocation: "",
+        pickupAddress: "",
+        pickupNo: "",
+        firstLat: "",
+        firstLong: "",
+        secLat: "",
+        secLong: "",
         pickupLifterExistance: null,
-        pickupDistanceToCar: '',
-        pickupFloorNumber: '',
-        selectedPickUpType: '',
-        spaceArea: '',
-        roomsNumber: '',
-        boxesNumber: '',
-        storeArea: '',
-        dropOffPostalCode: '',
-        dropOffLocation: '',
-        dropOffAddress: '',
-        dropOffNo: '',
-        dropOffDistanceToCar: '',
-        dropOffFloorNumber: '',
-        dropOfflifterExistance: '',
-        timeType: '',
-        specificDate: '',
+        pickupDistanceToCar: "",
+        pickupFloorNumber: "",
+        selectedPickUpType: "",
+        spaceArea: "",
+        roomsNumber: "",
+        boxesNumber: "",
+        storeArea: "",
+        dropOffPostalCode: "",
+        dropOffLocation: "",
+        dropOffAddress: "",
+        dropOffNo: "",
+        dropOffDistanceToCar: "",
+        dropOffFloorNumber: "",
+        dropOfflifterExistance: "",
+        timeType: "",
+        specificDate: "",
         rangeDate: null,
-        rangeDateFrom: '',
-        rangeDateTo: '',
-        clientName: '',
-        clientEmail: '',
-        clientPhone: '',
-        whoWillPay: '',
+        rangeDateFrom: "",
+        rangeDateTo: "",
+        clientName: "",
+        clientEmail: "",
+        clientPhone: "",
+        whoWillPay: "",
 
-        kitchenLong: '',
+        kitchenLong: "",
         movingBoxes: null,
-        furnitureStoreDays: '',
-        furnitureQuantity: '',
-        noOfBoxes: '',
+        furnitureStoreDays: "",
+        furnitureQuantity: "",
+        noOfBoxes: "",
 
         packingServices: false,
         dismantingFurniture: false,
@@ -1413,117 +3106,200 @@ export default {
         connectWashingMachine: false,
         furnitureLifterMoveTo: false,
         noParkingMoveTo: false,
-        kitchenLongMoveOut: '',
-        whatParts: '',
+        kitchenLongMoveOut: "",
+        whatParts: "",
 
         saveData: false,
-
-      }
-    })
+      },
+    });
 
     const rules = {
       formData: {
         pickupPostalCode: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupPostalCodeRequired'), required),
-          germanPostalCode: helpers.withMessage(t('request.shippingRequest.pickupPostalCodeInvalid'), germanPostalCode)
+          required: helpers.withMessage(
+            t("request.shippingRequest.pickupPostalCodeRequired"),
+            required
+          ),
+          germanPostalCode: helpers.withMessage(
+            t("request.shippingRequest.pickupPostalCodeInvalid"),
+            germanPostalCode
+          ),
         },
         pickupLocation: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupLocationRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.pickupLocationRequired"),
+            required
+          ),
         },
         pickupAddress: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupAddressRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.pickupAddressRequired"),
+            required
+          ),
         },
         pickupNo: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupNoRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.pickupNoRequired"),
+            required
+          ),
         },
         pickupLifterExistance: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupLifterExistanceRequired'), required)
+          required: helpers.withMessage(
+            t(
+              "request.shippingRequest.pickupLifterExistanceRequired"
+            ),
+            required
+          ),
         },
         pickupDistanceToCar: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupDistanceToCarRequired'), required)
+          required: helpers.withMessage(
+            t(
+              "request.shippingRequest.pickupDistanceToCarRequired"
+            ),
+            required
+          ),
         },
         pickupFloorNumber: {
-          required: helpers.withMessage(t('request.shippingRequest.pickupFloorNumberRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.pickupFloorNumberRequired"),
+            required
+          ),
         },
         selectedPickUpType: {
-          required: helpers.withMessage(t('request.shippingRequest.selectedPickUpTypeRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.selectedPickUpTypeRequired"),
+            required
+          ),
         },
         spaceArea: {
           required: helpers.withMessage(
-            t('request.shippingRequest.spaceAreaRequired'),
-            requiredIf((value, siblings) =>
-              siblings.selectedPickUpType === 'all' || siblings.selectedPickUpType === 'part'
+            t("request.shippingRequest.spaceAreaRequired"),
+            requiredIf(
+              (value, siblings) =>
+                siblings.selectedPickUpType === "all" ||
+                siblings.selectedPickUpType === "part"
             )
-          )
+          ),
         },
         roomsNumber: {
           required: helpers.withMessage(
-            t('request.shippingRequest.roomsNumberRequired'),
-            requiredIf((value, siblings) =>
-              siblings.selectedPickUpType === 'all' || siblings.selectedPickUpType === 'part'
+            t("request.shippingRequest.roomsNumberRequired"),
+            requiredIf(
+              (value, siblings) =>
+                siblings.selectedPickUpType === "all" ||
+                siblings.selectedPickUpType === "part"
             )
-          )
+          ),
         },
         boxesNumber: {
           required: helpers.withMessage(
-            t('request.shippingRequest.boxesNumberRequired'),
-            requiredIf((value, siblings) =>
-              siblings.selectedPickUpType === 'boxes'
+            t("request.shippingRequest.boxesNumberRequired"),
+            requiredIf(
+              (value, siblings) =>
+                siblings.selectedPickUpType === "boxes"
             )
-          )
+          ),
         },
         dropOffPostalCode: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffPostalCodeRequired'), required),
-          germanPostalCode: helpers.withMessage(t('request.shippingRequest.dropOffPostalCodeInvalid'), germanPostalCode)
+          required: helpers.withMessage(
+            t("request.shippingRequest.dropOffPostalCodeRequired"),
+            required
+          ),
+          germanPostalCode: helpers.withMessage(
+            t("request.shippingRequest.dropOffPostalCodeInvalid"),
+            germanPostalCode
+          ),
         },
         dropOffLocation: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffLocationRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.dropOffLocationRequired"),
+            required
+          ),
         },
         dropOffAddress: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffAddressRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.dropOffAddressRequired"),
+            required
+          ),
         },
         dropOffNo: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffNoRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.dropOffNoRequired"),
+            required
+          ),
         },
         dropOffDistanceToCar: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffDistanceToCarRequired'), required)
+          required: helpers.withMessage(
+            t(
+              "request.shippingRequest.dropOffDistanceToCarRequired"
+            ),
+            required
+          ),
         },
         dropOffFloorNumber: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOffFloorNumberRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.dropOffFloorNumberRequired"),
+            required
+          ),
         },
         dropOfflifterExistance: {
-          required: helpers.withMessage(t('request.shippingRequest.dropOfflifterExistanceRequired'), required)
+          required: helpers.withMessage(
+            t(
+              "request.shippingRequest.dropOfflifterExistanceRequired"
+            ),
+            required
+          ),
         },
+        firstLat: {},
+        firstLong: {},
+        secLat: {},
+        secLong: {},
         timeType: {
-          required: helpers.withMessage(t('request.shippingRequest.timeTypeRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.timeTypeRequired"),
+            required
+          ),
         },
         specificDate: {
           required: helpers.withMessage(
-            t('request.shippingRequest.specificDateRequired'),
-            requiredIf((value, siblings) =>
-              siblings.timeType === 'specific'
+            t("request.shippingRequest.specificDateRequired"),
+            requiredIf(
+              (value, siblings) =>
+                siblings.timeType === "specific"
             )
-          )
+          ),
         },
         rangeDate: {
           required: helpers.withMessage(
-            t('request.shippingRequest.rangeDateRequired'),
-            requiredIf((value, siblings) =>
-              siblings.timeType === 'range'
+            t("request.shippingRequest.rangeDateRequired"),
+            requiredIf(
+              (value, siblings) => siblings.timeType === "range"
             )
-          )
+          ),
         },
         rangeDateFrom: {},
         rangeDateTo: {},
         clientName: {
-          required: helpers.withMessage(t('request.shippingRequest.clientNameRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.clientNameRequired"),
+            required
+          ),
         },
         clientEmail: {
-          required: helpers.withMessage(t('request.shippingRequest.clientEmailRequired'), required),
-          email: helpers.withMessage(t('request.shippingRequest.clientEmailValid'), email)
+          required: helpers.withMessage(
+            t("request.shippingRequest.clientEmailRequired"),
+            required
+          ),
+          email: helpers.withMessage(
+            t("request.shippingRequest.clientEmailValid"),
+            email
+          ),
         },
         clientPhone: {
-          required: helpers.withMessage(t('request.shippingRequest.clientPhoneRequired'), required)
+          required: helpers.withMessage(
+            t("request.shippingRequest.clientPhoneRequired"),
+            required
+          ),
         },
         noOfBoxes: {},
         saveData: {},
@@ -1544,19 +3320,23 @@ export default {
         kitchenLongMoveOut: {},
         whatParts: {
           required: helpers.withMessage(
-            t('request.shippingRequest.whatPartsRequired'),
-            requiredIf((value, siblings) =>
-              siblings.selectedPickUpType === 'part'
+            t("request.shippingRequest.whatPartsRequired"),
+            requiredIf(
+              (value, siblings) =>
+                siblings.selectedPickUpType === "part"
             )
-          )
+          ),
         },
         whoWillPay: {
-          required: helpers.withMessage(t('request.shippingRequest.whoWillPayRequired'), required)
-        }
-      }
-    }
+          required: helpers.withMessage(
+            t("request.shippingRequest.whoWillPayRequired"),
+            required
+          ),
+        },
+      },
+    };
 
-    const v$ = useVuelidate(rules, fields)
+    const v$ = useVuelidate(rules, fields);
 
     const workersFields = reactive({
       workersFormFields: {
@@ -1564,38 +3344,56 @@ export default {
         date: "",
         date_from: "",
         date_to: "",
-        clientName: '',
-        clientEmail: '',
-        clientPhone: '',
+        clientName: "",
+        clientEmail: "",
+        clientPhone: "",
         saveData: false,
-      }
-    })
+      },
+    });
 
     const workersFormRules = {
       workersFormFields: {
         count: {
-          required: helpers.withMessage(t('request.companyRequest.countRequired'), required)
+          required: helpers.withMessage(
+            t("request.companyRequest.countRequired"),
+            required
+          ),
         },
         date: {
-          required: helpers.withMessage(t('request.companyRequest.dateRequired'), required)
+          required: helpers.withMessage(
+            t("request.companyRequest.dateRequired"),
+            required
+          ),
         },
         clientName: {
-          required: helpers.withMessage(t('request.companyRequest.clientNameRequired'), required)
+          required: helpers.withMessage(
+            t("request.companyRequest.clientNameRequired"),
+            required
+          ),
         },
         clientEmail: {
-          required: helpers.withMessage(t('request.companyRequest.clientEmailRequired'), required),
-          email: helpers.withMessage(t('request.companyRequest.clientEmailValid'), email)
+          required: helpers.withMessage(
+            t("request.companyRequest.clientEmailRequired"),
+            required
+          ),
+          email: helpers.withMessage(
+            t("request.companyRequest.clientEmailValid"),
+            email
+          ),
         },
         clientPhone: {
-          required: helpers.withMessage(t('request.companyRequest.clientPhoneRequired'), required)
+          required: helpers.withMessage(
+            t("request.companyRequest.clientPhoneRequired"),
+            required
+          ),
         },
         saveData: {},
         date_from: {},
         date_to: {},
-      }
-    }
+      },
+    };
 
-    const v2$ = useVuelidate(workersFormRules, workersFields)
+    const v2$ = useVuelidate(workersFormRules, workersFields);
 
     const uiStore = useUiStore();
 
@@ -1608,7 +3406,7 @@ export default {
       user,
       loginPageUrl,
       // resetForm,
-    }
+    };
   },
   data() {
     return {
@@ -1622,15 +3420,15 @@ export default {
       clientType: "",
       companyOption: "",
       masks: {
-        input: 'YYYY-MM-DD',
+        input: "YYYY-MM-DD",
       },
       formData: {
         // Step 1
         // PickUp Panel 1
-        pickupPostalCode: '',
-        pickupLocation: '',
-        pickupAddress: '',
-        pickupNo: '',
+        pickupPostalCode: "",
+        pickupLocation: "",
+        pickupAddress: "",
+        pickupNo: "",
 
         // PickUp Panel 2
         pickupLifterExistance: null,
@@ -1646,10 +3444,10 @@ export default {
 
         // Step 2
         // dropoff Panel 1
-        dropOffPostalCode: '',
-        dropOffLocation: '',
-        dropOffAddress: '',
-        dropOffNo: '',
+        dropOffPostalCode: "",
+        dropOffLocation: "",
+        dropOffAddress: "",
+        dropOffNo: "",
 
         // dropoff Panel 2
         dropOffDistanceToCar: "",
@@ -1669,10 +3467,10 @@ export default {
         furnitureLifter: false,
         noParking: false,
 
-        kitchenLong: '',
+        kitchenLong: "",
         movingBoxes: null,
-        furnitureStoreDays: '',
-        furnitureQuantity: '',
+        furnitureStoreDays: "",
+        furnitureQuantity: "",
 
         unpackingServices: false,
         furnitureAssembly: false,
@@ -1680,21 +3478,21 @@ export default {
         furnitureLifterMoveTo: false,
         noParkingMoveTo: false,
 
-        kitchenLongMoveOut: '',
+        kitchenLongMoveOut: "",
 
         // Contact Information
-        clientName: '',
-        clientEmail: '',
-        clientPhone: '',
-        whoWillPay: '',
+        clientName: "",
+        clientEmail: "",
+        clientPhone: "",
+        whoWillPay: "",
         saveData: false,
       },
       tempFormData: {
-        kitchenLong: '',
+        kitchenLong: "",
         movingBoxes: null,
-        furnitureStoreDays: '',
-        furnitureQuantity: '',
-        kitchenLongMoveOut: '',
+        furnitureStoreDays: "",
+        furnitureQuantity: "",
+        kitchenLongMoveOut: "",
       },
       currentPopupType: null,
 
@@ -1705,42 +3503,45 @@ export default {
       kitchenConstruction: false,
       workersFormData: {
         count: null,
-        date: null
+        date: null,
       },
       companyChooseError: false,
       clientTypeError: false,
       servicesCosts: null,
       totalCost: null,
-    }
+      pickupStreets: [],
+      dropOffStreets: [],
+    };
   },
   methods: {
     showModal(type, modelValue) {
       this.currentPopupType = type;
 
       if (this.v$.formData[modelValue].$model) {
-        this.tempFormData[modelValue] = this.v$.formData[modelValue].$model;
+        this.tempFormData[modelValue] =
+          this.v$.formData[modelValue].$model;
       } else {
-        this.tempFormData[modelValue] = '';
+        this.tempFormData[modelValue] = "";
       }
 
       if (saveDataModal) {
-        saveDataModal.showModal()
+        saveDataModal.showModal();
       }
     },
     handleCheckToggle(e, modelValue, modalType) {
       if (this.v$.formData[modelValue].$model) {
-        this.v$.formData[modelValue].$model = '';
-        this.v$.formData.noOfBoxes.$model = '';
-        this.tempFormData[modelValue] = '';
+        this.v$.formData[modelValue].$model = "";
+        this.v$.formData.noOfBoxes.$model = "";
+        this.tempFormData[modelValue] = "";
       } else {
         e.preventDefault();
         this.showModal(modalType, modelValue);
       }
     },
     closeModal(modelValue) {
-
       if (this.v$.formData[modelValue.modelValue].$model) {
-        this.tempFormData[modelValue.modelValue] = this.v$.formData[modelValue.modelValue].$model;
+        this.tempFormData[modelValue.modelValue] =
+          this.v$.formData[modelValue.modelValue].$model;
       } else {
         this.tempFormData[modelValue.modelValue] = null;
 
@@ -1750,29 +3551,31 @@ export default {
       }
 
       if (saveDataModal) {
-        saveDataModal.close()
+        saveDataModal.close();
       }
     },
     saveData(modelValue, checkboxModelValue) {
-
-      if (modelValue == "movingBoxes" && !this.v$.formData.noOfBoxes.$model) {
+      if (
+        modelValue == "movingBoxes" &&
+        !this.v$.formData.noOfBoxes.$model
+      ) {
         this.noOfBoxesError = true;
         return;
       } else {
         this.noOfBoxesError = false;
         if (this.tempFormData[modelValue]) {
-          this.v$.formData[modelValue].$model = this.tempFormData[modelValue];
+          this.v$.formData[modelValue].$model =
+            this.tempFormData[modelValue];
           this[checkboxModelValue] = true;
           this.tempFormData[modelValue] = null;
         } else {
-          this[checkboxModelValue] = false
+          this[checkboxModelValue] = false;
         }
 
         if (saveDataModal) {
-          saveDataModal.close()
+          saveDataModal.close();
         }
       }
-
     },
     handleNextStepOfCompanyOrPersonal(clientType) {
       if (!clientType.trim()) {
@@ -1781,11 +3584,11 @@ export default {
         this.clientTypeError = false;
       }
 
-      if (clientType === 'company') {
+      if (clientType === "company") {
         this.companyStepNumber = 1;
       }
 
-      if (clientType === 'personal') {
+      if (clientType === "personal") {
         this.stepNumber = 1;
       }
     },
@@ -1797,127 +3600,112 @@ export default {
         this.companyChooseError = false;
       }
 
-      if (companyOption === 'shipping') {
+      if (companyOption === "shipping") {
         this.stepNumber = 1;
         this.companyStepNumber = 0;
       }
 
-      if (companyOption === 'workers') {
+      if (companyOption === "workers") {
         this.companyStepNumber++;
       }
     },
     getStepFields(stepNumber) {
       const steps = {
         1: [
-          'pickupPostalCode',
-          'pickupLocation',
-          'pickupAddress',
-          'pickupNo',
-          'pickupLifterExistance',
-          'pickupDistanceToCar',
-          'pickupFloorNumber',
-          'selectedPickUpType',
-          'spaceArea',
-          'roomsNumber',
-          'boxesNumber',
-          'whatParts',
-          'storeArea'
+          "pickupPostalCode",
+          "pickupLocation",
+          "pickupAddress",
+          "pickupNo",
+          "pickupLifterExistance",
+          "pickupDistanceToCar",
+          "pickupFloorNumber",
+          "selectedPickUpType",
+          "spaceArea",
+          "roomsNumber",
+          "boxesNumber",
+          "whatParts",
+          "storeArea",
         ],
         2: [
-          'dropOffPostalCode',
-          'dropOffLocation',
-          'dropOffAddress',
-          'dropOffNo',
-          'dropOffDistanceToCar',
-          'dropOffFloorNumber',
-          'dropOfflifterExistance',
+          "dropOffPostalCode",
+          "dropOffLocation",
+          "dropOffAddress",
+          "dropOffNo",
+          "dropOffDistanceToCar",
+          "dropOffFloorNumber",
+          "dropOfflifterExistance",
         ],
-        3: [
-          'timeType',
-          'specificDate',
-          'rangeDate'
-        ],
-        4: [
-          'clientName',
-          'clientEmail',
-          'clientPhone',
-          'whoWillPay',
-        ]
+        3: ["timeType", "specificDate", "rangeDate"],
+        4: ["clientName", "clientEmail", "clientPhone", "whoWillPay"],
         // You can add step 3 here later
-      }
+      };
 
-      return steps[stepNumber] || []
+      return steps[stepNumber] || [];
     },
     async nextStep() {
       const stepFields = this.getStepFields(this.stepNumber);
-      stepFields.forEach(f => {
+      stepFields.forEach((f) => {
         const input = f;
-        this.v$.formData[input]?.$touch()
-      })
+        this.v$.formData[input]?.$touch();
+      });
 
-      const isValid = stepFields.every(f => {
+      const isValid = stepFields.every((f) => {
         const input = f;
-        return !this.v$.formData[input]?.$error
-      })
+        return !this.v$.formData[input]?.$error;
+      });
 
       const isLast = this.stepNumber === 4;
       window.scrollTo({
         top: 0,
-        behavior: 'smooth' // optional for smooth animation
+        behavior: "smooth", // optional for smooth animation
       });
-      console.log(`isvalid => ${isValid}`);
-      console.log(this.v$.formData)
+
       if (isValid) {
         if (isLast) {
-          this.currentPopupType = 'saveData';
+          this.currentPopupType = "saveData";
           if (saveDataModal) {
-            saveDataModal.showModal()
+            saveDataModal.showModal();
           }
         } else {
-          this.stepNumber++
+          this.stepNumber++;
         }
-
       } else {
-        console.warn('Validation failed. Fix inputs before proceeding.')
+        console.warn(
+          "Validation failed. Fix inputs before proceeding."
+        );
       }
     },
     nextStepForCompany() {
       const steps = {
-        2: [
-          'count',
-          'date'
-        ],
-        3: [
-          'clientName',
-          'clientEmail',
-          'clientPhone',
-        ]
-      }
+        2: ["count", "date"],
+        3: ["clientName", "clientEmail", "clientPhone"],
+      };
 
       const stepFields = steps[this.companyStepNumber];
-      stepFields.forEach(f => {
+      stepFields.forEach((f) => {
         const input = f;
-        this.v2$.workersFormFields[input]?.$touch()
-      })
+        this.v2$.workersFormFields[input]?.$touch();
+      });
 
-      const isValid = stepFields.every(f => {
+      const isValid = stepFields.every((f) => {
         const input = f;
-        return !this.v2$.workersFormFields[input]?.$error
-      })
+        return !this.v2$.workersFormFields[input]?.$error;
+      });
 
       const isLast = this.companyStepNumber === 3;
 
       if (isValid) {
         if (isLast) {
           if (this.$refs.companySaveDataModal) {
-            this.$refs.companySaveDataModal.showModal()
+            this.$refs.companySaveDataModal.showModal();
           }
         } else {
-          this.companyStepNumber++
+          this.companyStepNumber++;
         }
-
       } else {
-        console.warn('Validation failed. Fix inputs before proceeding.')
+        console.warn(
+          "Validation failed. Fix inputs before proceeding."
+        );
       }
     },
     submitCompanyRequestData() {
@@ -1926,10 +3714,11 @@ export default {
         formData.userType = this.clientType;
         this.isLoading = true;
         delete formData.date;
-        axios.post('/api/factor-request', formData)
-          .then(res => {
-            console.log("res")
-            console.log(res)
+        axios
+          .post("/api/factor-request", formData)
+          .then((res) => {
+            console.log("res");
+            console.log(res);
 
             if (res.data.isSuccess) {
               if (res.data.services) {
@@ -1938,15 +3727,18 @@ export default {
                 this.totalCost = res.data.total_price;
               }
 
-              if(res.data.user_created){
+              if (res.data.user_created) {
                 this.credentials = { ...res.data.credentials };
                 this.creditionals_modal_shown = true;
-                sessionStorage.setItem("tempCredentials", JSON.stringify(this.credentials));
+                sessionStorage.setItem(
+                  "tempCredentials",
+                  JSON.stringify(this.credentials)
+                );
                 setTimeout(() => {
-                  if(this.$refs?.creditionals_modal){
+                  if (this.$refs?.creditionals_modal) {
                     this.$refs.creditionals_modal.showModal();
                   }
-                }, 500)
+                }, 500);
               }
 
               this.resetCompanyForm();
@@ -1954,24 +3746,25 @@ export default {
               this.uiStore.setToaster({
                 type: "success",
                 duration: 5000,
-                message: this.$t('requestSentSuccessfully'),
+                message: this.$t("requestSentSuccessfully"),
               });
-
             } else {
               this.uiStore.setToaster({
                 type: "error",
                 duration: 5000,
-                message: this.$t('somethingWentWrong'),
+                message: this.$t("somethingWentWrong"),
               });
             }
           })
-          .catch(err => {
-            console.log("err")
-            console.log(err)
+          .catch((err) => {
+            console.log("err");
+            console.log(err);
             this.uiStore.setToaster({
               type: "error",
               duration: 5000,
-              message: err.response?.message  || this.$t('somethingWentWrong'),
+              message:
+                err.response?.message ||
+                this.$t("somethingWentWrong"),
             });
           })
           .finally(() => {
@@ -1979,7 +3772,7 @@ export default {
             if (this.$refs.companySaveDataModal) {
               this.$refs.companySaveDataModal.close();
             }
-          })
+          });
       }
     },
     submitRequestData() {
@@ -1989,12 +3782,13 @@ export default {
         this.formData.userType = this.clientType;
         Object.keys(this.formData).forEach((key) => {
           if (this.v$.formData[key]) {
-            this.formData[key] = this.v$.formData[key].$model
+            this.formData[key] = this.v$.formData[key].$model;
           }
-        })
+        });
 
-        axios.post('/api/ship-request', this.formData)
-          .then(res => {
+        axios
+          .post("/api/ship-request", this.formData)
+          .then((res) => {
             if (res.data.isSuccess) {
               if (res.data.services) {
                 this.resultsReady = true;
@@ -2002,14 +3796,14 @@ export default {
                 this.totalCost = res.data.total_price;
               }
 
-              if(res.data.user_created){
+              if (res.data.user_created) {
                 this.credentials = { ...res.data.credentials };
                 this.creditionals_modal_shown = true;
                 setTimeout(() => {
-                  if(this.$refs?.creditionals_modal){
+                  if (this.$refs?.creditionals_modal) {
                     this.$refs.creditionals_modal.showModal();
                   }
-                }, 500)
+                }, 500);
               }
 
               this.resetShippingForm();
@@ -2017,23 +3811,25 @@ export default {
               this.uiStore.setToaster({
                 type: "success",
                 duration: 5000,
-                message: this.$t('requestSentSuccessfully'),
+                message: this.$t("requestSentSuccessfully"),
               });
             } else {
               this.uiStore.setToaster({
                 type: "error",
                 duration: 5000,
-                message: this.$t('somethingWentWrong'),
+                message: this.$t("somethingWentWrong"),
               });
             }
           })
-          .catch(err => {
-            console.log("err")
-            console.log(err)
+          .catch((err) => {
+            console.log("err");
+            console.log(err);
             this.uiStore.setToaster({
               type: "error",
               duration: 5000,
-              message: err.response?.message || this.$t('somethingWentWrong'),
+              message:
+                err.response?.message ||
+                this.$t("somethingWentWrong"),
             });
           })
           .finally(() => {
@@ -2041,60 +3837,60 @@ export default {
             if (saveDataModal) {
               saveDataModal.close();
             }
-          })
+          });
       }
     },
     resetCompanyForm() {
       this.workersFormFields = {
-        name: '',
-        email: '',
-        phone: '',
-        selectedPickUpType: '',
-        spaceArea: '',
-        selectedDate: null
-      }
+        name: "",
+        email: "",
+        phone: "",
+        selectedPickUpType: "",
+        spaceArea: "",
+        selectedDate: null,
+      };
 
       this.companyStepNumber = 1;
 
       // Reset validation
-      this.v2$.$reset()
+      this.v2$.$reset();
     },
     resetShippingForm() {
       this.formData = {
-        pickupPostalCode: '',
-        pickupLocation: '',
-        pickupAddress: '',
-        pickupNo: '',
+        pickupPostalCode: "",
+        pickupLocation: "",
+        pickupAddress: "",
+        pickupNo: "",
         pickupLifterExistance: null,
-        pickupDistanceToCar: '',
-        pickupFloorNumber: '',
-        selectedPickUpType: '',
-        spaceArea: '',
-        roomsNumber: '',
-        boxesNumber: '',
-        storeArea: '',
-        dropOffPostalCode: '',
-        dropOffLocation: '',
-        dropOffAddress: '',
-        dropOffNo: '',
-        dropOffDistanceToCar: '',
-        dropOffFloorNumber: '',
-        dropOfflifterExistance: '',
-        timeType: '',
-        specificDate: '',
+        pickupDistanceToCar: "",
+        pickupFloorNumber: "",
+        selectedPickUpType: "",
+        spaceArea: "",
+        roomsNumber: "",
+        boxesNumber: "",
+        storeArea: "",
+        dropOffPostalCode: "",
+        dropOffLocation: "",
+        dropOffAddress: "",
+        dropOffNo: "",
+        dropOffDistanceToCar: "",
+        dropOffFloorNumber: "",
+        dropOfflifterExistance: "",
+        timeType: "",
+        specificDate: "",
         rangeDate: null,
-        rangeDateFrom: '',
-        rangeDateTo: '',
-        clientName: '',
-        clientEmail: '',
-        clientPhone: '',
-        whoWillPay: '',
+        rangeDateFrom: "",
+        rangeDateTo: "",
+        clientName: "",
+        clientEmail: "",
+        clientPhone: "",
+        whoWillPay: "",
 
-        kitchenLong: '',
+        kitchenLong: "",
         movingBoxes: null,
-        furnitureStoreDays: '',
-        furnitureQuantity: '',
-        noOfBoxes: '',
+        furnitureStoreDays: "",
+        furnitureQuantity: "",
+        noOfBoxes: "",
 
         packingServices: false,
         dismantingFurniture: false,
@@ -2107,16 +3903,16 @@ export default {
         connectWashingMachine: false,
         furnitureLifterMoveTo: false,
         noParkingMoveTo: false,
-        kitchenLongMoveOut: '',
-        whatParts: '',
+        kitchenLongMoveOut: "",
+        whatParts: "",
 
         saveData: false,
-      }
+      };
 
       this.stepNumber = 1;
 
       // Reset validation
-      this.v$.$reset()
+      this.v$.$reset();
     },
     navigateToHome() {
       window.location.href = "/";
@@ -2124,17 +3920,96 @@ export default {
     reloadPage() {
       window.location.reload();
     },
-    copyToClipboard(value, isPassword){
+    copyToClipboard(value, isPassword) {
       navigator.clipboard.writeText(value);
       this.uiStore.setToaster({
         type: "success",
         duration: 5000,
-        message: isPassword ? this.$t('copiedPasswordSuccessfully') : this.$t('copiedEmailSuccessfully'),
+        message: isPassword
+          ? this.$t("copiedPasswordSuccessfully")
+          : this.$t("copiedEmailSuccessfully"),
       });
     },
-    closeCredentialsModal(){
+    closeCredentialsModal() {
       this.$refs.creditionals_modal.close();
-    }
+    },
+    postalCodeChanged(type, value) {
+      if (
+        type === "pickup" &&
+        !this.v$.formData.pickupPostalCode.$error
+      ) {
+        this.getCitiesByPostalCode(value, type);
+        this.getStreetsByPostalCode(value, type);
+      } else if (
+        type === "dropOff" &&
+        !this.v$.formData.dropOffPostalCode.$error
+      ) {
+        this.getCitiesByPostalCode(value, type);
+        this.getStreetsByPostalCode(value, type);
+      } else {
+        return;
+      }
+    },
+    getCitiesByPostalCode(postalCode, type) {
+      axios
+        .get(
+          `https://openplzapi.org/de/Localities?postalCode=${postalCode}`
+        )
+        .then((res) => {
+          if (type == "pickup") {
+            this.v$.formData.pickupLocation.$model = res.data
+              ? res.data[0]?.name?.replace(".", "")
+              : "";
+          } else if (type == "dropOff") {
+            this.v$.formData.dropOffLocation.$model = res.data
+              ? res.data[0]?.name?.replace(".", "")
+              : "";
+          }
+        });
+    },
+    getStreetsByPostalCode(postalCode, type) {
+      axios
+        .get(
+          `https://openplzapi.org/de/Streets?postalCode=${postalCode}`
+        )
+        .then((res) => {
+          console.log("res");
+          console.log(res);
+          if (type == "pickup") {
+            this.pickupStreets = res.data
+              ? res.data.map((item) => item.name?.replace(".", ""))
+              : [];
+          } else if (type == "dropOff") {
+            this.dropOffStreets = res.data
+              ? res.data.map((item) => item.name?.replace(".", ""))
+              : [];
+          }
+          // if(type == 'pickup'){
+          //   this.v$.formData.pickupLocation.$model = res.data ? res.data[0]?.name : '';
+          // }else if (type == 'dropOff'){
+          //   this.v$.formData.dropOffLocation.$model = res.data ? res.data[0]?.name : '';
+          // }
+        });
+    },
+    getLatNLongByStreetNCity(street, city, type) {
+      axios
+        .get(
+          `https://nominatim.openstreetmap.org/search?street=${encodeURIComponent(
+            street
+          )}&city=${encodeURIComponent(
+            city
+          )}&country=Germany&format=json&limit=1`
+        )
+        .then((res) => {
+          if (type == "pickup") {
+            this.v$.formData.firstLat.$model = res.data[0]?.lat;
+            this.v$.formData.firstLong.$model = res.data[0]?.lon;
+          } else if (type == "dropOff") {
+            this.v$.formData.secLat.$model = res.data[0]?.lat;
+            this.v$.formData.secLong.$model = res.data[0]?.lon;
+          }
+        });
+    },
   },
   computed: {
     isKitchenConstructionChecked() {
@@ -2144,7 +4019,10 @@ export default {
       return !!this.formData.kitchenLong;
     },
     isMovingBoxesChecked() {
-      return !!((this.formData.movingBoxes == 'buy') || (this.formData.movingBoxes == 'rent'));
+      return !!(
+        this.formData.movingBoxes == "buy" ||
+        this.formData.movingBoxes == "rent"
+      );
     },
     isFurnitureStoreChecked() {
       return !!this.formData.furnitureStoreDays;
@@ -2154,28 +4032,46 @@ export default {
     },
   },
   watch: {
-    'v$.formData.rangeDate.$model': function (newVal) {
+    "v$.formData.rangeDate.$model": function (newVal) {
       if (newVal && newVal.start && newVal.end) {
-        const start = newVal.start.toISOString().split('T')[0];
-        const end = newVal.end.toISOString().split('T')[0];
+        const start = newVal.start.toISOString().split("T")[0];
+        const end = newVal.end.toISOString().split("T")[0];
         this.v$.formData.rangeDateFrom.$model = start;
         this.v$.formData.rangeDateTo.$model = end;
       }
     },
-    'v2$.workersFormFields.date.$model': function (newVal) {
+    "v2$.workersFormFields.date.$model": function (newVal) {
       if (newVal && newVal.start && newVal.end) {
-        const start = newVal.start.toISOString().split('T')[0];
-        const end = newVal.end.toISOString().split('T')[0];
+        const start = newVal.start.toISOString().split("T")[0];
+        const end = newVal.end.toISOString().split("T")[0];
         this.v2$.workersFormFields.date_from.$model = start;
         this.v2$.workersFormFields.date_to.$model = end;
       }
     },
-    'v$.formData.noOfBoxes.$model': function (newVal) {
+    "v$.formData.noOfBoxes.$model": function (newVal) {
       this.noOfBoxesError = !newVal;
     },
+    "v$.formData.pickupAddress.$model": function (newVal) {
+      if(newVal){
+        this.getLatNLongByStreetNCity(
+          newVal,
+          this.v$.formData.pickupLocation.$model,
+          "pickup"
+        );
+      }
+    },
+    "v$.formData.dropOffAddress.$model": function (newVal) {
+      if(newVal){
+        this.getLatNLongByStreetNCity(
+          newVal,
+          this.v$.formData.dropOffLocation.$model,
+          "dropOff"
+        );
+      }
+    },
     user: {
-      handler(val){
-        if(val){
+      handler(val) {
+        if (val) {
           this.workersFormFields.clientName = val.name;
           this.workersFormFields.clientEmail = val.email;
           this.workersFormFields.clientPhone = val.phone;
@@ -2186,10 +4082,10 @@ export default {
         }
       },
       immediate: true,
-      deep: true
-    }
-  }
-}
+      deep: true,
+    },
+  },
+};
 </script>
 
 <style scoped></style>

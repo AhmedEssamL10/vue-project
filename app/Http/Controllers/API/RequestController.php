@@ -165,7 +165,7 @@ class RequestController extends Controller
 
         $total = array_sum($services);
 
-        if ($request->whoWillBpay  == 'private') {
+        if ($request->whoWillPay  == 'private') {
             $services['tax'] =  $total * 0.19; // 19% tax
             $total = $total + $services['tax'];
         }

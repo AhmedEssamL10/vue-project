@@ -191,6 +191,7 @@
   },
   "basicServicesCost": "تكلفة الخدمات الأساسية",
   "gasolineCost": "تكلفة البنزين",
+  "boxesCost": "تكلفة الصناديق",
   "pickupFloorCostFrom": "تكلفة الطابق (الذهاب من)",
   "dropOffFloorCostTo": "تكلفة الطابق (الذهاب إلى)",
   "additionalStorageCost": "تكلفة مساحة التخزين الإضافية",

@@ -196,6 +196,7 @@
   },
   "basicServicesCost": "Grundkosten der Dienstleistungen",
   "gasolineCost": "Benzinkosten",
+  "boxesCost": "Kosten für die Kiste",
   "pickupFloorCostFrom": "Kosten für die Etage (Abfahrt von)",
   "dropOffFloorCostTo": "Kosten für die Etage (Ankunft zu)",
   "additionalStorageCost": "Kosten für zusätzlichen Lagerraum",

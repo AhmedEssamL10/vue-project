@@ -117,6 +117,7 @@
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn">{{ __('cookiesAccept') }}</button>
+                    <button class="btn">{{ __('cookiesDecline') }}</button>
                 </form>
             </div>
         </div>
