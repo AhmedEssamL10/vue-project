@@ -128,6 +128,20 @@
                         {{ $t("euro") }}</span>
                     </div>
                     <div v-if="
+                      servicesCosts.pickupMeterPrice &&
+                      servicesCosts.pickupMeterPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("pickupMeterCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.pickupMeterPrice
+                      }}
+                        {{ $t("euro") }}</span>
+                    </div>
+                    <div v-if="
                       servicesCosts.dropOffFloorWithoutLifterPrice &&
                       servicesCosts.dropOffFloorWithoutLifterPrice !=
                       '0'
@@ -138,6 +152,20 @@
                       }}</span>
                       <span class="font-bold">{{
                         servicesCosts.dropOffFloorWithoutLifterPrice
+                      }}
+                        {{ $t("euro") }}</span>
+                    </div>
+                    <div v-if="
+                      servicesCosts.dropOffMeterPrice &&
+                      servicesCosts.dropOffMeterPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("dropOffMeterCost")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.dropOffMeterPrice
                       }}
                         {{ $t("euro") }}</span>
                     </div>
@@ -212,6 +240,48 @@
                       }}</span>
                       <span class="font-bold">{{
                         servicesCosts.furnitureLifterToolPrice
+                      }}
+                        {{ $t("euro") }}</span>
+                    </div>
+                    <div v-if="
+                      servicesCosts.furnitureCollectingPrice &&
+                      servicesCosts.furnitureCollectingPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("furnitureCollecting")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.furnitureCollectingPrice
+                      }}
+                        {{ $t("euro") }}</span>
+                    </div>
+                    <div v-if="
+                      servicesCosts.furnitureGitRedOfPrice &&
+                      servicesCosts.furnitureGitRedOfPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("furnitureGitRedOf")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.furnitureGitRedOfPrice
+                      }}
+                        {{ $t("euro") }}</span>
+                    </div>
+                    <div v-if="
+                      servicesCosts.furnitureUncollectingPrice &&
+                      servicesCosts.furnitureUncollectingPrice !=
+                      '0'
+                    "
+                      class="flex justify-between items-center gap-4 border-b borde-black pb-4 mb-4">
+                      <span>{{
+                        $t("furnitureUncollecting")
+                      }}</span>
+                      <span class="font-bold">{{
+                        servicesCosts.furnitureUncollectingPrice
                       }}
                         {{ $t("euro") }}</span>
                     </div>
@@ -1121,7 +1191,7 @@
                           }}*</label>
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveFrom" value="true" v-model="v$.formData
+                              <input type="radio" name="lifterExistMoveFrom" :value="1" v-model="v$.formData
                                   .pickupLifterExistance
                                   .$model
                                 "
@@ -1140,7 +1210,7 @@
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveFrom" value="false" v-model="v$.formData
+                              <input type="radio" name="lifterExistMoveFrom" :value="0" v-model="v$.formData
                                   .pickupLifterExistance
                                   .$model
                                 "
@@ -1432,7 +1502,7 @@
                                       }" type="radio" name="roomsCount"
                                       :aria-label="`5 ${$t(
                                         'propertyDetails.roomsMore'
-                                      )}`" value="5+" />
+                                      )}`" value="5" />
                                   </div>
                                   <span class="error-msg" v-if="
                                     v$
@@ -2090,7 +2160,7 @@
                           }}*</label>
                           <div class="flex flex-col gap-3">
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveTo" value="true" v-model="v$.formData
+                              <input type="radio" name="lifterExistMoveTo" :value="1" v-model="v$.formData
                                   .dropOfflifterExistance
                                   .$model
                                 "
@@ -2107,7 +2177,7 @@
                               }}</span>
                             </label>
                             <label class="label cursor-pointer">
-                              <input type="radio" name="lifterExistMoveTo" value="false" v-model="v$.formData
+                              <input type="radio" name="lifterExistMoveTo" :value="0" v-model="v$.formData
                                   .dropOfflifterExistance
                                   .$model
                                 "

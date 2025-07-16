@@ -94,11 +94,13 @@ class RequestController extends Controller
         if ($request->connectWashingMachine) {
             $services['connectingWashingMachinePrice'] = $prices['connectingWashingMachinePrice'] ?? 0;
         }
-        if ($request->pickUpDistanceToCar) {
-            $services['meterPrice'] = $request->pickUpDistanceToCar * ($prices['meterPrice'] ?? 0);
+        
+        if ($request->pickupDistanceToCar) {
+            $services['pickupMeterPrice'] = $request->pickupDistanceToCar * ($prices['meterPrice'] ?? 0);
         }
-        if ($request->pickUpDistanceToCar) {
-            $services['meterPrice'] = $request->pickUpDistanceToCar * ($prices['meterPrice'] ?? 0);
+
+        if ($request->dropOffDistanceToCar) {
+            $services['dropOffMeterPrice'] = $request->dropOffDistanceToCar * ($prices['meterPrice'] ?? 0);
         }
 
         if ($request->pickupFloorNumber) {
@@ -112,7 +114,7 @@ class RequestController extends Controller
             if ($request->dropOfflifterExistance == 1) {
                 $services['dropOffFloorWithoutLifterPrice'] = $request->dropOffFloorNumber * ($prices['floorWithLifterPrice'] ?? 0);
             } else {
-                $services['dropOffFloorWithoutLifterPrice '] = $request->dropOffFloorNumber * ($prices['floorWithoutLifterPrice '] ?? 0);
+                $services['dropOffFloorWithoutLifterPrice'] = $request->dropOffFloorNumber * ($prices['floorWithoutLifterPrice'] ?? 0);
             }
         }
 
@@ -160,8 +162,8 @@ class RequestController extends Controller
         );
 
         $services['distancePrice'] = round($distance * ($prices['kiloMeterPrice'] ?? 0), 2);
-        $services['distance'] = round($distance, 2);
-        $services['movementPrice'] = $prices['movementPrice'] ?? 0;
+        // $services['distance'] = round($distance, 2);
+        // $services['movementPrice'] = $prices['movementPrice'] ?? 0;
 
         $total = array_sum($services);
 
