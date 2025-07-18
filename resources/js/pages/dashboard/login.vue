@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#f2f2f2] py-12 lg:py-20 relative">
+    <div class="bg-[#f2f2f2] py-12 lg:py-20 relative min-h-screen">
         <div class="container">
             <div class="absolute inset-0 z-0 opacity-40">
                 <div class="absolute top-20 left-10 w-40 h-40 rounded-full bg-client animate-float"></div>

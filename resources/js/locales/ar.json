@@ -190,7 +190,8 @@
     "save": "حفظ"
   },
   "basicServicesCost": "تكلفة الخدمات الأساسية",
-  "gasolineCost": "تكلفة البنزين",
+  "gasolineCost": "تكلفة الوقود",
+  "costWillBeCalculatedNSendInOfferMail": "سيتم حساب التكلفة وإرسالها في العرض",
   "boxesCost": "تكلفة الصناديق",
   "pickupFloorCostFrom": "تكلفة الطابق (الذهاب من)",
   "dropOffFloorCostTo": "تكلفة الطابق (الذهاب إلى)",

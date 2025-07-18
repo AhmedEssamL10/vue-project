@@ -4,23 +4,23 @@
             <div class="z-10 relative">
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
-                        <span class="text-lg font-bold text-client-dark">{{ $t('stats.individualClientsCount') }}</span>
+                        <span class="text-lg font-bold text-client-dark text-center">{{ $t('stats.individualClientsCount') }}</span>
                         <span class="text-2xl font-bold">{{ statsData?.total_individuals }}</span>
                     </div>
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
-                        <span class="text-lg font-bold text-client-dark">{{ $t('stats.companyClientsCount') }}</span>
+                        <span class="text-lg font-bold text-client-dark text-center">{{ $t('stats.companyClientsCount') }}</span>
                         <span class="text-2xl font-bold">{{ statsData?.total_companies }}</span>
                     </div>
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
-                        <span class="text-lg font-bold text-client-dark">{{ $t('stats.totalClientsCount') }}</span>
+                        <span class="text-lg font-bold text-client-dark text-center">{{ $t('stats.totalClientsCount') }}</span>
                         <span class="text-2xl font-bold">{{ statsData?.total_clients }}</span>
                     </div>
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
-                        <span class="text-lg font-bold text-client-dark">{{ $t('stats.shippingRequestsCount') }}</span>
+                        <span class="text-lg font-bold text-client-dark text-center">{{ $t('stats.shippingRequestsCount') }}</span>
                         <span class="text-2xl font-bold">{{ statsData?.total_ship_requests }}</span>
                     </div>
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
-                        <span class="text-lg font-bold text-client-dark">{{ $t('stats.laborRequestsCount') }}</span>
+                        <span class="text-lg font-bold text-client-dark text-center">{{ $t('stats.laborRequestsCount') }}</span>
                         <span class="text-2xl font-bold">{{ statsData?.total_factor_requests }}</span>
                     </div>
                     <div class="text-gray-900 bg-white px-4 py-12 gap-4 flex flex-col justify-center items-center rounded-lg">
