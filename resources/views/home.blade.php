@@ -83,11 +83,11 @@
                 <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
                     <a href="{{ route('vue-request', app()->getLocale()) }}"
                         class="cursor-pointer bg-client hover:bg-client-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
-                        {{ __('client') }}
+                        {{ __('clientBtn') }}
                     </a>
                     <a href="{{ route('auth.register', app()->getLocale()) }}?user-type=worker"
                         class="cursor-pointer bg-worker hover:bg-worker-dark text-white font-medium px-8 py-3 text-lg rounded-lg transition-transform hover:scale-105 shadow-lg text-center">
-                        {{ __('worker') }}
+                        {{ __('workerBtn') }}
                     </a>
                 </div>
 
@@ -116,9 +116,9 @@
                 data-breakpoints='{"640": {"slidesPerView": 1.5}, "768": {"slidesPerView": 2}, "1024": {"slidesPerView": 3}, "1200": {"slidesPerView": 4}}'>
                 <div class="swiper-wrapper">
                     @foreach ($items as $item)
-                        <div class="swiper-slide group">
+                        <div class="swiper-slide group !h-auto">
                             <img src="{{ asset('storage/' . $item->image) }}"
-                                class="w-full group-hover:scale-125 transition duration-500"
+                                class="w-full h-full object-contain group-hover:scale-125 transition duration-500"
                                 alt="{{ $item->title }}" />
                         </div>
                     @endforeach
@@ -143,10 +143,15 @@
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{{ __('about_us') }}</h2>
                     <p class="text-gray-600 text-lg mb-6">
-                        <span class="font-semibold text-client-dark">{{ __('three_m_services') }}
-                        </span>،{{ __('about_description') }}
+                        <span class="block font-bold">{{ __('three_m_services') }}
+                        </span>
+                        <br>
+                        {{ __('about_description_1') }}
+                        <br>
+                        <br>
+                        {{ __('about_description_2') }}
                     </p>
-                    <ul class="flex flex-col gap-3">
+                    <!-- <ul class="flex flex-col gap-3">
                         <li class="flex items-start">
                             <svg class="w-6 h-6 text-client me-1.5" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -168,7 +173,7 @@
                             </svg>
                             <span class="text-gray-600">{{ __('feature_3') }} </span>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

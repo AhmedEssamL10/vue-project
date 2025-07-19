@@ -33,7 +33,7 @@
                             <span>{{ client.title }}</span>
                         </td>
                         <td>
-                            <img v-if="client.image" :src="`/storage/${client.image}`" alt="Offer Image" class="w-16 h-16 object-cover rounded" />
+                            <img v-if="client.image" :src="`/storage/app/public/${client.image}`" alt="Offer Image" class="w-16 h-16 object-cover rounded" />
                             <span v-else class="text-gray-400">{{ $t('offersList.noImage') }}</span>
                         </td>
                         <td>
