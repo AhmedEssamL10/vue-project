@@ -52,13 +52,16 @@
             src: url("{{ asset('assets/fonts/Inter-Bold.ttf') }}") format("truetype");
             font-weight: 700;
         }
+        .dashboardWrapper * {
+            user-select: text !important;
+        }
     </style>
     @vite(['resources/js/main.js'])
 </head>
 <body dir="rtl">
     {{-- @include('layouts.dashboard.header') --}}
     
-    <main>
+    <main class="dashboardWrapper">
         @yield('content')
     </main>
     
