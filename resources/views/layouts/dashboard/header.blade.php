@@ -3,7 +3,7 @@
         <div class="container flex justify-between items-center">
             <div class="flex items-center">
                 <a href="/">
-                    <img class="w-[150px]" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg" alt="Logo" />
+                    <img class="w-[150px]" src="https://3mserv.com/assets/images/Pur.png" alt="Logo" />
                 </a>
             </div>
 

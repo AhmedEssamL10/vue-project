@@ -10,7 +10,7 @@ import GenericToaster from './GenericToaster.vue';
 import { useUiStore } from '../js/stores/uiStore';
 export default {
   name: 'App',
-  setup(){
+  setup() {
     const uiStore = useUiStore()
     return {
       uiStore
@@ -20,19 +20,19 @@ export default {
     GenericToaster
   },
   computed: {
-    getToasterData(){
+    getToasterData() {
       return this.uiStore.getToasterData;
     }
-  }, 
-  mounted(){
+  },
+  mounted() {
     // this.$i18n.locale = 'de';
   },
   watch: {
     '$i18n.locale': {
-      handler(val){
-        if(val === 'ar'){
+      handler(val) {
+        if (val === 'ar') {
           document.body.dir = 'rtl';
-        }else{
+        } else {
           document.body.dir = 'ltr';
         }
       },

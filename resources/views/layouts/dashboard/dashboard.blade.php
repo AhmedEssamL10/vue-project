@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>ثرى إم للخدمات - الصفحة الرئيسية</title>
-    <link rel="icon" href="https://3m-services-v44.netlify.app/assets/Pur-Z7YkYTxg.png" type="image/x-icon">
+    <link rel="icon" href="https://3mserv.com/assets/images/Pur.png" type="image/x-icon">
     <style>
         @font-face {
             font-family: Cairo;

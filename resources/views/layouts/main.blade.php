@@ -44,7 +44,7 @@
     <link rel="alternate" hreflang="x-default" href="{{ str_replace('/ar/', '/de/', url()->current()) }}">
     
     <!-- Favicon -->
-    <link rel="icon" href="https://3m-services-v44.netlify.app/assets/Pur-Z7YkYTxg.png" type="image/x-icon">
+    <link rel="icon" href="https://3mserv.com/assets/images/Pur.png" type="image/x-icon">
     
     <!-- Additional Page-specific Meta Tags -->
     @yield('additional_meta')

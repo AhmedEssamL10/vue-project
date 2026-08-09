@@ -3,8 +3,7 @@
         <div class="container flex justify-between items-center">
             <div class="flex items-center">
                 <router-link :to="{ name: 'DashboardStats' }">
-                    <img class="w-[150px]" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg"
-                        alt="Logo" />
+                    <img class="w-[150px]" src="https://3mserv.com/assets/images/Pur.png" alt="Logo" />
                 </router-link>
             </div>
 
@@ -26,7 +25,8 @@
                         </li>
                     </ul>
                 </div>
-                <button @click="changeLanguage(locale)" class="flex items-center gap-1 transition-all duration-500 hover:opacity-80 text-black">
+                <button @click="changeLanguage(locale)"
+                    class="flex items-center gap-1 transition-all duration-500 hover:opacity-80 text-black">
                     <img width="20px" :src="locale === 'de' ? arabicFlag : germanFlag" alt="arabicFlag" />
                     <span>{{ locale == 'ar' ? 'De' : 'Ar' }}</span>
                 </button>
@@ -137,8 +137,8 @@ watch('$i18n.locale', async (newLocale) => {
     router.push({
         name: route.name,
         params: {
-        ...route.params,
-        locale: newLocale,
+            ...route.params,
+            locale: newLocale,
         },
         query: route.query,
     })

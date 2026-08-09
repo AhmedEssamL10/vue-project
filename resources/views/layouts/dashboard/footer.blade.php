@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
                 <div class="flex items-center mb-4">
-                    <img class="max-w-[150px] whiteImgFilter" src="https://3m-services-v4.netlify.app/assets/Pur-CWmmJo9F.svg" alt="Logo" />
+                    <img class="max-w-[150px] whiteImgFilter" src="https://3mserv.com/assets/images/Pur.png" alt="Logo" />
                 </div>
                 <p class="text-gray-400 mb-4">
                     جعل النقل بسيطًا وموثوقًا به وسهل الوصول إليه للجميع.
